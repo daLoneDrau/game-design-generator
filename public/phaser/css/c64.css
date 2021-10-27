@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "C64 Pro";
+  src: url("/phaser/assets/font/giana.woff") format("woff");
+}
+@font-face {
+  font-family: "C64 Pro Mono";
+  src: url("/phaser/assets/font/giana.woff") format("woff");
+}
+@font-face {
+  font-family: "C64ProMono";
+  src: url("/phaser/assets/font/giana.woff") format("woff");
+}
+body {
+  font-family: "C64 Pro Mono", courier, monospace;
+  color: #A6A1FF;
+  background-color: #A6A1FF;
+}

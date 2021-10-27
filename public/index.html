@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Game Design Generator</title>
+</head>
+<body>
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown" id="navBrandContainer">
+              <a class="navbar-brand nav-link dropdown-toggle" id="navBrand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Game Design Generator
+              </a>
+              <ul class="dropdown-menu" id="gameListMenu" aria-labelledby="navbarDropdown">
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <h6 style="cursor: pointer; color: rgba(255,255,255,.55);" id="addProject">- Add a New Title - </h6>
+      </div>
+    </nav>
+  </header>
+  <main role="main" class="container">
+    <div class="row" id="mainRow">
+      <!-- project nav-->
+      <div class="col-md-3" style="height: 485px; overflow-y: scroll;">
+        <div id="theme"></div>
+        <div id="breadcrumbs"></div>
+        <nav id="projectNav" class="nav flex-column"></nav>
+      </div>
+      <div class="col-md-6" id="projectContent" data-bs-target="#projectNav" style="position: relative; height: 485px; overflow-y: scroll;" tabindex="0"></div> <!-- relative position for scrollspy -->
+      <div class="col-md-3" id="annotations" style="height: 485px; overflow-y: scroll;"></div>
+    </div>
+  </main>
+  <div class="modal" tabindex="-1" id="mainModal">
+    <div class="modal-dialog">
+      <div class="modal-content">        
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- jQuery-ui library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+  <!-- Bootstrap bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- Local library -->
+  <script src="./js/form.manager.js"></script>
+  <script src="./js/library.manager.js"></script>
+  <script src="./js/project.manager.js"></script>
+
+<script>
+  $(document).ready(function () {
+    init();
+    LibraryManager.loadLibraries();
+  });
+  function init() {
+    $("#addProject").on("click", function() { FormManager.displayAddProjectForm(); });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1796 @@
+{
+  "appName": "David Ahl",
+  "data-path": [
+    "data"
+  ],
+  "templates file": "",
+  "theme": "c64",
+  "dimensions": [
+    800,
+    600
+  ],
+  "library files": [
+    "app-constants"
+  ],
+  "DESIGNER'S JOURNAL": {
+    "Design Notes": {
+      "Oct 2 2021": [
+        "Application data created."
+      ]
+    },
+    "Testing": {},
+    "Next Steps": []
+  },
+  "enums": [],
+  "fileHandle": "davidahl",
+  "appHandle": "DavidAhl",
+  "appConstants": [],
+  "Design Notes": [
+    {
+      "title": "Setup",
+      "order": -9999,
+      "content": "Initial project setup; includes the creation of the following utility classes:\n\n* Game - application entry point\n* Constants - constants configuration\n* AlignmentGrid - UI layout utility\n",
+      "children": [],
+      "design": [
+        {
+          "tags": [
+            "class",
+            "app-constants"
+          ],
+          "classHandle": "Constants",
+          "fileHandle": "constants",
+          "uid": "kua8vxek3bbuzjxciuy"
+        },
+        {
+          "tags": [
+            "prototype",
+            "class"
+          ],
+          "uid": "ku5m3or5dpana0wkw3k",
+          "classTitle": "AlignmentGrid",
+          "classHandle": "AlignmentGrid",
+          "fileHandle": "alignmentgrid",
+          "classDefinition": "Utility class used to break a scene's viewport into a grid of cells. Useful for positioning text and buttons.",
+          "filePath": "ui"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "private field"
+          ],
+          "fieldName": "_parent",
+          "fieldType": "Phaser.Class",
+          "fieldValue": "null",
+          "fieldDefinition": "The parent object used to determine the screen dimensions. If a Phaser.Scene instance is not supplied it defaults to the Phaser.Game instance.",
+          "order": "1",
+          "uid": "ku5pdw0bap1xvjyapdm"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "constructor body"
+          ],
+          "code": "\nthis._parent = parameterObject.parent;\nthis._cellWidth = this._parent.scale.width / parameterObject.columns;\nthis._cellHeight = this._parent.scale.height / parameterObject.rows;",
+          "order": "1",
+          "uid": "ku5qxck22p6s3mvqn72"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "public member"
+          ],
+          "memberName": "placeAt",
+          "memberDefinition": "/**\n * Places an object in relation to the grid.\n * @param {Number} x the x-coordinate of the cell where the object should be placed\n * @param {Number} y the y-coordinate of the cell where the object should be placed\n * @param {Phaser.GameObjects.GameObject} obj game object being placed\n */",
+          "arguments": "x, y, obj",
+          "code": "//calculate the center of the cell\n//by adding half of the height and width\n//to the x and y of the coordinates\nlet x2 = this._cellWidth * x + this._cellWidth / 2;\nlet y2 = this._cellHeight * y + this._cellHeight / 2;\nobj.x = x2;\nobj.y = y2;",
+          "order": "1",
+          "uid": "ku5xfssyhsmrnxr2bog"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "private field"
+          ],
+          "fieldName": "_cellWidth",
+          "fieldType": "int",
+          "fieldValue": 0,
+          "fieldDefinition": "The # of cells wide the grid should be.",
+          "order": "2",
+          "uid": "ku5tpm6ie1z1e39xc5o"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "private field"
+          ],
+          "fieldName": "_cellHeight",
+          "fieldType": "int",
+          "fieldValue": 0,
+          "fieldDefinition": "The # of cells high the grid should be.",
+          "order": "3",
+          "uid": "ku5tr1j3c5jt69wfvzt"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "inheritance"
+          ],
+          "classInheritance": "Phaser.GameObjects.Group",
+          "uid": "ku5z86ff6t3f7cwk4o7"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "public member"
+          ],
+          "memberName": "show",
+          "memberDefinition": "/**\n * Draws a red border demarcating the grid cells.\n */",
+          "arguments": "",
+          "code": "if (typeof(this.graphics) === \"undefined\") {\n  this.graphics = this._parent.add.graphics({ lineStyle: { width: 4, color: 0xff0000, alpha: 1 } });\n}\nfor (let i = 0; i <= this._parent.scale.width; i += this._cellWidth) {\n  let line = new Phaser.Geom.Line(i, 0, i, this._parent.scale.height);\n  this.graphics.strokeLineShape(line);\n}\nfor (let i = 0; i <= this._parent.scale.height; i += this._cellHeight) {\n  let line = new Phaser.Geom.Line(0, i, this._parent.scale.width, i);\n  this.graphics.strokeLineShape(line);\n}",
+          "order": "2",
+          "uid": "ku60flwe9ltd133x4zl"
+        },
+        {
+          "classTitle": "Game",
+          "classHandle": "Game",
+          "fileHandle": "game",
+          "tags": [
+            "class",
+            "game"
+          ],
+          "classDefinition": "The Game application.",
+          "uid": "kue9fpjxcxp2dgb6so"
+        },
+        {
+          "tags": [
+            "postboot",
+            "code"
+          ],
+          "uid": "kuebmf5d38dlza32jxj",
+          "classUid": "kue9fpjxcxp2dgb6so",
+          "code": "_game.scene.queueOp(\"start\", \"Main Menu\");\n_game.scene.queueOp(\"start\", \"GameConsole\");\n_game.scene.queueOp(\"start\", \"Controller\");",
+          "order": "1"
+        },
+        {
+          "classUid": "kue9fpjxcxp2dgb6so",
+          "importHandle": "DavidAhlConstants",
+          "importPath": "../config/davidahl-constants",
+          "tags": [
+            "code",
+            "required import"
+          ],
+          "uid": "kuebznlcocdek56s2u8"
+        },
+        {
+          "classUid": "kue9fpjxcxp2dgb6so",
+          "importHandle": "DavidAhlMainMenu",
+          "importPath": "../scenes/davidahl-main-menu",
+          "tags": [
+            "code",
+            "required import"
+          ],
+          "uid": "kuec065jzbihcitw36a"
+        }
+      ],
+      "uid": "kua8vxeku565a9760f"
+    },
+    {
+      "title": "David Ahl Games",
+      "order": 2,
+      "content": "David Ahl Games is broken into several sections:\n\n1. Basic Computer Games\n2. Big Computer Games",
+      "children": [
+        {
+          "title": "The Controller Scene",
+          "order": 1,
+          "content": "A Controller Scene class will be created to manage scene loading and switching. Scenes will be registered in scene groups, which will then be activated/made visible based on their group's key.",
+          "children": [],
+          "design": [
+            {
+              "classTitle": "Controller",
+              "classHandle": "Controller",
+              "fileHandle": "controller",
+              "tags": [
+                "class",
+                "scene"
+              ],
+              "classDefinition": "The Controller will handle switching between scene groups.",
+              "uid": "kugxgxgvuzx1hin1t7"
+            },
+            {
+              "classUid": "kugxgxgvuzx1hin1t7",
+              "tags": [
+                "code",
+                "private field"
+              ],
+              "fieldName": "_currentGroup",
+              "fieldType": "string",
+              "fieldValue": "\"\"",
+              "fieldDefinition": "The current scene group being displayed.",
+              "order": "1",
+              "uid": "kugxjhjqi7xxz8ojnzn"
+            },
+            {
+              "classUid": "kugxgxgvuzx1hin1t7",
+              "tags": [
+                "code",
+                "public setter property"
+              ],
+              "propertyName": "currentScene",
+              "order": "1",
+              "uid": "kugxvds0ef2jd4alnbf",
+              "setterDefinition": "Sets the current scene group's key.",
+              "setterBody": "if (!_sceneGroups.hasOwnProperty(value)) {\n  throw [\"Cannot assign current group - \", value, \" - it doesn't exist\"].join(\"\");\n}\n_scene.switch(value);"
+            },
+            {
+              "classUid": "kugxgxgvuzx1hin1t7",
+              "tags": [
+                "code",
+                "create"
+              ],
+              "code": "// set scene groups\n_sceneGroups[\"Main Menu\"] = [\"Main Menu\"];\n_sceneGroups[\"GameConsole\"] = [\"GameConsole\"];\n\n// switch Main Menu state\nDavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_DEFAULT;\n\n// set current scene\nthis.switch(\"Main Menu\");",
+              "order": "1",
+              "uid": "kugxxhaqvrawp4l2atd"
+            },
+            {
+              "classUid": "kugxgxgvuzx1hin1t7",
+              "tags": [
+                "code",
+                "public member"
+              ],
+              "memberName": "switch",
+              "memberDefinition": "/**\n * Switches between scene groups.\n * @param {string} scene the scene group's key\n */",
+              "arguments": "scene",
+              "code": "let keys = Object.keys(_sceneGroups);\n// disable all scenes\nfor (let i = keys.length - 1; i >= 0; i--) {\n  let scenes = _sceneGroups[keys[i]];\n  for (let i = scenes.length - 1; i >= 0; i--) {\n    console.log(\"turn off\",scenes[i])\n    this.scene.setVisible(false, scenes[i]);\n    this.scene.setActive(false, scenes[i]);\n  }\n}\n// enable current\n_currentGroup = scene;\nlet scenes = _sceneGroups[_currentGroup];\nfor (let i = scenes.length - 1; i >= 0; i--) {\n  console.log(\"turn on\",scenes[i])\n  this.scene.setVisible(true, scenes[i]);\n  this.scene.setActive(true, scenes[i]);\n}",
+              "order": "1",
+              "uid": "kugy0e2ka07vhq2jui"
+            },
+            {
+              "classUid": "kugxgxgvuzx1hin1t7",
+              "tags": [
+                "code",
+                "private field"
+              ],
+              "fieldName": "_sceneGroups",
+              "fieldType": "dictionary",
+              "fieldValue": "{}",
+              "fieldDefinition": "The dictionary of scene groups, where groups of scenes are associated with a specific scene key.",
+              "order": "2",
+              "uid": "kugxiklljfnx62cbmjr"
+            },
+            {
+              "classUid": "kugxgxgvuzx1hin1t7",
+              "tags": [
+                "code",
+                "public getter property"
+              ],
+              "propertyName": "groups",
+              "order": "2",
+              "uid": "kugxtlorywqfe6xjnn",
+              "getterDefinition": "Gets the scene groups dictionary.",
+              "getterBody": "return _sceneGroups;"
+            }
+          ],
+          "uid": "kugxds8s99ejpx38ok"
+        },
+        {
+          "title": "The Main Menu",
+          "order": 2,
+          "content": "The Main Menu scene will be the application entry point.  Here, the user will have the option to choose which types of games to play, leading to further sub-menus until the user is presented with a list of games to load.  Loading a game will switch to a new scene.\n\nThe Main Menu initially will offer brief introductory text and two menu choices:\n1. Basic Computer Games\n2. Big Computer Games\n\nThe Main Menu scene will accept mouse and keyboard input.",
+          "children": [
+            {
+              "title": "The Main Menu Scene Class",
+              "order": 1,
+              "content": "The Main Menu and all sub-menus are rendered by a Main Menu Scene.",
+              "children": [
+                {
+                  "title": "Main Menu Import",
+                  "order": 1,
+                  "content": "The Main Menu scene will require the application constants class.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "importHandle": "DavidAhlConstants",
+                      "importPath": "../config/davidahl-constants.js",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kucx9hwqvst2tgkdtfh"
+                    }
+                  ],
+                  "uid": "kucvvgrgpf30aa8sb3"
+                },
+                {
+                  "title": "Main Menu private fields",
+                  "order": 2,
+                  "content": "The Main Menu scene will have two private fields:\n\n_state - this setting will track the current scene state; i.e., showing the main menu, the 'Basic' menu, or any other submenu.\n\n_stateChangeResolved - a flag for determining whether state changes have been processed and resolved",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "tags": [
+                        "code",
+                        "private field"
+                      ],
+                      "fieldName": "_state",
+                      "fieldType": "int",
+                      "fieldValue": "-1",
+                      "fieldDefinition": "The current rendering state, determining which set of options is displayed.",
+                      "order": "1",
+                      "uid": "ku4dajakcss148zzzzb"
+                    },
+                    {
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "tags": [
+                        "code",
+                        "private field"
+                      ],
+                      "fieldName": "_stateChangeResolved",
+                      "fieldType": "boolean",
+                      "fieldValue": true,
+                      "fieldDefinition": "flag indicating whether the latest change to the state was resolved",
+                      "order": "2",
+                      "uid": "ku4kx6bsba2if9br9cf"
+                    },
+                    {
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "tags": [
+                        "code",
+                        "public getter/setter property"
+                      ],
+                      "propertyName": "state",
+                      "order": "3",
+                      "uid": "kud31ievpum5wcffwe",
+                      "getterDefinition": "Gets/sets the current state.",
+                      "getterBody": "return _state;",
+                      "setterDefinition": "Sets the current state.",
+                      "setterBody": "_state = value;\n_stateChangeResolved = false;"
+                    }
+                  ],
+                  "uid": "kucvoz3mjmg4qwz62mi"
+                },
+                {
+                  "title": "Main Menu KeyUp events",
+                  "order": 3,
+                  "content": "The Main Menu will handle KeyUp events and process them based on the current state.",
+                  "children": [
+                    {
+                      "title": "The KeyUp delegate handler",
+                      "order": 1,
+                      "content": "A dictionary, _KEY_UP_EVENT_HANDLERS, will be added to the Main Menu scene to delegate events to the correct handler based on the current menu state.",
+                      "children": [
+                        {
+                          "title": "The Default Menu KeyUp handler",
+                          "order": 1,
+                          "content": "A handler will be created for the default menu.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "ku41uh9k9f1q5lsewtw",
+                              "tags": [
+                                "code",
+                                "scoped dictionary body 1"
+                              ],
+                              "dictionaryKey": "[DavidAhlConstants.MAIN_MENU_DEFAULT]",
+                              "dictionaryDefinition": "Key handler for the Default menu.",
+                              "dictionaryValue": "function(event) {\n  switch (event.key) {\n    case \"1\":\n      DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_BASIC;\n      break;\n  }\n}",
+                              "uid": "kuhndb1jdbv8bw57zha"
+                            }
+                          ],
+                          "uid": "kuhnpn503rygpvayi2q"
+                        }
+                      ],
+                      "design": [
+                        {
+                          "classUid": "ku41uh9k9f1q5lsewtw",
+                          "tags": [
+                            "code",
+                            "scoped dictionary enclosure 1"
+                          ],
+                          "dictionaryName": "_KEY_UP_EVENT_HANDLERS",
+                          "dictionaryType": "constant",
+                          "dictionaryDefinition": "The dictionary of 'key up' event handlers. Keys are the menu states.",
+                          "uid": "kuheicnkhdmqspyie7v"
+                        }
+                      ],
+                      "uid": "kuhnn3dpjg36wkqvcb"
+                    },
+                    {
+                      "title": "The KeyUp listener",
+                      "order": 2,
+                      "content": "A listener will be added to the create method in Main Menu to listen for key up events. Events will then be sent to the event delegator.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "ku41uh9k9f1q5lsewtw",
+                          "tags": [
+                            "code",
+                            "create"
+                          ],
+                          "code": "//  Global event listener, catches all keys\n//  Receives every single key up event, regardless of type\nthis.input.keyboard.on('keyup', function (event) {\n  _KEY_UP_EVENT_HANDLERS[_state](event);\n});",
+                          "order": "2",
+                          "uid": "kuhnksy510oc4khmqe7n"
+                        }
+                      ],
+                      "uid": "kuhnon6khnbful1wma"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kuheca6om58wvg2tjzq"
+                },
+                {
+                  "title": "Main Menu Templates",
+                  "order": 4,
+                  "content": "A Templates dictionary will contain the structure for all UI templates to render.  Dictionary keys will be tied to the Main Menu rendering state.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "tags": [
+                        "code",
+                        "scoped dictionary enclosure 0"
+                      ],
+                      "dictionaryName": "_TEMPLATES",
+                      "dictionaryType": "constant",
+                      "dictionaryDefinition": "The map of UI templates displayed for each menu state.",
+                      "uid": "ku8gpgjmnkno8ppxq5l"
+                    }
+                  ],
+                  "uid": "kucwq0t3f306r22semc"
+                },
+                {
+                  "title": "Main Menu Default Template",
+                  "order": 5,
+                  "content": "A Default template will be created for the Main Menu scene.  The template structure will be stored in the _TEMPLATES dictionary.",
+                  "children": [],
+                  "design": [
+                    {
+                      "tags": [
+                        "scoped dictionary body 0",
+                        "code"
+                      ],
+                      "uid": "ku8i0eff7ogb1j8y9i",
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "dictionaryKey": "[DavidAhlConstants.MAIN_MENU_DEFAULT]",
+                      "dictionaryDefinition": "template for state MAIN_MENU",
+                      "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 1]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"David Ahl's Computer Games\", // text\n      ],\n      position: [6, 2],\n      scale: 1.25,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"Microcomputer Edition\", // text\n      ],\n      position: [6, 3],\n      scale: 0.875,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"[1] Basic Computer Games\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_BASIC;\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 5],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"[2] Big Computer Games\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_BIG;\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 6],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 11]\n    }\n  ]\n}"
+                    }
+                  ],
+                  "uid": "kucwv8wdc55l31akflr"
+                },
+                {
+                  "title": "The 'preload' method",
+                  "order": 6,
+                  "content": "The preload method will be used to load the Commodore 64 font image file.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "tags": [
+                        "code",
+                        "preload"
+                      ],
+                      "code": "// load the theme fonts\nthis.load.bitmapFont(\"[theme-font-import]\", \"/phaser/assets/font/[theme-font-import].png\", \"/phaser/assets/font/[theme-font-import].xml\");",
+                      "order": "1",
+                      "uid": "kuhd1h2cueot8z6bysp"
+                    }
+                  ],
+                  "uid": "kuhd107gcf22m6jc57n"
+                },
+                {
+                  "title": "The 'create' method",
+                  "order": 7,
+                  "content": "The 'create' method is called when the Scene instance is started, after 'init' and 'preload'. During this period, all game objects will be created, including all templates defined in the _TEMPLATES member.",
+                  "children": [],
+                  "design": [
+                    {
+                      "tags": [
+                        "create",
+                        "code"
+                      ],
+                      "uid": "ku8nkx3sckr2i6wpej7",
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "code": "// create a grid for laying out elements\nlet grid = new DavidAhlAlignmentGrid({ \"parent\": this, \"columns\": 13, \"rows\": 13 });\n//turn on the lines for testing\n//and layout\ngrid.show();\n\n// create groups for each state\nlet keys = Object.keys(_TEMPLATES);\nkeys.sort();\nfor (let i = keys.length - 1; i >= 0; i--) {\n  let entry = _TEMPLATES[keys[i]];\n  let group = this.add.group();\n  entry.group = group;\n  for (let j = entry.children.length - 1; j >= 0; j--) {\n    let child = entry.children[j];\n    switch (child.type) {\n      case \"rectangle\":\n        // if height or width is less than 1, then it is a percentage\n        if (child.args[2] < 1) {\n          child.args[2] *= this.scale.width;\n        }\n        if (child.args[3] < 1) {\n          child.args[3] *= this.scale.height;\n        }\n        break;\n    }\n    let object = this.add[child.type](...child.args);\n    // set the origin\n    if (child.hasOwnProperty(\"origin\")) {\n      object.setOrigin(...child.origin); // set the origin property\n    } else {\n      object.setOrigin(0.5); // set the origin to the middle\n    }\n    switch (child.type) {\n      case \"bitmapText\":\n        if (child.hasOwnProperty(\"scale\")) {\n          object.setScale(child.scale);\n        }\n        if (child.hasOwnProperty(\"tint\")) {\n          object.setTint(child.tint);\n        }\n        if (child.hasOwnProperty(\"dropShadow\")) {\n          object.setDropShadow(...child.dropShadow); // set the origin property\n        }\n        break;\n    }\n    // add listeners\n    if (child.hasOwnProperty(\"listeners\")) {\n      let listeners = Object.keys(child.listeners);\n      for (let i = listeners.length - 1; i >= 0; i--) {\n        switch (child.type) {\n          case \"dom\":\n            object.addListener(listeners[i]);\n            object.on(listeners[i], new Function(child.listeners[listeners[i]].args, child.listeners[listeners[i]].body));\n            break;\n          default:\n            object.addListener(listeners[i], new Function(child.listeners[listeners[i]].args, child.listeners[listeners[i]].body));\n            break;\n        }\n      }\n    }\n    // add interactive\n    if (child.hasOwnProperty(\"interactive\")) {\n      object.setInteractive(...child.interactive); // set the origin property\n    }\n    // add the element to the group\n    group.add(object, true);\n\n    // place the element where needed\n    grid.placeAt(child.position[0], child.position[1], object);\n  }\n  // hide the group\n  group.setVisible(false);\n}",
+                      "order": "1"
+                    }
+                  ],
+                  "uid": "kue6fx9p3nssckv2zls"
+                },
+                {
+                  "title": "The 'update' method",
+                  "order": 8,
+                  "content": "The 'update' method is called once per game step while the Scene instance is running'. During this step, the 'update' method will check for any changes to the Main Menu state and update the scene UI accordingly.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "ku41uh9k9f1q5lsewtw",
+                      "tags": [
+                        "code",
+                        "update"
+                      ],
+                      "code": "if (!_stateChangeResolved) {\n  // hide all templates\n  let keys = Object.keys(_TEMPLATES);\n  for (let i = keys.length - 1; i >= 0; i--) {\n    _TEMPLATES[keys[i]].group.setVisible(false);\n  }\n\n  // show the current template\n  _TEMPLATES[_state].group.setVisible(true);\n\n  // reset the flag\n  _stateChangeResolved = true;\n}",
+                      "order": "1",
+                      "uid": "kue8ixpsnjtnlg26b0h"
+                    }
+                  ],
+                  "uid": "kue6rhe7ymagjnet5o"
+                }
+              ],
+              "design": [
+                {
+                  "classTitle": "Main Menu",
+                  "classHandle": "MainMenu",
+                  "fileHandle": "main-menu",
+                  "tags": [
+                    "class",
+                    "scene"
+                  ],
+                  "classDefinition": "The Main Menu is the application entry point. From here, all game menus and links to cartridges are displayed.",
+                  "uid": "ku41uh9k9f1q5lsewtw"
+                }
+              ],
+              "uid": "kucvrhg50hj2zljlcjgk"
+            },
+            {
+              "title": "Main Menu sub-Menus",
+              "order": 1,
+              "content": "The Main Menu will display several sub- and sub-sub menus.  Each sub-menu will be rendered by the state it is tied to.",
+              "children": [
+                {
+                  "title": "Basic Computer Games",
+                  "order": 2,
+                  "content": "Basic Computer Games will cover selected games from the 1978 book, Basic Computer Games, and its successor, More Basic Computer Games",
+                  "children": [
+                    {
+                      "title": "Basic Menu Template",
+                      "order": 1,
+                      "content": "The Basic Menu template will be created for the Main Menu scene.  The template structure will be stored in the _TEMPLATES dictionary. The Basic Menu will display menu options for mini-games based on genre. Genre styles include:\n\n* Card Games",
+                      "children": [],
+                      "design": [
+                        {
+                          "tags": [
+                            "scoped dictionary body 0",
+                            "code"
+                          ],
+                          "uid": "ku8mvuqf8s6pqblfx9",
+                          "classUid": "ku41uh9k9f1q5lsewtw",
+                          "dictionaryKey": "[DavidAhlConstants.MAIN_MENU_BASIC]",
+                          "dictionaryDefinition": "template for state MAIN_MENU_BASIC",
+                          "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 1]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"David Ahl's Computer Games\", // text\n      ],\n      position: [6, 2],\n      scale: 1.25,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"Microcomputer Edition\", // text\n      ],\n      position: [6, 3],\n      scale: 0.875,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"[1] Card Games\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_CARD_GAMES;\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 5],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"[theme-preferred-font]\", // font\n        \"[ESC] Back to the Main Menu\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_DEFAULT;\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 6],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 11]\n    }\n  ]\n}"
+                        }
+                      ],
+                      "uid": "kuedcgxwr5ozxnk6dxp"
+                    },
+                    {
+                      "title": "The Basic Menu KeyUp Handler",
+                      "order": 2,
+                      "content": "A handler will be created for the 'Basic' menu.",
+                      "children": [],
+                      "design": [
+                        {
+                          "tags": [
+                            "scoped dictionary body 1",
+                            "code"
+                          ],
+                          "uid": "kuitc0iz98bvcw60ppu",
+                          "classUid": "ku41uh9k9f1q5lsewtw",
+                          "dictionaryKey": "[DavidAhlConstants.MAIN_MENU_BASIC]",
+                          "dictionaryDefinition": "Key handler for the 'Basic Games' menu.",
+                          "dictionaryValue": "function(event) {\n  switch (event.key) {\n    case \"1\":\n      DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_CARD_GAMES;\n      break;\n    case \"Escape\":\n      DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_DEFAULT;\n      break;\n  }\n}"
+                        }
+                      ],
+                      "uid": "kuit6ysp3jgh53zrzme"
+                    },
+                    {
+                      "title": "Card Games Sub-Menu",
+                      "order": 3,
+                      "content": "Card Games will cover all card games from the 1978 book, Basic Computer Games, and its successor, More Basic Computer Games.",
+                      "children": [
+                        {
+                          "title": "Card Games Template",
+                          "order": 1,
+                          "content": "The Card Games template will be created for the Main Menu scene.  The template structure will be stored in the _TEMPLATES dictionary. The Card Games Menu will display menu options for card mini-games based. Games styles include:\n\n* Acey Ducey",
+                          "children": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "scoped dictionary body 0",
+                                "code"
+                              ],
+                              "uid": "kugzu5eqnv7log5uy7",
+                              "classUid": "ku41uh9k9f1q5lsewtw",
+                              "dictionaryKey": "[DavidAhlConstants.MAIN_MENU_CARD_GAMES]",
+                              "dictionaryDefinition": "template for state MAIN_MENU_CARD_GAMES",
+                              "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 1]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"David Ahl's Computer Games\", // text\n      ],\n      position: [6, 2],\n      scale: 1.25,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Microcomputer Edition\", // text\n      ],\n      position: [6, 3],\n      scale: 0.875,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[1] Acey Ducey\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlGameConsole.cartridge = \\\"Acey Ducey\\\"; DavidAhlController.currentScene = \\\"GameConsole\\\";\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 5],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[ESC] Back to Basic Computer Games\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_BASIC;\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 6],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 11]\n    }\n  ]\n}"
+                            }
+                          ],
+                          "uid": "ktxeqwlq756xkswtbna"
+                        },
+                        {
+                          "title": "Card Games Menu KeyUp Handler",
+                          "order": 2,
+                          "content": "A handler will be created for the 'Card Games' menu.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "ku41uh9k9f1q5lsewtw",
+                              "tags": [
+                                "code",
+                                "scoped dictionary body 1"
+                              ],
+                              "dictionaryKey": "[DavidAhlConstants.MAIN_MENU_CARD_GAMES]",
+                              "dictionaryDefinition": "Key handler for the 'Card Games' menu.",
+                              "dictionaryValue": "function(event) {\n  switch (event.key) {\n    case \"1\":\n      DavidAhlGameConsole.cartridge = \"Acey Ducey\";\n      DavidAhlController.currentScene = \"GameConsole\";\n      break;\n    case \"Escape\":\n      DavidAhlMainMenu.state = DavidAhlConstants.MAIN_MENU_BASIC;\n      break;\n  }\n}",
+                              "uid": "kuitush83quzlz8khs6"
+                            }
+                          ],
+                          "uid": "kuitked06mwh47fvor6"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "ktxdnhav8807z4bxjrg"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "ktx9dz1b5zcn82bbdp8"
+                },
+                {
+                  "title": "Big Computer Games",
+                  "order": 2,
+                  "content": "This section will cover 'Big' Computer Games, such as Hammurabi, Star Trek, and others",
+                  "children": [
+                    {
+                      "title": "Big Menu Template",
+                      "order": 1,
+                      "content": "The Big Menu template will be created for the Main Menu scene.  The template structure will be stored in the _TEMPLATES dictionary. The Big Menu will display menu options for mini-games based on genre. Genre styles include:\n\n* Sci-fi Games\n* Strategy Games\n* Sports Games",
+                      "children": [],
+                      "design": [],
+                      "uid": "kuedmuuv90v4dc02m9h"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kuedkpmc8t42ml3eopy"
+                }
+              ],
+              "design": [],
+              "uid": "kucvxbgujb3ft24bwh9"
+            }
+          ],
+          "design": [
+            {
+              "classUid": "kua8vxek3bbuzjxciuy",
+              "groupName": "MAIN_MENU_STATES",
+              "tags": [
+                "code",
+                "group properties"
+              ],
+              "elements": [
+                {
+                  "elementName": "MAIN_MENU_DEFAULT",
+                  "elementValue": "0",
+                  "elementDefinition": "The default menu displayed.",
+                  "order": 1
+                },
+                {
+                  "elementName": "MAIN_MENU_BASIC",
+                  "elementValue": "1",
+                  "elementDefinition": "The 'Basic Games' menu should be displayed.",
+                  "order": 2
+                },
+                {
+                  "elementName": "MAIN_MENU_CARD_GAMES",
+                  "elementValue": "2",
+                  "elementDefinition": "The 'Basic Card Games' menu should be displayed.",
+                  "order": 3
+                }
+              ],
+              "uid": "kucqqztkzm2zjp4mi8l"
+            }
+          ],
+          "uid": "ku41ks57co7ph9w6fr5"
+        },
+        {
+          "title": "The Game Console",
+          "order": 2,
+          "content": "The Game Console scene will be the application main scene. Here, the user will play the different games available.\n\nThe Game Console scene will accept mouse and keyboard input.",
+          "children": [
+            {
+              "title": "The Game Console Scene Class",
+              "order": 1,
+              "content": "All game cartridges are rendered by the Game Console Scene.",
+              "children": [
+                {
+                  "title": "The Game Console Cartridges Dictionary",
+                  "order": 1,
+                  "content": "The Game Console will maintain a dictionary of cartridges keyed by the game title.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kueecdl95xxfihqed63",
+                      "tags": [
+                        "code",
+                        "scoped dictionary enclosure 0"
+                      ],
+                      "dictionaryName": "_CARTRIDGES",
+                      "dictionaryType": "constant",
+                      "dictionaryDefinition": "The map of game cartridges.",
+                      "uid": "kuivzft0vqzxo4gxm2q"
+                    }
+                  ],
+                  "uid": "kuiupz2hl9d6hzude1"
+                },
+                {
+                  "title": "The Game Console '_cartridge' field.",
+                  "order": 2,
+                  "content": "A private field will be created to track the current cartridge that is playing.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kueecdl95xxfihqed63",
+                      "tags": [
+                        "code",
+                        "private field"
+                      ],
+                      "fieldName": "_cartridge",
+                      "fieldType": "string",
+                      "fieldValue": "\"\"",
+                      "fieldDefinition": "The current game cartridge.",
+                      "order": "1",
+                      "uid": "kuiw0g1dg6zvvaiu3tn"
+                    }
+                  ],
+                  "uid": "kuiurm5sv6bhvqyk1w"
+                },
+                {
+                  "title": "The Game Console 'cartridge' property",
+                  "order": 3,
+                  "content": "A public property will be added to access the '_cartridge' field.",
+                  "children": [],
+                  "design": [
+                    {
+                      "tags": [
+                        "public setter property",
+                        "code"
+                      ],
+                      "uid": "kuiw2jgt7idscv5t6yl",
+                      "classUid": "kueecdl95xxfihqed63",
+                      "propertyName": "cartridge",
+                      "setterDefinition": "Sets the current game cartridge",
+                      "setterBody": "if (!_CARTRIDGES.hasOwnProperty(value)) {\n  throw [\"Missing game cartridge\", value];\n}\n_cartridge = value;\nlet scenes = _CARTRIDGES[_cartridge];\nif (Array.isArray(scenes)) {\n  for (let i = scenes.length - 1; i >= 0; i--) {\n    scenes[i].startGame();\n  }\n} else {\n  scenes.startGame();\n}",
+                      "order": "1"
+                    }
+                  ],
+                  "uid": "kuiushrf49mw1fyhpxk"
+                },
+                {
+                  "title": "The KeyUp Handler",
+                  "order": 4,
+                  "content": "A KeyUp handler is required for the Game Console.",
+                  "children": [
+                    {
+                      "title": "The KeyUp listener",
+                      "order": 1,
+                      "content": "A listener will be added to the create method in Game Console to listen for key up events. Events will then be sent to the event delegator.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kueecdl95xxfihqed63",
+                          "tags": [
+                            "code",
+                            "create"
+                          ],
+                          "code": "//  Global event listener, catches all keys\n//  Receives every single key up event, regardless of type\nthis.input.keyboard.on('keyup', function (event) {\n  let scenes = _CARTRIDGES[_cartridge];\n  if (Array.isArray(scenes)) {\n    for (let i = scenes.length - 1; i >= 0; i--) {\n      scenes[i].handleKeyUpEvent(event);\n    }\n  } else {\n    scenes.handleKeyUpEvent(event);\n  }\n});",
+                          "order": "2",
+                          "uid": "kuqy3s9d8ido7hkr6p7"
+                        }
+                      ],
+                      "uid": "kuq5rufmwqgdf2enjqa"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kuq5kimj81k370ivlw8"
+                },
+                {
+                  "title": "Phaser.Scene methods",
+                  "order": 5,
+                  "content": "Game Console will implement several Phaser.Scene methods.",
+                  "children": [
+                    {
+                      "title": "The 'preload' method",
+                      "order": 1,
+                      "content": "The Game Console preload method will call the preload method for the assigned cartridge.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kueecdl95xxfihqed63",
+                          "tags": [
+                            "code",
+                            "preload"
+                          ],
+                          "code": "if (_cartridge !== \"\") {\n  _CARTRIDGES[_cartridge].preload();\n}",
+                          "order": "1",
+                          "uid": "kuiw500ttwn9h8xa23"
+                        }
+                      ],
+                      "uid": "kuiutbo313gwui5syu"
+                    },
+                    {
+                      "title": "The 'create' method",
+                      "order": 2,
+                      "content": "The Game Console create method will call the create method for the assigned cartridge.",
+                      "children": [],
+                      "design": [
+                        {
+                          "tags": [
+                            "create",
+                            "code"
+                          ],
+                          "uid": "kuiw7iko1bgnmwjagqc",
+                          "classUid": "kueecdl95xxfihqed63",
+                          "code": "if (_cartridge !== \"\") {\n  let scenes = _CARTRIDGES[_cartridge];\n  if (Array.isArray(scenes)) {\n    for (let i = scenes.length - 1; i >= 0; i--) {\n      scenes[i].create(data);\n    }\n  } else {\n    scenes.create(data);\n  }\n}",
+                          "order": "1"
+                        }
+                      ],
+                      "uid": "kuivtui7jl4utw8ypka"
+                    },
+                    {
+                      "title": "The 'update' method",
+                      "order": 3,
+                      "content": "The Game Console update method will call the update method for the assigned cartridge.",
+                      "children": [],
+                      "design": [
+                        {
+                          "tags": [
+                            "update",
+                            "code"
+                          ],
+                          "uid": "kuiw8s6ih7nmdptlqhv",
+                          "classUid": "kueecdl95xxfihqed63",
+                          "code": "if (_cartridge !== \"\") {\n  let scenes = _CARTRIDGES[_cartridge];\n  if (Array.isArray(scenes)) {\n    for (let i = scenes.length - 1; i >= 0; i--) {\n      scenes[i].update(time, delta);\n    }\n  } else {\n    scenes.update(time, delta);\n  }\n}",
+                          "order": "1"
+                        }
+                      ],
+                      "uid": "kuivueaezikb016bmwg"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kuq5mcvlk5hko9g719o"
+                }
+              ],
+              "design": [],
+              "uid": "kueedl03lb94myy0l1d"
+            }
+          ],
+          "design": [
+            {
+              "classTitle": "GameConsole",
+              "classHandle": "GameConsole",
+              "fileHandle": "gameconsole",
+              "tags": [
+                "class",
+                "scene"
+              ],
+              "classDefinition": "The Game Console will run the various game consoles available.",
+              "uid": "kueecdl95xxfihqed63"
+            }
+          ],
+          "uid": "kuee5vz25cze7vn4thn"
+        },
+        {
+          "title": "The Games",
+          "order": 4,
+          "content": "There will be several games made available to play.",
+          "children": [
+            {
+              "title": "Card Games",
+              "order": 1,
+              "content": "There will be several card games to play.",
+              "children": [
+                {
+                  "title": "Acey Ducey",
+                  "order": 1,
+                  "content": "Acey Ducey is a simple card game where you wager money to guess whether the next card will be above or below certain values.",
+                  "children": [
+                    {
+                      "title": "The Acey Ducey Class",
+                      "order": 1,
+                      "content": "A prototype class will be created to define the game cartridge.",
+                      "children": [
+                        {
+                          "title": "Class Imports",
+                          "order": 1,
+                          "content": "The Acey Ducey class requires several imports:\n\n* AA\n* BB",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kueecdl95xxfihqed63",
+                              "importHandle": "DavidAhlAceyDucey",
+                              "importPath": "../bus/davidahl-acey-ducey.js",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kuo1fmyj5eyn45h3whx"
+                            },
+                            {
+                              "classUid": "kuix0qfy2dmin4ueagq",
+                              "importHandle": "DavidAhlConstants",
+                              "importPath": "../config/davidahl-constants",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kuoe0mivqj232f0ieek"
+                            },
+                            {
+                              "classUid": "kuix0qfy2dmin4ueagq",
+                              "importHandle": "DavidAhlGameConsole",
+                              "importPath": "../scenes/davidahl-gameconsole",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kuqzrbt18t10a3gnmnh"
+                            },
+                            {
+                              "classUid": "kuix0qfy2dmin4ueagq",
+                              "importHandle": "DavidAhlController",
+                              "importPath": "../scenes/davidahl-controller",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kuqzrvoq1qv3kntdqup"
+                            }
+                          ],
+                          "uid": "kuiypx3rcsyb3qo1926"
+                        },
+                        {
+                          "title": "Inheritance from Scene",
+                          "order": 2,
+                          "content": "The Acey Ducey class will inherit from Phaser.Scene.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kuix0qfy2dmin4ueagq",
+                              "tags": [
+                                "code",
+                                "inheritance"
+                              ],
+                              "classInheritance": "Phaser.Scene",
+                              "uid": "kuiyopjtdeu7ou9mhx8"
+                            }
+                          ],
+                          "uid": "kuiy8w2nd2lu64j942a"
+                        },
+                        {
+                          "title": "Private Fields",
+                          "order": 3,
+                          "content": "The Acey Ducey class will have several private fields.",
+                          "children": [
+                            {
+                              "title": "The '_state' field.",
+                              "order": 1,
+                              "content": "The _state field will track the game's current state. A public property, 'state' will be used to set the _state field.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_state",
+                                  "fieldType": "int",
+                                  "fieldValue": "DavidAhlConstants.ACEY_DUCEY_INTRO",
+                                  "fieldDefinition": "the game state.",
+                                  "order": "1",
+                                  "uid": "kuiyial0nbedxy86lt"
+                                },
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "public setter property"
+                                  ],
+                                  "propertyName": "state",
+                                  "order": "1",
+                                  "uid": "kuqy8pi1yg6fb43urgd",
+                                  "setterDefinition": "Sets the current state.",
+                                  "setterBody": "_state = value;\n_stateChangeResolved = false;"
+                                }
+                              ],
+                              "uid": "kuiya3bu05k0vs7r391a"
+                            },
+                            {
+                              "title": "The _bet field",
+                              "order": 2,
+                              "content": "The field tracking the amount of the player's bet.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_bet",
+                                  "fieldType": "int",
+                                  "fieldValue": 0,
+                                  "fieldDefinition": "the player's current bet",
+                                  "order": "2",
+                                  "uid": "kujsn5o7jshjm8js85"
+                                }
+                              ],
+                              "uid": "kuiyckbjikmgqyqfnvp"
+                            },
+                            {
+                              "title": "The _playerDollars field",
+                              "order": 3,
+                              "content": "The field tracking the player's total dollars.  It starts off at 100.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_playerDollars",
+                                  "fieldType": "int",
+                                  "fieldValue": 100,
+                                  "fieldDefinition": "The field tracking the player's total dollars. It starts off at 100.",
+                                  "order": "3",
+                                  "uid": "kujsoebgjhwwo852ki"
+                                }
+                              ],
+                              "uid": "kuiyd84c9t5nqqc95au"
+                            },
+                            {
+                              "title": "The _currentCards field",
+                              "order": 4,
+                              "content": "The current hand being shown.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_currentCards",
+                                  "fieldType": "array",
+                                  "fieldValue": "[]",
+                                  "fieldDefinition": "the current hand being played.",
+                                  "order": "4",
+                                  "uid": "kujspm5h50250zeo8yl"
+                                }
+                              ],
+                              "uid": "kuiye582ox4u1z4tja"
+                            },
+                            {
+                              "title": "The _discard field",
+                              "order": 5,
+                              "content": "The discard pile.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_discard",
+                                  "fieldType": "array",
+                                  "fieldValue": "[]",
+                                  "fieldDefinition": "the discard pile.",
+                                  "order": "5",
+                                  "uid": "kujsqtxgbwqdw0dkjx8"
+                                }
+                              ],
+                              "uid": "kuiyeo37c31n8sx53tq"
+                            },
+                            {
+                              "title": "The _deck field",
+                              "order": 6,
+                              "content": "The game deck.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_deck",
+                                  "fieldType": "array",
+                                  "fieldValue": "[\n     { \"suit\": \"CLUBS\", \"rank\": 2, \"rankName\": \"2\", \"name\": \"TWO OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 3, \"rankName\": \"3\", \"name\": \"THREE OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 4, \"rankName\": \"4\", \"name\": \"FOUR OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 5, \"rankName\": \"5\", \"name\": \"FIVE OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 6, \"rankName\": \"6\", \"name\": \"SIX OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 7, \"rankName\": \"7\", \"name\": \"SEVEN OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 8, \"rankName\": \"8\", \"name\": \"EIGHT OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 9, \"rankName\": \"9\", \"name\": \"NINE OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 10, \"rankName\": \"10\", \"name\": \"TEN OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 11, \"rankName\": \"J\", \"name\": \"JACK OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 12, \"rankName\": \"Q\", \"name\": \"QUEEN OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 13, \"rankName\": \"K\", \"name\": \"KING OF CLUBS\" },\n     { \"suit\": \"CLUBS\", \"rank\": 14, \"rankName\": \"A\", \"name\": \"ACE OF CLUBS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 2, \"rankName\": \"2\", \"name\": \"TWO OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 3, \"rankName\": \"3\", \"name\": \"THREE OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 4, \"rankName\": \"4\", \"name\": \"FOUR OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 5, \"rankName\": \"5\", \"name\": \"FIVE OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 6, \"rankName\": \"6\", \"name\": \"SIX OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 7, \"rankName\": \"7\", \"name\": \"SEVEN OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 8, \"rankName\": \"8\", \"name\": \"EIGHT OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 9, \"rankName\": \"9\", \"name\": \"NINE OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 10, \"rankName\": \"10\", \"name\": \"TEN OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 11, \"rankName\": \"J\", \"name\": \"JACK OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 12, \"rankName\": \"Q\", \"name\": \"QUEEN OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 13, \"rankName\": \"K\", \"name\": \"KING OF DIAMONDS\" },\n     { \"suit\": \"DIAMONDS\", \"rank\": 14, \"rankName\": \"A\", \"name\": \"ACE OF DIAMONDS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 2, \"rankName\": \"2\", \"name\": \"TWO OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 3, \"rankName\": \"3\", \"name\": \"THREE OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 4, \"rankName\": \"4\", \"name\": \"FOUR OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 5, \"rankName\": \"5\", \"name\": \"FIVE OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 6, \"rankName\": \"6\", \"name\": \"SIX OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 7, \"rankName\": \"7\", \"name\": \"SEVEN OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 8, \"rankName\": \"8\", \"name\": \"EIGHT OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 9, \"rankName\": \"9\", \"name\": \"NINE OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 10, \"rankName\": \"10\", \"name\": \"TEN OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 11, \"rankName\": \"J\", \"name\": \"JACK OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 12, \"rankName\": \"Q\", \"name\": \"QUEEN OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 13, \"rankName\": \"K\", \"name\": \"KING OF HEARTS\" },\n     { \"suit\": \"HEARTS\", \"rank\": 14, \"rankName\": \"A\", \"name\": \"ACE OF HEARTS\" },\n     { \"suit\": \"SPADES\", \"rank\": 2, \"rankName\": \"2\", \"name\": \"TWO OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 3, \"rankName\": \"3\", \"name\": \"THREE OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 4, \"rankName\": \"4\", \"name\": \"FOUR OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 5, \"rankName\": \"5\", \"name\": \"FIVE OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 6, \"rankName\": \"6\", \"name\": \"SIX OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 7, \"rankName\": \"7\", \"name\": \"SEVEN OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 8, \"rankName\": \"8\", \"name\": \"EIGHT OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 9, \"rankName\": \"9\", \"name\": \"NINE OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 10, \"rankName\": \"10\", \"name\": \"TEN OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 11, \"rankName\": \"J\", \"name\": \"JACK OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 12, \"rankName\": \"Q\", \"name\": \"QUEEN OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 13, \"rankName\": \"K\", \"name\": \"KING OF SPADES\" },\n     { \"suit\": \"SPADES\", \"rank\": 14, \"rankName\": \"A\", \"name\": \"ACE OF SPADES\" }\n   ]",
+                                  "fieldDefinition": "the deck of cards.",
+                                  "order": "6",
+                                  "uid": "kujss80ur3ukkix80ae"
+                                }
+                              ],
+                              "uid": "kuiyfl615nbbcm4vuub"
+                            },
+                            {
+                              "title": "The '_setupComplete' field",
+                              "order": 7,
+                              "content": "A field will be needed to track whether setup has been completed.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_setupComplete",
+                                  "fieldType": "boolean",
+                                  "fieldValue": false,
+                                  "fieldDefinition": "flag inidicating whether setup has been completed.",
+                                  "order": "7",
+                                  "uid": "kuoaqyww4a0aekhzz5v"
+                                }
+                              ],
+                              "uid": "kuoaq68ldlyb0nlkjce"
+                            },
+                            {
+                              "title": "The '_scene' field",
+                              "order": 8,
+                              "content": "the parent's Phaser.Scene instance.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_scene",
+                                  "fieldType": "Phaser.Scene",
+                                  "fieldValue": "parameterObject",
+                                  "fieldDefinition": "the parent's Phaser.Scene instance",
+                                  "order": "8",
+                                  "uid": "kuoccawxaf0pnx95rr4"
+                                }
+                              ],
+                              "uid": "kuoc9gfk1swm7x5shvh"
+                            },
+                            {
+                              "title": "The '_stateChangeResolved' field",
+                              "order": 9,
+                              "content": "A field will be needed to track changes to the game state.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_stateChangeResolved",
+                                  "fieldType": "boolean",
+                                  "fieldValue": false,
+                                  "fieldDefinition": "flag used to track changes to the game state. Initial state is false in order to trigger display of the Intro View after setup.",
+                                  "order": "9",
+                                  "uid": "kuoe7kvx9505y0owdq9"
+                                }
+                              ],
+                              "uid": "kuoe65p8x2my35jps3s"
+                            },
+                            {
+                              "title": "The '_dynamicFields' field.",
+                              "order": 10,
+                              "content": "A dictionary of all game objects that need to be updated during the game will be added.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "private field",
+                                    "code"
+                                  ],
+                                  "uid": "kuol85w1ladtkv7yyz",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "fieldName": "_dynamicFields",
+                                  "fieldType": "dictionary",
+                                  "fieldValue": "(function() {\n    let _dictionary = {};\n    return {\n      /**\n       * If this Game Object has previously been enabled for input, this will disable it.\n       * @param {string} key the entry key\n       */\n      disableInteractive(key) {\n        if (typeof(key) !== \"string\" && !(key instanceof String)) {\n          throw [\"Invalid key\", key];\n        }\n        if (!_dictionary.hasOwnProperty(key)) {\n          throw [\"Invalid key\", key];\n        }\n        for (let i = _dictionary[key].length - 1; i >= 0; i--) {\n          _dictionary[key][i].disableInteractive();\n        }\n      },\n      /**\n       * Places a key-value pair into storage.\n       * @param {string} key the entry key\n       * @param {Phaser.GameObjects.GameObject} value the entry value\n       */\n      put: function(key, value) {\n        if (typeof(key) !== \"string\" && !(key instanceof String)) {\n          console.log(typeof(key), key instanceof String)\n          throw [\"Invalid key\", key];\n        }\n        if (typeof(value) === \"undefined\") {\n          throw [\"Invalid value\", value];\n        }\n        if (!_dictionary.hasOwnProperty(key)) {\n          _dictionary[key] = [];\n        }\n        _dictionary[key].push(value);\n      },\n      /**\n       * Set the Alpha level of this Game Object. The alpha controls the opacity of the Game Object as it renders. Alpha values are provided as a float between 0, fully transparent, and 1, fully opaque.\n       * @param {string} key the entry key\n       * @param {number} topLeft The alpha value used for the top-left of the Game Object. If this is the only value given it's applied across the whole Game Object.\n       * @param {number} topRight The alpha value used for the top-right of the Game Object. WebGL only.\n       * @param {number} bottomLeft The alpha value used for the bottom-left of the Game Object. WebGL only.\n       * @param {number} bottomRight The alpha value used for the bottom-right of the Game Object. WebGL only.\n       */\n      setAlpha(key, topLeft, topRight, bottomLeft, bottomRight) {\n        if (typeof(key) !== \"string\" && !(key instanceof String)) {\n          throw [\"Invalid key\", key];\n        }\n        if (!_dictionary.hasOwnProperty(key)) {\n          throw [\"Invalid key\", key];\n        }\n        for (let i = _dictionary[key].length - 1; i >= 0; i--) {\n          _dictionary[key][i].setAlpha(topLeft, topRight, bottomLeft, bottomRight);\n        }\n      },\n      /**\n       * Pass this Game Object to the Input Manager to enable it for Input.\n       * @param {string} key the entry key\n       * @param {Phaser.Types.Input.InputConfiguration|*} hitArea Either an input configuration object, or a geometric shape that defines the hit area for the Game Object. If not given it will try to create a Rectangle based on the texture frame.\n       * @param {Phaser.Types.Input.HitAreaCallback} callback The callback that determines if the pointer is within the Hit Area shape or not. If you provide a shape you must also provide a callback.\n       * @param {boolean} dropZone Should this Game Object be treated as a drop zone target?\n       */\n      setInteractive(key, hitArea, callback, dropZone) {\n        if (typeof(key) !== \"string\" && !(key instanceof String)) {\n          throw [\"Invalid key\", key];\n        }\n        if (!_dictionary.hasOwnProperty(key)) {\n          throw [\"Invalid key\", key];\n        }\n        for (let i = _dictionary[key].length - 1; i >= 0; i--) {\n          _dictionary[key][i].setInteractive(hitArea, callback, dropZone);\n        }\n      },\n      /**\n       * Set the textual content of the stored GameObject.\n       * @param {string} key the entry key\n       * @param {string|Array.<string>} text The string, or array of strings, to be set as the content of the text item.\n       */\n      setText(key, text) {\n        if (typeof(key) !== \"string\" && !(key instanceof String)) {\n          throw [\"Invalid key\", key];\n        }\n        if (!_dictionary.hasOwnProperty(key)) {\n          throw [\"Invalid key\", key];\n        }\n        for (let i = _dictionary[key].length - 1; i >= 0; i--) {\n          _dictionary[key][i].setText(text);\n        }\n      },\n      /**\n       * Sets an additive tint on this Game Object.\n       * @param {string} key the entry key\n       * @param {number} topLeft The tint being applied to the top-left of the Game Object. If no other values are given this value is applied evenly, tinting the whole Game Object.\n       * @param {number} topRight The tint being applied to the top-right of the Game Object.\n       * @param {number} bottomLeft The tint being applied to the bottom-left of the Game Object.\n       * @param {number} bottomRight The tint being applied to the bottom-right of the Game Object.\n       */\n      setTint(key, topLeft, topRight, bottomLeft, bottomRight) {\n        if (typeof(key) !== \"string\" && !(key instanceof String)) {\n          throw [\"Invalid key\", key];\n        }\n        if (!_dictionary.hasOwnProperty(key)) {\n          throw [\"Invalid key\", key];\n        }\n        for (let i = _dictionary[key].length - 1; i >= 0; i--) {\n          _dictionary[key][i].setTint(topLeft, topRight, bottomLeft, bottomRight);\n        }\n      }\n    }\n  }())",
+                                  "fieldDefinition": "the dictionary of dynamic fields to track",
+                                  "order": "10"
+                                }
+                              ],
+                              "uid": "kuol7ajbowdqx1z1fn"
+                            },
+                            {
+                              "title": "Suit Data",
+                              "order": 12,
+                              "content": "A dictionary containing a suit's color and unicode character will be added.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_SUIT_DATA",
+                                  "fieldType": "dictionary",
+                                  "fieldValue": "{\n   CLUBS: {\n     unicode: \"\\u0005\",\n     tint: 0x000000\n   },\n   DIAMONDS: {\n     unicode: \"\\u0004\",\n     tint: 0x4342E6\n   },\n   HEARTS: {\n     unicode: \"\\u0003\",\n     tint: 0x4342E6\n   },\n   SPADES: {\n     unicode: \"\\u0006\",\n     tint: 0x000000\n   }\n }",
+                                  "fieldDefinition": "a map of colors and unicode characters for each card suit.",
+                                  "order": "12",
+                                  "uid": "kur8xnvqxx4biub673"
+                                }
+                              ],
+                              "uid": "kur8vy5i356lhz7d0f2"
+                            }
+                          ],
+                          "design": [],
+                          "uid": "kuiyamgp54chrd9w63h"
+                        },
+                        {
+                          "title": "Game Views",
+                          "order": 4,
+                          "content": "The Game will display several views keyed to the current state.",
+                          "children": [
+                            {
+                              "title": "The Intro view",
+                              "order": 1,
+                              "content": "The view rendered for the Intro screen.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "scoped dictionary body 0",
+                                    "code"
+                                  ],
+                                  "uid": "kuo1a6swdh1712ucvbe",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "dictionaryKey": "[DavidAhlConstants.ACEY_DUCEY_INTRO]",
+                                  "dictionaryDefinition": "The Intro View.",
+                                  "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 0],\n      origin: [0.5, 0],\n      \"scale controlled args\": [\n        {\n          index: 2,\n          dimension: \"width\"\n        }\n      ]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Acey Ducey Card Game\", // text\n      ],\n      position: [6, 1],\n      scale: 1.25,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Creative Computing Morristown, New Jersey\", // text\n      ],\n      position: [6, 2],\n      scale: 0.875,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Acey-Ducey is played in the following manner:\\nthe dealer (computer) deals two cards face up. You have an option to bet or not bet depending on whether or not you feel the card will have a value between the first two cards.\", // text\n      ],\n      position: [6, 4],\n      tint: 0xA6A1FF,\n      maxWidth: 0.6\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[ENTER] Continue\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"this._state = DavidAhlConstants.ACEY_DUCEY_MAIN; this._stateChangeResolved = false;\",\n          context: this\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 8],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[ESC] Back to Card Games\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlGameConsole.cartridge = \\\"\\\"; DavidAhlController.currentScene = \\\"Main Menu\\\";\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 9],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 12],\n      origin: [0.5, 1],\n      \"scale controlled args\": [\n        {\n          index: 2,\n          dimension: \"width\"\n        }\n      ]\n    }\n  ]\n}"
+                                }
+                              ],
+                              "uid": "kujt7hlfa7icxpqmbee"
+                            },
+                            {
+                              "title": "The Main view",
+                              "order": 2,
+                              "content": "The view for the main part of the game. In this part the first two cards and the player's bet and current dollars are shown.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "scoped dictionary body 0",
+                                    "code"
+                                  ],
+                                  "uid": "kupzzsioatkmv08y99r",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "dictionaryKey": "[DavidAhlConstants.ACEY_DUCEY_MAIN]",
+                                  "dictionaryDefinition": "The view for the main screen.",
+                                  "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 0],\n      origin: [0.5, 0],\n      \"scale controlled args\": [\n        {\n          index: 2,\n          dimension: \"width\"\n        }\n      ]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Acey Ducey Card Game\", // text\n      ],\n      position: [6, 1],\n      scale: 1.25,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Creative Computing Morristown, New Jersey\", // text\n      ],\n      position: [6, 2],\n      scale: 0.875,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"You have $100.\", // text\n      ],\n      position: [6, 6],\n      tint: 0xA6A1FF,\n      dynamicField: \"playerDollars\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[<]\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"this.lowerBet();\",\n          context: this\n        }\n      },\n      position: [2, 7],\n      tint: 0xA6A1FF,\n      alpha: 0.65,\n      dynamicField: \"lowerBet\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Current wager:\", // text\n      ],\n      position: [3, 7],\n      origin: [0, 0.5],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"$0\", // text\n      ],\n      position: [9, 7],\n      origin: [1, 0.5],\n      tint: 0xA6A1FF,\n      dynamicField: \"currentBet\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[>]\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"this.raiseBet();\",\n          context: this\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      position: [10, 7],\n      tint: 0xA6A1FF,\n      dynamicField: \"raiseBet\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[P] Place your bet\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"this.placeBet();\",\n          context: this\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 8],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[V] View the instructions again\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"this._state = DavidAhlConstants.ACEY_DUCEY_INTRO; this._stateChangeResolved = false;\",\n          context: this\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 9],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[ESC] Back to Card Games\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlController.currentScene = \\\"Main Menu\\\";\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 10],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"graphics-texture\",\n      commands: [\n        {\n          order: 0,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 1] // color, alpha\n        },\n        {\n          order: 1,\n          command: \"fillRoundedRect\",\n          args: [0, 0, 2/13, 3/13, 10], // x, y, scale width, scale height, corner radius,\n          \"scale controlled args\": [\n            {\n              index: 2,\n              dimension: \"width\"\n            },\n            {\n              index: 3,\n              dimension: \"height\"\n            }\n          ]\n        },\n        {\n          order: 2,\n          command: \"generateTexture\",\n          args: [\"playingCardFrame\", 2/13, 3/13], // key, scale width, scale height\n          \"scale controlled args\": [\n            {\n              index: 1,\n              dimension: \"width\"\n            },\n            {\n              index: 2,\n              dimension: \"height\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      comment: \"CARD 1\",\n      type: \"image\",\n      args: [\n        0, // x\n        0, // y\n        \"playingCardFrame\" // texture\n      ],\n      position: [3.5, 4]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0006\", // text\n      ],\n      position: [2.75, 2.75],\n      tint: 0x000000,\n      dynamicField: \"card1SuitTop\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Q\", // text\n      ],\n      position: [3.5, 4],\n      tint: 0x000000,\n      dynamicField: \"card1Rank\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0003\", // text\n      ],\n      position: [4.25, 5.25],\n      tint: 0x000000,\n      dynamicField: \"card1SuitBottom\"\n    },\n    {\n      comment: \"CARD 2\",\n      type: \"image\",\n      args: [\n        0, // x\n        0, // y\n        \"playingCardFrame\" // texture\n      ],\n      position: [8.5, 4],\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0006\", // text\n      ],\n      position: [7.75, 2.75],\n      tint: 0x000000,\n      dynamicField: \"card2SuitTop\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Q\", // text\n      ],\n      position: [8.5, 4],\n      tint: 0x000000,\n      dynamicField: \"card2Rank\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0003\", // text\n      ],\n      position: [9.25, 5.25],\n      tint: 0x000000,\n      dynamicField: \"card2SuitBottom\"\n    },\n    {\n      comment: \"CARD 3\",\n      type: \"image\",\n      args: [\n        0, // x\n        0, // y\n        \"playingCardFrame\" // texture\n      ],\n      position: [6, 4]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0006\", // text\n      ],\n      position: [5.25, 2.75],\n      tint: 0x000000,\n      dynamicField: \"card3SuitTop\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Q\", // text\n      ],\n      position: [6, 4],\n      tint: 0x000000,\n      dynamicField: \"card3Rank\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0003\", // text\n      ],\n      position: [6.75, 5.25],\n      tint: 0x000000,\n      dynamicField: \"card3SuitBottom\"\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 12],\n      origin: [0.5, 1],\n      \"scale controlled args\": [\n        {\n          index: 2,\n          dimension: \"width\"\n        }\n      ]\n    }\n  ]\n}"
+                                }
+                              ],
+                              "uid": "kupzxxrvoqzr587217k"
+                            },
+                            {
+                              "title": "The Round Over view",
+                              "order": 3,
+                              "content": "The view displayed when the round is over, but the player still has money.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "scoped dictionary body 0",
+                                    "code"
+                                  ],
+                                  "uid": "kushjisx0mvw12x0qgq",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "dictionaryKey": "[DavidAhlConstants.ACEY_DUCEY_ROUND_OVER]",
+                                  "dictionaryDefinition": "The Round Over view.",
+                                  "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 0],\n      origin: [0.5, 0],\n      \"scale controlled args\": [\n        {\n          index: 2,\n          dimension: \"width\"\n        }\n      ]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Acey Ducey Card Game\", // text\n      ],\n      position: [6, 1],\n      scale: 1.25,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Creative Computing Morristown, New Jersey\", // text\n      ],\n      position: [6, 2],\n      scale: 0.875,\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"You have $100.\", // text\n      ],\n      position: [6, 6],\n      tint: 0xA6A1FF,\n      dynamicField: \"roundResult\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[ENTER] Keep playing\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"this.nextRound(); this._state = DavidAhlConstants.ACEY_DUCEY_MAIN; this._stateChangeResolved = false;\",\n          context: this\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 8],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"[ESC] Back to Card Games\", // text\n      ],\n      listeners: {\n        pointerdown: {\n          args: \"\",\n          body: \"DavidAhlController.currentScene = \\\"Main Menu\\\";\"\n        }\n      },\n      interactive: [{ useHandCursor: true }],\n      origin: [0, 0.5],\n      position: [3, 10],\n      tint: 0xA6A1FF\n    },\n    {\n      type: \"graphics-texture\",\n      commands: [\n        {\n          order: 0,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 1] // color, alpha\n        },\n        {\n          order: 1,\n          command: \"fillRoundedRect\",\n          args: [0, 0, 2/13, 3/13, 10], // x, y, scale width, scale height, corner radius,\n          \"scale controlled args\": [\n            {\n              index: 2,\n              dimension: \"width\"\n            },\n            {\n              index: 3,\n              dimension: \"height\"\n            }\n          ]\n        },\n        {\n          order: 2,\n          command: \"generateTexture\",\n          args: [\"playingCardFrame\", 2/13, 3/13], // key, scale width, scale height\n          \"scale controlled args\": [\n            {\n              index: 1,\n              dimension: \"width\"\n            },\n            {\n              index: 2,\n              dimension: \"height\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      comment: \"CARD 1\",\n      type: \"image\",\n      args: [\n        0, // x\n        0, // y\n        \"playingCardFrame\" // texture\n      ],\n      position: [3.5, 4]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0006\", // text\n      ],\n      position: [2.75, 2.75],\n      tint: 0x000000,\n      dynamicField: \"card1SuitTop\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Q\", // text\n      ],\n      position: [3.5, 4],\n      tint: 0x000000,\n      dynamicField: \"card1Rank\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0003\", // text\n      ],\n      position: [4.25, 5.25],\n      tint: 0x000000,\n      dynamicField: \"card1SuitBottom\"\n    },\n    {\n      comment: \"CARD 2\",\n      type: \"image\",\n      args: [\n        0, // x\n        0, // y\n        \"playingCardFrame\" // texture\n      ],\n      position: [8.5, 4],\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0006\", // text\n      ],\n      position: [7.75, 2.75],\n      tint: 0x000000,\n      dynamicField: \"card2SuitTop\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Q\", // text\n      ],\n      position: [8.5, 4],\n      tint: 0x000000,\n      dynamicField: \"card2Rank\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0003\", // text\n      ],\n      position: [9.25, 5.25],\n      tint: 0x000000,\n      dynamicField: \"card2SuitBottom\"\n    },\n    {\n      comment: \"CARD 3\",\n      type: \"image\",\n      args: [\n        0, // x\n        0, // y\n        \"playingCardFrame\" // texture\n      ],\n      position: [6, 4]\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0006\", // text\n      ],\n      position: [5.25, 2.75],\n      tint: 0x000000,\n      dynamicField: \"card3SuitTop\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Q\", // text\n      ],\n      position: [6, 4],\n      tint: 0x000000,\n      dynamicField: \"card3Rank\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\\u0003\", // text\n      ],\n      position: [6.75, 5.25],\n      tint: 0x000000,\n      dynamicField: \"card3SuitBottom\"\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [6, 12],\n      origin: [0.5, 1],\n      \"scale controlled args\": [\n        {\n          index: 2,\n          dimension: \"width\"\n        }\n      ]\n    }\n  ]\n}"
+                                }
+                              ],
+                              "uid": "kushdc255p37ah2ex9n"
+                            }
+                          ],
+                          "design": [
+                            {
+                              "classUid": "kuix0qfy2dmin4ueagq",
+                              "tags": [
+                                "code",
+                                "scoped dictionary enclosure 0"
+                              ],
+                              "dictionaryName": "_VIEWS",
+                              "dictionaryType": "",
+                              "dictionaryDefinition": "the dictionary of game views.",
+                              "uid": "kujt6e6mcczxrmdvgx"
+                            }
+                          ],
+                          "uid": "kujt568dotasarw4i9h"
+                        },
+                        {
+                          "title": "Public methods",
+                          "order": 5,
+                          "content": "There will be several public methods available.",
+                          "children": [
+                            {
+                              "title": "The 'startGame' method",
+                              "order": 1,
+                              "content": "The startGame method will perform game initialization and reset game variables.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "public member",
+                                    "code"
+                                  ],
+                                  "uid": "kur25lr929apblij6hu",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "memberName": "startGame",
+                                  "memberDefinition": "/**\n * Starts the game.\n */",
+                                  "arguments": "",
+                                  "code": "if (!this._setupComplete) {\n  this.preload();\n  this.create();\n  this._setupComplete = true;\n}\nthis._playerDollars = 100;\nthis.nextRound();\nthis._state = DavidAhlConstants.ACEY_DUCEY_INTRO;\nthis._stateChangeResolved = false;",
+                                  "order": "1"
+                                }
+                              ],
+                              "uid": "kur1cbhc5v1ma1uqjjb"
+                            },
+                            {
+                              "title": "Phaser.Scene methods",
+                              "order": 2,
+                              "content": "Acey Ducey will implement several methods required by Phaser.Scene.",
+                              "children": [
+                                {
+                                  "title": "The 'preload' method",
+                                  "order": 1,
+                                  "content": "The 'preload' method will be used for loading the custom font.",
+                                  "children": [],
+                                  "design": [
+                                    {
+                                      "classUid": "kuix0qfy2dmin4ueagq",
+                                      "tags": [
+                                        "code",
+                                        "public member"
+                                      ],
+                                      "memberName": "preload",
+                                      "memberDefinition": "/**\n * This method is called by the Scene Manager, after init() and before create(), only if the Scene has a LoaderPlugin. After this method completes, if the LoaderPlugin's queue isn't empty, the LoaderPlugin will start automatically. Use it to load assets. \n */",
+                                      "arguments": "",
+                                      "code": "// load the theme fonts\nthis._scene.load.bitmapFont(\"c64_pro_style_16\", \"/phaser/assets/font/c64_pro_style_16.png\", \"/phaser/assets/font/c64_pro_style_16.xml\");\nthis._scene.load.bitmapFont(\"c64_pro_mono_16\", \"/phaser/assets/font/c64_pro_mono_16.png\", \"/phaser/assets/font/c64_pro_mono_16.xml\");",
+                                      "order": "2",
+                                      "uid": "kuo9o6srpg18o41tuj"
+                                    }
+                                  ],
+                                  "uid": "kuo9m590n81rijv1nto"
+                                },
+                                {
+                                  "title": "The 'create' method",
+                                  "order": 2,
+                                  "content": "The 'create' method will follow the same pattern as Main Menu - creating scene view objects.",
+                                  "children": [],
+                                  "design": [
+                                    {
+                                      "tags": [
+                                        "public member",
+                                        "code"
+                                      ],
+                                      "uid": "kuo9kgnyc0ow2llpa9w",
+                                      "classUid": "kuix0qfy2dmin4ueagq",
+                                      "memberName": "create",
+                                      "memberDefinition": "/**\n * This method is called by the Scene Manager when the scene starts, after init() and preload(). If the LoaderPlugin started after preload(), then this method is called only after loading is complete. Use it to create your game objects.\n * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.\n */",
+                                      "arguments": "data",
+                                      "code": "// create a grid for laying out elements\nlet grid = new DavidAhlAlignmentGrid({ \"parent\": this._scene, \"columns\": 13, \"rows\": 13 });\n//turn on the lines for testing\n//and layout\ngrid.show();\n\n// create groups for each state. when the state is switched, objects will be hidden/shown by group\nlet keys = Object.keys(this._VIEWS);\nkeys.sort();\nfor (let i = keys.length - 1; i >= 0; i--) {\n  let entry = this._VIEWS[keys[i]];\n  let group = this._scene.add.group();\n  entry.group = group;\n  // sort children to push any textures to the top. these need to be created before we can use them\n  entry.children.sort(function(a, b) {\n    let c = 0;\n    if (a.type === \"graphics-texture\" && b.type !== \"graphics-texture\") {\n      c = -1;\n    } else if (a.type !== \"graphics-texture\" && b.type === \"graphics-texture\") {\n      c = 1\n    }\n    return c;\n  });\n  // iterate through children creating them\n  for (let j = 0, lj = entry.children.length; j < lj; j++) {\n    let child = entry.children[j];\n    if (child.hasOwnProperty(\"scale controlled args\")) {\n      let arr = child[\"scale controlled args\"];\n      for (let k = arr.length - 1; k >= 0; k--) {\n        let controlledArgument = arr[k];\n        child.args[controlledArgument.index] *= this._scene.scale[controlledArgument.dimension];\n      }\n    }\n    switch (child.type) {\n      case \"graphics-texture\":\n        // created graphics textures are created but no objects are created for them. these will be in other UI entries\n        let myG = this._scene.make.graphics();\n        let commands = child.commands;\n        commands.sort(function(a, b) {\n          let c = 0;\n          if (a.order < b.order) {\n            c = -1;\n          } else if (a.order > b.order) {\n            c = 1;\n          }\n          return c;\n        });\n        for (let k = 0, lk = commands.length; k < lk; k++) {\n          let graphicsCommand = commands[k];\n          if (graphicsCommand.hasOwnProperty(\"scale controlled args\")) {\n            let arr = graphicsCommand[\"scale controlled args\"];\n            for (let l = arr.length - 1; l >= 0; l--) {\n              let controlledArgument = arr[l];\n              graphicsCommand.args[controlledArgument.index] *= this._scene.scale[controlledArgument.dimension];\n            }\n          }\n          myG[graphicsCommand.command](...graphicsCommand.args);\n        }\n        continue;\n        break;\n    }\n    // create the object\n    let object = this._scene.add[child.type](...child.args);\n    \n    // set the origin\n    if (child.hasOwnProperty(\"origin\")) {\n      object.setOrigin(...child.origin); // set the origin property\n    } else {\n      object.setOrigin(0.5); // set the origin to the middle\n    }\n    switch (child.type) {\n      case \"bitmapText\":\n        if (child.hasOwnProperty(\"scale\")) {\n          object.setScale(child.scale);\n        }\n        if (child.hasOwnProperty(\"tint\")) {\n          object.setTint(child.tint);\n        }\n        if (child.hasOwnProperty(\"alpha\")) {\n          object.setAlpha(child.alpha);\n        }\n        if (child.hasOwnProperty(\"dropShadow\")) {\n          object.setDropShadow(...child.dropShadow); // set the origin property\n        }\n        if (child.hasOwnProperty(\"maxWidth\")) {\n          if (Array.isArray()) {\n            // maxwidth setting is an array of width and word wrap code\n            if (child.maxWidth[0] < 1) {\n              child.maxWidth[0] *= this._scene.scale.width;\n            }\n            object.setMaxWidth(...child.maxWidth);\n          } else {\n            if (isNaN(parseFloat(child.maxWidth))) {\n              throw [\"Invalid setting for maxWidth\", child];\n            }\n            // maxwidth setting is just the width value\n            if (child.maxWidth < 1) {\n              object.setMaxWidth(child.maxWidth * this._scene.scale.width);\n            } else {\n              object.setMaxWidth(child.maxWidth);\n            }\n          }\n        }\n        break;\n    }\n    // add listeners\n    if (child.hasOwnProperty(\"listeners\")) {\n      let listeners = Object.keys(child.listeners);\n      for (let i = listeners.length - 1; i >= 0; i--) {\n        switch (child.type) {\n          case \"dom\":\n            object.addListener(listeners[i]);\n            object.on(listeners[i], new Function(child.listeners[listeners[i]].args, child.listeners[listeners[i]].body));\n            break;\n          default:\n            if (child.listeners[listeners[i]].hasOwnProperty(\"context\")) {\n              object.addListener(listeners[i], new Function(child.listeners[listeners[i]].args, child.listeners[listeners[i]].body), child.listeners[listeners[i]].context);\n            } else {\n              object.addListener(listeners[i], new Function(child.listeners[listeners[i]].args, child.listeners[listeners[i]].body));\n            }\n            break;\n        }\n      }\n    }\n    // add interactive\n    if (child.hasOwnProperty(\"interactive\")) {\n      object.setInteractive(...child.interactive); // set the origin property\n    }\n    // map dynamic fields\n    if (child.hasOwnProperty(\"dynamicField\")) {\n      this._dynamicFields.put(child.dynamicField, object);\n    }\n    // add the element to the group\n    group.add(object, true);\n\n    // place the element where needed\n    grid.placeAt(child.position[0], child.position[1], object);\n  }\n  // hide the group\n  group.setVisible(false);\n}",
+                                      "order": "3"
+                                    }
+                                  ],
+                                  "uid": "kuo9cwa6uh1ofkeu2p"
+                                },
+                                {
+                                  "title": "The 'update' method",
+                                  "order": 3,
+                                  "content": "The 'update' method won't do anything.",
+                                  "children": [],
+                                  "design": [
+                                    {
+                                      "tags": [
+                                        "public member",
+                                        "code"
+                                      ],
+                                      "uid": "kuoapcmf2hnylyqxwnv",
+                                      "classUid": "kuix0qfy2dmin4ueagq",
+                                      "memberName": "update",
+                                      "memberDefinition": "/**\n * This method is called once per game step while the scene is running.\n * @param {Number} time The current time. Either a High Resolution Timer value if it comes from Request Animation Frame, or Date.now if using SetTimeout.\n * @param {Number} delta The delta time in ms since the last frame. This is a smoothed and capped value based on the FPS rate.\n */",
+                                      "arguments": "time, delta",
+                                      "code": "if (!this._stateChangeResolved) {\n  // hide all templates\n  let keys = Object.keys(this._VIEWS);\n  for (let i = keys.length - 1; i >= 0; i--) {\n    this._VIEWS[keys[i]].group.setVisible(false);\n  }\n\n  // show the current template\n  this._VIEWS[this._state].group.setVisible(true);\n\n  // reset the flag\n  this._stateChangeResolved = true;\n}",
+                                      "order": "4"
+                                    }
+                                  ],
+                                  "uid": "kuo9dqdjgesjko80tk7"
+                                }
+                              ],
+                              "design": [],
+                              "uid": "kuo9boybc4oxq3b3iw"
+                            },
+                            {
+                              "title": "Shuffling the deck",
+                              "order": 3,
+                              "content": "A method will be needed to shuffle the deck.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "public member"
+                                  ],
+                                  "memberName": "shuffleDeck",
+                                  "memberDefinition": "/**\n * Shuffles all discarded cards back into the deck.\n */",
+                                  "arguments": "",
+                                  "code": "for (let i = this._discard.length - 1; i >= 0; i--) {\n  this._deck.push(this._discard.splice(i, 1)[0]);\n}",
+                                  "order": "5",
+                                  "uid": "kur2azw34o7f6p78jm6"
+                                }
+                              ],
+                              "uid": "kur29ezhdsi9wvbgc77"
+                            },
+                            {
+                              "title": "The initial draw",
+                              "order": 4,
+                              "content": "When the game starts, two cards are pulled at random from the deck and shown to the player.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "public member"
+                                  ],
+                                  "memberName": "drawCard",
+                                  "memberDefinition": "/**\n * Draws a random card from the deck.\n */",
+                                  "arguments": "",
+                                  "code": "return this._deck.splice(Dice.getRandomIndex(this._deck), 1)[0];",
+                                  "order": "6",
+                                  "uid": "kur38syf12yyaiayjpi"
+                                },
+                                {
+                                  "tags": [
+                                    "public member",
+                                    "code"
+                                  ],
+                                  "uid": "kur37d60rf30dze9nc",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "memberName": "initialDraw",
+                                  "memberDefinition": "/**\n * Pulls the initial two cards from the deck.\n */",
+                                  "arguments": "",
+                                  "code": "let card0 = this.drawCard(), card1 = this.drawCard();\nwhile (card0.rank >= card1.rank || Math.abs(card0.rank - card1.rank) === 1) {\n  this._discard.push(card0, card1);\n  this.shuffleDeck();\n  card0 = this.drawCard();\n  card1 = this.drawCard();\n}\nthis._currentCards.length = 0;\nthis._currentCards.push(card0, card1);\n// show card 1\nthis._dynamicFields.setText(\"card1SuitTop\", this._SUIT_DATA[this._currentCards[0].suit].unicode);\nthis._dynamicFields.setTint(\"card1SuitTop\", this._SUIT_DATA[this._currentCards[0].suit].tint);\nthis._dynamicFields.setText(\"card1SuitBottom\", this._SUIT_DATA[this._currentCards[0].suit].unicode);\nthis._dynamicFields.setTint(\"card1SuitBottom\", this._SUIT_DATA[this._currentCards[0].suit].tint);\nthis._dynamicFields.setText(\"card1Rank\", this._currentCards[0].rankName);\nthis._dynamicFields.setTint(\"card1Rank\", this._SUIT_DATA[this._currentCards[0].suit].tint);\n// show card 2\nthis._dynamicFields.setText(\"card2SuitTop\", this._SUIT_DATA[this._currentCards[1].suit].unicode);\nthis._dynamicFields.setTint(\"card2SuitTop\", this._SUIT_DATA[this._currentCards[1].suit].tint);\nthis._dynamicFields.setText(\"card2SuitBottom\", this._SUIT_DATA[this._currentCards[1].suit].unicode);\nthis._dynamicFields.setTint(\"card2SuitBottom\", this._SUIT_DATA[this._currentCards[1].suit].tint);\nthis._dynamicFields.setText(\"card2Rank\", this._currentCards[1].rankName);\nthis._dynamicFields.setTint(\"card2Rank\", this._SUIT_DATA[this._currentCards[1].suit].tint);\n// hide card 3\nthis._dynamicFields.setText(\"card3SuitTop\", \"\");\nthis._dynamicFields.setText(\"card3SuitBottom\", \"\");\nthis._dynamicFields.setText(\"card3Rank\", \"\");\n// show current bet\nthis._dynamicFields.setText(\"currentBet\", [\"$\", this._bet].join(\"\"));\n// show player dollars\nthis._dynamicFields.setText(\"playerDollars\", [\"You have $\", this._playerDollars].join(\"\"));",
+                                  "order": "7"
+                                }
+                              ],
+                              "uid": "kur34pwrelujo3rr6kk"
+                            },
+                            {
+                              "title": "Raising/lowering the bet",
+                              "order": 5,
+                              "content": "Methods will be needed to allow the player to raise/lower their bet.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "public member",
+                                    "code"
+                                  ],
+                                  "uid": "kusehr2pua6w72gfmo8",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "memberName": "lowerBet",
+                                  "memberDefinition": "/**\n * Lowers the player's wager.\n */",
+                                  "arguments": "",
+                                  "code": "// lower the wager\nthis._bet--;\nif (this._bet < 0) {\n  this._bet = 0;\n}\n// update the view\nthis._dynamicFields.setText(\"currentBet\", [\"$\", this._bet].join(\"\"));\n// enable/disable buttons\nthis._dynamicFields.setAlpha(\"lowerBet\", 1);\nthis._dynamicFields.setAlpha(\"raiseBet\", 1);\nthis._dynamicFields.setInteractive(\"raiseBet\", { cursor: \"pointer\" });\nif (this._bet === 0) { // disable the lower bet button\n  this._dynamicFields.setAlpha(\"lowerBet\", 0.65);\n  this._dynamicFields.disableInteractive(\"lowerBet\");\n}",
+                                  "order": "8"
+                                },
+                                {
+                                  "tags": [
+                                    "public member",
+                                    "code"
+                                  ],
+                                  "uid": "kusek2qz3yjyjjxpp38",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "memberName": "raiseBet",
+                                  "memberDefinition": "/**\n * Raises the player's wager.\n */",
+                                  "arguments": "",
+                                  "code": "// raise the wager\nthis._bet++;\nif (this._bet > this._playerDollars) {\n  this._bet = this._playerDollars;\n}\n// update the view\nthis._dynamicFields.setText(\"currentBet\", [\"$\", this._bet].join(\"\"));\n// enable/disable buttons\nthis._dynamicFields.setAlpha(\"lowerBet\", 1);\nthis._dynamicFields.setAlpha(\"raiseBet\", 1);\nthis._dynamicFields.setInteractive(\"lowerBet\", { cursor: \"pointer\" });\nif (this._bet === this._playerDollars) { // disable the lower bet button\n  this._dynamicFields.setAlpha(\"raiseBet\", 0.65);\n  this._dynamicFields.disableInteractive(\"raiseBet\");\n}",
+                                  "order": "9"
+                                }
+                              ],
+                              "uid": "kur2dnv4mwhzyz5emj"
+                            },
+                            {
+                              "title": "Placing a bet",
+                              "order": 5,
+                              "content": "When the player places a bet, the next card is drawn and the player either wins or loses the amount of money they wagered.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "public member",
+                                    "code"
+                                  ],
+                                  "uid": "kusewjogs97o3b8g368",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "memberName": "placeBet",
+                                  "memberDefinition": "/**\n * Places the player's bet and resolves the round.\n */",
+                                  "arguments": "",
+                                  "code": "// draw a new card\nthis._currentCards.push(this.drawCard());\n// show card 3\nthis._dynamicFields.setText(\"card3SuitTop\", this._SUIT_DATA[this._currentCards[2].suit].unicode);\nthis._dynamicFields.setTint(\"card3SuitTop\", this._SUIT_DATA[this._currentCards[2].suit].tint);\nthis._dynamicFields.setText(\"card3SuitBottom\", this._SUIT_DATA[this._currentCards[2].suit].unicode);\nthis._dynamicFields.setTint(\"card3SuitBottom\", this._SUIT_DATA[this._currentCards[2].suit].tint);\nthis._dynamicFields.setText(\"card3Rank\", this._currentCards[2].rankName);\nthis._dynamicFields.setTint(\"card3Rank\", this._SUIT_DATA[this._currentCards[2].suit].tint);\n\nlet msg = \"YOU WIN!!!\";\n// check to see if the player won or lost\nif (this._currentCards[2].rank <= this._currentCards[0].rank || this._currentCards[2].rank >= this._currentCards[1].rank) {\n  this._bet = -this._bet;\n  msg = \"SORRY, YOU LOSE\";\n}\n// reward/punish player\nthis._playerDollars += this._bet;\nif (this._bet === 0) {\n  msg = \"CHICKEN!!\";\n}\nthis._dynamicFields.setText(\"roundResult\", msg);\n\n// go to next screen\nthis._state = DavidAhlConstants.ACEY_DUCEY_ROUND_OVER;\nthis._stateChangeResolved = false;",
+                                  "order": "10"
+                                }
+                              ],
+                              "uid": "kur2empbjtommgwmyb"
+                            },
+                            {
+                              "title": "A new round",
+                              "order": 7,
+                              "content": "Whenever a new round starts, several steps will take place:\n\n1. the deck will be re-shuffled\n2. new cards will be drawn\n3. the current bet is set to $0",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "public member"
+                                  ],
+                                  "memberName": "nextRound",
+                                  "memberDefinition": "/**\n * Starts the next round.\n */",
+                                  "arguments": "",
+                                  "code": "this._bet = 0;\nthis.shuffleDeck();\nthis.initialDraw();\n// disable the lower bet button\nthis._dynamicFields.setAlpha(\"lowerBet\", 0.65);\nthis._dynamicFields.disableInteractive(\"lowerBet\");\n// enable the raise bet button\nthis._dynamicFields.setAlpha(\"raiseBet\", 1);\nthis._dynamicFields.setInteractive(\"raiseBet\", { cursor: \"pointer\" });",
+                                  "order": "13",
+                                  "uid": "kusudd161psipg90y49"
+                                }
+                              ],
+                              "uid": "kustzaj7km89720r78"
+                            }
+                          ],
+                          "design": [],
+                          "uid": "kur1b0qh6qcwqo7ork9"
+                        },
+                        {
+                          "title": "Constructor",
+                          "order": 6,
+                          "content": "The constructor code will set the private _scene field.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kuix0qfy2dmin4ueagq",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "if (parameterObject.hasOwnProperty(\"scene\")) {\n  this._scene = parameterObject.scene;\n}",
+                              "order": "1",
+                              "uid": "kuocb9jeiq3xskz56k9"
+                            }
+                          ],
+                          "uid": "kuoc8crkita4450vxj9"
+                        },
+                        {
+                          "title": "Events delegation",
+                          "order": 7,
+                          "content": "Event delegation for the game will require a listener method for the game console to interface with and a delegator to delegate events to the proper handler based on the current game state.",
+                          "children": [
+                            {
+                              "title": "The KeyUp listener",
+                              "order": 1,
+                              "content": "An event handler for KeyUp events will be added.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "public member",
+                                    "code"
+                                  ],
+                                  "uid": "kuqyvgpqgv18ip1yh9u",
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "memberName": "handleKeyUpEvent",
+                                  "memberDefinition": "/**\n * Delegates KeyUp events to the property handler.\n * @param {object} event the event being emitted\n */",
+                                  "arguments": "event",
+                                  "code": "this._KEY_UP_EVENT_HANDLERS[this._state](event, this);",
+                                  "order": "11"
+                                }
+                              ],
+                              "uid": "kuqyrh7ly3fnasl8qum"
+                            },
+                            {
+                              "title": "The KeyUp delegate handler",
+                              "order": 2,
+                              "content": "The delegate handler will delegate events to the proper handler based on the game state.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "scoped dictionary enclosure 1"
+                                  ],
+                                  "dictionaryName": "_KEY_UP_EVENT_HANDLERS",
+                                  "dictionaryType": "",
+                                  "dictionaryDefinition": "The dictionary of 'key up' event handlers. Keys are the menu states.",
+                                  "uid": "kuqz05o2nhfmp66mhu"
+                                },
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "scoped dictionary body 1"
+                                  ],
+                                  "dictionaryKey": "[DavidAhlConstants.ACEY_DUCEY_INTRO]",
+                                  "dictionaryDefinition": "Key handler for the intro view.",
+                                  "dictionaryValue": "function(event, context) {\n  switch (event.key) {\n    case \"Enter\":\n      context._drawNewHand = false;\n      context._state = DavidAhlConstants.ACEY_DUCEY_MAIN;\n      context._stateChangeResolved = false;\n      break;\n    case \"Escape\":\n      DavidAhlController.currentScene = \"Main Menu\";\n      break;\n  }\n}",
+                                  "uid": "kuqzovf0t84hzlcin9"
+                                },
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "scoped dictionary body 1"
+                                  ],
+                                  "dictionaryKey": "[DavidAhlConstants.ACEY_DUCEY_MAIN]",
+                                  "dictionaryDefinition": "Key handler for the main view.",
+                                  "dictionaryValue": "function(event, context) {\n  switch (event.key) {\n    case \"ArrowLeft\":\n      context.lowerBet();\n      break;\n    case \"ArrowRight\":\n      context.raiseBet();\n      break;\n    case \"p\":\n    case \"P\":\n      context.placeBet();\n      break;\n    case \"v\":\n    case \"V\":\n      context._state = DavidAhlConstants.ACEY_DUCEY_INTRO;\n      context._stateChangeResolved = false;\n      break;\n    case \"Escape\":\n      DavidAhlController.currentScene = \"Main Menu\";\n      break;\n  }\n}",
+                                  "uid": "kusn6ogffylp3j6zk26"
+                                },
+                                {
+                                  "classUid": "kuix0qfy2dmin4ueagq",
+                                  "tags": [
+                                    "code",
+                                    "scoped dictionary body 1"
+                                  ],
+                                  "dictionaryKey": "[DavidAhlConstants.ACEY_DUCEY_ROUND_OVER]",
+                                  "dictionaryDefinition": "Key handler for the end of the round view.",
+                                  "dictionaryValue": "function(event, context) {\n  switch (event.key) {\n    case \"Enter\":\n      context.nextRound();\n      context._state = DavidAhlConstants.ACEY_DUCEY_MAIN;\n      context._stateChangeResolved = false;\n      break;\n    case \"Escape\":\n      DavidAhlController.currentScene = \"Main Menu\";\n      break;\n  }\n}",
+                                  "uid": "kuswc6vpwbykrd71b9r"
+                                }
+                              ],
+                              "uid": "kuqyyurqdnfe76h7slw"
+                            }
+                          ],
+                          "design": [],
+                          "uid": "kuqyxz529ef48evvox"
+                        },
+                        {
+                          "title": "Loading the cartridge",
+                          "order": 9,
+                          "content": "The cartridge will be loaded by the Game Console.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kueecdl95xxfihqed63",
+                              "tags": [
+                                "code",
+                                "scoped dictionary body 0"
+                              ],
+                              "dictionaryKey": "\"Acey Ducey\"",
+                              "dictionaryDefinition": "the Acey Ducey game",
+                              "dictionaryValue": "new [app-handle]AceyDucey({ scene: _scene })",
+                              "uid": "kuo1n7nrwu8o2n866j9"
+                            }
+                          ],
+                          "uid": "kuo1jb7ysq2fdgzuz2"
+                        }
+                      ],
+                      "design": [
+                        {
+                          "classTitle": "Acey Ducey",
+                          "classHandle": "AceyDucey",
+                          "fileHandle": "acey-ducey",
+                          "tags": [
+                            "class",
+                            "prototype"
+                          ],
+                          "classDefinition": "Acey Ducey is a simple card game where you wager money to guess whether the next card will be above or below certain values.",
+                          "uid": "kuix0qfy2dmin4ueagq",
+                          "filePath": "bus"
+                        }
+                      ],
+                      "uid": "kuiwzsohvqburnszqgp"
+                    },
+                    {
+                      "title": "Acey Ducey Game Constants",
+                      "order": 2,
+                      "content": "Game constants for the Acey Ducey class will be defined in the Constants class.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kua8vxek3bbuzjxciuy",
+                          "groupName": "ACEY_DUCEY_STATES",
+                          "tags": [
+                            "code",
+                            "group properties"
+                          ],
+                          "elements": [
+                            {
+                              "elementName": "ACEY_DUCEY_INTRO",
+                              "elementValue": "0",
+                              "elementDefinition": "The Game Intro",
+                              "order": 1
+                            },
+                            {
+                              "elementName": "ACEY_DUCEY_MAIN",
+                              "elementValue": "1",
+                              "elementDefinition": "The Main Screen",
+                              "order": 2
+                            },
+                            {
+                              "elementName": "ACEY_DUCEY_ROUND_OVER",
+                              "elementValue": "2",
+                              "elementDefinition": "The Round Over Screen",
+                              "order": 3
+                            }
+                          ],
+                          "uid": "kuiyl0nuwbooyy70e2"
+                        }
+                      ],
+                      "uid": "kuiyjcjln25fhog1bz"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kuiwnvudll2u4zleqhs"
+                },
+                {
+                  "title": "Blackjack",
+                  "order": 2,
+                  "content": "Blackjack goes here...",
+                  "children": [],
+                  "design": [],
+                  "uid": "kuocup4gsevqb5adf0q"
+                }
+              ],
+              "design": [],
+              "uid": "kuiwcqzik6tb4korg2"
+            },
+            {
+              "title": "Sports Games",
+              "order": 2,
+              "content": "There will be several sports games.",
+              "children": [
+                {
+                  "title": "Basketball",
+                  "order": 1,
+                  "content": "Basketball goes here.",
+                  "children": [],
+                  "design": [],
+                  "uid": "kuocqpqeog0uvggnbr"
+                },
+                {
+                  "title": "Boxing",
+                  "order": 2,
+                  "content": "Boxing goes here. . .",
+                  "children": [],
+                  "design": [],
+                  "uid": "kusvo4svzy2lmzziwub"
+                },
+                {
+                  "title": "Bullfight",
+                  "order": 3,
+                  "content": "Bullfight goes here. . .",
+                  "children": [],
+                  "design": [],
+                  "uid": "kusvop17k7n74768bwm"
+                }
+              ],
+              "design": [],
+              "uid": "kuocqcv1sl81n6beck"
+            }
+          ],
+          "design": [],
+          "uid": "kuiwc2i9cwdgp436td"
+        }
+      ],
+      "design": [],
+      "uid": "ku08fuut3pmi1mi5jmy"
+    }
+  ]
+}

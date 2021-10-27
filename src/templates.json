@@ -1,0 +1,1452 @@
+{
+  "themes": {
+    "c64": {
+      "background color": "67, 66, 230",
+      "default tint": 10920447,
+      "font imports": [
+        "c64_pro_mono_16",
+        "c64_pro_style_16"
+      ],
+      "preferred font": "c64_pro_style_16"
+    }
+  },
+  "phaser": {
+    "constants": {
+      "path": ["phaser", "[namespace]", "src", "config"],
+      "filename": "[namespace]-constants.js",
+      "template": [
+        "/**",
+        " * @class [app-name] constants.",
+        " */",
+        "var [app-handle]Constants = {",
+        "  /*********************",
+        "   * EQUIPMENT ELEMENTS - generated dynamically",
+        "   ********************/",
+        "  EQUIPMENT_ELEMENTS: {},",
+        {
+          "type": "group properties",
+          "property": "appConstants",
+          "markup": [
+            "  /*********************",
+            "   * [group-name]",
+            "   ********************/",
+            "  /** [element-definition] */\r\n  [element-key]: [element-value],"
+          ]
+        },
+        "}",
+        "/**",
+        " * @class Class enum using singleton pattern",
+        " * @todo documentation",
+        " */",
+        "const [app-handle]AttributeDescriptors = function () {",
+        "  console.trace();",
+        "  throw \"Class [app-handle]AttributeDescriptors is an enum; no instances of it can be created.\";",
+        "};",
+        {
+          "type": "enums",
+          "required fields": ["enumName", "enumHandle"],
+          "markup": [
+            "/**",
+            " * @class [enum-name] enum using singleton pattern",
+            " * @todo documentation",
+            " */",
+            " const [app-handle][enum-handle] = function () {",
+            "  console.trace();",
+            "  throw \"Class [app-handle][enum-handle] is an enum; no instances of it can be created.\";",
+            "};"
+          ]
+        },
+        "",
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = {",
+        "    [app-handle]Constants: Object.freeze([app-handle]Constants),",
+        "    [app-handle]AttributeDescriptors,",
+        {
+          "type": "enums",
+          "required fields": ["enumHandle"],
+          "markup": [
+            "    [app-handle][enum-handle],"
+          ]
+        },
+        "  };",
+        "}"
+      ]
+    },
+    "game": {
+      "path": ["phaser", "[namespace]", "src", "singletons"],
+      "filename": "[namespace]-game.js",
+      "template": [
+        "if (typeof(module) !== \"undefined\") {",
+        "  var { Phaser } = require(\"phaser\");",
+        "  var { [app-handle]SceneController } = require(\"./[namespace]-scene-controller\");",
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] required import",
+          "markup": ["  var { [import-handle] } = require(\"[import-path]\");"]
+        },
+        "}",
+        "/**",
+        " * @class [class-definition]",
+        " */",
+        "var [app-handle]Game = (function() {",
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] private field",
+          "markup": [
+            "  /** @private [field-definition] */",
+            "  [field-declaration][field-name] = [field-value];"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 0",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": ["  };"]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 1",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": ["  };"]
+        },
+        "  /**",
+        "   * A function to run at the start of the boot sequence.",
+        "   * @param {Phaser.Game} game The game.",
+        "   */",
+        "  let _preBoot = function(game) {",
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] preboot",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  }",
+        "  /**",
+        "   * A function to run at the end of the boot sequence. At this point, all the game systems have started and plugins have been loaded.",
+        "   * @param {Phaser.Game} game The game.",
+        "   */",
+        "  let _postBoot = function() {",
+        "    _game.scene.queueOp(\"start\", \"Controller\");",
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] postboot",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "    [app-handle]SceneController.init();",
+        "  }",
+        "  /** @private the game configuration. */",
+        "  let _config = {",
+        "    type: Phaser.AUTO, // tells phaser to try WebGL first, and fall back to canvas if needed",
+        "    backgroundColor: new Phaser.Display.Color([theme-background-colours]),",
+        "    // default is 1024x768",
+        "    width: [app-width], // game width",
+        "    height: [app-height], // game height",
+        "    autoCenter: Phaser.Scale.Center.CENTER_BOTH,",
+        "    dom: { createContainer: true },",
+        "    parent: \"domContainer\", // id of the parent container",
+        "    callbacks: {",
+        "      preBoot: _preBoot,",
+        "      postBoot: _postBoot",
+        "    },",
+        "    scene: [",
+        {
+          "type": "class listing",
+          "filter": "scene",
+          "markup": [
+            "      [app-handle][class-name],"
+          ]
+        },
+        "    ]",
+        "  };",
+        "  /** @private Game instance. */",
+        "  let _game;",
+        "  return {",
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter/setter property",
+          "markup": [
+            "    /** [getter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      get: function() {",
+            "        [getter-body]",
+            "      },",
+            "      set: function(value) {",
+            "        [setter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter property",
+          "markup": [
+            "    /** [getter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      get: function() {",
+            "        [getter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] public setter property",
+          "markup": [
+            "    /** [setter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      set: function(value) {",
+            "        [setter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        "    newGame: function() {",
+        "      _game = new Phaser.Game(_config);",
+        "    },",
+        "  }",
+        "} ());",
+        "",
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = { [app-handle][class-handle] };",
+        "}"
+      ]
+    },
+    "html": {
+      "path": ["phaser", "html"],
+      "filename": "[namespace].html",
+      "template": [
+        "<!doctype html> ",
+        "<html lang=\"en\"> ",
+        "<head> ",
+        "  <meta charset=\"UTF-8\" />",
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">",
+        "  <!-- all requests to express are routed through the public folder. treat that as the root to start from, not the current folder -->",
+        "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/phaser/css/[theme].css\">",
+        "  <title>[app-name]</title>",
+        "</head>",
+        "<body>",
+        "  <div id=\"domContainer\" style=\"width: 100vw; height: calc(100vh - 65px);\"></div>",
+        "",
+        "  <!-- jQuery library -->",
+        "  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>",
+        "",
+        "  <!-- phaser library -->",
+        "  <!-- <script src=\"https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js\"></script> -->",
+        "  <script src=\"https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js\"></script>",
+        "",
+        "  <!-- application library -->",
+        "  <!-- <script type=\"text/javascript\" src=\"/phaser/assets/js/rpgbase.full.min.js\"></script> -->",
+        "  <script type=\"text/javascript\" src=\"/phaser/assets/js/rpgbase.full.js\"></script>",
+        {
+          "type": "class listing",
+          "markup": [
+            "  <script type=\"text/javascript\" src=\"/[class-path]/[namespace]-[class-handle].js\"></script>"
+          ]
+        },
+        "  <script>",
+        "  var globalJson;",
+        "  function jsonp(data) {",
+        "    globalJson = data;",
+        "  }",
+        "  ",
+        "  $(document).ready(function() {",
+        "    // instance of Phaser.Game object. starts the process of bringing the app to life",
+        "    [app-handle]Game.newGame();",
+        "  });",
+        "  </script>",
+        "",
+        "</body>",
+        "</html>"
+      ]
+    },
+    "prototype": {
+      "path": ["phaser", "[namespace]", "src"],
+      "filename": "[namespace]-[file-handle].js",
+      "template": [
+        "if (typeof(module) !== \"undefined\") {",
+        "  var { Phaser } = require(\"phaser\");",
+        {
+          "comment": "IMPORTS",
+          "type": "injection marker",
+          "marker id": "[class-handle] required import",
+          "markup": [ "  var { [import-handle] } = require(\"[import-path]\");" ]
+        },
+        "}",
+        "/**",
+        " * @class [class-definition]",
+        " * @param {object} parameterObject optional initialization parameters",
+        " */",
+        "function [app-handle][class-handle](parameterObject) {",
+        {
+          "comment": "PRIVATE FIELDS",
+          "type": "injection marker",
+          "marker id": "[class-handle] private field",
+          "markup": [
+            "  /** @private [field-definition] */",
+            "  [field-declaration][field-name] = [field-value];"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 0",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": ["  };"]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 1",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": ["  };"]
+        },
+        {
+          "comment": "CONSTRUCTOR",
+          "type": "injection marker",
+          "marker id": "[class-handle] constructor body",
+          "markup": ["  [code-body]" ]
+        },
+        "};",
+        {
+          "comment": "INHERITANCE",
+          "type": "injection marker",
+          "marker id": "[class-handle] inheritance",
+          "markup": [
+            "[app-handle][class-handle].prototype = Object.create([class-inherits].prototype);",
+            "[app-handle][class-handle].prototype.constructor = [class-inherits];"
+          ]
+        },
+        "{ // [app-handle][class-handle] Getters/Setters",
+        {
+          "comment": "GETTER/SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter/setter property",
+          "markup": [
+            "  Object.defineProperty([app-handle][class-handle].prototype, '[property-name]', {",
+            "    [getter-definition]",
+            "    get() {",
+            "      [getter-body]",
+            "    },",
+            "    [setter-definition]",
+            "    set(value) {",
+            "      [setter-body]",
+            "    }",
+            "  });"
+          ]
+        },
+        {
+          "comment": "GETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter property",
+          "markup": [
+            "  [getter-definition]",
+            "  Object.defineProperty([app-handle][class-handle].prototype, '[property-name]', {",
+            "    get() {",
+            "      [getter-body]",
+            "    },",
+            "  });"
+          ]
+        },
+        {
+          "comment": "SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public setter property",
+          "markup": [
+            "  [setter-definition]",
+            "  Object.defineProperty([app-handle][class-handle].prototype, '[property-name]', {",
+            "    set(value) {",
+            "      [setter-body]",
+            "    }",
+            "  });"
+          ]
+        },
+        "}",
+        {
+          "comment": "PUBLIC MEMBERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public member",
+          "markup": [
+            "[member-definition]",
+            "[app-handle][class-handle].prototype.[member-name] = function([member-args-list]) {",
+            "  [code-body]",
+            "}"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped public member header 0",
+          "markup": [
+            "[code-injection]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped public member body 0",
+          "markup": [
+            "  [code-injection]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped public member footer 0",
+          "markup": [
+            "[code-injection]"
+          ]
+        },
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = { [app-handle][class-handle] };",
+        "}"
+      ]
+    },
+    "scene": {
+      "path": ["phaser", "[namespace]", "src", "scenes"],
+      "filename": "[namespace]-[file-handle].js",
+      "template": [
+        "if (typeof(module) !== \"undefined\") {",
+        "  var { Phaser } = require(\"phaser\");",
+        {
+          "comment": "IMPORTS",
+          "type": "injection marker",
+          "marker id": "[class-handle] required import",
+          "markup": ["  var { [import-handle] } = require(\"[import-path]\");"]
+        },
+        "}",
+        "/**",
+        " * @class [class-definition]",
+        " */",
+        "var [app-handle][class-handle] = (function() {",
+        "  /** @private Scene instance. */",
+        "  let _scene = new Phaser.Scene({",
+        "    key: \"[class-title]\",",
+        "    active: false",
+        "  });",
+        {
+          "comment": "PRIVATE FIELDS",
+          "type": "injection marker",
+          "marker id": "[class-handle] private field",
+          "markup": [
+            "  /** @private [field-definition] */",
+            "  [field-declaration][field-name] = [field-value];"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 0",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": ["  };"]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 1",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": ["  };"]
+        },
+        "  { // [app-handle][class-handle] Getters/Setters",
+        {
+          "comment": "GETTER/SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter/setter property",
+          "markup": [
+            "    /** [getter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      get: function() {",
+            "        [getter-body]",
+            "      },",
+            "      set: function(value) {",
+            "        [setter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        {
+          "comment": "GETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter property",
+          "markup": [
+            "    /** [getter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      get: function() {",
+            "        [getter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        {
+          "comment": "SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public setter property",
+          "markup": [
+            "    /** [setter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      set: function(value) {",
+            "        [setter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        "  }",
+        "  /**",
+        "   * This method is called by the Scene Manager when the scene starts, before preload() and create().",
+        "   * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        "   */",
+        "  _scene.init = function(data) {",
+        {
+          "comment": "INIT",
+          "type": "injection marker",
+          "marker id": "[class-handle] init",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  };",
+        "  /**",
+        "   * This method is called by the Scene Manager, after init() and before create(), only if the Scene has a LoaderPlugin. After this method completes, if the LoaderPlugin's queue isn't empty, the LoaderPlugin will start automatically. Use it to load assets. ",
+        "   */",
+        "  _scene.preload = function() {",
+        {
+          "comment": "PRELOAD",
+          "type": "injection marker",
+          "marker id": "[class-handle] preload",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  };",
+        "  /**",
+        "   * This method is called by the Scene Manager when the scene starts, after init() and preload(). If the LoaderPlugin started after preload(), then this method is called only after loading is complete. Use it to create your game objects.",
+        "   * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        "   */",
+        "  _scene.create = function(data) {",
+        {
+          "comment": "CREATE",
+          "type": "injection marker",
+          "marker id": "[class-handle] create",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  };",
+        "  /**",
+        "   * This method is called once per game step while the scene is running.",
+        "   * @param {Number} time The current time. Either a High Resolution Timer value if it comes from Request Animation Frame, or Date.now if using SetTimeout.",
+        "   * @param {Number} delta The delta time in ms since the last frame. This is a smoothed and capped value based on the FPS rate.",
+        "   */",
+        "  _scene.update = function(time, delta) {",
+        {
+          "comment": "UPDATE",
+          "type": "injection marker",
+          "marker id": "[class-handle] update",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  };",
+        {
+          "comment": "PUBLIC MEMBERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public member",
+          "markup": [
+            "  [member-definition]",
+            "  _scene.[member-name] = function([member-args-list]) {",
+            "    [code-body]",
+            "  }"
+          ]
+        },
+        "  return _scene;",
+        "} ());",
+        "",
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = { [app-handle][class-handle] };",
+        "}"
+      ]
+    },
+    "scene-controller": {
+      "path": ["phaser", "[namespace]", "src", "scenes"],
+      "filename": "[namespace]-scene-controller.js",
+      "template": [
+        "if (typeof(module) !== \"undefined\") {",
+        "  var { Phaser } = require(\"phaser\");",
+        "  var { [app-handle]Constants } = require(\"../config/[namespace]-constants\");",
+        {
+          "comment": "IMPORTS",
+          "type": "injection marker",
+          "marker id": "[class-handle] required import",
+          "markup": ["  var { [import-handle] } = require(\"[import-path]\");"]
+        },
+        "}",
+        "/**",
+        " * @class The Scene Controller will handle switching between scene containers.",
+        " */",
+        "var [app-handle]SceneController = (function() {",
+        "  /** @private Scene instance. */",
+        "  let _scene = new Phaser.Scene({",
+        "    key: \"Controller\",",
+        "    active: false",
+        "  });",
+        "  /** @private The current scene group being displayed. */",
+        "  let _currentGroup = \"\";",
+        "  /** @private The dictionary of scene groups, where groups of scenes are associated with a specific scene key. */",
+        "  let _sceneGroups = {};",
+        {
+          "comment": "PRIVATE FIELDS",
+          "type": "injection marker",
+          "marker id": "[class-handle] private field",
+          "markup": [
+            "  /** @private [field-definition] */",
+            "  [field-declaration][field-name] = [field-value];"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 0",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": ["  };"]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 1",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": ["  };"]
+        },
+        "  { // Getters/Setters",
+        "    /** Gets the scene groups dictionary. */",
+        "    Object.defineProperty(_scene, \"groups\", {",
+        "      get: function() {",
+        "        return _sceneGroups;",
+        "      }",
+        "    });",
+        "    /**",
+        "     * Sets the current scene group.",
+        "     * @param {PropertyKey} value",
+        "     */",
+        "    Object.defineProperty(_scene, \"currentScene\", {",
+        "      set: function(value) {",
+        "        if (!_sceneGroups.hasOwnProperty(value)) {",
+        "          throw [\"Cannot assign current group - \", value, \" - it doesn't exist\"].join(\"\");",
+        "        }",
+        "       _scene.switch(value);",
+        "      }",
+        "    });",
+        "  }",
+        "  /**",
+        "   * This method is called by the Scene Manager when the scene starts, before preload() and create().",
+        "   * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        "   */",
+        "  _scene.init = function(data) {",
+        {
+          "comment": "INIT",
+          "type": "injection marker",
+          "marker id": "[class-handle] init",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  };",
+        "  /**",
+        "   * This method is called by the Scene Manager, after init() and before create(), only if the Scene has a LoaderPlugin. After this method completes, if the LoaderPlugin's queue isn't empty, the LoaderPlugin will start automatically. Use it to load assets. ",
+        "   */",
+        "  _scene.preload = function() {",
+        {
+          "comment": "PRELOAD",
+          "type": "injection marker",
+          "marker id": "[class-handle] preload",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  };",
+        "  /**",
+        "   * This method is called by the Game at the end of the boot sequence. The purpose is to register the scene groups and switch to the first scene.",
+        "   * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        "   */",
+        "  _scene.create = function(data) {",
+        "    /* sample process",
+        "    // set scene groups",
+        "    _sceneGroups[\"Main Menu\"] = [\"Main Menu\"];",
+        "    _sceneGroups[\"GameConsole\"] = [\"GameConsole\"];",
+        "    ",
+        "    // switch Main Menu state",
+        "    [app-handle]MainMenu.state = [app-handle]Constants.MAIN_MENU_DEFAULT;",
+        "    ",
+        "    // set current scene",
+        "    this.switch(\"Main Menu\");",
+        "    */",
+        {
+          "comment": "SCENE GROUPS",
+          "type": "injection marker",
+          "marker id": "[class-handle] scene group",
+          "markup": [
+            "    _sceneGroups[[scene-key]] = [[scene-value]];"
+          ]
+        },
+        {
+          "comment": "CREATE",
+          "type": "injection marker",
+          "marker id": "[class-handle] create",
+          "markup": [
+            "    [code-body]"
+          ]
+        },
+        "  };",
+        "  /**",
+        "   * Switches between scene groups.",
+        "   * @param {string} scene the scene group's key",
+        "   */",
+        "  _scene.switch = function(scene) {",
+        "    let keys = Object.keys(_sceneGroups);",
+        "    // disable all scenes",
+        "    for (let i = keys.length - 1; i >= 0; i--) {",
+        "      let scenes = _sceneGroups[keys[i]];",
+        "      for (let i = scenes.length - 1; i >= 0; i--) {",
+        "        console.log(\"turn off\", scenes[i])",
+        "        this.scene.setVisible(false, scenes[i]);",
+        "        this.scene.setActive(false, scenes[i]);",
+        "      }",
+        "    }",
+        "    // enable current",
+        "    _currentGroup = scene;",
+        "    let scenes = _sceneGroups[_currentGroup];",
+        "    for (let i = scenes.length - 1; i >= 0; i--) {",
+        "      console.log(\"turn on\", scenes[i])",
+        "      this.scene.setVisible(true, scenes[i]);",
+        "      this.scene.setActive(true, scenes[i]);",
+        "    }",
+        "  };",
+        {
+          "comment": "PUBLIC MEMBERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public member",
+          "markup": [
+            "  [member-definition]",
+            "  _scene.[member-name] = function([member-args-list]) {",
+            "    [code-body]",
+            "  }"
+          ]
+        },
+        "  return _scene;",
+        "} ());",
+        "",
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = { [app-handle][class-handle] };",
+        "}"
+      ]
+    },
+    "scene-container": {
+      "path": ["phaser", "[namespace]", "src"],
+      "filename": "[namespace]-[file-handle].js",
+      "template": [
+        "if (typeof(module) !== \"undefined\") {",
+        "  var { Phaser } = require(\"phaser\");",
+        "  var { [app-handle]Constants } = require(\"../config/[namespace]-constants\");",
+        {
+          "comment": "IMPORTS",
+          "type": "injection marker",
+          "marker id": "[class-handle] required import",
+          "markup": ["  var { [import-handle] } = require(\"[import-path]\");"]
+        },
+        "}",
+        "/**",
+        " * @class [class-definition]",
+        " */",
+        "var [app-handle][class-handle] = (function() {",
+        "  /** @private Scene instance. */",
+        "  let _scene = new Phaser.Scene({",
+        "    key: \"[class-handle]\",",
+        "    active: false",
+        "  });",
+        "  /** @private The current state. */",
+        "  let _state = \"\";",
+        {
+          "comment": "PRIVATE FIELDS",
+          "type": "injection marker",
+          "marker id": "[class-handle] private field",
+          "markup": [
+            "  /** @private [field-definition] */",
+            "  [field-declaration][field-name] = [field-value];"
+          ]
+        },
+        "  /** @private The map of child scenes. */",
+        "  const _SCENES = {",
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 0",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        "  };",
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 1",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": ["  };"]
+        },        
+        "  { // [app-handle][class-handle] Getters/Setters",
+        "    /** Sets the current state */",
+        "    Object.defineProperty(_scene, \"state\", {",
+        "      set: function(value) {",
+        "        if (!_SCENES.hasOwnProperty(value)) {",
+        "          throw [\"Missing scenes for state\", value];",
+        "        }",
+        "        _state = value;",
+        "        let scenes = _SCENES[_state];",
+        "        if (Array.isArray(scenes)) {",
+        "          for (let i = scenes.length - 1; i >= 0; i--) {",
+        "            scenes[i].startScene();",
+        "          }",
+        "        } else {",
+        "          scenes.startScene();",
+        "        }",
+        "      }",
+        "    });",
+        {
+          "comment": "GETTER/SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter/setter property",
+          "markup": [
+            "    /** [getter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      get: function() {",
+            "        [getter-body]",
+            "      },",
+            "      set: function(value) {",
+            "        [setter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        {
+          "comment": "GETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter property",
+          "markup": [
+            "    /** [getter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      get: function() {",
+            "        [getter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        {
+          "comment": "SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public setter property",
+          "markup": [
+            "    /** [setter-definition] */",
+            "    Object.defineProperty(_scene, \"[property-name]\", {",
+            "      set: function(value) {",
+            "        [setter-body]",
+            "      }",
+            "    });"
+          ]
+        },
+        "  }",
+        "  /**",
+        "   * This method is called by the Scene Manager when the scene starts, before preload() and create().",
+        "   * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        "   */",
+        "  _scene.init = function(data) {",
+        "  };",
+        "  /**",
+        "   * This method is called by the Scene Manager, after init() and before create(), only if the Scene has a LoaderPlugin. After this method completes, if the LoaderPlugin's queue isn't empty, the LoaderPlugin will start automatically. Use it to load assets. ",
+        "   */",
+        "  _scene.preload = function() {",
+        "    if (_state !== \"\") {",
+        "      _SCENES[_state].preload();",
+        "    }",
+        "  };",
+        "  /**",
+        "   * This method is called by the Scene Manager when the scene starts, after init() and preload(). If the LoaderPlugin started after preload(), then this method is called only after loading is complete. Use it to create your game objects.",
+        "   * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        "   */",
+        "  _scene.create = function(data) {",
+        "    if (_state !== \"\") {",
+        "      let scenes = _SCENES[_state];",
+        "      if (Array.isArray(scenes)) {",
+        "        for (let i = scenes.length - 1; i >= 0; i--) {",
+        "          scenes[i].create(data);",
+        "        }",
+        "      } else {",
+        "        scenes.create(data);",
+        "      }",
+        "    }",
+        "    //  Global event listener, catches all keys",
+        "    //  Receives every single key up event, regardless of type",
+        "    this.input.keyboard.on('keyup', function (event) {",
+        "      let scenes = _SCENES[_state];",
+        "      if (Array.isArray(scenes)) {",
+        "        for (let i = scenes.length - 1; i >= 0; i--) {",
+        "          scenes[i].handleKeyUpEvent(event);",
+        "        }",
+        "      } else {",
+        "        scenes.handleKeyUpEvent(event);",
+        "      }",
+        "    });",
+        "  };",
+        "  /**",
+        "   * This method is called once per game step while the scene is running.",
+        "   * @param {Number} time The current time. Either a High Resolution Timer value if it comes from Request Animation Frame, or Date.now if using SetTimeout.",
+        "   * @param {Number} delta The delta time in ms since the last frame. This is a smoothed and capped value based on the FPS rate.",
+        "   */",
+        "  _scene.update = function(time, delta) {",
+        "    if (_state !== \"\") {",
+        "      let scenes = _SCENES[_state];",
+        "      if (Array.isArray(scenes)) {",
+        "        for (let i = scenes.length - 1; i >= 0; i--) {",
+        "          scenes[i].update(time, delta);",
+        "        }",
+        "      } else {",
+        "        scenes.update(time, delta);",
+        "      }",
+        "    }",
+        "  };",
+        {
+          "comment": "PUBLIC MEMBERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public member",
+          "markup": [
+            "  [member-definition]",
+            "  _scene.[member-name] = function([member-args-list]) {",
+            "    [code-body]",
+            "  }"
+          ]
+        },
+        "  return _scene;",
+        "} ());",
+        "",
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = { [app-handle][class-handle] };",
+        "}"
+      ]
+    },
+    "singleton": {
+      "path": ["phaser", "[namespace]", "src"],
+      "filename": "[namespace]-[file-handle].js",
+      "template": [
+        "if (typeof(module) !== \"undefined\") {",
+        {
+          "comment": "IMPORTS",
+          "type": "injection marker",
+          "marker id": "[class-handle] required import",
+          "markup": ["  var { [import-handle] } = require(\"[import-path]\");"]
+        },
+        "}",
+        "/**",
+        " * @class [class-definition]",
+        " */",
+        "var [app-handle][class-handle] = (function() {",
+        {
+          "comment": "PRIVATE FIELDS",
+          "type": "injection marker",
+          "marker id": "[class-handle] private field",
+          "markup": [
+            "  /** @private [field-definition] */",
+            "  [field-declaration][field-name] = [field-value];"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 0",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": ["  };"]
+        },  
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 1",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": ["  };"]
+        },
+        "  return {",
+        {
+          "comment": "GETTER/SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter/setter property",
+          "markup": [
+            "    [getter-definition]",
+            "    get [property-name]() {",
+            "      [getter-body]",
+            "    },",
+            "    [setter-definition]",
+            "    set [property-name](value) {",
+            "      [setter-body]",
+            "    },"
+          ]
+        },   
+        {
+          "comment": "GETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter property",
+          "markup": [
+            "    [getter-definition]",
+            "    get [property-name]() {",
+            "      [getter-body]",
+            "    },"
+          ]
+        },
+        {
+          "comment": "SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public setter property",
+          "markup": [
+            "    [setter-definition]",
+            "    set [property-name](value) {",
+            "      [setter-body]",
+            "    },"
+          ]
+        },
+        {
+          "comment": "PUBLIC MEMBERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public member",
+          "markup": [
+            "    [member-definition]",
+            "    [member-name]: function([member-args-list]) {",
+            "      [code-body]",
+            "    },"
+          ]
+        },
+        "  };",
+        "} ());",
+        "",
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = { [app-handle][class-handle] };",
+        "}"
+      ]
+    },
+    "ui-scene": {
+      "path": ["phaser", "[namespace]", "src"],
+      "filename": "[namespace]-[file-handle].js",
+      "template": [
+        "if (typeof(module) !== \"undefined\") {",
+        "  var { Phaser } = require(\"phaser\");",
+        "  var { [app-handle]Constants } = require(\"../../config/[namespace]-constants\");",
+        {
+          "comment": "IMPORTS",
+          "type": "injection marker",
+          "marker id": "[class-handle] required import",
+          "markup": ["  var { [import-handle] } = require(\"[import-path]\");"]
+        },
+        "}",
+        "/**",
+        " * @class [class-definition]",
+        " * @param {object} parameterObject optional initialization parameters",
+        " */",
+        "function [app-handle][class-handle](parameterObject) {",
+        "  parameterObject.columns = [grid-width];",
+        "  parameterObject.rows = [grid-height];",
+        "  UiScene.call(this, parameterObject); // call parent constructor",
+        "",
+        {
+          "comment": "PRIVATE FIELDS",
+          "type": "injection marker",
+          "marker id": "[class-handle] private field",
+          "markup": [
+            "  /** @private [field-definition] */",
+            "  [field-declaration][field-name] = [field-value];"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 0",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 0",
+          "markup": ["  };"]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": [
+            "  /** @private [dictionary-definition] */",
+            "  [dictionary-declaration][dictionary-name] = {"
+          ]
+        },
+        {
+          "comment": "DICTIONARY BODY",
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary body 1",
+          "markup": [
+            "    /** @private [dictionary-definition] */",
+            "    [dictionary-key]: [dictionary-value]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped dictionary enclosure 1",
+          "markup": ["  };"]
+        },
+        {
+          "comment": "CONSTRUCTOR",
+          "type": "injection marker",
+          "marker id": "[class-handle] constructor body",
+          "markup": ["  [code-body]" ]
+        },
+        "};",
+        "[app-handle][class-handle].prototype = Object.create(UiScene.prototype);",
+        "[app-handle][class-handle].prototype.constructor = UiScene;",        
+        "{ // [app-handle][class-handle] Getters/Setters",
+        {
+          "comment": "GETTER/SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter/setter property",
+          "markup": [
+            "  Object.defineProperty([app-handle][class-handle].prototype, '[property-name]', {",
+            "    [getter-definition]",
+            "    get() {",
+            "      [getter-body];",
+            "    },",
+            "    [setter-definition]",
+            "    set(value) {",
+            "      [setter-body];",
+            "    }",
+            "  });"
+          ]
+        },
+        {
+          "comment": "GETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public getter property",
+          "markup": [
+            "  [setter-definition]",
+            "  Object.defineProperty([app-handle][class-handle].prototype, '[property-name]', {",
+            "    get() {",
+            "      [getter-body];",
+            "    },",
+            "  });"
+          ]
+        },
+        {
+          "comment": "SETTERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public setter property",
+          "markup": [
+            "  [setter-definition]",
+            "  Object.defineProperty([app-handle][class-handle].prototype, '[property-name]', {",
+            "    set(value) {",
+            "      [setter-body];",
+            "    }",
+            "  });"
+          ]
+        },
+        "}",
+        "/**",
+        " * Starts the scene.",
+        " */",
+        "[app-handle][class-handle].prototype.startScene = function() {",
+        "  if (!this._setupComplete) {",
+        "    this.init();",
+        "    this.preload();",
+        "    this.create();",
+        "    this._setupComplete = true;",
+        "  }",
+        "  this._stateChangeResolved = false;",
+        {
+          "comment": "START SCENE",
+          "type": "injection marker",
+          "marker id": "[class-handle] start scene",
+          "markup": ["  [code-body]"]
+        },
+        "}",
+        "/**",
+        " * This method is called by the Scene Manager when the scene starts, before preload() and create().",
+        " * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        " */",
+        "[app-handle][class-handle].prototype.init = function(data) {",
+        {
+          "comment": "INIT",
+          "type": "injection marker",
+          "marker id": "[class-handle] init",
+          "markup": ["  [code-body]"]
+        },
+        "}",
+        "/**",
+        " * This method is called by the Scene Manager, after init() and before create(), only if the Scene has a LoaderPlugin. After this method completes, if the LoaderPlugin's queue isn't empty, the LoaderPlugin will start automatically. Use it to load assets. ",
+        " */",
+        "[app-handle][class-handle].prototype.preload = function() {",
+        {
+          "comment": "PRELOAD",
+          "type": "injection marker",
+          "marker id": "[class-handle] preload",
+          "markup": ["  [code-body]"]
+        },
+        "}",
+        "/**",
+        " * This method is called by the Scene Manager when the scene starts, after init() and preload(). If the LoaderPlugin started after preload(), then this method is called only after loading is complete. Use it to create your game objects.",
+        " * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.",
+        " */",
+        "[app-handle][class-handle].prototype.create = function(data) {",
+        "  // call base",
+        "  UiScene.prototype.create.call(this, data);",
+        {
+          "comment": "CREATE",
+          "type": "injection marker",
+          "marker id": "[class-handle] create",
+          "markup": ["  [code-body]"]
+        },
+        "}",
+        "/**",
+        " * This method is called once per game step while the scene is running.",
+        " * @param {Number} time The current time. Either a High Resolution Timer value if it comes from Request Animation Frame, or Date.now if using SetTimeout.",
+        " * @param {Number} delta The delta time in ms since the last frame. This is a smoothed and capped value based on the FPS rate.",
+        " */",
+        "[app-handle][class-handle].prototype.update = function(time, delta) {",
+        "  // call base",
+        "  UiScene.prototype.update.call(this, time, delta);",
+        {
+          "comment": "UPDATE",
+          "type": "injection marker",
+          "marker id": "[class-handle] update",
+          "markup": ["  [code-body]"]
+        },
+        "}",
+        "/**",
+        " * Delegates KeyUp events to the property handler.",
+        " * @param {object} event the event being emitted",
+        " */",
+        "[app-handle][class-handle].prototype.handleKeyUpEvent = function(event) {",
+        "  this._KEY_UP_EVENT_HANDLERS[this._state](event, this);",
+        "}",
+        {
+          "comment": "PUBLIC MEMBERS",
+          "type": "injection marker",
+          "marker id": "[class-handle] public member",
+          "markup": [
+            "[member-definition]",
+            "[app-handle][class-handle].prototype.[member-name] = function([member-args-list]) {",
+            "  [code-body]",
+            "}"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped public member header 0",
+          "markup": [
+            "[code-injection]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped public member body 0",
+          "markup": [
+            "  [code-injection]"
+          ]
+        },
+        {
+          "type": "injection marker",
+          "marker id": "[class-handle] scoped public member footer 0",
+          "markup": [
+            "[code-injection]"
+          ]
+        },
+        "if (typeof(module) !== \"undefined\") {",
+        "  module.exports = { [app-handle][class-handle] };",
+        "}"
+      ]
+    }
+  }
+}

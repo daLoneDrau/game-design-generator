@@ -1,0 +1,2719 @@
+{
+  "appName": "Retro C64",
+  "data-path": [
+    "data"
+  ],
+  "templates file": "",
+  "theme": "c64",
+  "dimensions": [
+    800,
+    600
+  ],
+  "library files": [
+    "app-constants",
+    "scene-controller"
+  ],
+  "DESIGNER'S JOURNAL": {
+    "Design Notes": {
+      "Oct 17 2021": [
+        "Application data created."
+      ]
+    },
+    "Testing": {},
+    "Next Steps": []
+  },
+  "enums": [],
+  "fileHandle": "retroc64",
+  "appHandle": "RetroC64",
+  "appConstants": [],
+  "Design Notes": [
+    {
+      "title": "Setup",
+      "order": -9999,
+      "content": "Initial project setup; includes the creation of any utility classes.",
+      "children": [
+        {
+          "title": "Font preload",
+          "order": 1,
+          "content": "The game font will be preloaded in the Scene Controller.",
+          "children": [],
+          "design": [
+            {
+              "classUid": "kuvp9k2j3kwh9rvfmqg",
+              "tags": [
+                "code",
+                "preload"
+              ],
+              "code": "// load the theme fonts\nthis.load.bitmapFont(\"[theme-font-import]\", \"/phaser/assets/font/[theme-font-import].png\", \"/phaser/assets/font/[theme-font-import].xml\");",
+              "order": "1",
+              "uid": "kuyta8lswz88dhzxx6"
+            }
+          ],
+          "uid": "kuyt7k0mxm2fe9zrcim"
+        }
+      ],
+      "design": [
+        {
+          "tags": [
+            "class",
+            "scene-controller"
+          ],
+          "classHandle": "SceneController",
+          "fileHandle": "scene-controller",
+          "uid": "kuvp9k2j3kwh9rvfmqg"
+        },
+        {
+          "tags": [
+            "class",
+            "app-constants"
+          ],
+          "classHandle": "Constants",
+          "fileHandle": "constants",
+          "weight": 0,
+          "uid": "kuvp9k2jit3fzra9nj9"
+        },
+        {
+          "tags": [
+            "class",
+            "game"
+          ],
+          "classHandle": "Game",
+          "fileHandle": "game",
+          "uid": "AF89DG9sgahg9"
+        }
+      ],
+      "uid": "kuvp9k2jsxw5ctspqrc"
+    },
+    {
+      "title": "Akalabeth",
+      "order": 1,
+      "content": "The implementation of the game Akalabeth: World of Doom using the source code.",
+      "children": [
+        {
+          "title": "Akalabeth Game Objects",
+          "order": 1,
+          "content": "There will be several unique game objects required for the game.",
+          "children": [
+            {
+              "title": "Akalabeth Controller",
+              "order": 1,
+              "content": "A singleton Controller class will be created to track global variables and instances.",
+              "children": [
+                {
+                  "title": "The Akalabeth Controller Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'singleton' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classTitle": "Akalabeth Controller",
+                      "classHandle": "AkalabethController",
+                      "fileHandle": "akalabeth-controller",
+                      "tags": [
+                        "class",
+                        "singleton"
+                      ],
+                      "classDefinition": "A singleton Controller class will be created to track global variables and instances.",
+                      "weight": "1",
+                      "uid": "kv8dmif2xlmo0uad7vs",
+                      "filePath": [
+                        "services",
+                        "akalabeth"
+                      ]
+                    }
+                  ],
+                  "uid": "kv8dmif2wkkpvf86mi8"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Akalabeth Controller class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kv8dmif2xlmo0uad7vs",
+                      "importHandle": "RetroC64AkalabethCharacter",
+                      "importPath": "../../bus/akalabeth/retroc64-akalabeth-character",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kv8dzcrd20j5hfya1mt"
+                    }
+                  ],
+                  "uid": "kv8dmif23qjeh3md9tx"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Akalabeth Controller class will have the following private fields:",
+                  "children": [
+                    {
+                      "title": "Lucky Number",
+                      "order": 1,
+                      "content": "The player's lucky number.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_luckyNumber",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The player's lucky number.",
+                          "order": "1",
+                          "uid": "kv8e1g98i5k1m22jw5c"
+                        },
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "luckyNumber",
+                          "getterDefinition": "/**\n * Getter for field _luckyNumber.\n * @returns {Number}\n */",
+                          "getterBody": "return _luckyNumber;",
+                          "order": "1",
+                          "uid": "kv8e1g989bag4iql409"
+                        },
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "public setter property"
+                          ],
+                          "propertyName": "luckyNumber",
+                          "setterDefinition": "/**\n * Setter for field _luckyNumber.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\n_luckyNumber = value;",
+                          "order": "1",
+                          "uid": "kv8e1g99r1v84ri5vla"
+                        }
+                      ],
+                      "uid": "kv8e1g97vgi3s4fr5v"
+                    },
+                    {
+                      "title": "Level of Play",
+                      "order": 2,
+                      "content": "The chosen level of play.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_levelOfPlay",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The chosen level of play.",
+                          "order": "2",
+                          "uid": "kv8e2ngxj1p88ujwijk"
+                        },
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "levelOfPlay",
+                          "getterDefinition": "/**\n * Getter for field _levelOfPlay.\n * @returns {Number}\n */",
+                          "getterBody": "return _levelOfPlay;",
+                          "order": "2",
+                          "uid": "kv8e2ngxz0flbuji3h"
+                        },
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "public setter property"
+                          ],
+                          "propertyName": "levelOfPlay",
+                          "setterDefinition": "/**\n * Setter for field _levelOfPlay.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\n_levelOfPlay = value;",
+                          "order": "2",
+                          "uid": "kv8e2ngxwj7ux7he7rh"
+                        }
+                      ],
+                      "uid": "kv8e2ngwwqvzhxmuuo"
+                    },
+                    {
+                      "title": "Player Character",
+                      "order": 3,
+                      "content": "The player character instance.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_character",
+                          "fieldType": "RetroC64AkalabethCharacter",
+                          "fieldValue": "new RetroC64AkalabethCharacter()",
+                          "fieldDefinition": "The player character instance.",
+                          "order": "3",
+                          "uid": "kv8etxsze0e782e5w4n"
+                        },
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "character",
+                          "getterDefinition": "/**\n * Getter for field _character.\n * @returns {Object}\n */",
+                          "getterBody": "return _character;",
+                          "order": "3",
+                          "uid": "kv8etxszjrc6x2x0tya"
+                        }
+                      ],
+                      "uid": "kv8etxsy9jrtb29gexd"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kv8dmif2u82ypqtqaal"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Akalabeth Controller class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kv8dmif29we9nuo0d17"
+                }
+              ],
+              "design": [],
+              "uid": "kv8dmif2e5651vhbb3r"
+            },
+            {
+              "title": "The Player Character",
+              "order": 2,
+              "content": "A class to represent the game character will be added using the 'prototype' template.",
+              "children": [
+                {
+                  "title": "The Akalabeth Character Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classTitle": "Akalabeth Character",
+                      "classHandle": "AkalabethCharacter",
+                      "fileHandle": "akalabeth-character",
+                      "tags": [
+                        "class",
+                        "prototype"
+                      ],
+                      "classDefinition": "A class to represent the game character will be added using the 'prototype' template.",
+                      "weight": "1",
+                      "uid": "kv8bv95oamp0qanlmok",
+                      "filePath": [
+                        "bus",
+                        "akalabeth"
+                      ]
+                    },
+                    {
+                      "classUid": "kv8bv95oamp0qanlmok",
+                      "tags": [
+                        "code",
+                        "constructor body"
+                      ],
+                      "code": "Watchable.apply(this);",
+                      "order": 9999,
+                      "uid": "kv8bv95o9iq7uvyqp4"
+                    },
+                    {
+                      "classUid": "kv8bv95oamp0qanlmok",
+                      "tags": [
+                        "code",
+                        "inheritance"
+                      ],
+                      "classInheritance": "Watchable",
+                      "order": 9999,
+                      "uid": "kv8bv95ofla83r5wyw"
+                    }
+                  ],
+                  "uid": "kv8bv95odoidbhkjfak"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Akalabeth Character class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kv8bv95oamp0qanlmok",
+                      "importHandle": "RetroC64AkalabethEquipmentItem",
+                      "importPath": "./retroc64-akalabeth-equipment-item",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kv8i0q8ct4ety1f0mtg"
+                    }
+                  ],
+                  "uid": "kv8bv95o147sthmh5w0p"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Akalabeth Character class will have the following private fields:",
+                  "children": [
+                    {
+                      "title": "Hit Points",
+                      "order": 1,
+                      "content": "The player's hit points",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_hitPoints",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The player's hit points",
+                          "order": "1",
+                          "uid": "kv8c25tpmqe22j1m4v"
+                        },
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "hitPoints",
+                          "getterDefinition": "/**\n * Getter for field _hitPoints.\n * @returns {Number}\n */",
+                          "getterBody": "return this._hitPoints;",
+                          "setterDefinition": "/**\n * Setter for field _hitPoints.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._hitPoints = value;\nthis.notifyWatchers(this);",
+                          "order": "1",
+                          "uid": "kv8c25tpqfhruebsdd"
+                        }
+                      ],
+                      "uid": "kv8c25to0a6t147lr5qu"
+                    },
+                    {
+                      "title": "Strength",
+                      "order": 2,
+                      "content": "The player's strength.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_strength",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The player's strength.",
+                          "order": "2",
+                          "uid": "kv8cdvmefjjlbxlfaxr"
+                        },
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "strength",
+                          "getterDefinition": "/**\n * Getter for field _strength.\n * @returns {Number}\n */",
+                          "getterBody": "return this._strength;",
+                          "setterDefinition": "/**\n * Setter for field _strength.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._strength = value;\nthis.notifyWatchers(this);",
+                          "order": "2",
+                          "uid": "kv8cdvmfmerbot0hd1"
+                        }
+                      ],
+                      "uid": "kv8cdvmdta84q528wml"
+                    },
+                    {
+                      "title": "Dexterity",
+                      "order": 3,
+                      "content": "The player's dexterity.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_dexterity",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The player's dexterity.",
+                          "order": "3",
+                          "uid": "kv8cf2xaovcgr84udgo"
+                        },
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "dexterity",
+                          "getterDefinition": "/**\n * Getter for field _dexterity.\n * @returns {Number}\n */",
+                          "getterBody": "return this._dexterity;",
+                          "setterDefinition": "/**\n * Setter for field _dexterity.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._dexterity = value;\nthis.notifyWatchers(this);",
+                          "order": "3",
+                          "uid": "kv8cf2xa4m4l3pbolxc"
+                        }
+                      ],
+                      "uid": "kv8cf2xasb493vxxt4m"
+                    },
+                    {
+                      "title": "Stamina",
+                      "order": 4,
+                      "content": "The player's stamina.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_stamina",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The player's stamina.",
+                          "order": "4",
+                          "uid": "kv8cimmdj8l1k8wtp4"
+                        },
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "stamina",
+                          "getterDefinition": "/**\n * Getter for field int.\n * @returns {Object}\n */",
+                          "getterBody": "return this._stamina;",
+                          "setterDefinition": "/**\n * Setter for field int.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._stamina = value;\nthis.notifyWatchers(this);",
+                          "order": "4",
+                          "uid": "kv8cimmdjnyq03xrpbh"
+                        }
+                      ],
+                      "uid": "kv8cimmdrd736uo0tpf"
+                    },
+                    {
+                      "title": "Wisdom",
+                      "order": 5,
+                      "content": "The player's wisdom.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_wisdom",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The player's wisdom.",
+                          "order": "5",
+                          "uid": "kv8cjy5c8gjo5gknt4o"
+                        },
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "wisdom",
+                          "getterDefinition": "/**\n * Getter for field _wisdom.\n * @returns {Number}\n */",
+                          "getterBody": "return this._wisdom;",
+                          "setterDefinition": "/**\n * Setter for field _wisdom.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._wisdom = value;\nthis.notifyWatchers(this);",
+                          "order": "5",
+                          "uid": "kv8cjy5ctplodugrw"
+                        }
+                      ],
+                      "uid": "kv8cjy5bh607m2evkhm"
+                    },
+                    {
+                      "title": "Gold",
+                      "order": 6,
+                      "content": "The player's gold.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_gold",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The player's gold.",
+                          "order": "6",
+                          "uid": "kv8ckl5ym5be7xwwgze"
+                        },
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "gold",
+                          "getterDefinition": "/**\n * Getter for field _gold.\n * @returns {Number}\n */",
+                          "getterBody": "return this._gold;",
+                          "setterDefinition": "/**\n * Setter for field _gold.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._gold = value;\nthis.notifyWatchers(this);",
+                          "order": "6",
+                          "uid": "kv8ckl5yvn8tcibsaz"
+                        }
+                      ],
+                      "uid": "kv8ckl5y3xmcwwtjylk"
+                    },
+                    {
+                      "title": "Class",
+                      "order": 7,
+                      "content": "The player's class (Fighter or Mage).",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_class",
+                          "fieldType": "string",
+                          "fieldValue": "\"\"",
+                          "fieldDefinition": "The player's class (Fighter or Mage).",
+                          "order": "7",
+                          "uid": "kv8cy7px2cgbhv7r7jf"
+                        },
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "class",
+                          "getterDefinition": "/**\n * Getter for field _class.\n * @returns {String}\n */",
+                          "getterBody": "return this._class;",
+                          "setterDefinition": "/**\n * Setter for field _class.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (typeof(value) !== \"string\" && !(value instanceof String)) {\n  throw [\"Invalid value\", value];\n}\nthis._class = value;\nthis.notifyWatchers(this);",
+                          "order": "7",
+                          "uid": "kv8cy7pxv1g7i89cnsf"
+                        }
+                      ],
+                      "uid": "kv8cy7pwovp6zr64m3"
+                    },
+                    {
+                      "title": "Inventory",
+                      "order": 8,
+                      "content": "The player's inventory.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8bv95oamp0qanlmok",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_inventory",
+                          "fieldType": "object",
+                          "fieldValue": "{}",
+                          "fieldDefinition": "The player's inventory.",
+                          "order": "8",
+                          "uid": "kv8i2s57p9k95hc0qls"
+                        }
+                      ],
+                      "uid": "kv8i2s57e61l0vzyjhq"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kv8bv95o6qk17g9qy1o"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Akalabeth Character class will have the following public members:",
+                  "children": [],
+                  "design": [
+                    {
+                      "tags": [
+                        "public member",
+                        "code"
+                      ],
+                      "uid": "kv8cw79zm9ln67fweo",
+                      "classUid": "kv8bv95oamp0qanlmok",
+                      "memberName": "newCharacter",
+                      "memberDefinition": "/**\n * Resets the character's attributes.\n */",
+                      "arguments": "",
+                      "code": "this._hitPoints = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);\nthis._strength = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);\nthis._dexterity = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);\nthis._stamina = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);\nthis._wisdom = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);\nthis._gold = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);\nthis._class = \"\";\nthis._inventory = {};\nthis.notifyWatchers(this);",
+                      "order": "1"
+                    },
+                    {
+                      "classUid": "kv8bv95oamp0qanlmok",
+                      "tags": [
+                        "code",
+                        "public member"
+                      ],
+                      "memberName": "getNumberInInventory",
+                      "memberDefinition": "/**\n * Gets the number of an item the character has in their inventory.\n * @param {string} name the item's name\n * @returns {Number}\n */",
+                      "arguments": "name",
+                      "code": "let num = 0;\nif (this._inventory.hasOwnProperty(name)) {\n  num = this._inventory[name].count;\n}\nreturn num;",
+                      "order": "2",
+                      "uid": "kv8i6p0yb30qkvcchga"
+                    },
+                    {
+                      "classUid": "kv8bv95oamp0qanlmok",
+                      "tags": [
+                        "code",
+                        "public member"
+                      ],
+                      "memberName": "addToInventory",
+                      "memberDefinition": "/**\n * Adds an item to inventory.\n * @param {object} item the item being added\n */",
+                      "arguments": "item",
+                      "code": "if (typeof(item.name) === \"undefined\"\n    || typeof(item.count) === \"undefined\") {\n  throw [\"Invalid item\", item];\n}\nif (!this._inventory.hasOwnProperty(item.name)) {\n  this._inventory[item.name] = new RetroC64AkalabethEquipmentItem();\n  this._inventory[item.name].name = item.name;\n}\nthis._inventory[item.name].count += item.count;\nthis.notifyWatchers(this);",
+                      "order": "3",
+                      "uid": "kv8ibcn4edzdo62dqim"
+                    }
+                  ],
+                  "uid": "kv8bv95oplez6ltgusf"
+                }
+              ],
+              "design": [],
+              "uid": "kv8bv95o5twy2rrtvln"
+            },
+            {
+              "title": "Equipment Items",
+              "order": 3,
+              "content": "A class to represent equipment items will be added using the 'prototype' template.",
+              "children": [
+                {
+                  "title": "The Akalabeth Equipment Item Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classTitle": "Akalabeth Equipment Item",
+                      "classHandle": "AkalabethEquipmentItem",
+                      "fileHandle": "akalabeth-equipment-item",
+                      "tags": [
+                        "class",
+                        "prototype"
+                      ],
+                      "classDefinition": "A class to represent equipment items will be added using the 'prototype' template.",
+                      "weight": "1",
+                      "uid": "kv8ezhl9hitmbw0fsbc",
+                      "filePath": [
+                        "bus",
+                        "akalabeth"
+                      ]
+                    },
+                    {
+                      "classUid": "kv8ezhl9hitmbw0fsbc",
+                      "tags": [
+                        "code",
+                        "constructor body"
+                      ],
+                      "code": "Watchable.apply(this);",
+                      "order": 9999,
+                      "uid": "kv8ezhl9d7xvgmg9uzc"
+                    },
+                    {
+                      "classUid": "kv8ezhl9hitmbw0fsbc",
+                      "tags": [
+                        "code",
+                        "inheritance"
+                      ],
+                      "classInheritance": "Watchable",
+                      "order": 9999,
+                      "uid": "kv8ezhl97ylpgcmmpai"
+                    }
+                  ],
+                  "uid": "kv8ezhl9xx5mnpehrq"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Akalabeth Equipment Item class will require the following imports:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kv8ezhl97yrzgpn707j"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Akalabeth Equipment Item class will have the following private fields:",
+                  "children": [
+                    {
+                      "title": "Name",
+                      "order": 1,
+                      "content": "The item's name.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8ezhl9hitmbw0fsbc",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_name",
+                          "fieldType": "",
+                          "fieldValue": "\"\"",
+                          "fieldDefinition": "The item's name.",
+                          "order": "1",
+                          "uid": "kv8f0pxzer6mv7tacc"
+                        },
+                        {
+                          "classUid": "kv8ezhl9hitmbw0fsbc",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "name",
+                          "getterDefinition": "/**\n * Getter for field _name.\n * @returns {Object}\n */",
+                          "getterBody": "return this._name;",
+                          "setterDefinition": "/**\n * Setter for field _name.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "this._name = value;\nthis.notifyWatchers(this);",
+                          "order": "1",
+                          "uid": "kv8f0py05ero58ba4vv"
+                        }
+                      ],
+                      "uid": "kv8f0pxzgkzfas42kv7"
+                    },
+                    {
+                      "title": "Item Count",
+                      "order": 2,
+                      "content": "The # of items in a stack",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8ezhl9hitmbw0fsbc",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_count",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "The # of items in a stack",
+                          "order": "2",
+                          "uid": "kv8f1p4n5ztdfbg1ron"
+                        },
+                        {
+                          "classUid": "kv8ezhl9hitmbw0fsbc",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "count",
+                          "getterDefinition": "/**\n * Getter for field _count.\n * @returns {Number}\n */",
+                          "getterBody": "return this._count;",
+                          "setterDefinition": "/**\n * Setter for field _count.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._count = value;\nif (this._count < 0) {\n  this._count = 0;\n}\nthis.notifyWatchers(this);",
+                          "order": "2",
+                          "uid": "kv8f1p4n8dtzajyyxuw"
+                        }
+                      ],
+                      "uid": "kv8f1p4nf3e0u8pqu3t"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kv8ezhl9658qtx2zu9h"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Akalabeth Equipment Item class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kv8ezhl90mz7t13uxhp"
+                }
+              ],
+              "design": [],
+              "uid": "kv8ezhl8r8534xesvwr"
+            }
+          ],
+          "design": [],
+          "uid": "kuyu2us9qat4npkou4q"
+        },
+        {
+          "title": "Game States",
+          "order": 2,
+          "content": "The game will have several states available to it.  The first state will be AKALABETH_CHARACTER_CREATION.",
+          "children": [],
+          "design": [
+            {
+              "classUid": "kuvp9k2jit3fzra9nj9",
+              "groupName": "AKALABETH_GAME_STATES",
+              "tags": [
+                "code",
+                "group properties"
+              ],
+              "elements": [
+                {
+                  "elementName": "AKALABETH_CHARACTER_CREATION",
+                  "elementValue": "0",
+                  "elementDefinition": "The Character Creation state, where the player's character is created.",
+                  "order": 0
+                },
+                {
+                  "elementName": "AKALABETH_EQUIPMENT_SHOP",
+                  "elementValue": "1",
+                  "elementDefinition": "The Equipment Shop state, where the Shop view is displayed after character creation.",
+                  "order": 1
+                },
+                {
+                  "elementName": "AKALABETH_SETUP",
+                  "elementValue": "2",
+                  "elementDefinition": "The Setup state, where the world is populated.",
+                  "order": 2
+                },
+                {
+                  "elementName": "AKALABETH_WORLD_MAP",
+                  "elementValue": "3",
+                  "elementDefinition": "The World Map state, where the world map is displayed.",
+                  "order": 3
+                }
+              ],
+              "uid": "kuwpwejqv1ubvmooh8j"
+            },
+            {
+              "classUid": "kuvp9k2jit3fzra9nj9",
+              "groupName": "AKALABETH_INTRO_STATES",
+              "tags": [
+                "code",
+                "group properties"
+              ],
+              "elements": [
+                {
+                  "elementName": "AKALABETH_INTRO_LUCKY_NUMBER",
+                  "elementValue": "0",
+                  "elementDefinition": "the very first state in the Intro View. Get the user's lucky number.",
+                  "order": 1
+                },
+                {
+                  "elementName": "AKALABETH_INTRO_REVIEW_CHARACTER",
+                  "elementValue": "1",
+                  "elementDefinition": "the second state in the Intro View. Presents a freshly-rolled character.",
+                  "order": 2
+                },
+                {
+                  "elementName": "AKALABETH_INTRO_SHOP",
+                  "elementValue": "2",
+                  "elementDefinition": "the third state in the Intro View. Allows the player to shop for supplies.",
+                  "order": 3
+                }
+              ],
+              "uid": "kuwxbtoh35lcbh4q74n"
+            }
+          ],
+          "uid": "kuwpuzm6uest1vzbi2p"
+        },
+        {
+          "title": "Game Views",
+          "order": 3,
+          "content": "The game will have several views that change during play.",
+          "children": [
+            {
+              "title": "The Intro view",
+              "order": 1,
+              "content": "The first view displayed will be the Intro view. This view will be responsible for capturing the player's lucky number and the level of play.",
+              "children": [
+                {
+                  "title": "The Intro view container",
+                  "order": 1,
+                  "content": "A Scene Container will be created to handle the scene view states and display.",
+                  "children": [
+                    {
+                      "title": "File Imports",
+                      "order": 1,
+                      "content": "The Intro view container will import the Game class, and vice-versa.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "AF89DG9sgahg9",
+                          "importHandle": "RetroC64IntroScene",
+                          "importPath": "../scenes/retroc64-introscene",
+                          "tags": [
+                            "code",
+                            "required import"
+                          ],
+                          "uid": "kux4rhmv6ab6wbbtxoe"
+                        },
+                        {
+                          "classUid": "kuwtm4puhjdoptd1nrb",
+                          "importHandle": "RetroC64IntroUi",
+                          "importPath": "./intro/retroc64-intro-ui",
+                          "tags": [
+                            "code",
+                            "required import"
+                          ],
+                          "uid": "kux51e1992fp7pbcgv9"
+                        },
+                        {
+                          "classUid": "kuvp9k2j3kwh9rvfmqg",
+                          "importHandle": "RetroC64IntroScene",
+                          "importPath": "../scenes/retroc64-introscene",
+                          "tags": [
+                            "code",
+                            "required import"
+                          ],
+                          "uid": "kuy13oj3sehpsmfwd6o"
+                        }
+                      ],
+                      "uid": "kux4o1kc0jk8lb0eg68i"
+                    },
+                    {
+                      "title": "postboot processing",
+                      "order": 2,
+                      "content": "Intro view will be added to the Game class postboot processing.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "AF89DG9sgahg9",
+                          "tags": [
+                            "code",
+                            "postboot"
+                          ],
+                          "code": "_game.scene.queueOp(\"start\", \"IntroScene\");",
+                          "order": "1",
+                          "uid": "kux4h0rnub0izqwygl"
+                        }
+                      ],
+                      "uid": "kux4oq9llaq6cup5m1m"
+                    },
+                    {
+                      "title": "Scene keys",
+                      "order": 3,
+                      "content": "The Intro Scene will be added as a scene key for the scene controller.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kuvp9k2j3kwh9rvfmqg",
+                          "tags": [
+                            "code",
+                            "create"
+                          ],
+                          "code": "// set initial state for Intro\n[app-handle]IntroScene.state = [app-handle]Constants.AKALABETH_INTRO_LUCKY_NUMBER;",
+                          "order": "1",
+                          "uid": "kuy0xqej1rxvog6kyvf"
+                        },
+                        {
+                          "classUid": "kuvp9k2j3kwh9rvfmqg",
+                          "tags": [
+                            "code",
+                            "scene group"
+                          ],
+                          "sceneKey": "[RetroC64Constants.AKALABETH_CHARACTER_CREATION]",
+                          "sceneValue": "\"IntroScene\"",
+                          "order": "1",
+                          "uid": "kuy470ig61mj7ppvclo"
+                        },
+                        {
+                          "classUid": "kuvp9k2j3kwh9rvfmqg",
+                          "tags": [
+                            "code",
+                            "create"
+                          ],
+                          "code": "\n// set current scene\nthis.switch([app-handle]Constants.AKALABETH_CHARACTER_CREATION);",
+                          "order": "9999",
+                          "uid": "kuy0za823eps4dluf6f"
+                        }
+                      ],
+                      "uid": "kuxhw61vvwz5x8w60s"
+                    }
+                  ],
+                  "design": [
+                    {
+                      "classTitle": "IntroScene",
+                      "classHandle": "IntroScene",
+                      "fileHandle": "introscene",
+                      "tags": [
+                        "class",
+                        "scene-container"
+                      ],
+                      "classDefinition": "The Intro Scene is the first scene displayed when the game starts.",
+                      "uid": "kuwtm4puhjdoptd1nrb",
+                      "filePath": [
+                        "scenes",
+                        "akalabeth"
+                      ]
+                    }
+                  ],
+                  "uid": "kux4leswhywnpnrhxi"
+                },
+                {
+                  "title": "The Intro view UI class",
+                  "order": 2,
+                  "content": "A UI class will be added to the Intro view container.",
+                  "children": [
+                    {
+                      "title": "File Imports",
+                      "order": 1,
+                      "content": "The Ui class will require the following imports:\n\n* Akalabeth Controller\n* Intro Scene",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "importHandle": "RetroC64AkalabethController",
+                          "importPath": "../../services/akalabeth/retroc64-akalabeth-controller",
+                          "tags": [
+                            "code",
+                            "required import"
+                          ],
+                          "uid": "kuzjsiljyqx3vxok3q"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "importHandle": "RetroC64IntroScene",
+                          "importPath": "../retroc64-introscene",
+                          "tags": [
+                            "code",
+                            "required import"
+                          ],
+                          "uid": "kv042a6dhfgkr54lfkd"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "importHandle": "RetroC64SceneController",
+                          "importPath": "../scenes/retroc64-scene-controller",
+                          "tags": [
+                            "code",
+                            "required import"
+                          ],
+                          "uid": "kv2opqcn7wmo7dek6xb"
+                        }
+                      ],
+                      "uid": "kuzj9ycwn7c1y2ujgus"
+                    },
+                    {
+                      "title": "Intro view UI states",
+                      "order": 2,
+                      "content": "The Intro View will be assigned the UI scene as the handler for several states:\n\n* AKALABETH_INTRO_LUCKY_NUMBER\n* AKALABETH_INTRO_REVIEW_CHARACTER",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kuwtm4puhjdoptd1nrb",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_uiScene",
+                          "fieldType": "RetroC64IntroUi",
+                          "fieldValue": "new RetroC64IntroUi({ scene: _scene, show: true })",
+                          "fieldDefinition": "the UI Scene instance used by all scene states.",
+                          "order": "1",
+                          "uid": "kuy311auiem9c1thhfj"
+                        },
+                        {
+                          "classUid": "kuwtm4puhjdoptd1nrb",
+                          "tags": [
+                            "code",
+                            "scoped dictionary body 0"
+                          ],
+                          "dictionaryKey": "[RetroC64Constants.AKALABETH_INTRO_LUCKY_NUMBER]",
+                          "dictionaryDefinition": "the scene instance displayed during the lucky number state",
+                          "dictionaryValue": "_uiScene",
+                          "uid": "kuy7lfu9ac4znz1p8fh"
+                        },
+                        {
+                          "classUid": "kuwtm4puhjdoptd1nrb",
+                          "tags": [
+                            "code",
+                            "scoped dictionary body 0"
+                          ],
+                          "dictionaryKey": "[RetroC64Constants.AKALABETH_INTRO_REVIEW_CHARACTER]",
+                          "dictionaryDefinition": "the scene instance displayed during the character review state",
+                          "dictionaryValue": "_uiScene",
+                          "uid": "kv04dp3a44o8q15f5ae"
+                        },
+                        {
+                          "classUid": "kuwtm4puhjdoptd1nrb",
+                          "tags": [
+                            "code",
+                            "scoped dictionary body 0"
+                          ],
+                          "dictionaryKey": "[RetroC64Constants.AKALABETH_INTRO_SHOP]",
+                          "dictionaryDefinition": "the scene instance displayed during the equipment shop state",
+                          "dictionaryValue": "_uiScene",
+                          "uid": "kv1gn2wcnu281xdrnmh"
+                        }
+                      ],
+                      "uid": "kuy2zfj2uawvgyh770n"
+                    },
+                    {
+                      "title": "The 'create' method",
+                      "order": 3,
+                      "content": "This scene will use a sprite to mimic the Commodore 64's blinking cursor. The 'create' method will be used to create the blink animation for the sprite, and begin playing it infinitely.",
+                      "children": [],
+                      "design": [
+                        {
+                          "tags": [
+                            "create",
+                            "code"
+                          ],
+                          "uid": "kuyb6n6k5raocvaew08",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "code": "this._dynamicFields.getObject(\"blinkingCursor\")[0].anims.create({\n  key: \"blink\",\n  frames: [\n    { key: \"cursor_off\" },\n    { key: \"cursor_on\" }\n  ],\n  frameRate: 2,\n  repeat: -1 // repeat infinitely\n});\nthis._dynamicFields.getObject(\"blinkingCursor\")[0].play(\"blink\");\nthis._dynamicFields.getObject(\"blinkingCursor2\")[0].anims.create({\n  key: \"blink\",\n  frames: [\n    { key: \"cursor_off\" },\n    { key: \"cursor_on\" }\n  ],\n  frameRate: 2,\n  repeat: -1 // repeat infinitely\n});\nthis._dynamicFields.getObject(\"blinkingCursor2\")[0].play(\"blink\");",
+                          "order": "1"
+                        }
+                      ],
+                      "uid": "kuyb1zlsex15zs8ubbm"
+                    },
+                    {
+                      "title": "The Lucky Number view template",
+                      "order": 4,
+                      "content": "The first thing the player sees will be a screen asking for their lucky number. This view will be defined in the UI class.",
+                      "children": [],
+                      "design": [
+                        {
+                          "tags": [
+                            "constructor body",
+                            "code"
+                          ],
+                          "uid": "kuyc7iscw20vakkbgo",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "code": "this._VIEWS[[RetroC64Constants.AKALABETH_INTRO_LUCKY_NUMBER]] = {\n  group: null,\n  children: [\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"TYPE THY LUCKY NUMBER (0-9).....\", // text\n      ],\n      position: [-0.4975, 5],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.6075, 5],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"luckyNumberEntry\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [-0.4975, 6],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"levelNumberEntryLabel\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.3525, 6],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"levelNumberEntry\"\n    },\n    {\n      comment: \"CREATE TWO IMAGES, CURSOR_ON AND CURSOR_OFF. OFF IS MADE FIRST, SINCE THE GRAPHICS NEEDS TO BE EMPTY\",\n      type: \"graphics-texture\",\n      commands: [\n        {\n          order: 1,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 0] // color, alpha\n        },\n        {\n          order: 2,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 3,\n          command: \"generateTexture\",\n          args: [\"cursor_off\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 4,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 1] // color, alpha\n        },\n        {\n          order: 5,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 6,\n          command: \"generateTexture\",\n          args: [\"cursor_on\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n      ]\n    },\n    {\n      comment: \"CREATE CURSOR SPRITE\",\n      type: \"sprite\",\n      args: [\n        0, // x\n        0, // y\n        \"cursor_on\" // texture\n      ],\n      position: [0.6075, 5 + this._cursorYOffset],\n      origin: [0, 0.5],\n      dynamicField: \"blinkingCursor\"\n    }\n  ]\n};",
+                          "order": "1"
+                        },
+                        {
+                          "tags": [
+                            "constructor body",
+                            "code"
+                          ],
+                          "uid": "kv0vy4kluokavcr72l",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "code": "this._VIEWS[[RetroC64Constants.AKALABETH_INTRO_REVIEW_CHARACTER]] = {\n  group: null,\n  children: [\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"HIT POINTS.....\", // text\n      ],\n      position: [-0.4975, 8],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 8],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"hpValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STRENGTH........\", // text\n      ],\n      position: [-0.4975, 9],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 9],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"strValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"DEXTERITY.......\", // text\n      ],\n      position: [-0.4975, 10],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 10],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"dexValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STAMINA...........\", // text\n      ],\n      position: [-0.4975, 11],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 11],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"stValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"WISDOM.............\", // text\n      ],\n      position: [-0.4975, 12],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 12],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"wisValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"GOLD.................\", // text\n      ],\n      position: [-0.4975, 13],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 13],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"goldValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"SHALT THOU PLAY WITH THESE QUALITIES (Y OR N)?\", // text\n      ],\n      position: [-0.4975, 15],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [-0.4975, 16],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"characterClassLabel\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.5, 16],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"acceptCharacterEntry\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.5, 17],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"acceptClassEntry\"\n    },\n    {\n      comment: \"CREATE TWO IMAGES, CURSOR_ON AND CURSOR_OFF. OFF IS MADE FIRST, SINCE THE GRAPHICS NEEDS TO BE EMPTY\",\n      type: \"graphics-texture\",\n      commands: [\n        {\n          order: 1,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 0] // color, alpha\n        },\n        {\n          order: 2,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 3,\n          command: \"generateTexture\",\n          args: [\"cursor_off\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 4,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 1] // color, alpha\n        },\n        {\n          order: 5,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 6,\n          command: \"generateTexture\",\n          args: [\"cursor_on\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n      ]\n    },\n    {\n      comment: \"CREATE CURSOR SPRITE\",\n      type: \"sprite\",\n      args: [\n        0, // x\n        0, // y\n        \"cursor_on\" // texture\n      ],\n      position: [0.5, 16 + this._cursorYOffset],\n      origin: [0.5, 0.5],\n      dynamicField: \"blinkingCursor2\"\n    }\n  ]\n};",
+                          "order": "2"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "constructor body"
+                          ],
+                          "code": "this._VIEWS[[RetroC64Constants.AKALABETH_INTRO_SHOP]] = {\n  group: null,\n  children: [\n    {\n      comment: \"COLUMN 1 HEADER\",\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STAT'S\", // text\n      ],\n      position: [0, 1],\n      origin: [0.5, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"HIT POINTS.....\", // text\n      ],\n      position: [-0.4975, 2],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 2],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"hpValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STRENGTH........\", // text\n      ],\n      position: [-0.4975, 3],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 3],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"strValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"DEXTERITY.......\", // text\n      ],\n      position: [-0.4975, 4],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 4],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"dexValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STAMINA...........\", // text\n      ],\n      position: [-0.4975, 5],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 5],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"stValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"WISDOM.............\", // text\n      ],\n      position: [-0.4975, 6],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 6],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"wisValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"GOLD.................\", // text\n      ],\n      position: [-0.4975, 7],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [0.04, 7],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"goldValue\"\n    },\n    {\n      comment: \"COLUMN 2 HEADER\",\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"WEAPONS\", // text\n      ],\n      position: [1, 1],\n      origin: [0.5, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: \"CREATE TWO IMAGES, CURSOR_ON AND CURSOR_OFF. OFF IS MADE FIRST, SINCE THE GRAPHICS NEEDS TO BE EMPTY\",\n      type: \"graphics-texture\",\n      commands: [\n        {\n          order: 1,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 0] // color, alpha\n        },\n        {\n          order: 2,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 3,\n          command: \"generateTexture\",\n          args: [\"cursor_off\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 4,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 1] // color, alpha\n        },\n        {\n          order: 5,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 6,\n          command: \"generateTexture\",\n          args: [\"cursor_on\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n      ]\n    },\n    {\n      comment: \"CREATE CURSOR SPRITE\",\n      type: \"sprite\",\n      args: [\n        0, // x\n        0, // y\n        \"cursor_on\" // texture\n      ],\n      position: [0.5, 16 + this._cursorYOffset],\n      origin: [0.5, 0.5],\n      dynamicField: \"blinkingCursor3\"\n    }\n  ]\n};",
+                          "order": "3",
+                          "uid": "kv1f1or2qkfbijwv7b"
+                        }
+                      ],
+                      "uid": "kuytirlytc0hubzg4rl"
+                    },
+                    {
+                      "title": "The Lucky Number view listener",
+                      "order": 5,
+                      "content": "A listener will be defined to listen for keyboard entries. The listener will react only to the FIRST entry and ignore everything else. \n\nAfter any entry i captured, the entry is parsed into a digit (0 if not a valid number) and then the blinking cursor will move over to the right and the number will be displayed on screen.\n\nThis will appear for a few seconds before moving on the next view.",
+                      "children": [],
+                      "design": [
+                        {
+                          "tags": [
+                            "constructor body",
+                            "code"
+                          ],
+                          "uid": "kuyy57r9xdfhbwdov8",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "code": "this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_INTRO_LUCKY_NUMBER]] = function(event, context) {\n  if (RetroC64AkalabethController.luckyNumber === -1) { // entering lucky number\n    context._handleLuckyNumberEntry(event.key);\n  } else if (context._readyForLevelNumber) { // entering level number\n    context._handleLevelNumberEntry(event.key);\n  } else {\n    console.log(\"ignoring key\", event.key)\n  }\n};",
+                          "order": "10"
+                        },
+                        {
+                          "tags": [
+                            "constructor body",
+                            "code"
+                          ],
+                          "uid": "kv13bcjv69rta4aj4md",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "code": "this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_INTRO_REVIEW_CHARACTER]] = function(event, context) {\n  if (!context._readyForClassSelection) { // entering level number\n    context._handleCharacterReviewEntry(event.key);\n  } else {\n    context._handleClassEntry(event.key);\n  }\n};",
+                          "order": "11"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "constructor body"
+                          ],
+                          "code": "this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_INTRO_SHOP]] = function(event, context) {\n  switch (event.key) {\n    case \"Y\":\n    case \"y\":\n      context._dynamicFields.setText(\"acceptCharacterEntry\", \"Y\");\n      // move cursor to the right\n      // get the width of the digit displayed\n      let charOffset = context._dynamicFields.getObject(\"acceptCharacterEntry\")[0].width;\n      // grid is two columns. find the percentage of the width compared to the column\n      charOffset /= (context._scene.scale.width / 2);\n      // position the blinking cursor\n      context._grid.placeAt(0.5 + charOffset, 16 + context._cursorYOffset, context._dynamicFields.getObject(\"blinkingCursor2\")[0]);\n\n      // start the timer to go to the next screen\n      context._scene.time.delayedCall(\n        context._keyEntryDelay, // milliseconds\n        context._displayClassEntry, // callback function\n        [], // args\n        context // the scope object\n      );\n      /*\n      this._dynamicFields.setText(\"acceptCharacterEntry\", \"\");\n      this._dynamicFields.setText(\"characterClassLabel\", \"SHALT THOU PLAY WITH THESE QUALITIES?\");\n      */\n      break;\n  }\n};",
+                          "order": "12",
+                          "uid": "kv166fs63fuucpoyyxr"
+                        }
+                      ],
+                      "uid": "kuytn3yoxz68ngezi49"
+                    },
+                    {
+                      "title": "Private Fields",
+                      "order": 6,
+                      "content": "The UI class will have the following private fields:\n\n* _readyForLevelNumber - a flag indicating the UI is accepting entries for level number\n\n* _readyForClassSelection - a flag indicating the UI is accepting entries for character class\n\n* _handleLuckyNumberEntry- a method to process input during the lucky number phase\n\n* _displayLevelEntry - a function for displaying the level entry text\n\n* _handleLevelNumberEntry- a method to process input during the lucky number phase\n\n* _handleCharacterReviewEntry- a method to process input during the character review phase\n\n* _displayClassEntry - a function for displaying the classentry text\n\n* _handleClassEntry- a method to process input during the class entry phase\n\n* _nextState- a function for moving to the next state\n\n* _keyEntryDelay - the delay in milliseconds before processing an accepted keystroke\n\n* _cursorYOffset - the y-offset applied to the cursor's position",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_readyForLevelNumber",
+                          "fieldType": "boolean",
+                          "fieldValue": false,
+                          "fieldDefinition": "a flag indicating the UI is accepting entries for level number",
+                          "order": "1",
+                          "uid": "kuzsdht2md9uze24t9k"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_readyForClassSelection",
+                          "fieldType": "boolean",
+                          "fieldValue": false,
+                          "fieldDefinition": "a flag indicating the UI is accepting entries for character class",
+                          "order": "2",
+                          "uid": "kv17eopx81oo6fulqt4"
+                        },
+                        {
+                          "tags": [
+                            "private field",
+                            "code"
+                          ],
+                          "uid": "kv0xzxdqgzupuxhyt37",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "fieldName": "_displayLevelEntry",
+                          "fieldType": "function",
+                          "fieldValue": "function() {\n    // show the next label\n    this._dynamicFields.setText(\"levelNumberEntryLabel\", \"LEVEL OF PLAY (1-10)......\");\n    // position the blinking cursor\n    this._grid.placeAt(0.3525, 6 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n    // prepare to accept the next input\n    this._readyForLevelNumber = true;\n  }",
+                          "fieldDefinition": "\n   * Displays the level entry text and moves the cursor.\n  ",
+                          "order": "21"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_displayClassEntry",
+                          "fieldType": "function",
+                          "fieldValue": "function() {\n  this._dynamicFields.setText(\"acceptCharacterEntry\", \"\");\n    // show the next label\n    this._dynamicFields.setText(\"characterClassLabel\", \"AND SHALT THOU BE A FIGHTER OR A MAGE (F OR M)?\");\n    // position the blinking cursor\n    this._grid.placeAt(0.5, 17 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor2\")[0]);\n    // prepare to accept the next input\n    this._readyForClassSelection = true;\n  }",
+                          "fieldDefinition": "\n   * Displays the class entry text and moves the cursor.\n  ",
+                          "order": "22",
+                          "uid": "kv167zhfsy7fe6zzin"
+                        },
+                        {
+                          "tags": [
+                            "private field",
+                            "code"
+                          ],
+                          "uid": "kv0w5y6feu9wornwkd",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "fieldName": "_handleLuckyNumberEntry",
+                          "fieldType": "function",
+                          "fieldValue": "function(key) {\n    switch (key) {\n      case \"1\":\n      case \"2\":\n      case \"3\":\n      case \"4\":\n      case \"5\":\n      case \"6\":\n      case \"7\":\n      case \"8\":\n      case \"9\":\n      case \"0\":\n        // set lucky number\n        RetroC64AkalabethController.luckyNumber = key;\n        \n        // display lucky number\n        this._dynamicFields.setText(\"luckyNumberEntry\", RetroC64AkalabethController.luckyNumber);\n        \n        // move cursor to the right\n        // get the width of the digit displayed\n        let charOffset = this._dynamicFields.getObject(\"luckyNumberEntry\")[0].width;\n        // grid is two columns. find the percentage of the width compared to the column\n        charOffset /= (this._scene.scale.width / 2);\n        // position the blinking cursor\n        this._grid.placeAt(0.6075 + charOffset, 5 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n\n        // start the timer to go to the next screen\n        this._scene.time.delayedCall(\n          this._keyEntryDelay, // milliseconds\n          this._displayLevelEntry, // callback function\n          [], // args\n          this\n        ); // the scope object\n        break;\n      default:\n        break;\n    }\n  }",
+                          "fieldDefinition": "\n   * Handles player input when entering their lucky number.\n   * @param {string} key the key that was pressed\n  ",
+                          "order": "31"
+                        },
+                        {
+                          "tags": [
+                            "private field",
+                            "code"
+                          ],
+                          "uid": "kv0yo52r5q409u55wg8",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "fieldName": "_handleLevelNumberEntry",
+                          "fieldType": "function",
+                          "fieldValue": "function(key) {\n    switch (key) {\n      case \"1\":\n      case \"2\":\n      case \"3\":\n      case \"4\":\n      case \"5\":\n      case \"6\":\n      case \"7\":\n      case \"8\":\n      case \"9\":\n        let moveCursor = true;\n        // check to see if anything was entered already\n        if (RetroC64AkalabethController.levelNumber > 0) {\n          // no need to reposition the cursor\n          moveCursor = false;\n        }\n        RetroC64AkalabethController.levelNumber = key;\n        // update level number\n        this._dynamicFields.setText(\"levelNumberEntry\", RetroC64AkalabethController.levelNumber);\n        if (moveCursor) {\n          // move cursor to the right\n          // get the width of the digit displayed\n          let charOffset = this._dynamicFields.getObject(\"levelNumberEntry\")[0].width;\n          // grid is two columns. find the percentage of the width compared to the column\n          charOffset /= (this._scene.scale.width / 2);\n          // position the blinking cursor\n          this._grid.placeAt(0.3525 + charOffset, 6 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n        }\n        break;\n      case \"0\":\n        if (RetroC64AkalabethController.levelNumber === 1) {\n          RetroC64AkalabethController.levelNumber = 10;\n          // update level number\n          this._dynamicFields.setText(\"levelNumberEntry\", RetroC64AkalabethController.levelNumber);\n          // move cursor to the right\n          // get the width of the digit displayed\n          let charOffset = this._dynamicFields.getObject(\"levelNumberEntry\")[0].width;\n          // grid is two columns. find the percentage of the width compared to the column\n          charOffset /= (this._scene.scale.width / 2);\n          // position the blinking cursor\n          this._grid.placeAt(0.3525 + charOffset, 6, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n        }\n        break;\n      case \"Enter\":\n        if (RetroC64AkalabethController.levelNumber > 0) {\n          // start the timer to go to the next screen\n          this._scene.time.delayedCall(\n            this._keyEntryDelay, // milliseconds\n            this._nextState, // callback function\n            [RetroC64Constants.AKALABETH_INTRO_REVIEW_CHARACTER], // args\n            this\n          ); // the scope object\n        }\n        break;\n      case \"Backspace\":\n        RetroC64AkalabethController.levelNumber = Math.floor(RetroC64AkalabethController.levelNumber / 10);\n        if (RetroC64AkalabethController.levelNumber > 0) {\n          this._dynamicFields.setText(\"levelNumberEntry\", RetroC64AkalabethController.levelNumber);\n        } else {\n          RetroC64AkalabethController.levelNumber = -1;\n          this._dynamicFields.setText(\"levelNumberEntry\", \"\");\n        }\n        // move cursor to the right\n        // get the width of the digit displayed\n        let charOffset = this._dynamicFields.getObject(\"levelNumberEntry\")[0].width;\n        // grid is two columns. find the percentage of the width compared to the column\n        charOffset /= (this._scene.scale.width / 2);\n        // position the blinking cursor\n        this._grid.placeAt(0.3525 + charOffset, 6 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n        break;\n      default:\n        break;\n    }\n  }",
+                          "fieldDefinition": "\n   * Handles player input when entering their lucky number.\n   * @param {string} key the key that was pressed\n  ",
+                          "order": "32"
+                        },
+                        {
+                          "tags": [
+                            "private field",
+                            "code"
+                          ],
+                          "uid": "kv18jg38o14j3bmzmd",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "fieldName": "_handleCharacterReviewEntry",
+                          "fieldType": "function",
+                          "fieldValue": "function(key) {\n    switch (key) {\n      case \"Y\":\n      case \"y\":\n        {\n          this._dynamicFields.setText(\"acceptCharacterEntry\", \"Y\");\n          // move cursor to the right\n          // get the width of the digit displayed\n          let charOffset = this._dynamicFields.getObject(\"acceptCharacterEntry\")[0].width;\n          // grid is two columns. find the percentage of the width compared to the column\n          charOffset /= (this._scene.scale.width / 2);\n          // position the blinking cursor\n          this._grid.placeAt(0.5 + charOffset, 16 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor2\")[0]);\n    \n          // start the timer to go to the next screen\n          this._scene.time.delayedCall(\n            this._keyEntryDelay, // milliseconds\n            this._displayClassEntry, // callback function\n            [], // args\n            this // the scope object\n          );\n        }\n        break;\n      case \"N\":\n      case \"n\":\n        {\n          this._dynamicFields.setText(\"acceptCharacterEntry\", \"N\");\n          // move cursor to the right\n          // get the width of the digit displayed\n          let charOffset = this._dynamicFields.getObject(\"acceptCharacterEntry\")[0].width;\n          // grid is two columns. find the percentage of the width compared to the column\n          charOffset /= (this._scene.scale.width / 2);\n          // position the blinking cursor\n          this._grid.placeAt(0.5 + charOffset, 16 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor2\")[0]);\n    \n          // start the timer to go to the next screen\n          this._scene.time.delayedCall(\n            this._keyEntryDelay, // milliseconds\n            this.startScene, // callback function\n            [], // args\n            this // the scope object\n          );\n        }\n        break;\n    }\n  }",
+                          "fieldDefinition": "\n   * Handles player input when reviewing their character.\n   * @param {string} key the key that was pressed\n  ",
+                          "order": "33"
+                        },
+                        {
+                          "tags": [
+                            "private field",
+                            "code"
+                          ],
+                          "uid": "kv16ahcqg6bmj0jlkoa",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "fieldName": "_handleClassEntry",
+                          "fieldType": "function",
+                          "fieldValue": "function(key) {\n    switch (key) {\n      case \"F\":\n      case \"f\":\n      case \"M\":\n      case \"m\":\n        console.log(\"hadnling key\")\n        this._dynamicFields.setText(\"acceptClassEntry\", key.toUpperCase());\n        RetroC64AkalabethController.character.class = key.toUpperCase();\n        // move cursor to the right\n        // get the width of the digit displayed\n        let charOffset = this._dynamicFields.getObject(\"acceptClassEntry\")[0].width;\n        // grid is two columns. find the percentage of the width compared to the column\n        charOffset /= (this._scene.scale.width / 2);\n        // position the blinking cursor\n        this._grid.placeAt(0.5 + charOffset, 17 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor2\")[0]);\n\n        // start the timer to go to the next screen\n        this._scene.time.delayedCall(\n          this._keyEntryDelay, // milliseconds\n          function() {\n            this._readyForLevelNumber = false;\n            this._readyForClassSelection = false;\n            this._state = RetroC64Constants.AKALABETH_INTRO_LUCKY_NUMBER;\n            RetroC64SceneController.switch(RetroC64Constants.AKALABETH_EQUIPMENT_SHOP);\n          }, // callback function\n          [], // args\n          this // the scope object\n        );\n        break;\n    }\n  }",
+                          "fieldDefinition": "\n   * Handles player input when entering their chosen class.\n   * @param {string} key the key that was pressed\n  ",
+                          "order": "34"
+                        },
+                        {
+                          "tags": [
+                            "private field",
+                            "code"
+                          ],
+                          "uid": "kv0yp1graiho7y2xesa",
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "fieldName": "_nextState",
+                          "fieldType": "function",
+                          "fieldValue": "function(value) {\n    // change the state here\n    this._state = value;\n    // set state in the parent\n    RetroC64IntroScene.state = value;\n    this._stateChangeResolved = false;\n  }",
+                          "fieldDefinition": "\n   * Moves to the next state.\n  ",
+                          "order": "41"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_keyEntryDelay",
+                          "fieldType": "int",
+                          "fieldValue": 500,
+                          "fieldDefinition": "the delays in milliseconds before processing an accepted keystroke",
+                          "order": "9999",
+                          "uid": "kv15xfxxxo232481vta"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_cursorYOffset",
+                          "fieldType": "float",
+                          "fieldValue": -0.04,
+                          "fieldDefinition": "the y-offset applied to the cursor's position",
+                          "order": "9999",
+                          "uid": "kv1610d76ayh4yfb3fs"
+                        }
+                      ],
+                      "uid": "kuzscm7n8kter0sw3vv"
+                    },
+                    {
+                      "title": "Starting the scene",
+                      "order": 7,
+                      "content": "The UI Scene will get a call to start the scene each time the state changes.  This will be handled differently for each state\n\n* AKALABETH_INTRO_LUCKY_NUMBER - when the scene starts, the lucky number in the game controller class is reset.\n\n* AKALABETH_INTRO_REVIEW_CHARACTER - when the scene starts, new stats are rolled and the display is updated.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "start scene"
+                          ],
+                          "code": "if (this._state === RetroC64Constants.AKALABETH_INTRO_LUCKY_NUMBER) {\n  RetroC64AkalabethController.luckyNumber = -1;\n  RetroC64AkalabethController.levelNumber = -1;\n  this._readyForLevelNumber = false;\n  this._readyForClassSelection = false;\n}",
+                          "order": "1",
+                          "uid": "kv106fjvknsbplvnjxa"
+                        },
+                        {
+                          "classUid": "kuwy1mlfjh3ubqr25cq",
+                          "tags": [
+                            "code",
+                            "start scene"
+                          ],
+                          "code": "if (this._state === RetroC64Constants.AKALABETH_INTRO_REVIEW_CHARACTER) {\n  RetroC64AkalabethController.character.newCharacter();\n  this._dynamicFields.setText(\"hpValue\", RetroC64AkalabethController.character.hitPoints);\n  this._dynamicFields.setText(\"strValue\", RetroC64AkalabethController.character.strength);\n  this._dynamicFields.setText(\"dexValue\", RetroC64AkalabethController.character.dexterity);\n  this._dynamicFields.setText(\"stValue\", RetroC64AkalabethController.character.stamina);\n  this._dynamicFields.setText(\"wisValue\", RetroC64AkalabethController.character.wisdom);\n  this._dynamicFields.setText(\"goldValue\", RetroC64AkalabethController.character.gold);\n  this._dynamicFields.setText(\"acceptCharacterEntry\", \"\");\n  this._dynamicFields.setText(\"acceptClassEntry\", \"\");\n  this._readyForClassSelection = false;\n  this._grid.placeAt(0.5, 16 + this._cursorYOffset, this._dynamicFields.getObject(\"blinkingCursor2\")[0]);\n}",
+                          "order": "2",
+                          "uid": "kv12qc9pncdbx9skuq"
+                        }
+                      ],
+                      "uid": "kv1041emelphuq70vz"
+                    }
+                  ],
+                  "design": [
+                    {
+                      "classTitle": "Intro Ui",
+                      "classHandle": "IntroUi",
+                      "fileHandle": "intro-ui",
+                      "tags": [
+                        "class",
+                        "ui-scene"
+                      ],
+                      "classDefinition": "The UI presented for the Intro View.",
+                      "uid": "kuwy1mlfjh3ubqr25cq",
+                      "weight": 0.5,
+                      "filePath": [
+                        "scenes",
+                        "akalabeth",
+                        "intro"
+                      ],
+                      "gridWidth": 2,
+                      "gridHeight": 24
+                    }
+                  ],
+                  "uid": "kuy2qbw3hxczbx7d9b4"
+                },
+                {
+                  "title": "Intro view tasks",
+                  "order": 3,
+                  "content": "The Intro view will perform a certain number of tasks before moving on to the main screen.",
+                  "children": [
+                    {
+                      "title": "Task 1 - Lucky Number",
+                      "order": 1,
+                      "content": "In the first task, the player is asked for their lucky number. This is captured and stored in the Game Configuration.",
+                      "children": [
+                        {
+                          "title": "The view template",
+                          "order": 1,
+                          "content": "The Lucky Number task has its own template assigned. This set in the UI class, associated with state AKALABETH_INTRO_LUCKY_NUMBER",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kuwy1mlfjh3ubqr25cq",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._state = RetroC64Constants.AKALABETH_INTRO_LUCKY_NUMBER;",
+                              "order": "9999",
+                              "uid": "kuyt5gmu224zncnt0hj"
+                            }
+                          ],
+                          "uid": "kuyc1c3d2d0580f582m"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kuwxe9zsrduvxwsface"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kuwxd8njq39gdjqfgd"
+                }
+              ],
+              "design": [],
+              "uid": "kuwq1hcrcu9b14ajlhp"
+            },
+            {
+              "title": "The Shop View",
+              "order": 2,
+              "content": "After creating a character, the player will then be taken to the Shop View, where they will have the opportunity to purchase equipment for their character.",
+              "children": [
+                {
+                  "title": "The Scene Container Class",
+                  "order": 1,
+                  "content": "A Scene Container class will need to be defined.  The Scene Container template will be used.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classTitle": "Shop Scene",
+                      "classHandle": "ShopScene",
+                      "fileHandle": "shop-scene",
+                      "tags": [
+                        "class",
+                        "scene-container"
+                      ],
+                      "classDefinition": "The Scene Container for rendering the Equipment Shop scene.",
+                      "weight": "1",
+                      "uid": "kv2ekqo1d2jfg5tlkbg",
+                      "filePath": [
+                        "scenes",
+                        "akalabeth"
+                      ]
+                    }
+                  ],
+                  "uid": "kv2ee93acqjcvdfu63q"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Scene Container class will require the following imports:\n\n* Shop Scene UI\n\nThe Game class will require the following imports:\n\n* Shop Scene",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kv2ekqo1d2jfg5tlkbg",
+                      "importHandle": "RetroC64ShopSceneUI",
+                      "importPath": "./intro/retroc64-shop-scene-ui",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kv2ey38n9hh5oncjika"
+                    },
+                    {
+                      "classUid": "AF89DG9sgahg9",
+                      "importHandle": "RetroC64ShopScene",
+                      "importPath": "../scenes/retroc64-shop-scene",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kv2fkxo8y4mahtnc8r"
+                    }
+                  ],
+                  "uid": "kv2ee93ahbnkk2x58fs"
+                },
+                {
+                  "title": "Postboot Processing",
+                  "order": 3,
+                  "content": "The Scene Container class will need to be added to the Game class postboot processing.",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "AF89DG9sgahg9",
+                      "tags": [
+                        "code",
+                        "postboot"
+                      ],
+                      "code": "_game.scene.queueOp(\"start\", \"ShopScene\");",
+                      "order": "2",
+                      "uid": "kv2fnotrrxtiwme34a"
+                    }
+                  ],
+                  "uid": "kv2ee93ajy0121qmoxq"
+                },
+                {
+                  "title": "Scene Key",
+                  "order": 4,
+                  "content": "The Scene Container class will need to be added to the scene groups in the Scene Controller class.",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2j3kwh9rvfmqg",
+                      "tags": [
+                        "code",
+                        "scene group"
+                      ],
+                      "sceneKey": "[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP]",
+                      "sceneValue": "\"ShopScene\"",
+                      "order": "2",
+                      "uid": "kv2fu4qiz1eu9ceusy"
+                    }
+                  ],
+                  "uid": "kv2ee93b99or3qa4mje"
+                },
+                {
+                  "title": "Scene states",
+                  "order": 5,
+                  "content": "A State Group will need to be added to the App Constants for this Scene Container",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2jit3fzra9nj9",
+                      "groupName": "AKALABETH_EQUIPMENT_SHOP_STATES",
+                      "tags": [
+                        "code",
+                        "group properties"
+                      ],
+                      "elements": [
+                        {
+                          "elementName": "AKALABETH_EQUIPMENT_SHOP_PURCHASE",
+                          "elementValue": "1",
+                          "elementDefinition": "The initial state, where the player can purchase equipment.",
+                          "order": 1
+                        }
+                      ],
+                      "uid": "kv2h4h4opbvzt4ddfb"
+                    },
+                    {
+                      "tags": [
+                        "scoped dictionary body 0",
+                        "code"
+                      ],
+                      "uid": "kv2ofr6mv8nayuqrp5",
+                      "classUid": "kv2ekqo1d2jfg5tlkbg",
+                      "dictionaryKey": "[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]",
+                      "dictionaryDefinition": "the scene instances displayed during the equipment purchase state",
+                      "dictionaryValue": "[_playerStatsUiScene, _shopInventoryUi, _shopCommandsUiScene]"
+                    }
+                  ],
+                  "uid": "kv2ee93buo4ajfi9j4s"
+                },
+                {
+                  "title": "Scene Initial State",
+                  "order": 6,
+                  "content": "The Scene Container initial state is set in the 'create' method of the Scene Controller class. It will be set to the following state:\n\n* AKALABETH_EQUIPMENT_SHOP_PURCHASE",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2j3kwh9rvfmqg",
+                      "tags": [
+                        "code",
+                        "create"
+                      ],
+                      "code": "\n// set initial state for Equipment Shot\n[app-handle]ShopScene.state = [app-handle]Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE;",
+                      "order": "2",
+                      "uid": "kv2hne2gighi7brjm4"
+                    }
+                  ],
+                  "uid": "kv2ee93boxg6nsjj8af"
+                },
+                {
+                  "title": "Child Scenes",
+                  "order": 7,
+                  "content": "The Scene Container is just that: a container.  It will manage the following child scenes:",
+                  "requires design": true,
+                  "children": [
+                    {
+                      "title": "Player Stats UI",
+                      "order": 1,
+                      "content": "A UI class for displaying the player's stats and equipment will fill the top half of the screen.",
+                      "children": [
+                        {
+                          "title": "The UI Scene Class",
+                          "order": 1,
+                          "content": "A UI class will need to be defined.  The Ui Scene template will be used.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classTitle": "Player Stats Ui Scene",
+                              "classHandle": "PlayerStatsUiScene",
+                              "fileHandle": "player-stats-ui-scene",
+                              "tags": [
+                                "class",
+                                "ui-scene"
+                              ],
+                              "classDefinition": "A UI class for displaying the player's stats and equipment will fill the top half of the screen.",
+                              "weight": "0.5",
+                              "uid": "kv6x6lqoni6m08uuxi",
+                              "filePath": [
+                                "scenes",
+                                "akalabeth",
+                                "shop"
+                              ],
+                              "gridWidth": "5",
+                              "gridHeight": "24"
+                            }
+                          ],
+                          "uid": "kv6x6lqpeeog10lq0jt"
+                        },
+                        {
+                          "title": "File Imports",
+                          "order": 2,
+                          "content": "The UI class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6x6lqoni6m08uuxi",
+                              "importHandle": "RetroC64SceneController",
+                              "importPath": "../scenes/retroc64-scene-controller",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6x6lqpekn47qb4v5"
+                            },
+                            {
+                              "classUid": "kv6x6lqoni6m08uuxi",
+                              "importHandle": "RetroC64ShopScene",
+                              "importPath": "../retroc64-shop-scene",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6x6lqp91sio5hbb3"
+                            },
+                            {
+                              "classUid": "kv2ekqo1d2jfg5tlkbg",
+                              "importHandle": "RetroC64PlayerStatsUiScene",
+                              "importPath": "../scenes/shop/retroc64-player-stats-ui-scene",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6x6lqpm0hhqub4g9e"
+                            }
+                          ],
+                          "uid": "kv6x6lqpqllw1f3fyds"
+                        },
+                        {
+                          "title": "Private Fields",
+                          "order": 3,
+                          "content": "The UI class will be added as a private member of its scene parent.\nThe Ui Scene will have the following private fields:",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv2ekqo1d2jfg5tlkbg",
+                              "tags": [
+                                "code",
+                                "private field"
+                              ],
+                              "fieldName": "_playerStatsUiScene",
+                              "fieldType": "UiScene",
+                              "fieldValue": "new RetroC64PlayerStatsUiScene({ scene: _scene, show: true })",
+                              "fieldDefinition": "RetroC64PlayerStatsUiScene instance",
+                              "order": "10",
+                              "uid": "kv6x6lqpbkrcvp0n4gf"
+                            }
+                          ],
+                          "uid": "kv6x6lqp79bc56nf1e2"
+                        },
+                        {
+                          "title": "View Templates",
+                          "order": 4,
+                          "content": "The UI class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "constructor body",
+                                "code"
+                              ],
+                              "uid": "kv6xrm0iq1sfpruqp4e",
+                              "classUid": "kv6x6lqoni6m08uuxi",
+                              "code": "this._VIEWS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = {\n  group: null,\n  comment: [\n    \"THE SHOP VIEW IS BROKEN OUT INTO THREE ROWS:\",\n    \"TOP - PLAYER STATS AND EQUIPMENT\",\n    \"MIDDLE - USER COMMAND SUMMARY AND ENTRY\",\n    \"BOTTOM - EQUIPMENT FOR PURCHASE\",\n    \"THIS IS THE TOP ROW\"\n  ],\n  children: [\n    {\n      comment: \"COLUMN 1 HEADER\",\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STAT'S\", // text\n      ],\n      position: [0.5, 1],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"HIT POINTS.....\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 2\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"11\", // text\n      ],\n      position: [1, 2],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"hpValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STRENGTH........\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 3\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [1, 3],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"strValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"DEXTERITY.......\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 4\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [1, 4],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"dexValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"STAMINA...........\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 5\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [1, 5],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"stValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"WISDOM.............\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 6\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [1, 6],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"wisValue\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"GOLD.................\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 7\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: [1, 7],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"goldValue\"\n    },\n    {\n      comment: [\n        \"************************************\",\n        \"COLUMN 2 HEADER\"\n      ],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"WEAPONS\", // text\n      ],\n      position: [3.5, 1],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\"FOOD\"],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"0\", // text\n      ],\n      position: [2.5, 2],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"foodCount\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"-FOOD\", // text\n      ],\n      position: [2.5, 2],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\"RAPIER\"],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"0\", // text\n      ],\n      position: [2.5, 3],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"rapierCount\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"-RAPIER\", // text\n      ],\n      position: [2.5, 3],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\"AXE\"],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"0\", // text\n      ],\n      position: [2.5, 4],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"axeCount\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"-AXE\", // text\n      ],\n      position: [2.5, 4],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\"SHUELD\"],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"0\", // text\n      ],\n      position: [2.5, 5],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"shieldCount\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"-SHIELD\", // text\n      ],\n      position: [2.5, 5],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\"ARROWS\"],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"0\", // text\n      ],\n      position: [2.5, 6],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"arrowCount\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"-BOW AND ARROWS\", // text\n      ],\n      position: [2.5, 6],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\"AMULET\"],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"0\", // text\n      ],\n      position: [2.5, 7],\n      origin: [1, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"amuletCount\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"-MAGIC AMULET\", // text\n      ],\n      position: [2.5, 7],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n  ]\n};",
+                              "order": "1"
+                            }
+                          ],
+                          "uid": "kv6x6lqpqqojjy7gl2e"
+                        },
+                        {
+                          "title": "Key Listeners",
+                          "order": 5,
+                          "content": "The UI class will have key listeners for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6x6lqoni6m08uuxi",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = function(event, context) {};",
+                              "order": "10",
+                              "uid": "kv8lyf3awwwn9qg4jjg"
+                            }
+                          ],
+                          "uid": "kv6x6lqp1ly2lv0oto1"
+                        },
+                        {
+                          "title": "Updates to the 'create' methods",
+                          "order": 6,
+                          "content": "The UI class will have the following updates to the 'create' method:",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6x6lqoni6m08uuxi",
+                              "tags": [
+                                "code",
+                                "create"
+                              ],
+                              "code": "RetroC64AkalabethController.character.addWatcher(this);\nRetroC64AkalabethController.character.notifyWatchers();",
+                              "order": "1",
+                              "uid": "kv74jo5ljzm41pjw83k"
+                            }
+                          ],
+                          "uid": "kv6x6lqpa6kff457rc4"
+                        },
+                        {
+                          "title": "Initial State",
+                          "order": 7,
+                          "content": "The UI Scene's initial state should be set in the Constructor Body",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6x6lqoni6m08uuxi",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._state = RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE;",
+                              "order": "9999",
+                              "uid": "kv6xo0njrzqxv7hzgx"
+                            }
+                          ],
+                          "uid": "kv6x6lqpbq3dssbod06"
+                        },
+                        {
+                          "title": "Scene start/reset",
+                          "order": 8,
+                          "content": "When the UI scene is started/reset, the following changes are applied for each view:",
+                          "children": [],
+                          "design": [],
+                          "uid": "kv6x6lqpo7wemh6cgzr"
+                        },
+                        {
+                          "title": "Public Members",
+                          "order": 9,
+                          "content": "Occasionally, a UI Scene will need some further public members added.  This UI has added the following public members:\n\n* watchUpdated",
+                          "children": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "public member",
+                                "code"
+                              ],
+                              "uid": "kv74qa0bhxzf83sbs7a",
+                              "classUid": "kv6x6lqoni6m08uuxi",
+                              "memberName": "watchUpdated",
+                              "memberDefinition": "/**\n * Handles updates to a Watchable instance.\n * @param {Watchable} data the Watchable instance being updated\n */",
+                              "arguments": "data",
+                              "code": "// call base\nWatcher.prototype.watchUpdated.call(this, data);\n// update fields\nthis._dynamicFields.setText(\"hpValue\", data.hitPoints);\nthis._dynamicFields.setText(\"strValue\", data.strength);\nthis._dynamicFields.setText(\"dexValue\", data.dexterity);\nthis._dynamicFields.setText(\"stValue\", data.stamina);\nthis._dynamicFields.setText(\"wisValue\", data.wisdom);\nthis._dynamicFields.setText(\"goldValue\", data.gold);\nthis._dynamicFields.setText(\"foodCount\", data.getNumberInInventory(\"FOOD\"));\nthis._dynamicFields.setText(\"rapierCount\", data.getNumberInInventory(\"RAPIER\"));\nthis._dynamicFields.setText(\"axeCount\", data.getNumberInInventory(\"AXE\"));\nthis._dynamicFields.setText(\"shieldCount\", data.getNumberInInventory(\"SHIELD\"));\nthis._dynamicFields.setText(\"arrowCount\", data.getNumberInInventory(\"BOW AND ARROWS\"));\nthis._dynamicFields.setText(\"amuletCount\", data.getNumberInInventory(\"MAGIC AMULET\"));",
+                              "order": "1"
+                            }
+                          ],
+                          "uid": "kv74n5jf726gv0ct9fr"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kv6x6lqnjp7mztu97np"
+                    },
+                    {
+                      "title": "Shop Commands UI",
+                      "order": 2,
+                      "content": "A UI class for displaying the commands available while in the shop.",
+                      "children": [
+                        {
+                          "title": "The UI Scene Class",
+                          "order": 1,
+                          "content": "A UI class will need to be defined.  The Ui Scene template will be used.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classTitle": "Shop Commands Ui Scene",
+                              "classHandle": "ShopCommandsUiScene",
+                              "fileHandle": "shop-commands-ui-scene",
+                              "tags": [
+                                "class",
+                                "ui-scene"
+                              ],
+                              "classDefinition": "A UI class for displaying the commands available while in the shop.",
+                              "weight": "0.5",
+                              "uid": "kv6xfb1k71dg3sn7c1v",
+                              "filePath": [
+                                "scenes",
+                                "akalabeth",
+                                "shop"
+                              ],
+                              "gridWidth": "8",
+                              "gridHeight": "24"
+                            }
+                          ],
+                          "uid": "kv6xfb1kw1syjl6k5b"
+                        },
+                        {
+                          "title": "File Imports",
+                          "order": 2,
+                          "content": "The UI class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "importHandle": "RetroC64SceneController",
+                              "importPath": "../scenes/retroc64-scene-controller",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6xfb1lye5r2z13ap"
+                            },
+                            {
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "importHandle": "RetroC64ShopScene",
+                              "importPath": "../retroc64-shop-scene",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6xfb1lgzvpagiakwi"
+                            },
+                            {
+                              "classUid": "kv2ekqo1d2jfg5tlkbg",
+                              "importHandle": "RetroC64ShopCommandsUiScene",
+                              "importPath": "../scenes/shop/retroc64-shop-commands-ui-scene",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6xfb1lgd50r7duisl"
+                            },
+                            {
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "importHandle": "RetroC64AkalabethController",
+                              "importPath": "../../services/akalabeth/retroc64-akalabeth-controller",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv9nz3ldbkwg68bc5pa"
+                            }
+                          ],
+                          "uid": "kv6xfb1lqcu1vrndrl8"
+                        },
+                        {
+                          "title": "Private Fields",
+                          "order": 3,
+                          "content": "The UI class will be added as a private member of its scene parent.\nThe Ui Scene will have the following private fields:",
+                          "children": [
+                            {
+                              "title": "Playing Animation",
+                              "order": 1,
+                              "content": "Flag indicating an animated sequence is playing.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kv6xfb1k71dg3sn7c1v",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_playingAnimation",
+                                  "fieldType": "boolean",
+                                  "fieldValue": "false",
+                                  "fieldDefinition": "Flag indicating an animated sequence is playing.",
+                                  "order": "1",
+                                  "uid": "kv9kccfoenxjpvfnd9j"
+                                }
+                              ],
+                              "uid": "kv9kccfnzfbcrb0lebm"
+                            },
+                            {
+                              "title": "Item Entry Dictionary",
+                              "order": 2,
+                              "content": "A dictionary of items for sale in the shop.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "tags": [
+                                    "private field",
+                                    "code"
+                                  ],
+                                  "uid": "kv9km936v2hpb5h27s",
+                                  "classUid": "kv6xfb1k71dg3sn7c1v",
+                                  "fieldName": "_ITEM_ENTRIES",
+                                  "fieldType": "dictionary",
+                                  "fieldValue": "{\n    F: {\n      name: \"FOOD\",\n      count: 10,\n      price: 1,\n      purchaseMessage: \"YOU PURCHASE FOOD (YUM! CORNED BEEF HASH)\"\n    },\n    R: {\n      name: \"RAPIER\",\n      count: 1,\n      price: 8,\n      purchaseMessage: \"EN GARDE! YOU BUY A RAPIER\"\n    },\n    A: {\n      name: \"AXE\",\n      count: 1,\n      price: 5,\n      purchaseMessage: \"ENJOY YOUR AXE\"\n    },\n    S: {\n      name: \"SHIELD\",\n      count: 1,\n      price: 6,\n      purchaseMessage: \"HERE'S YOUR SHIELD\"\n    },\n    B: {\n      name: \"BOW AND ARROWS\",\n      count: 1,\n      price: 3,\n      purchaseMessage: \"A BOW AND SOME ARROWS - WATCH THE POINTY END\"\n    },\n    M: {\n      name: \"MAGIC AMULET\",\n      count: 1,\n      price: 15,\n      purchaseMessage: \"AN AMULET - OOOOH, MYSTERIOUS\"\n    }\n  }",
+                                  "fieldDefinition": "A dictionary of items for sale in the shop.",
+                                  "order": "2"
+                                }
+                              ],
+                              "uid": "kv9km935pgyhckpyx4j"
+                            },
+                            {
+                              "title": "Callback Scene",
+                              "order": 3,
+                              "content": "A field for tracking the scene to call back to after the player leaves the shop.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kv6xfb1k71dg3sn7c1v",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_callbackScene",
+                                  "fieldType": "int",
+                                  "fieldValue": "RetroC64Constants.AKALABETH_SETUP",
+                                  "fieldDefinition": "A field for tracking the scene to call back to after the player leaves the shop.",
+                                  "order": "3",
+                                  "uid": "kv9uhyp0603v4n4bdjm"
+                                },
+                                {
+                                  "classUid": "kv6xfb1k71dg3sn7c1v",
+                                  "tags": [
+                                    "code",
+                                    "public setter property"
+                                  ],
+                                  "propertyName": "callbackScene",
+                                  "setterDefinition": "/**\n * Setter for field _callbackScene.\n * @param {PropertyKey} value the value\n */",
+                                  "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._callbackScene = value;",
+                                  "order": "3",
+                                  "uid": "kv9uhyp16zbmtbwsiqv"
+                                }
+                              ],
+                              "uid": "kv9uhyp058a4c3jvmly"
+                            }
+                          ],
+                          "design": [
+                            {
+                              "classUid": "kv2ekqo1d2jfg5tlkbg",
+                              "tags": [
+                                "code",
+                                "private field"
+                              ],
+                              "fieldName": "_shopCommandsUiScene",
+                              "fieldType": "UiScene",
+                              "fieldValue": "new RetroC64ShopCommandsUiScene({ scene: _scene, show: true })",
+                              "fieldDefinition": "RetroC64ShopCommandsUiScene instance",
+                              "order": "10",
+                              "uid": "kv6xfb1lqtkupbh42lj"
+                            }
+                          ],
+                          "uid": "kv6xfb1lbu7793hi9vf"
+                        },
+                        {
+                          "title": "View Templates",
+                          "order": 4,
+                          "content": "The UI class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "constructor body",
+                                "code"
+                              ],
+                              "uid": "kv6ypfmm19ize0rti9u",
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "code": "this._VIEWS[[RetroC64Constants.AKALABETH_SETUP]] = {\n  group: null,\n  children: [\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \" WELCOME TO AKALABETH, WORLD OF DOOM!\", // text\n      ],\n      position: [-0.5, 11],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"  (PLEASE WAIT)\", // text\n      ],\n      position: [-0.5, 22],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    }\n  ]\n};",
+                              "order": "1"
+                            }
+                          ],
+                          "uid": "kv6xfb1ltbhx3huoj"
+                        },
+                        {
+                          "title": "Key Listeners",
+                          "order": 5,
+                          "content": "The UI class will have key listeners for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = function(event, context) {\n  if (!context._playingAnimation) {\n    context.handleKey(event.key);\n  }\n};",
+                              "order": "20",
+                              "uid": "kv9kgek6tw3ji37invc"
+                            }
+                          ],
+                          "uid": "kv6xfb1lvr1xih7j6in"
+                        },
+                        {
+                          "title": "Updates to the 'create' methods",
+                          "order": 6,
+                          "content": "The UI class will have the following updates to the 'create' method:",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "tags": [
+                                "code",
+                                "create"
+                              ],
+                              "code": "this._dynamicFields.getObject(\"blinkingCursor\")[0].anims.create({\n  key: \"blink\",\n  frames: [\n    { key: \"cursor_off\" },\n    { key: \"cursor_on\" }\n  ],\n  frameRate: 2,\n  repeat: -1 // repeat infinitely\n});\nthis._dynamicFields.getObject(\"blinkingCursor\")[0].play(\"blink\");",
+                              "order": "1",
+                              "uid": "kv9h8oex6iagv5akd6e"
+                            }
+                          ],
+                          "uid": "kv6xfb1l6ap3sjpelof"
+                        },
+                        {
+                          "title": "Initial State",
+                          "order": 7,
+                          "content": "The UI Scene's initial state should be set in the Constructor Body",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._state = RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE;",
+                              "order": "9999",
+                              "uid": "kv6xos779fa86he8v99"
+                            }
+                          ],
+                          "uid": "kv6xfb1lqouv00jtme"
+                        },
+                        {
+                          "title": "Scene start/reset",
+                          "order": 8,
+                          "content": "When the UI scene is started/reset, the following changes are applied for each view:",
+                          "children": [],
+                          "design": [],
+                          "uid": "kv6xfb1lfd2e8a793o4"
+                        },
+                        {
+                          "title": "Public Members",
+                          "order": 9,
+                          "content": "The Shop Commands UI will have the following public members:\n\n* handleKey - method for handling key events",
+                          "children": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "public member",
+                                "code"
+                              ],
+                              "uid": "kv9kk5bfjvxhrx0erh",
+                              "classUid": "kv6xfb1k71dg3sn7c1v",
+                              "memberName": "handleKey",
+                              "memberDefinition": "/**\n * Handles a key event.\n * @param {string} key the key\n */",
+                              "arguments": "key",
+                              "code": "key = key.toUpperCase();\nlet message = \"\";\nlet callback = function() {\n  this._playingAnimation = false;\n  this._dynamicFields.setText(\"userEntryField\", \"\");\n  this._dynamicFields.setText(\"messageField\", \"\");\n  // move the cursor\n  let x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\n  x += 2 / this._COLUMN_WIDTH; // add 2px buffer\n  let y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\n  this._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n};\nif (this._ITEM_ENTRIES.hasOwnProperty(key)) {\n  let item = JSON.parse(JSON.stringify(this._ITEM_ENTRIES[key]));\n  if ((item.name === \"RAPIER\" || item.name === \"BOW AND ARROWS\")\n      && RetroC64AkalabethController.character.class === \"M\") {\n    message = \"I'M SORRY - MAGES CAN'T USE THAT!\";\n  } else {\n    if (RetroC64AkalabethController.character.gold >= item.price) {\n      message = item.purchaseMessage;\n      RetroC64AkalabethController.character.addToInventory(item);\n      RetroC64AkalabethController.character.gold -= item.price;\n    } else {\n      message = \"M'LORD THOU CAN NOT AFFORD THAT ITEM.\";\n    }\n  }\n} else {\n  if (key === \"Q\") {\n    // quit\n    message = \"BYE\";\n    callback = function() {\n      this._playingAnimation = false;\n      this._dynamicFields.setText(\"userEntryField\", \"\");\n      this._dynamicFields.setText(\"messageField\", \"\");\n      // move the cursor back\n      let x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\n      x += 2 / this._COLUMN_WIDTH; // add 2px buffer\n      let y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\n      this._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n      // move on the next scene\n      RetroC64SceneController.switch(this._callbackScene);\n    };\n  } else {\n    message = \"I'M SORRY WE DON'T HAVE THAT.\";\n  }\n}\nthis._dynamicFields.setText(\"userEntryField\", key);\nthis._dynamicFields.setText(\"messageField\", message);\n// move the cursor\nlet x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\nx += this._dynamicFields.getObject(\"userEntryField\")[0].width / this._COLUMN_WIDTH; // to the right of the user entry\nx += 2 / this._COLUMN_WIDTH; // add 2px buffer\nlet y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\nthis._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n// begin animation sequence\nthis._playingAnimation = true;\nthis._scene.time.delayedCall(\n  2000, // milliseconds\n  callback, // callback function\n  [], // args\n  this // the scope object\n);",
+                              "order": "1"
+                            }
+                          ],
+                          "uid": "kv9kio4u8zyx5vaqnml"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kv6xfb1j65m1i3ycgy6"
+                    },
+                    {
+                      "title": "Shop Inventory Ui",
+                      "order": 3,
+                      "content": "A UI class for displaying the shop's inventory.",
+                      "children": [
+                        {
+                          "title": "The UI Scene Class",
+                          "order": 1,
+                          "content": "A UI class will need to be defined.  The Ui Scene template will be used.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classTitle": "Shop Inventory Ui",
+                              "classHandle": "ShopInventoryUi",
+                              "fileHandle": "shop-inventory-ui",
+                              "tags": [
+                                "class",
+                                "ui-scene"
+                              ],
+                              "classDefinition": "A UI class for displaying the shop's inventory.",
+                              "weight": "0.5",
+                              "uid": "kv6xjz4l5s5aims67tf",
+                              "filePath": [
+                                "scenes",
+                                "akalabeth",
+                                "shop"
+                              ],
+                              "gridWidth": "8",
+                              "gridHeight": "24"
+                            }
+                          ],
+                          "uid": "kv6xjz4lz6szoj6cf3"
+                        },
+                        {
+                          "title": "File Imports",
+                          "order": 2,
+                          "content": "The UI class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6xjz4l5s5aims67tf",
+                              "importHandle": "RetroC64SceneController",
+                              "importPath": "../scenes/retroc64-scene-controller",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6xjz4n60ezqj9qfaa"
+                            },
+                            {
+                              "classUid": "kv6xjz4l5s5aims67tf",
+                              "importHandle": "RetroC64ShopScene",
+                              "importPath": "../retroc64-shop-scene",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6xjz4o96r1kyr39u9"
+                            },
+                            {
+                              "classUid": "kv2ekqo1d2jfg5tlkbg",
+                              "importHandle": "RetroC64ShopInventoryUi",
+                              "importPath": "../scenes/shop/retroc64-shop-inventory-ui",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv6xjz4o5fmvtra5d8b"
+                            }
+                          ],
+                          "uid": "kv6xjz4o8yaps3r7vsa"
+                        },
+                        {
+                          "title": "Private Fields",
+                          "order": 3,
+                          "content": "The UI class will be added as a private member of its scene parent.\nThe Ui Scene will have the following private fields:",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv2ekqo1d2jfg5tlkbg",
+                              "tags": [
+                                "code",
+                                "private field"
+                              ],
+                              "fieldName": "_shopInventoryUi",
+                              "fieldType": "UiScene",
+                              "fieldValue": "new RetroC64ShopInventoryUi({ scene: _scene, show: true })",
+                              "fieldDefinition": "RetroC64ShopInventoryUi instance",
+                              "order": "10",
+                              "uid": "kv6xjz4o4mczmavgg8c"
+                            }
+                          ],
+                          "uid": "kv6xjz4orumpxzt089d"
+                        },
+                        {
+                          "title": "View Templates",
+                          "order": 4,
+                          "content": "The UI class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "constructor body",
+                                "code"
+                              ],
+                              "uid": "kv6yqc2fqlw8jse0hyj",
+                              "classUid": "kv6xjz4l5s5aims67tf",
+                              "code": "this._VIEWS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = {\n  group: null,\n  comment: [\n    \"THE SHOP VIEW IS BROKEN OUT INTO THREE ROWS:\",\n    \"TOP - PLAYER STATS AND EQUIPMENT\",\n    \"MIDDLE - USER COMMAND SUMMARY AND ENTRY\",\n    \"BOTTOM - EQUIPMENT FOR PURCHASE\",\n    \"THIS IS THE TOP ROW\"\n  ],\n  children: [\n    {\n      comment: [\n        \"************************************\",\n        \"COLUMN 1 HEADER\"\n      ],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"PRICE\", // text\n      ],\n      position: [1, 15],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"1 FOR 10\", // text\n      ],\n      position: [1, 17],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"8\", // text\n      ],\n      position: [1, 18],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"5\", // text\n      ],\n      position: [1, 19],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"6\", // text\n      ],\n      position: [1, 20],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"3\", // text\n      ],\n      position: [1, 21],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"15\", // text\n      ],\n      position: [1, 22],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\n        \"************************************\",\n        \"COLUMN 2 HEADER\"\n      ],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"DAMAGE\", // text\n      ],\n      position: [3, 15],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"N/A\", // text\n      ],\n      position: [3, 17],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"1-10\", // text\n      ],\n      position: [3, 18],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"1-5\", // text\n      ],\n      position: [3, 19],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"1\", // text\n      ],\n      position: [3, 20],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"1-4\", // text\n      ],\n      position: [3, 21],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"?????\", // text\n      ],\n      position: [3, 22],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      comment: [\n        \"************************************\",\n        \"COLUMN 3 HEADER\"\n      ],\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"ITEM\", // text\n      ],\n      position: [5, 15],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"FOOD\", // text\n      ],\n      position: [5, 17],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"RAPIER\", // text\n      ],\n      position: [5, 18],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"AXE\", // text\n      ],\n      position: [5, 19],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"SHIELD\", // text\n      ],\n      position: [5, 20],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"BOW AND ARROWS\", // text\n      ],\n      position: [5, 21],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"MAGIC AMULET\", // text\n      ],\n      position: [5, 22],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n  ]\n};",
+                              "order": "1"
+                            }
+                          ],
+                          "uid": "kv6xjz4oiclspcykzm"
+                        },
+                        {
+                          "title": "Key Listeners",
+                          "order": 5,
+                          "content": "The UI class will have key listeners for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6xjz4l5s5aims67tf",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = function(event, context) {};",
+                              "order": "10",
+                              "uid": "kv8lz2c5pjtix7hnqo"
+                            }
+                          ],
+                          "uid": "kv6xjz4o6d6vaosrvx8"
+                        },
+                        {
+                          "title": "Updates to the 'create' methods",
+                          "order": 6,
+                          "content": "The UI class will have the following updates to the 'create' method:",
+                          "children": [],
+                          "design": [],
+                          "uid": "kv6xjz4o6uw87vidt47"
+                        },
+                        {
+                          "title": "Initial State",
+                          "order": 7,
+                          "content": "The UI Scene's initial state should be set in the Constructor Body",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv6xjz4l5s5aims67tf",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._state = RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE;",
+                              "order": "9999",
+                              "uid": "kv6xphy2sezllcezwdi"
+                            }
+                          ],
+                          "uid": "kv6xjz4oqymnbmfxiu"
+                        },
+                        {
+                          "title": "Scene start/reset",
+                          "order": 8,
+                          "content": "When the UI scene is started/reset, the following changes are applied for each view:",
+                          "children": [],
+                          "design": [],
+                          "uid": "kv6xjz4onqpqsivst1o"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kv6xjz4h2x1tib7kcd8"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kv2ee93bykf74pwmuo"
+                }
+              ],
+              "design": [],
+              "uid": "kv2ee937ln1fc2gauc"
+            },
+            {
+              "title": "The Setup View",
+              "order": 3,
+              "content": "While the game world is created, a wait screen is displayed.",
+              "children": [
+                {
+                  "title": "The Scene Container Class",
+                  "order": 1,
+                  "content": "A Scene Container class will need to be defined.  The Scene Container template will be used.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classTitle": "Setup Scene",
+                      "classHandle": "SetupScene",
+                      "fileHandle": "setup-scene",
+                      "tags": [
+                        "class",
+                        "scene-container"
+                      ],
+                      "classDefinition": "While the game world is created, a wait screen is displayed.",
+                      "weight": "1",
+                      "uid": "kv9uwd8gc0d4do96dy",
+                      "filePath": [
+                        "scenes",
+                        "akalabeth"
+                      ]
+                    }
+                  ],
+                  "uid": "kv9uwd8huyztqofrhyn"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Game class will include the Scene Container as a required import.\nThe Scene Container class will require the following imports:",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "AF89DG9sgahg9",
+                      "importHandle": "RetroC64SetupScene",
+                      "importPath": "../scenes/akalabeth/retroc64-setup-scene",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kv9uwd8hkrvrf6li9c"
+                    }
+                  ],
+                  "uid": "kv9uwd8h5mc1n17yg4w"
+                },
+                {
+                  "title": "Postboot Processing",
+                  "order": 3,
+                  "content": "The Scene Container class will need to be added to the Game class postboot processing.",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "AF89DG9sgahg9",
+                      "tags": [
+                        "code",
+                        "postboot"
+                      ],
+                      "code": "_game.scene.queueOp(\"start\", \"SetupScene\");",
+                      "order": "1",
+                      "uid": "kv9uwd8hiphyb6m2n"
+                    }
+                  ],
+                  "uid": "kv9uwd8h6z0gfe2qmkq"
+                },
+                {
+                  "title": "Scene Key",
+                  "order": 4,
+                  "content": "The Scene Container class will need to be added to the scene groups in the Scene Controller class.",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2j3kwh9rvfmqg",
+                      "tags": [
+                        "code",
+                        "scene group"
+                      ],
+                      "sceneKey": "[RetroC64Constants.AKALABETH_SETUP]",
+                      "sceneValue": "\"SetupScene\"",
+                      "order": "1",
+                      "uid": "kv9uwd8h73fa9lqfvgc"
+                    }
+                  ],
+                  "uid": "kv9uwd8hzlkgwjx0wfe"
+                },
+                {
+                  "title": "Scene states",
+                  "order": 5,
+                  "content": "A State Group will need to be added to the App Constants for this Scene Container",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kv9uwd8gc0d4do96dy",
+                      "tags": [
+                        "code",
+                        "scoped dictionary body 0"
+                      ],
+                      "dictionaryKey": "[RetroC64Constants.AKALABETH_SETUP]",
+                      "dictionaryDefinition": "the scene instances displayed during the setup view",
+                      "dictionaryValue": "[_setupUi]",
+                      "uid": "kv9w4u51d3ole567zeu"
+                    }
+                  ],
+                  "uid": "kv9uwd8h2bjb2yn2lcd"
+                },
+                {
+                  "title": "Scene Initial State",
+                  "order": 6,
+                  "content": "The Scene Container initial state is set in the 'create' method of the Scene Controller class. It will be set to the following state:",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2j3kwh9rvfmqg",
+                      "tags": [
+                        "code",
+                        "create"
+                      ],
+                      "code": "\n// set initial state for Equipment Shot\n[app-handle]SetupScene.state = [app-handle]Constants.AKALABETH_SETUP;",
+                      "order": "3",
+                      "uid": "kv9vzyhndf2ziw888ko"
+                    }
+                  ],
+                  "uid": "kv9uwd8he6lqgyyfcjf"
+                },
+                {
+                  "title": "Child Scenes",
+                  "order": 7,
+                  "content": "The Scene Container is just that: a container.  It will manage the following child scenes:",
+                  "requires design": true,
+                  "children": [
+                    {
+                      "title": "Setup UI",
+                      "order": 1,
+                      "content": "A UI class for displaying a wait message while the world is populated.",
+                      "children": [
+                        {
+                          "title": "The UI Scene Class",
+                          "order": 1,
+                          "content": "A UI class will need to be defined.  The Ui Scene template will be used.",
+                          "children": [],
+                          "design": [
+                            {
+                              "classTitle": "Setup Ui",
+                              "classHandle": "SetupUi",
+                              "fileHandle": "setup-ui",
+                              "tags": [
+                                "class",
+                                "ui-scene"
+                              ],
+                              "classDefinition": "A UI class for displaying a wait message while the world is populated.",
+                              "weight": "0.5",
+                              "uid": "kv9vv4urtmoykuxe78r",
+                              "filePath": [
+                                "scenes",
+                                "akalabeth",
+                                "setup"
+                              ],
+                              "gridWidth": "1",
+                              "gridHeight": "24"
+                            }
+                          ],
+                          "uid": "kv9vv4us9run2521uf6"
+                        },
+                        {
+                          "title": "File Imports",
+                          "order": 2,
+                          "content": "The UI class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv9vv4urtmoykuxe78r",
+                              "importHandle": "RetroC64SceneController",
+                              "importPath": "../scenes/retroc64-scene-controller",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv9vv4usl33jebfhzqf"
+                            },
+                            {
+                              "classUid": "kv9vv4urtmoykuxe78r",
+                              "importHandle": "RetroC64SetupScene",
+                              "importPath": "../retroc64-setup-scene",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv9vv4uspmyglc0pml"
+                            },
+                            {
+                              "classUid": "kv9uwd8gc0d4do96dy",
+                              "importHandle": "RetroC64SetupUi",
+                              "importPath": "../scenes/akalabeth/setup/retroc64-setup-ui",
+                              "tags": [
+                                "code",
+                                "required import"
+                              ],
+                              "uid": "kv9vv4us9j5pa2hhmrl"
+                            }
+                          ],
+                          "uid": "kv9vv4usgzyi0zjtzh"
+                        },
+                        {
+                          "title": "Private Fields",
+                          "order": 3,
+                          "content": "The UI class will be added as a private member of its scene parent.\nThe Ui Scene will have the following private fields:",
+                          "children": [
+                            {
+                              "title": "First Update",
+                              "order": 1,
+                              "content": "Flag indicating the first update has been called.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kv9vv4urtmoykuxe78r",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_firstUpdate",
+                                  "fieldType": "boolean",
+                                  "fieldValue": "true",
+                                  "fieldDefinition": "Flag indicating the first update has been called.",
+                                  "order": "1",
+                                  "uid": "kv9xt2fn1a4obyqkxne"
+                                }
+                              ],
+                              "uid": "kv9xt2fmhi0octnu9bi"
+                            }
+                          ],
+                          "design": [
+                            {
+                              "classUid": "kv9uwd8gc0d4do96dy",
+                              "tags": [
+                                "code",
+                                "private field"
+                              ],
+                              "fieldName": "_setupUi",
+                              "fieldType": "UiScene",
+                              "fieldValue": "new RetroC64SetupUi({ scene: _scene, show: true })",
+                              "fieldDefinition": "RetroC64SetupUi instance",
+                              "order": "10",
+                              "uid": "kv9vv4us55nzm9hntjq"
+                            }
+                          ],
+                          "uid": "kv9vv4usf4fz9td7i5n"
+                        },
+                        {
+                          "title": "View Templates",
+                          "order": 4,
+                          "content": "The UI class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [],
+                          "uid": "kv9vv4us7ftms4n7ck8"
+                        },
+                        {
+                          "title": "Key Listeners",
+                          "order": 5,
+                          "content": "The UI class will have key listeners for the following views:",
+                          "requires design": true,
+                          "children": [],
+                          "design": [],
+                          "uid": "kv9vv4usib39s93kgz"
+                        },
+                        {
+                          "title": "Updates to the 'create' methods",
+                          "order": 6,
+                          "content": "The UI class will have the following updates to the 'create' method:",
+                          "children": [],
+                          "design": [],
+                          "uid": "kv9vv4usvgs2hxvdtva"
+                        },
+                        {
+                          "title": "Initial State",
+                          "order": 7,
+                          "content": "The UI Scene's initial state should be set in the Constructor Body",
+                          "children": [],
+                          "design": [
+                            {
+                              "classUid": "kv9vv4urtmoykuxe78r",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._state = RetroC64Constants.AKALABETH_SETUP;",
+                              "order": "9999",
+                              "uid": "kv9xuokbpgoges8ilqo"
+                            }
+                          ],
+                          "uid": "kv9vv4usrblxp01h278"
+                        },
+                        {
+                          "title": "Scene start/reset",
+                          "order": 8,
+                          "content": "When the UI scene is started/reset, the following changes are applied for each view:",
+                          "children": [],
+                          "design": [],
+                          "uid": "kv9vv4usev625te4sr6"
+                        },
+                        {
+                          "title": "Public Members",
+                          "order": 9,
+                          "content": "Occasionally, a UI Scene will need some further public members added.  This UI has added the following public members:",
+                          "children": [],
+                          "design": [],
+                          "uid": "kv9vv4us2vpr5iqvosr"
+                        },
+                        {
+                          "title": "Updates to the 'update' method.",
+                          "order": 9,
+                          "content": "An update to the update method has been added to track how long the page is displayed.",
+                          "children": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "update",
+                                "code"
+                              ],
+                              "uid": "kv9y3m2y7d8tk8k8bw",
+                              "classUid": "kv9vv4urtmoykuxe78r",
+                              "code": "if (this._firstUpdate) {\n  console.log(\"first update\");\n  this._firstUpdate = false;\n}",
+                              "order": "1"
+                            }
+                          ],
+                          "uid": "kv9y2t0k0ddcrudychap"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kv9vv4up5tzctt2qpxg"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kv9uwd8hb21eo5sgcr"
+                }
+              ],
+              "design": [],
+              "uid": "kv9uwd8g2qqk6ts9kt"
+            }
+          ],
+          "design": [],
+          "uid": "kuwpxcfw66a25dcz9ke"
+        }
+      ],
+      "design": [],
+      "uid": "kuwpgu7ce8gquxzywq5"
+    },
+    {
+      "title": "Wizardry",
+      "order": 2,
+      "content": "The implementation of the game Wizardry: Proving Grounds of the Mad Overlord using the provided source code.",
+      "children": [],
+      "design": [],
+      "uid": "kuwphyuchv7mxg48gnf"
+    },
+    {
+      "title": "Filler",
+      "order": 9999,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus auctor leo, at lacinia odio porta vel. Duis dignissim eleifend nunc, a efficitur nisl euismod id. Donec suscipit iaculis sollicitudin. Vestibulum tempor lacinia lectus, egestas fermentum nisl. Vivamus efficitur ornare nunc commodo laoreet. Cras luctus pretium dignissim. Sed tincidunt felis sed risus lacinia consequat. Phasellus lobortis arcu eu magna lacinia, eget feugiat neque imperdiet. Pellentesque et diam ornare, rhoncus erat ac, sagittis risus. Duis interdum malesuada orci, nec porttitor orci ultrices vel. Duis ornare eleifend lorem, gravida facilisis metus.\n\nNam ut nunc mauris. Nunc ex nisl, mattis ac mauris porta, consequat bibendum arcu. Pellentesque ut augue dapibus, pulvinar neque sit amet, dapibus est. Sed quis lacinia ipsum, a laoreet nisl. Nulla facilisi. Etiam a eleifend felis. Vivamus vitae vehicula massa, a tempor ligula. Nam sit amet turpis nisl. Etiam tortor eros, commodo tincidunt congue interdum, ullamcorper id mi. Ut odio neque, aliquet faucibus sollicitudin porta, ultricies a mi.\n\nEtiam augue eros, pretium vitae imperdiet id, iaculis in eros. Cras quam nunc, ornare eget purus iaculis, facilisis iaculis dolor. Praesent malesuada nunc eget aliquam imperdiet. Mauris sed ipsum quis sem convallis blandit. Proin dictum auctor ligula, ut rutrum ante tincidunt eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas fermentum, ex nec vulputate maximus, lectus mi egestas lacus, et lacinia eros lectus vel nisi. Cras posuere pulvinar nunc quis ullamcorper. Nulla vel mattis nunc. Phasellus gravida hendrerit metus, a cursus enim pharetra vel. Nulla facilisi.\n\nFusce nisl massa, facilisis eu condimentum vel, posuere at tortor. Cras non dui nec neque aliquam fringilla. Cras ullamcorper maximus tellus, non interdum libero porta sit amet. Maecenas nec fringilla nibh. Nunc viverra pharetra tempus. Nullam commodo dignissim laoreet. Integer maximus laoreet quam eu suscipit. Integer gravida dictum ante vel fermentum.\n\nDonec eu leo a purus convallis tristique. Duis pulvinar quam a mollis molestie. Aenean cursus viverra tellus, ac interdum lacus elementum vitae. Ut laoreet pellentesque eros dictum tincidunt. Fusce pulvinar at urna nec accumsan. Nam vitae risus ante. In viverra mi nec luctus placerat. In sit amet dapibus felis, sed pharetra est. Ut ornare a nunc tempus imperdiet. Nam fermentum dignissim ornare. Sed tincidunt, risus quis vestibulum rutrum, nunc turpis sodales ligula, et condimentum tortor massa quis magna. Nulla non mauris sem. Morbi lectus augue, pretium a interdum a, euismod sit amet mauris.\n\nNulla elementum nisi a ex bibendum, at rutrum magna consequat. Nullam commodo euismod elit, id accumsan metus gravida condimentum. Nunc ultricies lectus id mattis tincidunt. In diam libero, venenatis eu urna in, sodales interdum neque. Nunc pretium velit mi, ac consequat lorem rutrum at. Quisque aliquet, odio a ornare maximus, nibh erat cursus lorem, et tincidunt quam nulla quis lectus. Nullam mollis dui id metus malesuada auctor. Mauris gravida, massa bibendum posuere tempus, velit augue hendrerit ligula, a congue massa orci at velit. Nullam vestibulum aliquet lacinia. Aenean faucibus, purus non consequat laoreet, quam neque elementum quam, vulputate gravida quam justo ac justo. Sed sodales enim tellus, quis dapibus augue lobortis at. Sed consequat magna tellus, ut venenatis massa luctus non. Mauris ac sodales risus. Maecenas congue sem nec massa maximus pellentesque at vel massa. Nullam sed enim feugiat, dictum purus id, consequat libero.\n\nNulla facilisi. Aliquam a ultrices nunc, eget feugiat magna. Nulla finibus vestibulum nibh ac mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi vitae massa sit amet urna viverra rhoncus sit amet porta nunc. Phasellus vel maximus tortor. Integer efficitur risus metus, ut ornare felis sollicitudin vel. Ut vitae erat at sem ullamcorper tristique vel eget elit. Nunc vehicula sit amet massa eu ultricies. Nulla eget mattis justo. Proin at interdum ex.\n\nPhasellus scelerisque tincidunt justo vitae consectetur. Maecenas id dictum nulla, quis pharetra nibh. Mauris eleifend at diam maximus rhoncus. Ut blandit dolor erat, at posuere sem vehicula vitae. Vivamus sit amet turpis vel eros vulputate semper quis sit amet augue. Donec varius est nulla, id tristique neque tempus ac. Nulla at tristique eros. Aenean id molestie mauris. Vivamus lobortis ultricies nibh, vitae tempus mi vehicula quis. Vestibulum vel gravida metus. Nullam ultricies ex tellus, nec imperdiet ex imperdiet sit amet.\n\nSuspendisse leo urna, dapibus eget maximus non, ultrices eget lacus. Vivamus non dui enim. Ut gravida pulvinar tristique. Suspendisse pretium sem massa, ut tempus neque facilisis id. Nullam interdum pulvinar pharetra. Cras at dolor semper, auctor ligula eu, ullamcorper eros. Ut vestibulum elementum lectus, non luctus risus. Nam vel tortor porta, porttitor ligula ac, dictum ex. Cras semper auctor massa, nec tincidunt nunc pulvinar in. Duis tempor, nibh in malesuada mollis, enim turpis consectetur mauris, et bibendum arcu tellus in orci.\n\nFusce aliquam orci quis auctor porta. Sed ultrices, massa id pharetra accumsan, leo erat ornare elit, ut iaculis ipsum metus vel ante. Quisque consectetur mollis felis ac condimentum. Aliquam pulvinar placerat dolor, sit amet lobortis lectus auctor non. Nullam vitae luctus metus. In eu dignissim mi. Mauris diam est, placerat nec volutpat id, dignissim a enim. Proin in velit ultrices, tristique sem sit amet, pulvinar neque. Ut vulputate sem dolor, vitae efficitur libero tincidunt non. Pellentesque aliquam varius tellus, et vulputate diam vestibulum eget. Nam volutpat neque sit amet tellus commodo egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non mattis mi. Nunc quam lacus, aliquet id posuere pretium, commodo sit amet massa. Duis at lectus laoreet, facilisis justo eget, mollis est. Sed tempor lectus quam, mollis sodales nisl lobortis vel.",
+      "children": [],
+      "design": [],
+      "uid": "kuyt0677ro2f4qzz5wq"
+    }
+  ]
+}

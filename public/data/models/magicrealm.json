@@ -1,0 +1,22 @@
+{
+  "appName": "Magic Realm",
+  "data-path": [
+    "data"
+  ],
+  "templates file": "",
+  "theme": "nes",
+  "DESIGNER'S JOURNAL": {
+    "Design Notes": {
+      "Sep 23 2021": [
+        "Application data created."
+      ]
+    },
+    "Testing": {},
+    "Next Steps": []
+  },
+  "enums": [],
+  "fileHandle": "magicrealm",
+  "appHandle": "MagicRealm",
+  "appConstants": [],
+  "Design Notes": []
+}

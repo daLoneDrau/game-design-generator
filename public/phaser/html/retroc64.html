@@ -1,0 +1,50 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- all requests to express are routed through the public folder. treat that as the root to start from, not the current folder -->
+  <link rel="stylesheet" type="text/css" href="/phaser/css/c64.css">
+  <title>Retro C64</title>
+</head>
+<body>
+  <div id="domContainer" style="width: 100vw; height: calc(100vh - 65px);"></div>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- phaser library -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+
+  <!-- application library -->
+  <!-- <script type="text/javascript" src="/phaser/assets/js/rpgbase.full.min.js"></script> -->
+  <script type="text/javascript" src="/phaser/assets/js/rpgbase.full.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/config/retroc64-constants.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/intro/retroc64-intro-ui.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/setup/retroc64-setup-ui.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/shop/retroc64-player-stats-ui-scene.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/shop/retroc64-shop-commands-ui-scene.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/shop/retroc64-shop-inventory-ui.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/bus/akalabeth/retroc64-akalabeth-character.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/bus/akalabeth/retroc64-akalabeth-equipment-item.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/retroc64-scene-controller.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/retroc64-introscene.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/retroc64-setup-scene.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/retroc64-shop-scene.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/services/akalabeth/retroc64-akalabeth-controller.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/singletons/retroc64-game.js"></script>
+  <script>
+  var globalJson;
+  function jsonp(data) {
+    globalJson = data;
+  }
+  
+  $(document).ready(function() {
+    // instance of Phaser.Game object. starts the process of bringing the app to life
+    RetroC64Game.newGame();
+  });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "appName": "Golden Flutes",
+  "data-path": [
+    "data"
+  ],
+  "templates file": "",
+  "theme": "nes",
+  "dimensions": [
+    800,
+    600
+  ],
+  "library files": [
+    "app-constants"
+  ],
+  "DESIGNER'S JOURNAL": {
+    "Design Notes": {
+      "Oct 1 2021": [
+        "Application data created."
+      ]
+    },
+    "Testing": {},
+    "Next Steps": []
+  },
+  "enums": [],
+  "fileHandle": "goldenflutes",
+  "appHandle": "GoldenFlutes",
+  "appConstants": [],
+  "Design Notes": []
+}

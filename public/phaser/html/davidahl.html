@@ -1,0 +1,41 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- all requests to express are routed through the public folder. treat that as the root to start from, not the current folder -->
+  <link rel="stylesheet" type="text/css" href="/phaser/css/c64.css">
+  <title>David Ahl</title>
+</head>
+<body>
+  <div id="domContainer" style="width: 100vw; height: calc(100vh - 65px);"></div>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- phaser library -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+
+  <!-- application library -->
+  <script type="text/javascript" src="/phaser/assets/js/rpgbase.full.min.js"></script>
+  <script type="text/javascript" src="/phaser/davidahl/src/bus/davidahl-acey-ducey.js"></script>
+  <script type="text/javascript" src="/phaser/davidahl/src/config/davidahl-constants.js"></script>
+  <script type="text/javascript" src="/phaser/davidahl/src/scenes/davidahl-controller.js"></script>
+  <script type="text/javascript" src="/phaser/davidahl/src/scenes/davidahl-gameconsole.js"></script>
+  <script type="text/javascript" src="/phaser/davidahl/src/scenes/davidahl-main-menu.js"></script>
+  <script type="text/javascript" src="/phaser/davidahl/src/singletons/davidahl-game.js"></script>
+  <script type="text/javascript" src="/phaser/davidahl/src/ui/davidahl-alignmentgrid.js"></script>
+  <script>
+  var globalJson;
+  function jsonp(data) {
+    globalJson = data;
+  }
+  
+  $(document).ready(function() {
+    // instance of Phaser.Game object. starts the process of bringing the app to life
+    DavidAhlGame.newGame();
+  });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+{
+  "appName": "David Ahl",
+  "data-path": [
+    "data"
+  ],
+  "templates file": "",
+  "theme": "c64",
+  "dimensions": [
+    800,
+    600
+  ],
+  "library files": [
+    "app-constants"
+  ],
+  "DESIGNER'S JOURNAL": {
+    "Design Notes": {
+      "Sep 23 2021": [
+        "Application data created."
+      ]
+    },
+    "Testing": {},
+    "Next Steps": []
+  },
+  "enums": [],
+  "fileHandle": "davidahl",
+  "appHandle": "DavidAhl",
+  "appConstants": [],
+  "Design Notes": [
+    {
+      "title": "Setup",
+      "order": 1,
+      "content": "Initial project setup includes the creation of several utility classes",
+      "children": [],
+      "design": [
+        {
+          "classTitle": "AlignmentGrid",
+          "classHandle": "AlignmentGrid",
+          "fileHandle": "alignmentgrid",
+          "tags": [
+            "class",
+            "prototype"
+          ],
+          "classDefinition": "Utility class used to break a scene's viewport into a grid of cells. Useful for positioning text and buttons.",
+          "uid": "ku5m3or5dpana0wkw3k",
+          "filePath": "ui"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "private field"
+          ],
+          "fieldName": "_parent",
+          "fieldType": "Phaser.Class",
+          "fieldValue": "null",
+          "fieldDefinition": "The parent object used to determine the screen dimensions. If a Phaser.Scene instance is not supplied it defaults to the Phaser.Game instance.",
+          "order": "1",
+          "uid": "ku5pdw0bap1xvjyapdm"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "constructor body"
+          ],
+          "code": "\nthis._parent = parameterObject.parent;\nthis._cellWidth = this._parent.scale.width / parameterObject.columns;\nthis._cellHeight = this._parent.scale.height / parameterObject.rows;",
+          "order": "1",
+          "uid": "ku5qxck22p6s3mvqn72"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "public member"
+          ],
+          "memberName": "placeAt",
+          "memberDefinition": "/**\n * Places an object in relation to the grid.\n * @param {Number} x the x-coordinate of the cell where the object should be placed\n * @param {Number} y the y-coordinate of the cell where the object should be placed\n * @param {Phaser.GameObjects.GameObject} obj game object being placed\n */",
+          "arguments": "x, y, obj",
+          "code": "//calculate the center of the cell\n//by adding half of the height and width\n//to the x and y of the coordinates\nlet x2 = this._cellWidth * x + this._cellWidth / 2;\nlet y2 = this._cellHeight * y + this._cellHeight / 2;\nobj.x = x2;\nobj.y = y2;",
+          "order": "1",
+          "uid": "ku5xfssyhsmrnxr2bog"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "private field"
+          ],
+          "fieldName": "_cellWidth",
+          "fieldType": "int",
+          "fieldValue": 0,
+          "fieldDefinition": "The # of cells wide the grid should be.",
+          "order": "2",
+          "uid": "ku5tpm6ie1z1e39xc5o"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "private field"
+          ],
+          "fieldName": "_cellHeight",
+          "fieldType": "int",
+          "fieldValue": 0,
+          "fieldDefinition": "The # of cells high the grid should be.",
+          "order": "3",
+          "uid": "ku5tr1j3c5jt69wfvzt"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "inheritance"
+          ],
+          "classInheritance": "Phaser.GameObjects.Group",
+          "uid": "ku5z86ff6t3f7cwk4o7"
+        },
+        {
+          "classUid": "ku5m3or5dpana0wkw3k",
+          "tags": [
+            "code",
+            "public member"
+          ],
+          "memberName": "show",
+          "memberDefinition": "/**\n * Draws a red border demarcating the grid cells.\n */",
+          "arguments": "",
+          "code": "if (typeof(this.graphics) === \"undefined\") {\n  this.graphics = this._parent.add.graphics({ lineStyle: { width: 4, color: 0xff0000, alpha: 1 } });\n}\nfor (let i = 0; i <= this._parent.scale.width; i += this._cellWidth) {\n  let line = new Phaser.Geom.Line(i, 0, i, this._parent.scale.height);\n  this.graphics.strokeLineShape(line);\n}\nfor (let i = 0; i <= this._parent.scale.height; i += this._cellHeight) {\n  let line = new Phaser.Geom.Line(0, i, this._parent.scale.width, i);\n  this.graphics.strokeLineShape(line);\n}",
+          "order": "2",
+          "uid": "ku60flwe9ltd133x4zl"
+        }
+      ],
+      "uid": "ku5lth2b4u9vom6yqnn"
+    },
+    {
+      "title": "David Ahl Games",
+      "order": 2,
+      "content": "David Ahl Games is broken into several sections:\n\n1. Basic Computer Games\n2. Big Computer Games",
+      "children": [
+        {
+          "title": "Main Menu",
+          "order": 1,
+          "content": "The Main Menu scene will be the application entry point.  Here, the user will have the option to choose which types of games to play, leading to further sub-menus until the user is presented with a list of games to load.  Loading a game will switch to a new scene.\n\nThe Main Menu initially will offer brief introductory text and two menu choices:\n1. Basic Computer Games\n2. Big Computer Games\n\nThe Main Menu scene will accept mouse and keyboard input.",
+          "children": [
+            {
+              "title": "Basic Computer Games",
+              "order": 1,
+              "content": "Basic Computer Games will cover selected games from the 1978 book, Basic Computer Games, and its successor, More Basic Computer Games",
+              "children": [
+                {
+                  "title": "'Card' Games",
+                  "order": 1,
+                  "content": "All 'Card' games.",
+                  "children": [
+                    {
+                      "title": "'CARD' Games Sub-Menu",
+                      "order": 1,
+                      "content": "A sub-menu within the MAIN MENU is needed for all 'CARD' games.",
+                      "children": [],
+                      "design": [],
+                      "uid": "ktxeqwlq756xkswtbna"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "ktxdnhav8807z4bxjrg"
+                }
+              ],
+              "design": [],
+              "uid": "ktx9dz1b5zcn82bbdp8"
+            }
+          ],
+          "design": [
+            {
+              "classTitle": "Main Menu",
+              "classHandle": "MainMenu",
+              "fileHandle": "main-menu",
+              "tags": [
+                "class",
+                "scene"
+              ],
+              "classDefinition": "The Main Menu is the application entry point. From here, all game menus and links to cartridges are displayed.",
+              "uid": "ku41uh9k9f1q5lsewtw"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "private field"
+              ],
+              "fieldName": "_state",
+              "fieldType": "int",
+              "fieldValue": 0,
+              "fieldDefinition": "The current rendering state, determining which set of options is displayed.",
+              "order": "1",
+              "uid": "ku4dajakcss148zzzzb"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "private field"
+              ],
+              "fieldName": "_stateChangeResolved",
+              "fieldType": "boolean",
+              "fieldValue": true,
+              "fieldDefinition": "flag indicating whether the latest change to the state was resolved",
+              "order": "2",
+              "uid": "ku4kx6bsba2if9br9cf"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary enclosure 0"
+              ],
+              "dictionaryName": "_TEMPLATES",
+              "dictionaryType": "constant",
+              "dictionaryDefinition": "The map of UI templates displayed for each menu state.",
+              "uid": "ku8gpgjmnkno8ppxq5l"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary enclosure 1"
+              ],
+              "dictionaryName": "_TYPOGRAPHY",
+              "dictionaryType": "constant",
+              "dictionaryDefinition": "The map of styles to be applied to DOM elements.",
+              "uid": "ku8gqfrpi57ej40b18c"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 0"
+              ],
+              "dictionaryKey": "0",
+              "dictionaryDefinition": "template for state MAIN_MENU",
+              "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [1, 1]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"h5\", // style\n        \"David Ahl's Computer Games\", // text\n      ],\n      position: [1, 2]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"small\", // style\n        \"Microcomputer Edition\", // text\n      ],\n      position: [1, 3]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"h6\", // style\n        \"[1] Basic Computer Games\", // text\n      ],\n      position: [1, 5]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"h6\", // style\n        \"[2] Big Computer Games\", // text\n      ],\n      position: [1, 6]\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [1, 11]\n    }\n  ]\n}",
+              "uid": "ku8i0eff7ogb1j8y9i"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 1"
+              ],
+              "dictionaryKey": "\"h1\"",
+              "dictionaryDefinition": "header 1 style",
+              "dictionaryValue": "\"color: #A6A1FF; font: 2.5rem \\\"C64 Pro Mono\\\"\"",
+              "uid": "ku8i2211qtgm5t8bb1"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 0"
+              ],
+              "dictionaryKey": "1",
+              "dictionaryDefinition": "template for state MAIN_BASIC_GAMES",
+              "dictionaryValue": "{\n  group: null,\n  children: [\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [1, 1]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"h5\", // style\n        \"David Ahl's Computer Games\", // text\n      ],\n      position: [1, 2]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"small\", // style\n        \"Card Games\", // text\n      ],\n      position: [1, 3]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"h6\", // style\n        \"[1] ACEY DUCEY\", // text\n      ],\n      position: [1, 5]\n    },\n    {\n      type: \"dom\",\n      args: [\n        0, // x\n        0, // y\n        \"div\", // element\n        \"h6\", // style\n        \"[ESC] BACK TO THE MAIN MENU\", // text\n      ],\n      position: [1, 7]\n    },\n    {\n      type: \"rectangle\",\n      args: [\n        0, // x\n        0, // y\n        0.75, // width\n        10, // height\n        0xA6A1FF, // color\n        1, // alpha\n      ],\n      position: [1, 11]\n    }\n  ]\n}",
+              "uid": "ku8mvuqf8s6pqblfx9"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 1"
+              ],
+              "dictionaryKey": "\"h2\"",
+              "dictionaryDefinition": "header 2 style",
+              "dictionaryValue": "\"color: #A6A1FF; font: 2rem \\\"C64 Pro Mono\\\"\"",
+              "uid": "ku8n1ds7xqozd869w5p"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 1"
+              ],
+              "dictionaryKey": "\"h3\"",
+              "dictionaryDefinition": "header 3 style",
+              "dictionaryValue": "\"color: #A6A1FF; font: 1.75rem \\\"C64 Pro Mono\\\"\"",
+              "uid": "ku8n2bi0mlzsggh6xni"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 1"
+              ],
+              "dictionaryKey": "\"h4\"",
+              "dictionaryDefinition": "header 4 style",
+              "dictionaryValue": "\"color: #A6A1FF; font: 1.5rem \\\"C64 Pro Mono\\\"\"",
+              "uid": "ku8n4k2iz1q1n0gpy5"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 1"
+              ],
+              "dictionaryKey": "\"h5\"",
+              "dictionaryDefinition": "header 5 style",
+              "dictionaryValue": "\"color: #A6A1FF; font: 1.25rem \\\"C64 Pro Mono\\\"\"",
+              "uid": "ku8n565tvud30nycfc"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 1"
+              ],
+              "dictionaryKey": "\"h6\"",
+              "dictionaryDefinition": "header 6 style",
+              "dictionaryValue": "\"color: #A6A1FF; font: 1rem \\\"C64 Pro Mono\\\"\"",
+              "uid": "ku8n5z612wse6nxiwph"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "scoped dictionary body 1"
+              ],
+              "dictionaryKey": "\"small\"",
+              "dictionaryDefinition": "small text style",
+              "dictionaryValue": "\"color: #A6A1FF; font: .875rem \\\"C64 Pro Mono\\\"\"",
+              "uid": "ku8n6n8hx34ebixmne"
+            },
+            {
+              "classUid": "ku41uh9k9f1q5lsewtw",
+              "tags": [
+                "code",
+                "create"
+              ],
+              "code": "// create a grid for laying out elements\nlet grid = new DavidAhlAlignmentGrid({ \"parent\": this, \"columns\": 3, \"rows\": 13 });\n//turn on the lines for testing\n//and layout\ngrid.show();\n\n// create groups for each state\nlet keys = Object.keys(_TEMPLATES);\nkeys.sort();\nfor (let i = keys.length - 1; i >= 0; i--) {\n  let entry = _TEMPLATES[keys[i]];\n  let group = this.add.group();\n  entry.group = group;\n  for (let j = entry.children.length - 1; j >= 0; j--) {\n    let child = entry.children[j];\n    switch (child.type) {\n      case \"dom\":\n        // grab style\n        child.args[3] = _TYPOGRAPHY[child.args[3]];\n        break;\n      case \"rectangle\":\n        // if height or width is less than 1, then it is a percentage\n        if (child.args[2] < 1) {\n          child.args[2] *= this.scale.width;\n        }\n        if (child.args[3] < 1) {\n          child.args[3] *= this.scale.height;\n        }\n        break;\n    }\n    console.log(child)\n    let object = this.add[child.type](...child.args);\n    if (child.hasOwnProperty(\"origin\")) {\n      object.setOrigin(...child.origin); // set the origin property\n    } else {\n      object.setOrigin(0.5); // set the origin to the middle\n    }\n    // add the element to the group\n    group.add(object, true);\n\n    // place the element where needed\n    grid.placeAt(child.position[0], child.position[1], object);\n  }\n  // hide the group\n  group.setVisible(false);\n}",
+              "order": "1",
+              "uid": "ku8nkx3sckr2i6wpej7"
+            }
+          ],
+          "uid": "ku41ks57co7ph9w6fr5"
+        }
+      ],
+      "design": [],
+      "uid": "ku08fuut3pmi1mi5jmy"
+    }
+  ]
+}

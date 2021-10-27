@@ -1,0 +1,85 @@
+@media (min-width: 1200px) {
+  .container {
+    max-width: 100%;
+  }
+}
+#mainCol {
+  position: relative;
+  height: 1250px;
+  overflow-y: scroll;
+}
+.namespace {
+  color: #00193a;
+  font-family: monospace;
+  font-size: medium;
+}
+.namespaceTitle {
+  color: #0048ab;
+  font-family: monospace;
+  font-size: medium;
+}
+form {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 1px;
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+  border: solid #dee2e6;
+}
+.form-group {
+  margin: 0.5rem;
+}
+.nav-link.side-nav {
+  color: #212529 !important;
+}
+.nav-link.side-nav.active {
+  color: #0a58ca !important;
+}
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+}
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+code[class*="language-"], pre[class*="language-"] {
+  color: #ccc;
+  background: none;
+  font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+:not(pre) >code[class*="language-"], pre[class*="language-"] {
+  background: #2d2d2d;
+}
+.token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata {
+  color: #999;
+}
+.token.selector, .token.important, .token.atrule, .token.keyword, .token.builtin {
+  color: #cc99cd;
+}
+.token.class-name, .token.constant, .token.symbol {
+  color: #f8c555;
+}
+.has-subs::after {
+  content: "-"
+}
+.has-subs.collapsed::after {
+  content: "+"
+}

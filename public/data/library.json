@@ -1,0 +1,32 @@
+{
+  "apps": [
+    {
+      "title": "David Ahl",
+      "namespace": "davidahl",
+      "appHandle": "DavidAhl",
+      "theme": "c64",
+      "dimensions": [
+        800,
+        600
+      ],
+      "lib": [
+        "app-constants"
+      ]
+    },
+    {
+      "title": "Retro C64",
+      "namespace": "retroc64",
+      "appHandle": "RetroC64",
+      "theme": "c64",
+      "dimensions": [
+        800,
+        600
+      ],
+      "lib": [
+        "app-constants",
+        "scene-controller",
+        "game"
+      ]
+    }
+  ]
+}

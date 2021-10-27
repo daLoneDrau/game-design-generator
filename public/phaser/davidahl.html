@@ -1,0 +1,42 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" />
+  <!-- all requests to express are routed through the public folder. treat that as the root to start from, not the current folder -->
+  <link rel="stylesheet" type="text/css" href="/phaser/css/c64.css">
+  <title>Making your first Phaser 3 Game - Part 1</title>
+</head>
+<body>
+  <div id="domContainer" style="width: 100vw; height: calc(100vh - 65px);"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+
+
+<script type="text/javascript" src="/phaser/davidahl/scenes/ahl-mainmenuscene.js"></script>
+<script type="text/javascript" src="/phaser/davidahl/scenes/ahl-mainmenuscene2.js"></script>
+<script>
+var config = {
+  type: Phaser.AUTO, // tells phaser to try WebGL first, and fall back to canvas if needed
+  backgroundColor: new Phaser.Display.Color(67, 66, 230),
+  /* default is 1024x768
+  width: 800, // game width
+  height: 600, // game height
+  */
+  scene: [AhlMainMenuScene, AhlMainMenuScene2],
+  autoCenter: Phaser.Scale.Center.CENTER_BOTH,
+  parent: "domContainer", // id of the parent container
+  callbacks: {
+    "postBoot": function() {
+      console.log("postboot")
+game.scene.sleep("MainMenu2")
+      game.scene.start('MainMenu');
+    }
+  }
+};
+// instance of Phaser.Game object. starts the process of bringing the app to life
+let game = new Phaser.Game(config);
+console.log("sleeping")
+</script>
+
+</body>
+</html>
