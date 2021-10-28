@@ -5153,6 +5153,21 @@ function UiScene(parameterObject) {
         }
       },
       /**
+       * Get the textual content of the stored GameObject.
+       * @param {string} key the entry key
+       * @returns {string} The text that this Bitmap Text object displays.
+       */
+      getText: function(key, text) {
+        if (typeof(key) !== "string" && !(key instanceof String)) {
+          throw ["Invalid key", key];
+        }
+        if (!_dictionary.hasOwnProperty(key)) {
+          throw ["Invalid key", key];
+        }
+        // assume this will be only be called on a unique identifer
+        return _dictionary[key][0].text;
+      },
+      /**
        * Places a key-value pair into storage.
        * @param {string} key the entry key
        * @param {Phaser.GameObjects.GameObject} value the entry value

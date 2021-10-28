@@ -1,4 +1,5 @@
 if (typeof(module) !== "undefined") {
+  var { RetroC64AkalabethWorld } = require("../../bus/akalabeth/retroc64-akalabeth-world");
   var { RetroC64AkalabethCharacter } = require("../../bus/akalabeth/retroc64-akalabeth-character");
 }
 /**
@@ -11,6 +12,8 @@ var RetroC64AkalabethController = (function() {
   let _levelOfPlay = 0;
   /** @private The player character instance. */
   let _character = new RetroC64AkalabethCharacter();
+  /** @private The game world instance. */
+  let _world = new RetroC64AkalabethWorld();
   return {
     /**
      * Getter for field _luckyNumber.
@@ -32,6 +35,13 @@ var RetroC64AkalabethController = (function() {
      */
     get character() {
       return _character;
+    },
+    /**
+     * Getter for field _world.
+     * @returns {Object}
+     */
+    get world() {
+      return _world;
     },
     /**
      * Setter for field _luckyNumber.

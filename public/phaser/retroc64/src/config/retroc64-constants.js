@@ -31,6 +31,11 @@ var RetroC64Constants = {
   AKALABETH_INTRO_REVIEW_CHARACTER: 1,
   /** the third state in the Intro View. Allows the player to shop for supplies. */
   AKALABETH_INTRO_SHOP: 2,
+  /*********************
+   * AKALABETH_WORLD_MAP_STATES
+   ********************/
+  /** The initial state. */
+  AKALABETH_WORLD_MAP_DISPLAY: 1,
 }
 /**
  * @class Class enum using singleton pattern

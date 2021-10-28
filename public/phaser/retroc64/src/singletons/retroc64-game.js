@@ -1,6 +1,7 @@
 if (typeof(module) !== "undefined") {
   var { Phaser } = require("phaser");
   var { RetroC64SceneController } = require("./retroc64-scene-controller");
+  var { RetroC64AkalabethWorldMapScene } = require("../scenes/akalabeth/retroc64-akalabeth-world-map-scene");
   var { RetroC64SetupScene } = require("../scenes/akalabeth/retroc64-setup-scene");
   var { RetroC64ShopScene } = require("../scenes/retroc64-shop-scene");
   var { RetroC64IntroScene } = require("../scenes/retroc64-introscene");
@@ -21,6 +22,7 @@ var RetroC64Game = (function() {
    */
   let _postBoot = function() {
     _game.scene.queueOp("start", "Controller");
+    _game.scene.queueOp("start", "AkalabethWorldMapScene");
     _game.scene.queueOp("start", "SetupScene");
     _game.scene.queueOp("start", "IntroScene");
     _game.scene.queueOp("start", "ShopScene");
@@ -41,6 +43,10 @@ var RetroC64Game = (function() {
       postBoot: _postBoot
     },
     scene: [
+      RetroC64AkalabethWorldMapScene,
+      RetroC64IntroScene,
+      RetroC64SetupScene,
+      RetroC64ShopScene,
       RetroC64SceneController,
     ]
   };

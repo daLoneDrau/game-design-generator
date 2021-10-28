@@ -14,7 +14,48 @@ function RetroC64SetupUi(parameterObject) {
   UiScene.call(this, parameterObject); // call parent constructor
 
   /** @private Flag indicating the first update has been called. */
-  this._firstUpdate = false;
+  this._firstUpdate = true;
+  /** @private The time each cycle of the scene is supposed to last. */
+  this._cycleLength = 500;
+  /** @private The number of cycles to run before moving to the next scene. */
+  this._maxCycles = 10;
+  /** @private A field to track the time (in ms) when the last cycle was started. */
+  this._cycleStartTime = 0;
+  /** @private The number of cycles that have run. */
+  this._numCycles = 0;
+  this._VIEWS[[RetroC64Constants.AKALABETH_SETUP]] = {
+    group: null,
+    children: [
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          " WELCOME TO AKALABETH, WORLD OF DOOM!", // text
+        ],
+        position: [-0.5, 11],
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "  (PLEASE WAIT)", // text
+        ],
+        position: [-0.5, 22],
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447,
+        dynamicField: "waitField"
+      }
+    ]
+  };
+  this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_SETUP]] = function(event, context) {};
   this._state = RetroC64Constants.AKALABETH_SETUP;
 };
 RetroC64SetupUi.prototype = Object.create(UiScene.prototype);
@@ -60,7 +101,25 @@ RetroC64SetupUi.prototype.create = function(data) {
 RetroC64SetupUi.prototype.update = function(time, delta) {
   // call base
   UiScene.prototype.update.call(this, time, delta);
-  if (this._
+  if (this._firstUpdate) {
+    console.log("first update");
+    RetroC64AkalabethController.world.newWorld();
+    this._firstUpdate = false;
+    this._cycleStartTime = time;
+  }
+  if (this._cycleStartTime + this._cycleLength <= time) {
+    if (this._numCycles < this._maxCycles) {
+      this._dynamicFields.setText("waitField", [this._dynamicFields.getText("waitField"), "."].join(""));
+      this._cycleStartTime = time;
+      this._numCycles++;
+    } else {
+      // reset all variables
+      this._firstUpdate = true;
+      this._numCycles = 0;
+      // move on the next scene
+      RetroC64SceneController.switch(RetroC64Constants.AKALABETH_WORLD_MAP);
+    }
+  }
 }
 /**
  * Delegates KeyUp events to the property handler.

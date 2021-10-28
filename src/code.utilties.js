@@ -435,8 +435,14 @@ const PhaserCodeGenerator = (function() {
         let c = 0, aWeight = typeof(a.weight) === "undefined" ? 1 : a.weight, bWeight = typeof(b.weight) === "undefined" ? 1 : b.weight;
         if (aWeight < bWeight) {
           c = 1;
+          if (definition.filter === "scene") {
+            c = -1;
+          }
         } else if (aWeight > bWeight) {
           c = -1;
+          if (definition.filter === "scene") {
+            c = 1;
+          }
         } else {
           if (a.classPath < b.classPath) {
             c = 1;
@@ -690,6 +696,7 @@ const PhaserCodeGenerator = (function() {
               obj.classPath.push(obj.filePath);
             }
             obj.classPath = obj.classPath.join("/").replace(/\[namespace\]/gi, structure.fileHandle);
+            structure.scenes.push(obj);
           }
           if (obj.tags.includes("scene-controller")) {
             obj.classPath = JSON.parse(JSON.stringify(_templates.phaser["scene-controller"].path));

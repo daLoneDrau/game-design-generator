@@ -15,7 +15,7 @@ var RetroC64SetupScene = (function() {
   /** @private The current state. */
   let _state = "";
   /** @private RetroC64SetupUi instance */
-  let _setupUi = new RetroC64SetupUi({ scene: _scene, show: true });
+  let _setupUi = new RetroC64SetupUi({ scene: _scene, show: false });
   /** @private The map of child scenes. */
   const _SCENES = {
     /** @private the scene instances displayed during the setup view */

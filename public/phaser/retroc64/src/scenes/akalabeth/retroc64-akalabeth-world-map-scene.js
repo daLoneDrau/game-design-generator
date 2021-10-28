@@ -1,34 +1,22 @@
 if (typeof(module) !== "undefined") {
   var { Phaser } = require("phaser");
   var { RetroC64Constants } = require("../config/retroc64-constants");
-  var { RetroC64ShopInventoryUi } = require("../scenes/shop/retroc64-shop-inventory-ui");
-  var { RetroC64ShopCommandsUiScene } = require("../scenes/shop/retroc64-shop-commands-ui-scene");
-  var { RetroC64PlayerStatsUiScene } = require("../scenes/shop/retroc64-player-stats-ui-scene");
-  var { RetroC64ShopSceneUI } = require("./intro/retroc64-shop-scene-ui");
 }
 /**
- * @class The Scene Container for rendering the Equipment Shop scene.
+ * @class When play first starts, the player will be shown the World Map scene
  */
-var RetroC64ShopScene = (function() {
+var RetroC64AkalabethWorldMapScene = (function() {
   /** @private Scene instance. */
   let _scene = new Phaser.Scene({
-    key: "ShopScene",
+    key: "AkalabethWorldMapScene",
     active: false
   });
   /** @private The current state. */
   let _state = "";
-  /** @private RetroC64ShopInventoryUi instance */
-  let _shopInventoryUi = new RetroC64ShopInventoryUi({ scene: _scene, show: false });
-  /** @private RetroC64ShopCommandsUiScene instance */
-  let _shopCommandsUiScene = new RetroC64ShopCommandsUiScene({ scene: _scene, show: false });
-  /** @private RetroC64PlayerStatsUiScene instance */
-  let _playerStatsUiScene = new RetroC64PlayerStatsUiScene({ scene: _scene, show: false });
   /** @private The map of child scenes. */
   const _SCENES = {
-    /** @private the scene instances displayed during the equipment purchase state */
-    [RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]: [_playerStatsUiScene, _shopInventoryUi, _shopCommandsUiScene],
   };
-  { // RetroC64ShopScene Getters/Setters
+  { // RetroC64AkalabethWorldMapScene Getters/Setters
     /** Sets the current state */
     Object.defineProperty(_scene, "state", {
       set: function(value) {
@@ -110,5 +98,5 @@ var RetroC64ShopScene = (function() {
 } ());
 
 if (typeof(module) !== "undefined") {
-  module.exports = { RetroC64ShopScene };
+  module.exports = { RetroC64AkalabethWorldMapScene };
 }

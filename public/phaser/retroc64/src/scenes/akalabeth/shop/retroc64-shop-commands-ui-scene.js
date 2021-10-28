@@ -57,8 +57,15 @@ function RetroC64ShopCommandsUiScene(parameterObject) {
   };
   /** @private A field for tracking the scene to call back to after the player leaves the shop. */
   this._callbackScene = RetroC64Constants.AKALABETH_SETUP;
-  this._VIEWS[[RetroC64Constants.AKALABETH_SETUP]] = {
+  this._VIEWS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = {
     group: null,
+    comment: [
+      "THE SHOP VIEW IS BROKEN OUT INTO THREE ROWS:",
+      "TOP - PLAYER STATS AND EQUIPMENT",
+      "MIDDLE - USER COMMAND SUMMARY AND ENTRY",
+      "BOTTOM - EQUIPMENT FOR PURCHASE",
+      "THIS IS THE TOP ROW"
+    ],
     children: [
       {
         type: "bitmapText",
@@ -66,9 +73,9 @@ function RetroC64ShopCommandsUiScene(parameterObject) {
           0, // x
           0, // y
           "c64_pro_style_16", // font
-          " WELCOME TO AKALABETH, WORLD OF DOOM!", // text
+          "F-FOOD", // text
         ],
-        position: [-0.5, 11],
+        position: [0, 9],
         origin: [0, 0.5],
         scale: 1,
         tint: 10920447
@@ -79,12 +86,223 @@ function RetroC64ShopCommandsUiScene(parameterObject) {
           0, // x
           0, // y
           "c64_pro_style_16", // font
-          "  (PLEASE WAIT)", // text
+          "R-RAPIER", // text
         ],
-        position: [-0.5, 22],
+        position: [0, 10],
         origin: [0, 0.5],
         scale: 1,
         tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "A-AXE", // text
+        ],
+        position: [3, 9],
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "S-SHIELD", // text
+        ],
+        position: [3, 10],
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "Q-QUIT", // text
+        ],
+        position: [3, 11],
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "B-BOW AND ARROW", // text
+        ],
+        position: [5, 9],
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "M-MAGIC AMULET", // text
+        ],
+        position: [5, 10],
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "WELCOME TO THE ADVENTURE SHOP", // text
+        ],
+        position: {
+          x: {
+            fixed: -0.5,
+            offset: 2
+          },
+          y: 12
+        },
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "WHICH ITEM SHALT THOU BUY? ", // text
+        ],
+        position: {
+          x: {
+            fixed: -0.5,
+            offset: 2
+          },
+          y: 13
+        },
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447,
+        dynamicField: "promptField"
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "", // text
+        ],
+        position: {
+          x: {
+            fixed: -0.5,
+            offset: {
+              field: "promptField",
+              dimension: "width"
+            }
+          },
+          y: 13
+        },
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447,
+        dynamicField: "userEntryField"
+      },
+      {
+        type: "bitmapText",
+        args: [
+          0, // x
+          0, // y
+          "c64_pro_style_16", // font
+          "", // text
+        ],
+        position: {
+          x: {
+            fixed: -0.5,
+            offset: 2
+          },
+          y: 14
+        },
+        origin: [0, 0.5],
+        scale: 1,
+        tint: 10920447,
+        dynamicField: "messageField"
+      },
+      {
+        comment: "CREATE TWO IMAGES, CURSOR_ON AND CURSOR_OFF. OFF IS MADE FIRST, SINCE THE GRAPHICS NEEDS TO BE EMPTY",
+        type: "graphics-texture",
+        commands: [
+          {
+            order: 1,
+            command: "fillStyle",
+            args: [0xA6A1FF, 0] // color, alpha
+          },
+          {
+            order: 2,
+            command: "fillRect",
+            args: [0, 0, 16, 16], // x, y, width, height, corner radius,
+            "scale controlled args": [] // no scaled graphics
+          },
+          {
+            order: 3,
+            command: "generateTexture",
+            args: ["cursor_off", 16, 16], // key, scale width, scale height
+            "scale controlled args": [] // no scaled graphics
+          },
+          {
+            order: 4,
+            command: "fillStyle",
+            args: [0xA6A1FF, 1] // color, alpha
+          },
+          {
+            order: 5,
+            command: "fillRect",
+            args: [0, 0, 16, 16], // x, y, width, height, corner radius,
+            "scale controlled args": [] // no scaled graphics
+          },
+          {
+            order: 6,
+            command: "generateTexture",
+            args: ["cursor_on", 16, 16], // key, scale width, scale height
+            "scale controlled args": [] // no scaled graphics
+          },
+        ]
+      },
+      {
+        comment: "CREATE CURSOR SPRITE",
+        type: "sprite",
+        args: [
+          0, // x
+          0, // y
+          "cursor_on" // texture
+        ],
+        position: {
+          x: {
+            fixed: -0.5,
+            offset: {
+              field: "promptField",
+              pixel: 2
+            }
+          },
+          y: {
+            fixed: 13,
+            offset: -1
+          }
+        },
+        origin: [0, 0.5],
+        dynamicField: "blinkingCursor"
       }
     ]
   };
@@ -175,6 +393,7 @@ RetroC64ShopCommandsUiScene.prototype.handleKeyUpEvent = function(event) {
 RetroC64ShopCommandsUiScene.prototype.handleKey = function(key) {
   key = key.toUpperCase();
   let message = "";
+  let entry = key;
   let callback = function() {
     this._playingAnimation = false;
     this._dynamicFields.setText("userEntryField", "");
@@ -187,6 +406,7 @@ RetroC64ShopCommandsUiScene.prototype.handleKey = function(key) {
   };
   if (this._ITEM_ENTRIES.hasOwnProperty(key)) {
     let item = JSON.parse(JSON.stringify(this._ITEM_ENTRIES[key]));
+    entry = item.name;
     if ((item.name === "RAPIER" || item.name === "BOW AND ARROWS")
         && RetroC64AkalabethController.character.class === "M") {
       message = "I'M SORRY - MAGES CAN'T USE THAT!";
@@ -202,6 +422,7 @@ RetroC64ShopCommandsUiScene.prototype.handleKey = function(key) {
   } else {
     if (key === "Q") {
       // quit
+      entry = "QUIT";
       message = "BYE";
       callback = function() {
         this._playingAnimation = false;
@@ -219,7 +440,7 @@ RetroC64ShopCommandsUiScene.prototype.handleKey = function(key) {
       message = "I'M SORRY WE DON'T HAVE THAT.";
     }
   }
-  this._dynamicFields.setText("userEntryField", key);
+  this._dynamicFields.setText("userEntryField", entry);
   this._dynamicFields.setText("messageField", message);
   // move the cursor
   let x = -0.5 + this._dynamicFields.getObject("promptField")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message

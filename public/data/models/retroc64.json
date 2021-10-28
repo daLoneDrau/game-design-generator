@@ -60,6 +60,7 @@
           ],
           "classHandle": "SceneController",
           "fileHandle": "scene-controller",
+          "weight": 0,
           "uid": "kuvp9k2j3kwh9rvfmqg"
         },
         {
@@ -139,6 +140,16 @@
                         "required import"
                       ],
                       "uid": "kv8dzcrd20j5hfya1mt"
+                    },
+                    {
+                      "classUid": "kv8dmif2xlmo0uad7vs",
+                      "importHandle": "RetroC64AkalabethWorld",
+                      "importPath": "../../bus/akalabeth/retroc64-akalabeth-world",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kvb3tm77srn0t3kd0g"
                     }
                   ],
                   "uid": "kv8dmif23qjeh3md9tx"
@@ -273,6 +284,40 @@
                         }
                       ],
                       "uid": "kv8etxsy9jrtb29gexd"
+                    },
+                    {
+                      "title": "The World",
+                      "order": 4,
+                      "content": "The game world instance.",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_world",
+                          "fieldType": "RetroC64AkalabethWorld",
+                          "fieldValue": "new RetroC64AkalabethWorld()",
+                          "fieldDefinition": "The game world instance.",
+                          "order": "4",
+                          "uid": "kvb3rz6oyn9d53rnegd"
+                        },
+                        {
+                          "classUid": "kv8dmif2xlmo0uad7vs",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "world",
+                          "getterDefinition": "/**\n * Getter for field _world.\n * @returns {Object}\n */",
+                          "getterBody": "return _world;",
+                          "order": "4",
+                          "uid": "kvb3rz6ou6h8rz5p8w"
+                        }
+                      ],
+                      "uid": "kvb3rz6n2sltkzuz5rf"
                     }
                   ],
                   "design": [],
@@ -844,6 +889,443 @@
               ],
               "design": [],
               "uid": "kv8ezhl8r8534xesvwr"
+            },
+            {
+              "title": "The World",
+              "order": 4,
+              "content": "A class to represent the game world will be created using the 'prototype' template.",
+              "children": [
+                {
+                  "title": "The Akalabeth World Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classTitle": "Akalabeth World",
+                      "classHandle": "AkalabethWorld",
+                      "fileHandle": "akalabeth-world",
+                      "tags": [
+                        "class",
+                        "prototype"
+                      ],
+                      "classDefinition": "A class to represent the game world will be created using the 'prototype' template.",
+                      "weight": "1",
+                      "uid": "kvawexbw6imjj26ek5c",
+                      "filePath": [
+                        "bus",
+                        "akalabeth"
+                      ]
+                    },
+                    {
+                      "classUid": "kvawexbw6imjj26ek5c",
+                      "tags": [
+                        "code",
+                        "constructor body"
+                      ],
+                      "code": "Watchable.apply(this);",
+                      "order": 9999,
+                      "uid": "kvawexbwqjajkbb9xmp"
+                    },
+                    {
+                      "classUid": "kvawexbw6imjj26ek5c",
+                      "tags": [
+                        "code",
+                        "inheritance"
+                      ],
+                      "classInheritance": "Watchable",
+                      "order": 9999,
+                      "uid": "kvawexbw2sgvf4wqxsb"
+                    }
+                  ],
+                  "uid": "kvawexbwhx3ulbjd3f5"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Akalabeth World class will require the following imports:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kvawexbwgkoyrw0eqil"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Akalabeth World class will have the following private fields:",
+                  "children": [
+                    {
+                      "title": "TE%",
+                      "order": 1,
+                      "content": "placeholder",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_te",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "placeholder",
+                          "order": "1",
+                          "uid": "kva19ndw419b413qovu"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "te",
+                          "getterDefinition": "/**\n * Getter for field _te.\n * @returns {Object}\n */",
+                          "getterBody": "return this._te;",
+                          "order": "1",
+                          "uid": "kva19ndyk7s820lidbo"
+                        }
+                      ],
+                      "uid": "kva19ndwq40k0qar32i"
+                    },
+                    {
+                      "title": "TX",
+                      "order": 2,
+                      "content": "placeholder",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_tx",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "placeholder",
+                          "order": "2",
+                          "uid": "kvawtnc7oksgv5ugi9"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "tx",
+                          "getterDefinition": "/**\n * Getter for field _tx.\n * @returns {Number}\n */",
+                          "getterBody": "return this._tx;",
+                          "setterDefinition": "/**\n * Setter for field _tx.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._tx = value;\nthis.notifyWatchers(this);",
+                          "order": "2",
+                          "uid": "kvawtnc8oirobbnqikt"
+                        }
+                      ],
+                      "uid": "kvawtnc7qfmoxipf8h"
+                    },
+                    {
+                      "title": "TY",
+                      "order": 3,
+                      "content": "placeholder",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_ty",
+                          "fieldType": "int",
+                          "fieldValue": "0",
+                          "fieldDefinition": "placeholder",
+                          "order": "3",
+                          "uid": "kvawsz2dm2ek4bpjyyf"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter/setter property"
+                          ],
+                          "propertyName": "ty",
+                          "getterDefinition": "/**\n * Getter for field _ty.\n * @returns {Number}\n */",
+                          "getterBody": "return this._ty;",
+                          "setterDefinition": "/**\n * Setter for field _ty.\n * @param {PropertyKey} value the value\n */",
+                          "setterBody": "if (isNaN(parseInt(value))) {\n  throw [\"Invalid value\", value];\n}\nthis._ty = value;\nthis.notifyWatchers(this);",
+                          "order": "3",
+                          "uid": "kvawsz2dmlsb3bwobqn"
+                        }
+                      ],
+                      "uid": "kvawsz2cynlvugayuw8"
+                    },
+                    {
+                      "title": "XX%",
+                      "order": 4,
+                      "content": "placeholder",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_xx",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "placeholder",
+                          "order": "4",
+                          "uid": "kvawyswibdmm86m7hut"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "xx",
+                          "getterDefinition": "/**\n * Getter for field _xx.\n * @returns {Object}\n */",
+                          "getterBody": "return this._xx;",
+                          "order": "4",
+                          "uid": "kvawyswi53ornmff9ob"
+                        }
+                      ],
+                      "uid": "kvawyswhozxuemyo8p"
+                    },
+                    {
+                      "title": "YY%",
+                      "order": 5,
+                      "content": "place",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_yy",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "place",
+                          "order": "5",
+                          "uid": "kvawzf9j628se5ll5eu"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "yy",
+                          "getterDefinition": "/**\n * Getter for field _yy.\n * @returns {Object}\n */",
+                          "getterBody": "return this._yy;",
+                          "order": "5",
+                          "uid": "kvawzf9j0p3r1sgyauq"
+                        }
+                      ],
+                      "uid": "kvawzf9jwzejsal8ks"
+                    },
+                    {
+                      "title": "PER%",
+                      "order": 6,
+                      "content": "place",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_per",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "place",
+                          "order": "6",
+                          "uid": "kvax9hyukppzcxbpc3"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "per",
+                          "getterDefinition": "/**\n * Getter for field _per.\n * @returns {Object}\n */",
+                          "getterBody": "return this._per;",
+                          "order": "6",
+                          "uid": "kvax9hyvortvaw8jvta"
+                        }
+                      ],
+                      "uid": "kvax9hyubh58r7f071a"
+                    },
+                    {
+                      "title": "LD%",
+                      "order": 7,
+                      "content": "place",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_ld",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "place",
+                          "order": "7",
+                          "uid": "kvaxv9k12mtpb6zjbhn"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "ld",
+                          "getterDefinition": "/**\n * Getter for field _ld.\n * @returns {Object}\n */",
+                          "getterBody": "return this._ld;",
+                          "order": "7",
+                          "uid": "kvaxv9k1q598db8t0d"
+                        }
+                      ],
+                      "uid": "kvaxv9k04ps66f0p5e"
+                    },
+                    {
+                      "title": "CD%",
+                      "order": 8,
+                      "content": "place",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_cd",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "place",
+                          "order": "8",
+                          "uid": "kvaxw4m6fyaugwpzw6v"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "cd",
+                          "getterDefinition": "/**\n * Getter for field _cd.\n * @returns {Object}\n */",
+                          "getterBody": "return this._cd;",
+                          "order": "8",
+                          "uid": "kvaxw4m6r85smrijlin"
+                        }
+                      ],
+                      "uid": "kvaxw4m67g2t6jxgxp7"
+                    },
+                    {
+                      "title": "FT%",
+                      "order": 9,
+                      "content": "placew",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_ft",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "placew",
+                          "order": "9",
+                          "uid": "kvaxwudcox1rjor1dp"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "ft",
+                          "getterDefinition": "/**\n * Getter for field _ft.\n * @returns {Object}\n */",
+                          "getterBody": "return this._ft;",
+                          "order": "9",
+                          "uid": "kvaxwudcf1gmpel8xsi"
+                        }
+                      ],
+                      "uid": "kvaxwudbyny67ud19nm"
+                    },
+                    {
+                      "title": "LAD%",
+                      "order": 10,
+                      "content": "place",
+                      "children": [],
+                      "design": [
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "private field"
+                          ],
+                          "fieldName": "_lad",
+                          "fieldType": "array",
+                          "fieldValue": "[]",
+                          "fieldDefinition": "place",
+                          "order": "10",
+                          "uid": "kvaxxhy8iu4v6qerr"
+                        },
+                        {
+                          "classUid": "kvawexbw6imjj26ek5c",
+                          "tags": [
+                            "code",
+                            "public getter property"
+                          ],
+                          "propertyName": "lad",
+                          "getterDefinition": "/**\n * Getter for field _lad.\n * @returns {Object}\n */",
+                          "getterBody": "return this._lad;",
+                          "order": "10",
+                          "uid": "kvaxxhy89xto5wlqufa"
+                        }
+                      ],
+                      "uid": "kvaxxhy8ddp90qhp5hq"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kvawexbwvfxlq2kx0an"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Akalabeth World class will have the following public members:",
+                  "children": [],
+                  "design": [
+                    {
+                      "tags": [
+                        "public member",
+                        "code"
+                      ],
+                      "uid": "kva18espb77p2tefxz6",
+                      "classUid": "kvawexbw6imjj26ek5c",
+                      "memberName": "newWorld",
+                      "memberDefinition": "/**\n * Populates a new world.\n */",
+                      "arguments": "",
+                      "code": "// reset the this._te array\nthis._te.length = 0;\nfor (let i = 20; i >= 0; i--) {\n  let r = [];\n  for (let j = 20; j >= 0; j--) {\n    r.push(0);\n  }\n  this._te.push(r);\n}\n// fill the borders with 1s\nfor (let i = 0; i <= 20; i++) {\n  this._te[i][0] = 1;\n  this._te[0][i] = 1;\n  this._te[i][20] = 1;\n  this._te[20][i] = 1;\n}\n// randomly fill the interior\nfor (let x = 19; x >= 1; x--) {\n  for (let y = 19; y >= 1; y--) {\n    this._te[x][y] = Math.ceil(Math.random() ^ 5 * 4.5);\n    if (this._te[x][y] === 3 && Math.random() > 0.5) {\n      this._te[x][y] = 0;\n    }\n  }\n}\nthis._te[Math.ceil(Math.random() * 19 + 1)][Math.ceil(Math.random() * 19 + 1)] = 5;\nthis._tx = Math.ceil(Math.random() * 19 + 1);\nthis._ty = Math.ceil(Math.random() * 19 + 1);\nthis._te[this._tx][this._ty] = 3;\n\n// reset the this._xx and this._yy arrays\nthis._xx.length = 0;\nthis._yy.length = 0;\nfor (let i = 10; i >= 0; i--) {\n  this._xx.push(0);\n  this._yy.push(0);\n}\nthis._xx[0] = 139;\nthis._yy[0] = 79;\n\n// reset the this._per array\nthis._per.length = 0;\nfor (let i = 10; i >= 0; i--) {\n  let r = [];\n  for (let j = 3; j >= 0; j--) {\n    r.push(0);\n  }\n  this._per.push(r);\n}\n// fill the this._xx, this._yy, and this._per arrays with random values\nfor (let i = 2; i <= 20; i += 2) {\n  this._xx[i / 2] = Math.ceil(Math.atan(1 / i) / Math.atan(1) * 140 + .5);\n  this._yy[i / 2] = Math.ceil(this._xx[i / 2] * 4 / 7);\n  this._per[i / 2][0] = 139 - this._xx[i / 2];\n  this._per[i / 2][1] = 139 + this._xx[i / 2];\n  this._per[i / 2][2] = 79 - this._yy[i / 2];\n  this._per[i / 2][3] = 79 + this._yy[i / 2];\n}\nthis._per[0][0] = 0;\nthis._per[0][1] = 279;\nthis._per[0][2] = 0;\nthis._per[0][3] = 159;\n\n// reset the this._cd array\nthis._cd.length = 0;\nfor (let i = 10; i >= 0; i--) {\n  let r = [];\n  for (let j = 3; j >= 0; j--) {\n    r.push(0);\n  }\n  this._cd.push(r);\n}\n// fill the this._cd arrays with values\nfor (let i = 1; i <= 10; i++) {\n  this._cd[i][0] = 139 - this._xx[i] / 3;\n  this._cd[i][1] = 139 + this._xx[i] / 3;\n  this._cd[i][2] = 79 - this._yy[i] * .7;\n  this._cd[i][3] = 79 + this._yy[i];\n}\n\n// reset the this._ld array\nthis._ld.length = 0;\nfor (let i = 10; i >= 0; i--) {\n  let r = [];\n  for (let j = 5; j >= 0; j--) {\n    r.push(0);\n  }\n  this._ld.push(r);\n}\n// fill the this._ld arrays with values\nfor (let i = 0; i <= 9; i++) {\n  this._ld[i][0] = (this._per[i][0] * 2 + this._per[i + 1][0]) / 3;\n  this._ld[i][1] = (this._per[i][0] + 2 * this._per[i + 1][0]) / 3;\n\n  let w = this._ld[i][0] - this._per[i][0];\n  this._ld[i][2] = this._per[i][2] + w * 4 / 7;\n  this._ld[i][3] = this._per[i][2] + 2 * w * 4 / 7;\n\n  this._ld[i][4] = (this._per[i][3] * 2 + this._per[i + 1][3]) / 3;\n  this._ld[i][5] = (this._per[i][3] + 2 * this._per[i + 1][3]) / 3;\n  this._ld[i][2] = this._ld[i][4] - (this._ld[i][4] - this._ld[i][2]) * .8;\n  this._ld[i][3] = this._ld[i][5] - (this._ld[i][5] - this._ld[i][3]) * .8;\n  if (this._ld[i][3] === this._ld[i][4]) {\n    this._ld[i][3] = this._ld[i][3] - 1;\n  } \n}\n\n// reset the this._ft array\nthis._ft.length = 0;\nfor (let i = 10; i >= 0; i--) {\n  let r = [];\n  for (let j = 5; j >= 0; j--) {\n    r.push(0);\n  }\n  this._ft.push(r);\n}\n// fill the this._ft arrays with values\nfor (let i = 0; i <= 9; i++) {\n  this._ft[i][0] = 139 - this._xx[i] / 3;\n  this._ft[i][1] = 139 + this._xx[i] / 3;\n  this._ft[i][2] = 139 - this._xx[i + 1] / 3;\n  this._ft[i][3] = 139 + this._xx[i + 1] / 3;\n  this._ft[i][4] = 79 + (this._yy[i] * 2 + this._yy[i + 1]) / 3;\n  this._ft[i][5] = 79 + (this._yy[i] + 2 * this._yy[i + 1]) / 3;\n}\n\n// reset the this._lad array\nthis._lad.length = 0;\nfor (let i = 10; i >= 0; i--) {\n  let r = [];\n  for (let j = 3; j >= 0; j--) {\n    r.push(0);\n  }\n  this._lad.push(r);\n}\n// fill the this._lad arrays with values\nfor (let i = 0; i <= 9; i++) {\n  this._lad[i][0] = (this._ft[i][0] * 2 + this._ft[i][1]) / 3;\n  this._lad[i][1] = (this._ft[i][0] + 2 * this._ft[i][1]) / 3;\n  this._lad[i][3] = this._ft[i][4];\n  this._lad[i][2] = 159 - this._lad[i][3];\n}",
+                      "order": "1"
+                    }
+                  ],
+                  "uid": "kvawexbw66b69b927hd"
+                }
+              ],
+              "design": [],
+              "uid": "kvawexbvaflgquslq68"
             }
           ],
           "design": [],
@@ -1047,6 +1529,7 @@
                       ],
                       "classDefinition": "The Intro Scene is the first scene displayed when the game starts.",
                       "uid": "kuwtm4puhjdoptd1nrb",
+                      "weight": 1,
                       "filePath": [
                         "scenes",
                         "akalabeth"
@@ -1113,7 +1596,7 @@
                           ],
                           "fieldName": "_uiScene",
                           "fieldType": "RetroC64IntroUi",
-                          "fieldValue": "new RetroC64IntroUi({ scene: _scene, show: true })",
+                          "fieldValue": "new RetroC64IntroUi({ scene: _scene, show: false })",
                           "fieldDefinition": "the UI Scene instance used by all scene states.",
                           "order": "1",
                           "uid": "kuy311auiem9c1thhfj"
@@ -1748,7 +2231,7 @@
                               ],
                               "fieldName": "_playerStatsUiScene",
                               "fieldType": "UiScene",
-                              "fieldValue": "new RetroC64PlayerStatsUiScene({ scene: _scene, show: true })",
+                              "fieldValue": "new RetroC64PlayerStatsUiScene({ scene: _scene, show: false })",
                               "fieldDefinition": "RetroC64PlayerStatsUiScene instance",
                               "order": "10",
                               "uid": "kv6x6lqpbkrcvp0n4gf"
@@ -2043,7 +2526,7 @@
                               ],
                               "fieldName": "_shopCommandsUiScene",
                               "fieldType": "UiScene",
-                              "fieldValue": "new RetroC64ShopCommandsUiScene({ scene: _scene, show: true })",
+                              "fieldValue": "new RetroC64ShopCommandsUiScene({ scene: _scene, show: false })",
                               "fieldDefinition": "RetroC64ShopCommandsUiScene instance",
                               "order": "10",
                               "uid": "kv6xfb1lqtkupbh42lj"
@@ -2065,7 +2548,7 @@
                               ],
                               "uid": "kv6ypfmm19ize0rti9u",
                               "classUid": "kv6xfb1k71dg3sn7c1v",
-                              "code": "this._VIEWS[[RetroC64Constants.AKALABETH_SETUP]] = {\n  group: null,\n  children: [\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \" WELCOME TO AKALABETH, WORLD OF DOOM!\", // text\n      ],\n      position: [-0.5, 11],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"  (PLEASE WAIT)\", // text\n      ],\n      position: [-0.5, 22],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    }\n  ]\n};",
+                              "code": "this._VIEWS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = {\n  group: null,\n  comment: [\n    \"THE SHOP VIEW IS BROKEN OUT INTO THREE ROWS:\",\n    \"TOP - PLAYER STATS AND EQUIPMENT\",\n    \"MIDDLE - USER COMMAND SUMMARY AND ENTRY\",\n    \"BOTTOM - EQUIPMENT FOR PURCHASE\",\n    \"THIS IS THE TOP ROW\"\n  ],\n  children: [\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"F-FOOD\", // text\n      ],\n      position: [0, 9],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"R-RAPIER\", // text\n      ],\n      position: [0, 10],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"A-AXE\", // text\n      ],\n      position: [3, 9],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"S-SHIELD\", // text\n      ],\n      position: [3, 10],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"Q-QUIT\", // text\n      ],\n      position: [3, 11],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"B-BOW AND ARROW\", // text\n      ],\n      position: [5, 9],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"M-MAGIC AMULET\", // text\n      ],\n      position: [5, 10],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"WELCOME TO THE ADVENTURE SHOP\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 12\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"WHICH ITEM SHALT THOU BUY? \", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 13\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"promptField\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: {\n            field: \"promptField\",\n            dimension: \"width\"\n          }\n        },\n        y: 13\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"userEntryField\"\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"\", // text\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: 2\n        },\n        y: 14\n      },\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"messageField\"\n    },\n    {\n      comment: \"CREATE TWO IMAGES, CURSOR_ON AND CURSOR_OFF. OFF IS MADE FIRST, SINCE THE GRAPHICS NEEDS TO BE EMPTY\",\n      type: \"graphics-texture\",\n      commands: [\n        {\n          order: 1,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 0] // color, alpha\n        },\n        {\n          order: 2,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 3,\n          command: \"generateTexture\",\n          args: [\"cursor_off\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 4,\n          command: \"fillStyle\",\n          args: [0xA6A1FF, 1] // color, alpha\n        },\n        {\n          order: 5,\n          command: \"fillRect\",\n          args: [0, 0, 16, 16], // x, y, width, height, corner radius,\n          \"scale controlled args\": [] // no scaled graphics\n        },\n        {\n          order: 6,\n          command: \"generateTexture\",\n          args: [\"cursor_on\", 16, 16], // key, scale width, scale height\n          \"scale controlled args\": [] // no scaled graphics\n        },\n      ]\n    },\n    {\n      comment: \"CREATE CURSOR SPRITE\",\n      type: \"sprite\",\n      args: [\n        0, // x\n        0, // y\n        \"cursor_on\" // texture\n      ],\n      position: {\n        x: {\n          fixed: -0.5,\n          offset: {\n            field: \"promptField\",\n            pixel: 2\n          }\n        },\n        y: {\n          fixed: 13,\n          offset: -1\n        }\n      },\n      origin: [0, 0.5],\n      dynamicField: \"blinkingCursor\"\n    }\n  ]\n};",
                               "order": "1"
                             }
                           ],
@@ -2153,7 +2636,7 @@
                               "memberName": "handleKey",
                               "memberDefinition": "/**\n * Handles a key event.\n * @param {string} key the key\n */",
                               "arguments": "key",
-                              "code": "key = key.toUpperCase();\nlet message = \"\";\nlet callback = function() {\n  this._playingAnimation = false;\n  this._dynamicFields.setText(\"userEntryField\", \"\");\n  this._dynamicFields.setText(\"messageField\", \"\");\n  // move the cursor\n  let x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\n  x += 2 / this._COLUMN_WIDTH; // add 2px buffer\n  let y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\n  this._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n};\nif (this._ITEM_ENTRIES.hasOwnProperty(key)) {\n  let item = JSON.parse(JSON.stringify(this._ITEM_ENTRIES[key]));\n  if ((item.name === \"RAPIER\" || item.name === \"BOW AND ARROWS\")\n      && RetroC64AkalabethController.character.class === \"M\") {\n    message = \"I'M SORRY - MAGES CAN'T USE THAT!\";\n  } else {\n    if (RetroC64AkalabethController.character.gold >= item.price) {\n      message = item.purchaseMessage;\n      RetroC64AkalabethController.character.addToInventory(item);\n      RetroC64AkalabethController.character.gold -= item.price;\n    } else {\n      message = \"M'LORD THOU CAN NOT AFFORD THAT ITEM.\";\n    }\n  }\n} else {\n  if (key === \"Q\") {\n    // quit\n    message = \"BYE\";\n    callback = function() {\n      this._playingAnimation = false;\n      this._dynamicFields.setText(\"userEntryField\", \"\");\n      this._dynamicFields.setText(\"messageField\", \"\");\n      // move the cursor back\n      let x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\n      x += 2 / this._COLUMN_WIDTH; // add 2px buffer\n      let y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\n      this._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n      // move on the next scene\n      RetroC64SceneController.switch(this._callbackScene);\n    };\n  } else {\n    message = \"I'M SORRY WE DON'T HAVE THAT.\";\n  }\n}\nthis._dynamicFields.setText(\"userEntryField\", key);\nthis._dynamicFields.setText(\"messageField\", message);\n// move the cursor\nlet x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\nx += this._dynamicFields.getObject(\"userEntryField\")[0].width / this._COLUMN_WIDTH; // to the right of the user entry\nx += 2 / this._COLUMN_WIDTH; // add 2px buffer\nlet y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\nthis._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n// begin animation sequence\nthis._playingAnimation = true;\nthis._scene.time.delayedCall(\n  2000, // milliseconds\n  callback, // callback function\n  [], // args\n  this // the scope object\n);",
+                              "code": "key = key.toUpperCase();\nlet message = \"\";\nlet entry = key;\nlet callback = function() {\n  this._playingAnimation = false;\n  this._dynamicFields.setText(\"userEntryField\", \"\");\n  this._dynamicFields.setText(\"messageField\", \"\");\n  // move the cursor\n  let x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\n  x += 2 / this._COLUMN_WIDTH; // add 2px buffer\n  let y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\n  this._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n};\nif (this._ITEM_ENTRIES.hasOwnProperty(key)) {\n  let item = JSON.parse(JSON.stringify(this._ITEM_ENTRIES[key]));\n  entry = item.name;\n  if ((item.name === \"RAPIER\" || item.name === \"BOW AND ARROWS\")\n      && RetroC64AkalabethController.character.class === \"M\") {\n    message = \"I'M SORRY - MAGES CAN'T USE THAT!\";\n  } else {\n    if (RetroC64AkalabethController.character.gold >= item.price) {\n      message = item.purchaseMessage;\n      RetroC64AkalabethController.character.addToInventory(item);\n      RetroC64AkalabethController.character.gold -= item.price;\n    } else {\n      message = \"M'LORD THOU CAN NOT AFFORD THAT ITEM.\";\n    }\n  }\n} else {\n  if (key === \"Q\") {\n    // quit\n    entry = \"QUIT\";\n    message = \"BYE\";\n    callback = function() {\n      this._playingAnimation = false;\n      this._dynamicFields.setText(\"userEntryField\", \"\");\n      this._dynamicFields.setText(\"messageField\", \"\");\n      // move the cursor back\n      let x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\n      x += 2 / this._COLUMN_WIDTH; // add 2px buffer\n      let y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\n      this._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n      // move on the next scene\n      RetroC64SceneController.switch(this._callbackScene);\n    };\n  } else {\n    message = \"I'M SORRY WE DON'T HAVE THAT.\";\n  }\n}\nthis._dynamicFields.setText(\"userEntryField\", entry);\nthis._dynamicFields.setText(\"messageField\", message);\n// move the cursor\nlet x = -0.5 + this._dynamicFields.getObject(\"promptField\")[0].width / this._COLUMN_WIDTH; // to the right of the prompt message\nx += this._dynamicFields.getObject(\"userEntryField\")[0].width / this._COLUMN_WIDTH; // to the right of the user entry\nx += 2 / this._COLUMN_WIDTH; // add 2px buffer\nlet y = 13 - 1 / this._ROW_HEIGHT; // move up 1 pixel (looks better);\nthis._grid.placeAt(x, y, this._dynamicFields.getObject(\"blinkingCursor\")[0]);\n// begin animation sequence\nthis._playingAnimation = true;\nthis._scene.time.delayedCall(\n  2000, // milliseconds\n  callback, // callback function\n  [], // args\n  this // the scope object\n);",
                               "order": "1"
                             }
                           ],
@@ -2249,7 +2732,7 @@
                               ],
                               "fieldName": "_shopInventoryUi",
                               "fieldType": "UiScene",
-                              "fieldValue": "new RetroC64ShopInventoryUi({ scene: _scene, show: true })",
+                              "fieldValue": "new RetroC64ShopInventoryUi({ scene: _scene, show: false })",
                               "fieldDefinition": "RetroC64ShopInventoryUi instance",
                               "order": "10",
                               "uid": "kv6xjz4o4mczmavgg8c"
@@ -2485,7 +2968,7 @@
                     {
                       "title": "Setup UI",
                       "order": 1,
-                      "content": "A UI class for displaying a wait message while the world is populated.",
+                      "content": "A UI class for displaying a wait message while the world is populated. When this scene begins displaying, it will trigger the Game World to populate itself.  While this is happening, a 'Wait' message will appear on-screen. The UI scene will play for 10 cycles before moving on the the World Map.",
                       "children": [
                         {
                           "title": "The UI Scene Class",
@@ -2580,6 +3063,94 @@
                                 }
                               ],
                               "uid": "kv9xt2fmhi0octnu9bi"
+                            },
+                            {
+                              "title": "Cycle Length",
+                              "order": 2,
+                              "content": "The time each cycle of the scene is supposed to last.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kv9vv4urtmoykuxe78r",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_cycleLength",
+                                  "fieldType": "int",
+                                  "fieldValue": "500",
+                                  "fieldDefinition": "The time each cycle of the scene is supposed to last.",
+                                  "order": "2",
+                                  "uid": "kvb415n7hee8vfzygef"
+                                }
+                              ],
+                              "uid": "kvb415n6hmdn3nq05up"
+                            },
+                            {
+                              "title": "Max Cycles",
+                              "order": 3,
+                              "content": "The number of cycles to run before moving to the next scene.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kv9vv4urtmoykuxe78r",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_maxCycles",
+                                  "fieldType": "int",
+                                  "fieldValue": "10",
+                                  "fieldDefinition": "The number of cycles to run before moving to the next scene.",
+                                  "order": "3",
+                                  "uid": "kvb42kacyq5b447ii79"
+                                }
+                              ],
+                              "uid": "kvb42kab8h2tdy1ve8u"
+                            },
+                            {
+                              "title": "Cycle Start Time",
+                              "order": 4,
+                              "content": "A field to track the time (in ms) when the last cycle was started.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kv9vv4urtmoykuxe78r",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_cycleStartTime",
+                                  "fieldType": "int",
+                                  "fieldValue": "0",
+                                  "fieldDefinition": "A field to track the time (in ms) when the last cycle was started.",
+                                  "order": "4",
+                                  "uid": "kvb460vhw0i1agdborb"
+                                }
+                              ],
+                              "uid": "kvb460vh5txa13evy3l"
+                            },
+                            {
+                              "title": "Number of Cycles",
+                              "order": 6,
+                              "content": "The number of cycles that have run.",
+                              "children": [],
+                              "design": [
+                                {
+                                  "classUid": "kv9vv4urtmoykuxe78r",
+                                  "tags": [
+                                    "code",
+                                    "private field"
+                                  ],
+                                  "fieldName": "_numCycles",
+                                  "fieldType": "int",
+                                  "fieldValue": "0",
+                                  "fieldDefinition": "The number of cycles that have run.",
+                                  "order": "6",
+                                  "uid": "kvb4qsnqekrab54ofg"
+                                }
+                              ],
+                              "uid": "kvb4qsnolxlxvsx9fhb"
                             }
                           ],
                           "design": [
@@ -2591,7 +3162,7 @@
                               ],
                               "fieldName": "_setupUi",
                               "fieldType": "UiScene",
-                              "fieldValue": "new RetroC64SetupUi({ scene: _scene, show: true })",
+                              "fieldValue": "new RetroC64SetupUi({ scene: _scene, show: false })",
                               "fieldDefinition": "RetroC64SetupUi instance",
                               "order": "10",
                               "uid": "kv9vv4us55nzm9hntjq"
@@ -2605,7 +3176,18 @@
                           "content": "The UI class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
                           "requires design": true,
                           "children": [],
-                          "design": [],
+                          "design": [
+                            {
+                              "tags": [
+                                "constructor body",
+                                "code"
+                              ],
+                              "uid": "kv9yt3kap5m1s4zy6cn",
+                              "classUid": "kv9vv4urtmoykuxe78r",
+                              "code": "this._VIEWS[[RetroC64Constants.AKALABETH_SETUP]] = {\n  group: null,\n  children: [\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \" WELCOME TO AKALABETH, WORLD OF DOOM!\", // text\n      ],\n      position: [-0.5, 11],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447\n    },\n    {\n      type: \"bitmapText\",\n      args: [\n        0, // x\n        0, // y\n        \"c64_pro_style_16\", // font\n        \"  (PLEASE WAIT)\", // text\n      ],\n      position: [-0.5, 22],\n      origin: [0, 0.5],\n      scale: 1,\n      tint: 10920447,\n      dynamicField: \"waitField\"\n    }\n  ]\n};",
+                              "order": "1"
+                            }
+                          ],
                           "uid": "kv9vv4us7ftms4n7ck8"
                         },
                         {
@@ -2614,7 +3196,18 @@
                           "content": "The UI class will have key listeners for the following views:",
                           "requires design": true,
                           "children": [],
-                          "design": [],
+                          "design": [
+                            {
+                              "classUid": "kv9vv4urtmoykuxe78r",
+                              "tags": [
+                                "code",
+                                "constructor body"
+                              ],
+                              "code": "this._KEY_UP_EVENT_HANDLERS[[RetroC64Constants.AKALABETH_SETUP]] = function(event, context) {};",
+                              "order": "20",
+                              "uid": "kvb9vvm30wv6mstye5ce"
+                            }
+                          ],
                           "uid": "kv9vv4usib39s93kgz"
                         },
                         {
@@ -2673,7 +3266,7 @@
                               ],
                               "uid": "kv9y3m2y7d8tk8k8bw",
                               "classUid": "kv9vv4urtmoykuxe78r",
-                              "code": "if (this._firstUpdate) {\n  console.log(\"first update\");\n  this._firstUpdate = false;\n}",
+                              "code": "if (this._firstUpdate) {\n  console.log(\"first update\");\n  RetroC64AkalabethController.world.newWorld();\n  this._firstUpdate = false;\n  this._cycleStartTime = time;\n}\nif (this._cycleStartTime + this._cycleLength <= time) {\n  if (this._numCycles < this._maxCycles) {\n    this._dynamicFields.setText(\"waitField\", [this._dynamicFields.getText(\"waitField\"), \".\"].join(\"\"));\n    this._cycleStartTime = time;\n    this._numCycles++;\n  } else {\n    // reset all variables\n    this._firstUpdate = true;\n    this._numCycles = 0;\n    // move on the next scene\n    RetroC64SceneController.switch(RetroC64Constants.AKALABETH_WORLD_MAP);\n  }\n}",
                               "order": "1"
                             }
                           ],
@@ -2690,6 +3283,157 @@
               ],
               "design": [],
               "uid": "kv9uwd8g2qqk6ts9kt"
+            },
+            {
+              "title": "The World Map View",
+              "order": 4,
+              "content": "When play first starts, the player will be shown the World Map scene",
+              "children": [
+                {
+                  "title": "The Scene Container Class",
+                  "order": 1,
+                  "content": "A Scene Container class will need to be defined.  The Scene Container template will be used.",
+                  "children": [],
+                  "design": [
+                    {
+                      "classTitle": "Akalabeth World Map Scene",
+                      "classHandle": "AkalabethWorldMapScene",
+                      "fileHandle": "akalabeth-world-map-scene",
+                      "tags": [
+                        "class",
+                        "scene-container"
+                      ],
+                      "classDefinition": "When play first starts, the player will be shown the World Map scene",
+                      "weight": "1",
+                      "uid": "kvb9u882akpjwedlt4",
+                      "filePath": [
+                        "scenes",
+                        "akalabeth"
+                      ]
+                    }
+                  ],
+                  "uid": "kvb9u883qit63bppi8"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Game class will include the Scene Container as a required import.\nThe Scene Container class will require the following imports:",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "AF89DG9sgahg9",
+                      "importHandle": "RetroC64AkalabethWorldMapScene",
+                      "importPath": "../scenes/akalabeth/retroc64-akalabeth-world-map-scene",
+                      "tags": [
+                        "code",
+                        "required import"
+                      ],
+                      "uid": "kvb9u88397eodcozo4l"
+                    }
+                  ],
+                  "uid": "kvb9u883l8hgr44tad"
+                },
+                {
+                  "title": "Postboot Processing",
+                  "order": 3,
+                  "content": "The Scene Container class will need to be added to the Game class postboot processing.",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "AF89DG9sgahg9",
+                      "tags": [
+                        "code",
+                        "postboot"
+                      ],
+                      "code": "_game.scene.queueOp(\"start\", \"AkalabethWorldMapScene\");",
+                      "order": "1",
+                      "uid": "kvb9u88337mc5mhzk5n"
+                    }
+                  ],
+                  "uid": "kvb9u883xeooa820ck"
+                },
+                {
+                  "title": "Scene Key",
+                  "order": 4,
+                  "content": "The Scene Container class will need to be added to the scene groups in the Scene Controller class.",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2j3kwh9rvfmqg",
+                      "tags": [
+                        "code",
+                        "scene group"
+                      ],
+                      "sceneKey": "[RetroC64Constants.AKALABETH_WORLD_MAP]",
+                      "sceneValue": "\"AkalabethWorldMapScene\"",
+                      "order": "1",
+                      "uid": "kvb9u883yzzxksy64mk"
+                    }
+                  ],
+                  "uid": "kvb9u883lafqtp26be7"
+                },
+                {
+                  "title": "Scene states",
+                  "order": 5,
+                  "content": "A State Group will need to be added to the App Constants for this Scene Container",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2jit3fzra9nj9",
+                      "groupName": "AKALABETH_WORLD_MAP_STATES",
+                      "tags": [
+                        "code",
+                        "group properties"
+                      ],
+                      "elements": [
+                        {
+                          "elementName": "AKALABETH_WORLD_MAP_DISPLAY",
+                          "elementValue": "1",
+                          "elementDefinition": "The initial state.",
+                          "order": 1
+                        }
+                      ],
+                      "uid": "kvb9y59g0uuqloxzrh5m"
+                    }
+                  ],
+                  "uid": "kvb9u883fzfac6719y"
+                },
+                {
+                  "title": "Scene Initial State",
+                  "order": 6,
+                  "content": "The Scene Container initial state is set in the 'create' method of the Scene Controller class. It will be set to the following state:",
+                  "requires design": true,
+                  "children": [],
+                  "design": [
+                    {
+                      "classUid": "kuvp9k2j3kwh9rvfmqg",
+                      "tags": [
+                        "code",
+                        "create"
+                      ],
+                      "code": "\n// set initial state for Equipment Shot\n[app-handle]AkalabethWorldMapScene.state = [app-handle]Constants.AKALABETH_WORLD_MAP_DISPLAY;",
+                      "order": "4",
+                      "uid": "kvba1eiiobxp9qzx3sf"
+                    }
+                  ],
+                  "uid": "kvb9u8836ul70h9ycw3"
+                },
+                {
+                  "title": "Child Scenes",
+                  "order": 7,
+                  "content": "The Scene Container is just that: a container.  It will manage the following child scenes:",
+                  "requires design": true,
+                  "children": [],
+                  "design": [],
+                  "uid": "kvb9u883oba77nbfmf"
+                }
+              ],
+              "design": [],
+              "uid": "kvb9u880xqak4zoc7c"
             }
           ],
           "design": [],

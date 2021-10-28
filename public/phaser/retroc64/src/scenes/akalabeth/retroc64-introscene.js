@@ -15,7 +15,7 @@ var RetroC64IntroScene = (function() {
   /** @private The current state. */
   let _state = "";
   /** @private the UI Scene instance used by all scene states. */
-  let _uiScene = new RetroC64IntroUi({ scene: _scene, show: true });
+  let _uiScene = new RetroC64IntroUi({ scene: _scene, show: false });
   /** @private The map of child scenes. */
   const _SCENES = {
     /** @private the scene instance displayed during the equipment shop state */

@@ -66,6 +66,7 @@ var RetroC64SceneController = (function() {
     // set current scene
     this.switch("Main Menu");
     */
+    _sceneGroups[[RetroC64Constants.AKALABETH_WORLD_MAP]] = ["AkalabethWorldMapScene"];
     _sceneGroups[[RetroC64Constants.AKALABETH_SETUP]] = ["SetupScene"];
     _sceneGroups[[RetroC64Constants.AKALABETH_CHARACTER_CREATION]] = ["IntroScene"];
     _sceneGroups[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP]] = ["ShopScene"];
@@ -77,6 +78,9 @@ var RetroC64SceneController = (function() {
     
     // set initial state for Equipment Shot
     RetroC64SetupScene.state = RetroC64Constants.AKALABETH_SETUP;
+    
+    // set initial state for Equipment Shot
+    RetroC64AkalabethWorldMapScene.state = RetroC64Constants.AKALABETH_WORLD_MAP_DISPLAY;
     
     // set current scene
     this.switch(RetroC64Constants.AKALABETH_CHARACTER_CREATION);

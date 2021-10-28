@@ -5387,7 +5387,7 @@ const FormListener = (function() {
             attr: {
               type: "text",
               id: "sceneKeyEntry",
-              placeholder: "Enter Scene Key"
+              placeholder: "[MyAppConstants.SCENE_STATE]"
             }
           },
           {
@@ -6149,7 +6149,7 @@ const FormListener = (function() {
                   attr: {
                     type: "text",
                     id: "sceneKeyEntry",
-                    placeholder: "Enter Scene Key"
+                    placeholder: "[MyAppConstants.SCENE_STATE]"
                   }
                 }
               ]
