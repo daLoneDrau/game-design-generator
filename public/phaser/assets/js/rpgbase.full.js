@@ -4985,14 +4985,40 @@ function IndexMinPQ(nmax) {
 function AlignmentGrid(parameterObject) {
   /** @private The parent object used to determine the screen dimensions. If a Phaser.Scene instance is not supplied it defaults to the Phaser.Game instance. */
   this._parent = null;
-  /** @private The # of cells wide the grid should be. */
+  /** @private The width of a grid cell. */
   this._cellWidth = 0;
-  /** @private The # of cells high the grid should be. */
+  /** @private The height of a grid cell. */
   this._cellHeight = 0;
+  /** @private The grid's x-offset. */
+  this._xOffset = 0;
+  /** @private The grid's y-offset. */
+  this._yOffset = 0;
+  /** @private The grid's height. only used when rendering guidleines. */
+  this._gridHeight = -1;
+  /** @private The grid's width. only used when rendering guidleines. */
+  this._gridWidth = -1;
   
   this._parent = parameterObject.parent;
   this._cellWidth = this._parent.scale.width / parameterObject.columns;
   this._cellHeight = this._parent.scale.height / parameterObject.rows;
+  if (parameterObject.hasOwnProperty("cellWidth")) {
+    this._cellWidth = parameterObject.cellWidth;
+  }
+  if (parameterObject.hasOwnProperty("cellHeight")) {
+    this._cellHeight = parameterObject.cellHeight;
+  }
+  if (parameterObject.hasOwnProperty("xOffset")) {
+    this._xOffset = parameterObject.xOffset;
+  }
+  if (parameterObject.hasOwnProperty("yOffset")) {
+    this._yOffset = parameterObject.yOffset;
+  }
+  if (parameterObject.hasOwnProperty("gridHeight")) {
+    this._gridHeight = parameterObject.gridHeight;
+  }
+  if (parameterObject.hasOwnProperty("gridWidth")) {
+    this._gridWidth = parameterObject.gridWidth;
+  }
 };
 AlignmentGrid.prototype = Object.create(Phaser.GameObjects.Group.prototype);
 AlignmentGrid.prototype.constructor = Phaser.GameObjects.Group;
@@ -5008,8 +5034,8 @@ AlignmentGrid.prototype.placeAt = function(x, y, obj) {
   //calculate the center of the cell
   //by adding half of the height and width
   //to the x and y of the coordinates
-  let x2 = this._cellWidth * x + this._cellWidth / 2;
-  let y2 = this._cellHeight * y + this._cellHeight / 2;
+  let x2 = this._cellWidth * x + this._cellWidth / 2 + this._xOffset;
+  let y2 = this._cellHeight * y + this._cellHeight / 2 + this._yOffset;
   obj.x = x2;
   obj.y = y2;
 }
@@ -5020,12 +5046,33 @@ AlignmentGrid.prototype.show = function() {
   if (typeof(this.graphics) === "undefined") {
     this.graphics = this._parent.add.graphics({ lineStyle: { width: 4, color: 0xff0000, alpha: 1 } });
   }
-  for (let i = 0; i <= this._parent.scale.width; i += this._cellWidth) {
-    let line = new Phaser.Geom.Line(i, 0, i, this._parent.scale.height);
+  let maxXPosition = this._parent.scale.width;
+  let gridWidth = this._parent.scale.width;
+  if (this._gridWidth > 0) {
+    gridWidth = this._gridWidth * this._cellWidth;
+    if (this._xOffset < 0) {
+      gridWidth += this._xOffset
+    }
+    maxXPosition = this._xOffset + gridWidth;
+  }
+  maxXPosition = Math.min(maxXPosition, this._parent.scale.width);
+
+  let maxYPosition = this._parent.scale.height;
+  let gridHeight = this._parent.scale.height;
+  if (this._gridHeight > 0) {
+    gridHeight = this._gridHeight * this._cellHeight;
+    if (this._yOffset < 0) {
+      gridHeight += this._yOffset
+    }
+    maxYPosition = this._yOffset + gridHeight;
+  }
+  maxYPosition = Math.min(maxYPosition, this._parent.scale.height);
+  for (let i = this._xOffset; i <= maxXPosition; i += this._cellWidth) {
+    let line = new Phaser.Geom.Line(i, 0, i, gridHeight);
     this.graphics.strokeLineShape(line);
   }
-  for (let i = 0; i <= this._parent.scale.height; i += this._cellHeight) {
-    let line = new Phaser.Geom.Line(0, i, this._parent.scale.width, i);
+  for (let i = this._yOffset; i <= maxYPosition; i += this._cellHeight) {
+    let line = new Phaser.Geom.Line(0, i, gridWidth, i);
     this.graphics.strokeLineShape(line);
   }
 }
@@ -5108,6 +5155,7 @@ CardGame.prototype.shuffleDeck = function() {
     this._deck.push(this._discard.splice(i, 1)[0]);
   }
 }
+
 /**
  * @class Base class for a Phaser.Scene that will be used for the UI.
  * @param {object} parameterObject optional initialization parameters
@@ -5120,6 +5168,20 @@ function UiScene(parameterObject) {
     columns: parameterObject.columns,
     rows: parameterObject.rows,
     show: parameterObject.show
+  }
+  if (parameterObject.hasOwnProperty("cellWidth") && parameterObject.hasOwnProperty("cellHeight")) {
+    this._gridLayout.cellWidth = parameterObject.cellWidth;
+    this._gridLayout.cellHeight = parameterObject.cellHeight;
+  }
+  if (parameterObject.hasOwnProperty("xOffset")) {
+    this._gridLayout.xOffset = parameterObject.xOffset;
+  }
+  if (parameterObject.hasOwnProperty("yOffset")) {
+    this._gridLayout.yOffset = parameterObject.yOffset;
+  }
+  if (parameterObject.hasOwnProperty("gridHeight") && parameterObject.hasOwnProperty("gridWidth")) {
+    this._gridLayout.gridHeight = parameterObject.gridHeight;
+    this._gridLayout.gridWidth = parameterObject.gridWidth;
   }
   /** @private the alignment grid instance. */
   this._grid;
@@ -5257,6 +5319,22 @@ function UiScene(parameterObject) {
           _dictionary[key][i].setTint(topLeft, topRight, bottomLeft, bottomRight);
         }
       },
+      /**
+       * Sets the visibility of this Game Object.
+       * @param {string} key the entry key
+       * @param {boolean} value The visible state of the Game Object.
+       */
+      setVisible: function(key, value) {
+        if (typeof(key) !== "string" && !(key instanceof String)) {
+          throw ["Invalid key", key];
+        }
+        if (!_dictionary.hasOwnProperty(key)) {
+          throw ["Invalid key", key];
+        }
+        for (let i = _dictionary[key].length - 1; i >= 0; i--) {
+          _dictionary[key][i].setVisible(value);
+        }
+      },
       getObject: function(key) { return _dictionary[key]; }
     }
   }());
@@ -5276,11 +5354,8 @@ Object.assign(UiScene.prototype, Watcher.prototype);
  */
 UiScene.prototype.create = function(data) {
   // create a grid for laying out elements
-  this._grid = new AlignmentGrid({
-    parent: this._scene,
-    columns: this._gridLayout.columns,
-    rows: this._gridLayout.rows
-  });
+  this._gridLayout.parent = this._scene;
+  this._grid = new AlignmentGrid(this._gridLayout);
   //turn on the lines for testing
   //and layout
   if (this._gridLayout.show) {
@@ -5358,6 +5433,14 @@ UiScene.prototype.create = function(data) {
       // set the depth
       if (child.hasOwnProperty("depth")) {
         object.setDepth(child.depth); // set the depth property. the higher the number, the higher up it appears. default is 0
+      }
+      // set the angle
+      if (child.hasOwnProperty("angle")) {
+        object.setAngle(...child.angle); // set the scale property
+      }
+      // set the scale
+      if (child.hasOwnProperty("scale")) {
+        object.setScale(...child.scale); // set the scale property
       }
       switch (child.type) {
         case "bitmapText":
@@ -8605,6 +8688,6 @@ const RpguiUiFactory = (function() {
 })();
 
 if (typeof(module) !== "undefined") {
-  module.exports = { Condition, Direction, EquipmentItemModifier, FlagSet, InteractiveObject, InventoryData, InventorySlot, IoBehaviourData, IoEquipItem, IoItemData, IoNpcData, IoPcData, IoScript, IoSpellData, Location, AttributeLookupTable, VariableKeyTableEntry, PlayerAttribute, PlayerAttributeDescriptors, ScriptAction, ScriptTimer, StackedEvent, Watchable, Watcher, DijkstraUndirectedSearch, EdgeWeightedUndirectedGraph, GraphEdge, WeightedGraphEdge, GraphNode, SimpleVector3, SimpleVector2, HexCoordinateSystem, CompoundHexagon, Hexagon, IndexMinPQ, SimpleVector2, SimpleVector3, AlignmentGrid, CardGame, UiScene, Dice, Interactive, Script, AmigaUiFactoryOld, ContentBuilder, NesUiFactoryOld, AmigaUiFactory, C64UiFactory, HypercardUiFactory, I386UiFactory, NesUiFactory, RpguiUiFactory, UiFactory };
+  module.exports = { Condition, Direction, EquipmentItemModifier, FlagSet, InteractiveObject, InventoryData, InventorySlot, IoBehaviourData, IoEquipItem, IoItemData, IoNpcData, IoPcData, IoScript, IoSpellData, Location, AttributeLookupTable, VariableKeyTableEntry, PlayerAttribute, PlayerAttributeDescriptors, ScriptAction, ScriptTimer, StackedEvent, Watchable, Watcher, DijkstraUndirectedSearch, EdgeWeightedUndirectedGraph, GraphEdge, WeightedGraphEdge, GraphNode, SimpleVector3, SimpleVector2, HexCoordinateSystem, CompoundHexagon, Hexagon, IndexMinPQ, SimpleVector2, SimpleVector3, AlignmentGrid, CardGame, AlignmentGrid, UiScene, Dice, Interactive, Script, AmigaUiFactoryOld, ContentBuilder, NesUiFactoryOld, AmigaUiFactory, C64UiFactory, HypercardUiFactory, I386UiFactory, NesUiFactory, RpguiUiFactory, UiFactory };
 }
 

@@ -538,6 +538,65 @@ const ProjectManager = (function() {
         }
       ));
     },
+    "key listener handler": function($div, entry, className) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["Key Listener Handler for '", entry.entryKey, "' Added To ", className].join("")
+      }));
+      $div.append(_contentBuilder(
+        {
+          "dom": "pre",
+          "class": "language-javascript",
+          "children": [
+            {
+              "dom": "code",
+              "class": "language-javascript",
+              "children": [
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "style": "white-space: normal;",
+                  "content": entry.code.replace(/\n/g, "<br>")
+                }
+              ]
+            }
+          ]
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Edit Code",
+          "callback": {
+            "args": "",
+            "body": ["FormManager.displayEditDesignForm(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Code",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
     "private field": function($div, entry, className) {
       $div.append(_contentBuilder({
         "dom": "p",
@@ -680,6 +739,48 @@ const ProjectManager = (function() {
             "data-uid": entry.uid
           },
           "content": "Delete Prototype",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
+    "prototype requires": function($div, entry, className) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["Required Import Added To ", className].join("")
+      }));
+      $div.append(_contentBuilder(
+        {
+          "dom": "pre",
+          "class": "language-javascript",
+          "children": [
+            {
+              "dom": "code",
+              "class": "language-javascript",
+              "children": [
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": [entry.className, ".prototype.", entry.requiredSymbol, " = ", entry.requiredClass, ";"].join("")
+                }
+              ]
+            }
+          ]
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Import",
           "callback": {
             "args": "",
             "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
@@ -1385,6 +1486,48 @@ const ProjectManager = (function() {
         }
       ));
     },
+    "singleton requires": function($div, entry, className) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["Required Import Added To ", className].join("")
+      }));
+      $div.append(_contentBuilder(
+        {
+          "dom": "pre",
+          "class": "language-javascript",
+          "children": [
+            {
+              "dom": "code",
+              "class": "language-javascript",
+              "children": [
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": [entry.className, ".", entry.requiredSymbol, " = ", entry.requiredClass, ";"].join("")
+                }
+              ]
+            }
+          ]
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Import",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
     "ui-scene": function($div, entry) {
       $div.append(_contentBuilder({
         "dom": "p",
@@ -1455,6 +1598,148 @@ const ProjectManager = (function() {
             "data-uid": entry.uid
           },
           "content": "Delete UI Prototype",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
+    "unit test": function($div, entry, className) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["Unit Test '", entry.testHeader, "' Added To ", className].join("")
+      }));
+      $div.append(_contentBuilder(
+        {
+          "dom": "pre",
+          "class": "language-javascript",
+          "children": [
+            {
+              "dom": "code",
+              "class": "language-javascript",
+              "children": [
+                {
+                  "dom": "span",
+                  "class": "token comment",
+                  "style": "white-space: normal;",
+                  "content": entry.testDefinition.replace(/\n/g, "<br>")
+                },
+                {
+                  "dom": "br"
+                },
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": [" test(\"", entry.testDefinition, "\", (", entry.arguments, ") => {"].join("")
+                },
+                {
+                  "dom": "br"
+                },
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": entry.code.replace(/\n/g, "<br>")
+                },
+                {
+                  "dom": "br"
+                },
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": "}"
+                }
+              ]
+            }
+          ]
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Edit Code",
+          "callback": {
+            "args": "",
+            "body": ["FormManager.displayEditDesignForm(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Code",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
+    "view template": function($div, entry, className) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["View Template for '", entry.entryKey, "' Added To ", className].join("")
+      }));
+      $div.append(_contentBuilder(
+        {
+          "dom": "pre",
+          "class": "language-javascript",
+          "children": [
+            {
+              "dom": "code",
+              "class": "language-javascript",
+              "children": [
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "style": "white-space: normal;",
+                  "content": entry.code.replace(/\n/g, "<br>")
+                }
+              ]
+            }
+          ]
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Edit Code",
+          "callback": {
+            "args": "",
+            "body": ["FormManager.displayEditDesignForm(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Code",
           "callback": {
             "args": "",
             "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
@@ -1544,6 +1829,8 @@ const ProjectManager = (function() {
             ANNOTATIONS_BUILDER.game($div, entry, keys[j]);
           } else if (entry.tags.includes("group properties")) {
             ANNOTATIONS_BUILDER["group properties"]($div, entry, keys[j]);
+          } else if (entry.tags.includes("key listener handler")) {
+            ANNOTATIONS_BUILDER["key listener handler"]($div, entry, keys[j]);
           } else if (entry.tags.includes("required import")) {
             ANNOTATIONS_BUILDER["required import"]($div, entry, keys[j]);
           } else if (entry.tags.includes("scene")) {
@@ -1560,14 +1847,22 @@ const ProjectManager = (function() {
             ANNOTATIONS_BUILDER["scoped dictionary body"]($div, entry, keys[j]);
           } else if (entry.tags.includes("create") || entry.tags.includes("init") || entry.tags.includes("postboot") || entry.tags.includes("preboot") || entry.tags.includes("preload") || entry.tags.includes("update") || entry.tags.includes("constructor body")) {
             ANNOTATIONS_BUILDER["scoped method body"]($div, entry, keys[j]);
+          } else if (entry.tags.includes("prototype requires")) {
+            ANNOTATIONS_BUILDER["prototype requires"]($div, entry, keys[j]);
           } else if (entry.tags.includes("public member")) {
             ANNOTATIONS_BUILDER["public member"]($div, entry, keys[j]);
           } else if (entry.tags.includes("public setter property")) {
             ANNOTATIONS_BUILDER["public setter property"]($div, entry, keys[j]);
           } else if (entry.tags.includes("singleton")) {
             ANNOTATIONS_BUILDER.singleton($div, entry, keys[j]);
+          } else if (entry.tags.includes("singleton requires")) {
+            ANNOTATIONS_BUILDER["singleton requires"]($div, entry, keys[j]);
           } else if (entry.tags.includes("ui-scene")) {
             ANNOTATIONS_BUILDER["ui-scene"]($div, entry, keys[j]);
+          } else if (entry.tags.includes("unit test")) {
+            ANNOTATIONS_BUILDER["unit test"]($div, entry, keys[j]);
+          } else if (entry.tags.includes("view template")) {
+            ANNOTATIONS_BUILDER["view template"]($div, entry, keys[j]);
           } else {
             console.log("missing annotations for",entry.tags)
           }

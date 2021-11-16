@@ -541,6 +541,29 @@ const FormManager = (function() {
                                   content: "Application Constants"
                                 }
                               ]
+                            },
+                            {
+                              dom: "div",
+                              class: "form-check",
+                              children: [
+                                {
+                                  dom: "input",
+                                  class: "form-check-input",
+                                  attr: {
+                                    type: "checkbox",
+                                    value: "",
+                                    id: "appConfigCheckbox"
+                                  }
+                                },
+                                {
+                                  dom: "label",
+                                  class: "form-check-label",
+                                  attr: {
+                                    for: "appConfigCheckbox"
+                                  },
+                                  content: "Application Configuration"
+                                }
+                              ]
                             }                    
                           ]
                         },
@@ -1257,6 +1280,76 @@ const FormManager = (function() {
                         "value": "private field"
                       },
                       content: "Private Field Design Template"
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "value": "public member"
+                      },
+                      content: "Public Member Design Template"
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "data-divider": true
+                      },
+                      content: ""
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "value": "key listener handler"
+                      },
+                      content: "UI Scene Key Listener Handler"
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "value": "view template"
+                      },
+                      content: "UI Scene View Template"
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "data-divider": true
+                      },
+                      content: ""
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "value": "prototype test"
+                      },
+                      content: "Prototype Test Class"
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "value": "ui scene test"
+                      },
+                      content: "UI Scene Test Class"
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        "data-divider": true
+                      },
+                      content: ""
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        value: "unit test"
+                      },
+                      content: "Unit Test"
+                    },
+                    {
+                      dom: "option",
+                      attr: {
+                        value: "unit test each"
+                      },
+                      content: "Unit Test Each"
                     }
                   ]
                 }
@@ -1729,6 +1822,96 @@ const FormManager = (function() {
       }));
       $("#classUid").val(designEntry.classUid);
       $("#classInheritanceNameEntry").val(designEntry.classInheritance);
+    },
+    "key listener handler": function(designEntry) {
+      $("#hiddenTag").val("key listener handler");
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "PARENT CLASS",
+        dom: "input",
+        attr: {
+          type: "hidden",
+          id: "classUid"
+        }
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "LISTENER KEY",
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "keyEntry"
+            },
+            content: "Listener Key"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "keyEntry",
+              placeholder: "Enter Listener Key"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "KEY LISTENER HANDLER",
+        dom: "div",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "keyListenerCodeEntry"
+            },
+            content: "Key Listener Handler"
+          },
+          {
+            dom: "<textarea>",
+            class: "form-control",
+            attr: {
+              "rows": 10,
+              id: "keyListenerCodeEntry",
+              placeholder: "Enter Key Listener Handler"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "ORDER",
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "sectionOrderEntry"
+            },
+            content: "Order"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "sectionOrderEntry",
+              placeholder: "1, 2, 3. . ."
+            },
+            callback: {
+              keyup: {
+                args: "",
+                body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+              }
+            }
+          }
+        ]
+      }));
+      $("#classUid").val(designEntry.classUid);
+      $("#keyEntry").val(designEntry.entryKey);
+      $("#keyListenerCodeEntry").val(designEntry.code);
+      $("#sectionOrderEntry").val(designEntry.order);
     },
     "private field": function(designEntry) {
       $("#hiddenTag").val("private field");
@@ -2806,6 +2989,228 @@ const FormManager = (function() {
       $("#sectionContentEntry").val(designEntry.code);
       $("#sectionOrderEntry").val(designEntry.order);
     },
+    "unit test": function(designEntry) {
+      $("#hiddenTag").val("unit test");
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "PARENT CLASS",
+        dom: "input",
+        attr: {
+          type: "hidden",
+          id: "classUid"
+        }
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "testHeaderEntry"
+            },
+            content: "Test Header"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "testHeaderEntry",
+              placeholder: "Enter Test Header"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "testDefinitionEntry"
+            },
+            content: "Test Definition"
+          },
+          {
+            dom: "<textarea>",
+            class: "form-control",
+            attr: {
+              "rows": 5,
+              id: "testDefinitionEntry",
+              placeholder: "Enter Definition Here"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "memberArgsEntry"
+            },
+            content: "Member Arguments"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              id: "memberArgsEntry",
+              placeholder: "Enter Arguments Here"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "sectionContentEntry"
+            },
+            content: "Test Body Code"
+          },
+          {
+            dom: "<textarea>",
+            class: "form-control",
+            attr: {
+              "rows": 10,
+              id: "sectionContentEntry",
+              placeholder: "Enter Code Here"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "sectionOrderEntry"
+            },
+            content: "Order"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "sectionOrderEntry",
+              placeholder: "1, 2, 3. . ."
+            },
+            callback: {
+              keyup: {
+                args: "",
+                body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+              }
+            }
+          }
+        ]
+      }));
+      $("#classUid").val(designEntry.classUid);
+      $("#testHeaderEntry").val(designEntry.testHeader);
+      $("#testDefinitionEntry").val(designEntry.testDefinition);
+      $("#memberArgsEntry").val(designEntry.arguments);
+      $("#sectionContentEntry").val(designEntry.code);
+      $("#sectionOrderEntry").val(designEntry.order);
+    },
+    "view template": function(designEntry) {
+      $("#hiddenTag").val("view template");
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "PARENT CLASS",
+        dom: "input",
+        attr: {
+          type: "hidden",
+          id: "classUid"
+        }
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "VIEW KEY",
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "keyEntry"
+            },
+            content: "View Key"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "keyEntry",
+              placeholder: "MY_VIEW_STATE"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "TEMPLATE CODE",
+        dom: "div",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "viewCodeEntry"
+            },
+            content: "View Template"
+          },
+          {
+            dom: "<textarea>",
+            class: "form-control",
+            attr: {
+              "rows": 10,
+              id: "viewCodeEntry",
+              placeholder: "View Template"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "ORDER",
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "sectionOrderEntry"
+            },
+            content: "Order"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "sectionOrderEntry",
+              placeholder: "1, 2, 3. . ."
+            },
+            callback: {
+              keyup: {
+                args: "",
+                body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+              }
+            }
+          }
+        ]
+      }));
+      $("#classUid").val(designEntry.classUid);
+      $("#keyEntry").val(designEntry.entryKey);
+      $("#viewCodeEntry").val(designEntry.code);
+      $("#sectionOrderEntry").val(designEntry.order);
+    }
   }
   const _VALIDATE_DESIGN_FORMS = {
     "constructor body": function(o) {
@@ -2824,6 +3229,18 @@ const FormManager = (function() {
       o.classInheritance = $("#classInheritanceNameEntry").val();
       o.tags.push("code");
       if (o.classInheritance.length === 0) {
+        valid = false;
+      }
+      return { object: o, valid: valid };
+    },
+    "key listener handler": function(o) {
+      let valid = true;
+      o.tags.push("code");
+      o.classUid = $("#classUid").val();
+      o.entryKey = $("#keyEntry").val();
+      o.code = $("#keyListenerCodeEntry").val();
+      o.order = $("#sectionOrderEntry").val();
+      if (o.entryKey.length === 0 || o.code.length === 0 || isNaN(parseInt(o.order))) {
         valid = false;
       }
       return { object: o, valid: valid };
@@ -2941,6 +3358,32 @@ const FormManager = (function() {
       }
       return { object: o, valid: valid };
     },
+    "unit test": function(o) {
+      let valid = true;
+      o.tags.push("code");
+      o.classUid = $("#classUid").val();
+      o.testHeader = $("#testHeaderEntry").val();
+      o.testDefinition = $("#testDefinitionEntry").val();
+      o.arguments = $("#memberArgsEntry").val();
+      o.code = $("#sectionContentEntry").val();
+      o.order = $("#sectionOrderEntry").val();
+      if (o.testHeader.length === 0 || o.testDefinition.length === 0 || o.code.length === 0 || isNaN(parseInt(o.order))) {
+        valid = false;
+      }
+      return { object: o, valid: valid };
+    },
+    "view template": function(o) {
+      let valid = true;
+      o.tags.push("code");
+      o.classUid = $("#classUid").val();
+      o.entryKey = $("#keyEntry").val();
+      o.code = $("#viewCodeEntry").val();
+      o.order = $("#sectionOrderEntry").val();
+      if (o.entryKey.length === 0 || o.code.length === 0 || isNaN(parseInt(o.order))) {
+        valid = false;
+      }
+      return { object: o, valid: valid };
+    }
   }
   return {
     /** Displays the 'Add Project' form. */
@@ -2962,6 +3405,9 @@ const FormManager = (function() {
         let lib = [];
         if ($("#appConstantsCheckbox").is(":checked")) {
           lib.push("app-constants");
+        }
+        if ($("#appConfigCheckbox").is(":checked")) {
+          lib.push("app-config");
         }
         if ($("#sceneControllerCheckbox").is(":checked")) {
           lib.push("scene-controller");
@@ -3062,6 +3508,22 @@ const FormManager = (function() {
       $("#mainModal").hide();
       arguments[0][0].preventDefault();
       switch ($("#injectionListing option:selected").val()) {
+        case "before all":
+          {
+            let o = {
+              classUid: $("#classListing option:selected").val(),
+              code: $("#sectionContentEntry").val(),
+              tags: ["code", $("#injectionListing option:selected").val()],
+              "order": $("#sectionOrderEntry").val(),
+              uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+            };
+            if (o.code.length === 0) {
+              $("#mainModal").show();
+            } else {
+              ProjectManager.addDesign(o);
+            }
+          }
+          break;
         case "constructor body":
           {
             let o = {
@@ -3098,7 +3560,6 @@ const FormManager = (function() {
           break;
         case "private dictionary 0":
         case "private dictionary 1":
-          console.log("must validate private dictionary - need name, type, order, definition")
           {
             let o = {
               "classUid": $("#classListing option:selected").val(),
@@ -3231,6 +3692,24 @@ const FormManager = (function() {
               } else {
                 $("#mainModal").show();
               }
+            }
+          }
+          break;
+        case "prototype requires":
+        case "singleton requires":
+          {
+            let o = {
+              classUid: $("#classListing option:selected").val(),
+              className: $("#classNameEntry").val(),
+              requiredSymbol: $("#requiredSymbolEntry").val(),
+              requiredClass: $("#requiredClassEntry").val(),
+              tags: ["code", $("#injectionListing option:selected").val()],
+              uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+            };
+            if (o.className.length === 0 || o.requiredSymbol.length === 0 || o.requiredClass.length === 0 || o.classUid.length === 0) {
+              $("#mainModal").show();
+            } else {
+              ProjectManager.addDesign(o);
             }
           }
           break;
@@ -3414,6 +3893,8 @@ const FormManager = (function() {
         _EDIT_DESIGN_FORMS["method extensions"](designEntry, "create");
       } else if (designEntry.tags.includes("init")) {
         _EDIT_DESIGN_FORMS["method extensions"](designEntry, "init");
+      } else if (designEntry.tags.includes("key listener handler")) {
+        _EDIT_DESIGN_FORMS["key listener handler"](designEntry);
       } else if (designEntry.tags.includes("postboot")) {
         _EDIT_DESIGN_FORMS["method extensions"](designEntry, "postboot");
       } else if (designEntry.tags.includes("preboot")) {
@@ -3444,6 +3925,10 @@ const FormManager = (function() {
         _EDIT_DESIGN_FORMS.singleton(designEntry);
       } else if (designEntry.tags.includes("start scene")) {
         _EDIT_DESIGN_FORMS["start scene"](designEntry);
+      } else if (designEntry.tags.includes("unit test")) {
+        _EDIT_DESIGN_FORMS["unit test"](designEntry);
+      } else if (designEntry.tags.includes("view template")) {
+        _EDIT_DESIGN_FORMS["view template"](designEntry);
       }
       $("#designUid").val(uid);
       $("#mainModal").show({ "backdrop": "static", "keyboard": false });
@@ -3461,6 +3946,8 @@ const FormManager = (function() {
         retObj = _VALIDATE_DESIGN_FORMS["method extensions"](o);
       } else if (o.tags.includes("inheritance")) {
         retObj = _VALIDATE_DESIGN_FORMS.inheritance(o);
+      } else if (o.tags.includes("key listener handler")) {
+        retObj = _VALIDATE_DESIGN_FORMS["key listener handler"](o);
       } else if (o.tags.includes("prototype")) {
         retObj = _VALIDATE_DESIGN_FORMS.prototype(o);
       } else if (o.tags.includes("private field")) {
@@ -3477,6 +3964,10 @@ const FormManager = (function() {
         retObj = _VALIDATE_DESIGN_FORMS.singleton(o);
       } else if (o.tags.includes("start scene")) {
         retObj = _VALIDATE_DESIGN_FORMS["start scene"](o);
+      } else if (o.tags.includes("unit test")) {
+        retObj = _VALIDATE_DESIGN_FORMS["unit test"](o);
+      } else if (o.tags.includes("view template")) {
+        retObj = _VALIDATE_DESIGN_FORMS["view template"](o);
       }
       o = retObj.object;
       valid = retObj.valid;
@@ -3506,9 +3997,24 @@ const FormManager = (function() {
         uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
       };
       switch ($("#designSectionTemplateSelect option:selected").val()) {
+        case "key listener handler":
+          {
+            o.design.push(
+              {
+                classUid: $("#uiSceneListing option:selected").val(),
+                tags: ["code", "key listener handler"],
+                entryKey: $("#keyEntry").val(),
+                code: $("#keyListenerCodeEntry").val(),
+                order: $("#sectionOrderEntry").val(),
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              }
+            );
+          }
+          break;
         case "private field":
           {
             let classUid = $("#classListing option:selected").val();
+            let classObj = ProjectManager.getEntryByUid(classUid);
             let fieldName = $("#fieldNameEntry").val();
             let fieldType = $("#fieldTypeEntry").val();
             let order = $("#sectionOrderEntry").val();
@@ -3557,9 +4063,19 @@ const FormManager = (function() {
                   setterBody.push("}");
                   break;
               }
-              setterBody.push(["this.", fieldName, " = value;"].join(""));
+              if (classObj.tags.includes("scene-container")
+                  || classObj.tags.includes("singleton")) {
+                setterBody.push([fieldName, " = value;"].join(""));
+              } else {
+                setterBody.push(["this.", fieldName, " = value;"].join(""));
+              }
               if ($("#watchedEntry").is(":checked")) {
                 setterBody.push("this.notifyWatchers(this);");
+              }
+              let getterBody = ["return this.", fieldName, ";"].join("");              
+              if (classObj.tags.includes("scene-container")
+                  || classObj.tags.includes("singleton")) {
+                getterBody = ["return ", fieldName, ";"].join(""); 
               }
               o.design.push(
                 {
@@ -3567,7 +4083,7 @@ const FormManager = (function() {
                   tags: ["code", "public getter/setter property"],
                   propertyName: fieldName.substring(1),
                   getterDefinition: ["/**", [" * Getter for field ", fieldName, "."].join(""), [" * @returns {", returnType,  "}"].join(""), " */"].join("\n"),
-                  getterBody: ["return this.", fieldName, ";"].join(""),
+                  getterBody: getterBody,
                   setterDefinition: ["/**", [" * Setter for field ", fieldName, "."].join(""), " * @param {PropertyKey} value the value", " */"].join("\n"),
                   setterBody: setterBody.join("\n"),
                   order: order,
@@ -3712,159 +4228,77 @@ const FormManager = (function() {
             );
           }
           break;
-        case "ui-scene":
+        case "prototype test":
           {
-            let filePath = $("#prototypePathSelect option:selected").val();
-            if (filePath === "custom") {
-              filePath = $("#prototypePathEntry").val();
-              if (filePath.indexOf(",") > 0) {
-                filePath = filePath.split(",");
-              }
-              if (filePath.indexOf("/") > 0) {
-                filePath = filePath.split("/");
-              }
-            }
+            console.log($("#classListing option:selected").val())
+            ProjectManager.currentSection.unitTestingPercentage = 0;
+            let classObject = ProjectManager.getEntryByUid($("#classListing option:selected").val());
+            let filePath = JSON.parse(JSON.stringify(classObject.filePath));
             let classUid = [Date.now().toString(36), Math.random().toString(36).substr(2)].join("");
-            let sceneuid = $("#sceneContainerListing option:selected").val();
+            o.content = ["Unit testing for class ", classObject.classHandle, "."].join("");
+            o.design.push(
+              // ADD PROTOTYPE TEST CLASS DESIGN OBJECT
+              {
+                classTitle: [classObject.classTitle, " Test"].join(""),
+                classHandle: [classObject.classHandle, "Test"].join(""),
+                fileHandle:  [classObject.fileHandle, ".test"].join(""),
+                tags: [
+                  "class",
+                  "prototype test"
+                ],
+                classDefinition: o.content,
+                weight: 1,
+                uid: classUid,
+                filePath: filePath
+              }
+            );
             o.children.push(
               {
-                title: "The UI Scene Class",
-                order: 1,
-                content: "A UI class will need to be defined.  The Ui Scene template will be used.",
-                children: [],
-                design: [
-                  // ADD UI SCENE CLASS DESIGN OBJECT
-                  {
-                    classTitle: $("#classTitleEntry").val(),
-                    classHandle: $("#classNameEntry").val(),
-                    fileHandle: $("#classFilenameEntry").val(),
-                    tags: [
-                      "class",
-                      "ui-scene"
-                    ],
-                    classDefinition: $("#sectionContentEntry").val(),
-                    weight: $("#weightEntry").val(),
-                    uid: classUid,
-                    filePath: filePath,
-                    gridWidth: $("#gridWidthEntry").val(),
-                    gridHeight: $("#gridHeightEntry").val(),
-                  }
-                ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-              },
-              {
                 title: "File Imports",
+                order: 1,
+                content: ["The ", [classObject.classTitle, " Test"].join(""), " class will require the following imports:"]. join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Before All",
                 order: 2,
-                content: "The UI class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                content: ["The ", [classObject.classTitle, " Test"].join(""), " class will require the following setup before all testing begins:"]. join(""),
                 children: [],
-                design: [
-                  // ADD SCENE CONTROLLER FILE IMPORT TO UI SCENE
-                  {
-                    classUid: classUid,
-                    importHandle: [ProjectManager.projectAppHandle, "SceneController"].join(""),
-                    importPath: ["../scenes/", ProjectManager.projectFileHandle, "-scene-controller"].join(""),
-                    tags: [
-                      "code",
-                      "required import"
-                    ],
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  },
-                  // ADD PARENT SCENE FILE IMPORT TO UI SCENE
-                  {
-                    classUid: classUid,
-                    importHandle: [ProjectManager.projectAppHandle, ProjectManager.getEntryByUid(sceneuid).classHandle].join(""),
-                    importPath: ["../", ProjectManager.projectFileHandle, "-", ProjectManager.getEntryByUid(sceneuid).fileHandle].join(""),
-                    tags: [
-                      "code",
-                      "required import"
-                    ],
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  },
-                  // ADD UI SCENE FILE IMPORT TO PARENT SCENE
-                  {
-                    classUid: sceneuid,
-                    importHandle: [ProjectManager.projectAppHandle, $("#classNameEntry").val()].join(""),
-                    importPath: ["../", filePath.join("/"), "/", ProjectManager.projectFileHandle, "-", $("#classFilenameEntry").val()].join(""),
-                    tags: [
-                      "code",
-                      "required import"
-                    ],
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  },
-                ],
+                design: [],
                 uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
               },
               {
-                title: "Private Fields",
+                title: "Before Each",
                 order: 3,
-                content: "The UI class will be added as a private member of its scene parent.\nThe Ui Scene will have the following private fields:",
+                content: ["The ", [classObject.classTitle, " Test"].join(""), " class will require the following setup before each individual test runs:"]. join(""),
                 children: [],
-                design: [
-                  // ADD UI SCENE INSTANCE TO PARENT SCENE
-                  {
-                    classUid: sceneuid,
-                    tags: [
-                      "code",
-                      "private field"
-                    ],
-                    fieldName: ["_", $("#classNameEntry").val().charAt(0).toLowerCase(), $("#classNameEntry").val().slice(1)].join(""),
-                    fieldType: "UiScene",
-                    fieldValue: ["new ", ProjectManager.projectAppHandle, $("#classNameEntry").val(), "({ scene: _scene, show: true })"].join(""),
-                    fieldDefinition: [ProjectManager.projectAppHandle, $("#classNameEntry").val(), " instance"].join(""),
-                    order: "10",
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  }
-                ],
+                design: [],
                 uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
               },
               {
-                title: "View Templates",
+                title: "Unit Tests",
                 order: 4,
-                content: "The UI class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
-                "requires design": true,
+                content: ["The following unit tests for class ", classObject.classHandle, " will exist:"].join(""),
                 children: [],
                 design: [],
                 uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-              },
+              }
+            );
+          }
+          break;
+        case "public member":
+          {
+            o.design.push(
               {
-                title: "Key Listeners",
-                order: 5,
-                content: "The UI class will have key listeners for the following views:",
-                "requires design": true,
-                children: [],
-                design: [],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-              },
-              {
-                title: "Updates to the 'create' methods",
-                order: 6,
-                content: "The UI class will have the following updates to the 'create' method:",
-                children: [],
-                design: [],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-              },
-              {
-                title: "Initial State",
-                order: 7,
-                content: "The UI Scene's initial state should be set in the Constructor Body",
-                children: [],
-                design: [],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-              },
-              {
-                title: "Scene start/reset",
-                order: 8,
-                content: "When the UI scene is started/reset, the following changes are applied for each view:",
-                children: [],
-                design: [],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-              },
-              {
-                title: "Public Members",
-                order: 9,
-                content: "Occasionally, a UI Scene will need some further public members added.  This UI has added the following public members:",
-                children: [],
-                design: [],
+                classUid: $("#classListing option:selected").val(),
+                tags: ["code", "public member"],
+                memberName: $("#memberNameEntry").val(),
+                memberDefinition: $("#memberDefinitionEntry").val(),
+                arguments: $("#memberArgsEntry").val(),
+                code: $("#memberCodeEntry").val(),
+                order: $("#sectionOrderEntry").val(),
                 uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
               }
             );
@@ -3883,7 +4317,7 @@ const FormManager = (function() {
               }
             }
             let classUid = [Date.now().toString(36), Math.random().toString(36).substr(2)].join("");
-            let gameUid, sceneControllerUid;
+            let gameUid, sceneControllerUid, constantsUid;
             let classes = ProjectManager.getClasses();
             for (let i = classes.length - 1; i >= 0; i--) {
               if (classes[i].tags.includes("game")) {
@@ -3891,6 +4325,9 @@ const FormManager = (function() {
               }
               if (classes[i].tags.includes("scene-controller")) {
                 sceneControllerUid = classes[i].uid;
+              }
+              if (classes[i].tags.includes("app-constants")) {
+                constantsUid = classes[i].uid;
               }
             }
             o.children.push(
@@ -3985,7 +4422,36 @@ const FormManager = (function() {
                 content: "A State Group will need to be added to the App Constants for this Scene Container",
                 "requires design": true,
                 children: [],
-                design: [],
+                design: [
+                  {
+                    classUid: constantsUid,
+                    groupName: "GROUP_NAME_TBD",
+                    tags: [
+                      "code",
+                      "group properties"
+                    ],
+                    elements: [
+                      {
+                        elementName: "GROUP_ELEMENT_NAME_TBD",
+                        elementValue: "1",
+                        elementDefinition: "The initial state.",
+                        order: 1
+                      }
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                  },
+                  {
+                    tags: [
+                      "scoped dictionary body 0",
+                      "code"
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join(""),
+                    classUid: classUid,
+                    dictionaryKey: ["[", ProjectManager.projectAppHandle, "Constants.GROUP_ELEMENT_NAME_TBD]"].join(""),
+                    dictionaryDefinition: "the scene instances displayed when this view is active",
+                    dictionaryValue: "[_uiInstance0, _uiInstance1]"
+                  }
+                ],
                 uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
               },
               {
@@ -3994,12 +4460,39 @@ const FormManager = (function() {
                 content: "The Scene Container initial state is set in the 'create' method of the Scene Controller class. It will be set to the following state:",
                 "requires design": true,
                 children: [],
+                design: [
+                  {
+                    tags: [
+                      "create",
+                      "code"
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join(""),
+                    classUid: sceneControllerUid,
+                    code: ["\n\n// set initial state for INSERT VIEW NAME\n", ProjectManager.projectAppHandle, $("#classNameEntry").val(), ".state = ", ProjectManager.projectAppHandle, "Constants.GROUP_ELEMENT_NAME_TBD;"].join(""),
+                    order: "ORDER_TBD"
+                  }
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Private Fields",
+                order: 7,
+                content: "The Scene Container may have a few private fields. If so, they will be added here.",
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Public Members",
+                order: 8,
+                content: "The Scene Container may have a few public members. If so, they will be added here.",
+                children: [],
                 design: [],
                 uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
               },
               {
                 title: "Child Scenes",
-                order: 7,
+                order: 9,
                 content: "The Scene Container is just that: a container.  It will manage the following child scenes:",
                 "requires design": true,
                 children: [],
@@ -4009,72 +4502,355 @@ const FormManager = (function() {
             );
           }
           break;
-        case "singleton":
-            {
-              let filePath = $("#singletonPathSelect option:selected").val();
-              if (filePath === "custom") {
-                filePath = $("#singletonPathEntry").val();
-                if (filePath.indexOf(",") > 0) {
-                  filePath = filePath.split(",");
-                }
-                if (filePath.indexOf("/") > 0) {
-                  filePath = filePath.split("/");
-                }
+        case "ui-scene":
+          {
+            let filePath = $("#prototypePathSelect option:selected").val();
+            if (filePath === "custom") {
+              filePath = $("#prototypePathEntry").val();
+              if (filePath.indexOf(",") > 0) {
+                filePath = filePath.split(",");
               }
-              let classUid = [Date.now().toString(36), Math.random().toString(36).substr(2)].join("");
-              o.children.push(
-                {
-                  title: ["The ", $("#classTitleEntry").val(), " Class"].join(""),
-                  order: 1,
-                  content: "A new class will be defined using the 'singleton' template.",
-                  children: [],
-                  design: [
-                    // ADD SINGLETON CLASS DESIGN OBJECT
-                    {
-                      classTitle: $("#classTitleEntry").val(),
-                      classHandle: $("#classNameEntry").val(),
-                      fileHandle: $("#classFilenameEntry").val(),
-                      tags: [
-                        "class",
-                        "singleton"
-                      ],
-                      classDefinition: $("#sectionContentEntry").val(),
-                      weight: $("#weightEntry").val(),
-                      uid: classUid,
-                      filePath: filePath
-                    }
-                  ],
-                  uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                }
-              );
-              o.children.push(
-                {
-                  title: "File Imports",
-                  order: 2,
-                  content: ["The ", $("#classTitleEntry").val(), " class will require the following imports:"]. join(""),
-                  children: [],
-                  design: [],
-                  uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                },
-                {
-                  title: "Private Fields",
-                  order: 3,
-                  content: ["The ", $("#classTitleEntry").val(), " class will have the following private fields:"]. join(""),
-                  children: [],
-                  design: [],
-                  uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                },
-                {
-                  title: "Public Members",
-                  order: 4,
-                  content: ["The ", $("#classTitleEntry").val(), " class will have the following public members:"]. join(""),
-                  children: [],
-                  design: [],
-                  uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                }
-              );
+              if (filePath.indexOf("/") > 0) {
+                filePath = filePath.split("/");
+              }
             }
-            break;
+            let classUid = [Date.now().toString(36), Math.random().toString(36).substr(2)].join("");
+            let sceneuid = $("#sceneContainerListing option:selected").val();
+            o.children.push(
+              {
+                title: "The UI Scene Class",
+                order: 1,
+                content: "A UI class will need to be defined.  The Ui Scene template will be used.",
+                children: [],
+                design: [
+                  // ADD UI SCENE CLASS DESIGN OBJECT
+                  {
+                    classTitle: $("#classTitleEntry").val(),
+                    classHandle: $("#classNameEntry").val(),
+                    fileHandle: $("#classFilenameEntry").val(),
+                    tags: [
+                      "class",
+                      "ui-scene"
+                    ],
+                    classDefinition: $("#sectionContentEntry").val(),
+                    weight: $("#weightEntry").val(),
+                    uid: classUid,
+                    filePath: filePath,
+                    initialState: $("#initialStateEntry").val(),
+                    gridWidth: $("#gridWidthEntry").val(),
+                    gridHeight: $("#gridHeightEntry").val(),
+                  }
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "File Imports",
+                order: 2,
+                content: "The UI class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                children: [],
+                design: [
+                  // ADD SCENE CONTROLLER FILE IMPORT TO UI SCENE
+                  {
+                    classUid: classUid,
+                    importHandle: [ProjectManager.projectAppHandle, "SceneController"].join(""),
+                    importPath: ["../scenes/", ProjectManager.projectFileHandle, "-scene-controller"].join(""),
+                    tags: [
+                      "code",
+                      "required import"
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                  },
+                  // ADD PARENT SCENE FILE IMPORT TO UI SCENE
+                  {
+                    classUid: classUid,
+                    importHandle: [ProjectManager.projectAppHandle, ProjectManager.getEntryByUid(sceneuid).classHandle].join(""),
+                    importPath: ["../", ProjectManager.projectFileHandle, "-", ProjectManager.getEntryByUid(sceneuid).fileHandle].join(""),
+                    tags: [
+                      "code",
+                      "required import"
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                  },
+                  // ADD UI SCENE FILE IMPORT TO PARENT SCENE
+                  {
+                    classUid: sceneuid,
+                    importHandle: [ProjectManager.projectAppHandle, $("#classNameEntry").val()].join(""),
+                    importPath: ["../", filePath.join("/"), "/", ProjectManager.projectFileHandle, "-", $("#classFilenameEntry").val()].join(""),
+                    tags: [
+                      "code",
+                      "required import"
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                  },
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Private Fields",
+                order: 3,
+                content: "The UI class will be added as a private member of its scene parent.\nThe Ui Scene will have the following private fields:",
+                children: [],
+                design: [
+                  // ADD UI SCENE INSTANCE TO PARENT SCENE
+                  {
+                    classUid: sceneuid,
+                    tags: [
+                      "code",
+                      "private field"
+                    ],
+                    fieldName: ["_", $("#classNameEntry").val().charAt(0).toLowerCase(), $("#classNameEntry").val().slice(1)].join(""),
+                    fieldType: "UiScene",
+                    fieldValue: ["new ", ProjectManager.projectAppHandle, $("#classNameEntry").val(), "({ scene: _scene, show: true })"].join(""),
+                    fieldDefinition: [ProjectManager.projectAppHandle, $("#classNameEntry").val(), " instance"].join(""),
+                    order: "10",
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                  }
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "View Templates",
+                order: 4,
+                content: "The UI class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                "requires design": true,
+                children: [
+                  {
+                    title: "Default View",
+                    order: 1,
+                    content: "This is the default view for the scene.",
+                    children: [],
+                    design: [
+                      {
+                        classUid: classUid,
+                        tags: [
+                          "code",
+                          "view template"
+                        ],
+                        entryKey: "GROUP_ELEMENT_NAME_TBD",
+                        code: "group: null,\nchildren: []",
+                        order: "1",
+                        uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                      }
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                  }
+                ],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Key Listeners",
+                order: 5,
+                content: "The UI class will have key listeners for the following views:",
+                "requires design": true,
+                children: [
+                  {
+                    title: "Inactive Key Listener",
+                    order: 1,
+                    content: "The default key listener is inactive.",
+                    children: [],
+                    design: [
+                      {
+                        classUid: classUid,
+                        tags: [
+                          "code",
+                          "key listener handler"
+                        ],
+                        entryKey: "GROUP_ELEMENT_NAME_TBD",
+                        code: "",
+                        order: "1",
+                        uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                      }
+                    ],
+                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                  }
+                ],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Updates to the 'create' methods",
+                order: 6,
+                content: "The UI class will have the following updates to the 'create' method:",
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Scene start/reset",
+                order: 7,
+                content: "When the UI scene is started/reset, the following changes are applied for each view:",
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Public Members",
+                order: 8,
+                content: "Occasionally, a UI Scene will need some further public members added.  This UI has added the following public members:",
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              }
+            );
+          }
+          break;
+        case "ui-scene test":
+          {
+            console.log($("#classListing option:selected").val())
+            ProjectManager.currentSection.unitTestingPercentage = 0;
+            let classObject = ProjectManager.getEntryByUid($("#classListing option:selected").val());
+            let filePath = JSON.parse(JSON.stringify(classObject.filePath));
+            let classUid = [Date.now().toString(36), Math.random().toString(36).substr(2)].join("");
+            o.content = ["Unit testing for class ", classObject.classHandle, "."].join("");
+            o.design.push(
+              // ADD UI-SCENE TEST CLASS DESIGN OBJECT
+              {
+                classTitle: [classObject.classTitle, " Test"].join(""),
+                classHandle: [classObject.classHandle, "Test"].join(""),
+                fileHandle:  [classObject.fileHandle, "-test"].join(""),
+                tags: [
+                  "class",
+                  "prototype test"
+                ],
+                classDefinition: o.content,
+                weight: 1,
+                uid: classUid,
+                filePath: filePath
+              }
+            );
+            o.children.push(
+              {
+                title: "File Imports",
+                order: 1,
+                content: ["The ", [classObject.classTitle, " Test"].join(""), " class will require the following imports:"]. join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Before All",
+                order: 2,
+                content: ["The ", [classObject.classTitle, " Test"].join(""), " class will require the following setup before all testing begins:"]. join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Before Each",
+                order: 3,
+                content: ["The ", [classObject.classTitle, " Test"].join(""), " class will require the following setup before each individual test runs:"]. join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Unit Tests",
+                order: 4,
+                content: ["The following unit tests for class ", classObject.classHandle, " will exist:"].join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              }
+            );
+          }
+          break;          
+        case "unit test":
+          {
+            o.design.push(
+              {
+                classUid: $("#classListing option:selected").val(),
+                tags: ["code", "unit test"],
+                testHeader: $("#memberHeaderEntry").val(),
+                testDefinition: $("#memberDefinitionEntry").val(),
+                arguments: $("#memberArgsEntry").val(),
+                code: $("#memberCodeEntry").val(),
+                order: $("#sectionOrderEntry").val(),
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              }
+            );
+          }
+          break;
+        case "singleton":
+          {
+            let filePath = $("#singletonPathSelect option:selected").val();
+            if (filePath === "custom") {
+              filePath = $("#singletonPathEntry").val();
+              if (filePath.indexOf(",") > 0) {
+                filePath = filePath.split(",");
+              }
+              if (filePath.indexOf("/") > 0) {
+                filePath = filePath.split("/");
+              }
+            }
+            let classUid = [Date.now().toString(36), Math.random().toString(36).substr(2)].join("");
+            o.children.push(
+              {
+                title: ["The ", $("#classTitleEntry").val(), " Class"].join(""),
+                order: 1,
+                content: "A new class will be defined using the 'singleton' template.",
+                children: [],
+                design: [
+                  // ADD SINGLETON CLASS DESIGN OBJECT
+                  {
+                    classTitle: $("#classTitleEntry").val(),
+                    classHandle: $("#classNameEntry").val(),
+                    fileHandle: $("#classFilenameEntry").val(),
+                    tags: [
+                      "class",
+                      "singleton"
+                    ],
+                    classDefinition: $("#sectionContentEntry").val(),
+                    weight: $("#weightEntry").val(),
+                    uid: classUid,
+                    filePath: filePath
+                  }
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              }
+            );
+            o.children.push(
+              {
+                title: "File Imports",
+                order: 2,
+                content: ["The ", $("#classTitleEntry").val(), " class will require the following imports:"]. join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Private Fields",
+                order: 3,
+                content: ["The ", $("#classTitleEntry").val(), " class will have the following private fields:"]. join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              },
+              {
+                title: "Public Members",
+                order: 4,
+                content: ["The ", $("#classTitleEntry").val(), " class will have the following public members:"]. join(""),
+                children: [],
+                design: [],
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              }
+            );
+          }
+          break;
+        case "view template":
+          {
+            o.design.push(
+              {
+                classUid: $("#uiSceneListing option:selected").val(),
+                tags: ["code", "view template"],
+                entryKey: $("#keyEntry").val(),
+                code: $("#viewCodeEntry").val(),
+                order: $("#sectionOrderEntry").val(),
+                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              }
+            );
+          }
+          break;
       }
       if (o.title.length === 0 || isNaN(o.order)) {
         $("#mainModal").show();
@@ -4142,6 +4918,58 @@ const FormManager = (function() {
 
 const FormListener = (function() {
   const _CODE_INJECTION_BUILDERS = {
+    "before all": function() {
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "sectionContentEntry"
+            },
+            content: "Constructor Body Code"
+          },
+          {
+            dom: "<textarea>",
+            class: "form-control",
+            attr: {
+              "rows": 5,
+              id: "sectionContentEntry",
+              placeholder: "Enter Code Here"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "sectionOrderEntry"
+            },
+            content: "Order"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "sectionOrderEntry",
+              placeholder: "1, 2, 3. . ."
+            },
+            callback: {
+              keyup: {
+                args: "",
+                body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+              }
+            }
+          }
+        ]
+      }));
+    },
     "constructor body": function() {
       $("#codeTypeContainer").append(CONTENT_BUILDER({
         dom: "<div>",
@@ -5066,6 +5894,74 @@ const FormListener = (function() {
         ]
       }));
     },
+    "prototype requires": function() {
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "classNameEntry"
+            },
+            content: "Parent Class Handle"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "classNameEntry",
+              placeholder: "Enter Parent Class Handle"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "requiredSymbolEntry"
+            },
+            content: "Required Symbol"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "requiredSymbolEntry",
+              placeholder: "Enter Required Symbol"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "requiredClassEntry"
+            },
+            content: "Required Class"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "requiredClassEntry",
+              placeholder: "Enter Required Class"
+            }
+          }
+        ]
+      }));
+    },
     "public member": function() {
       $("#codeTypeContainer").append(CONTENT_BUILDER({
         dom: "<div>",
@@ -5369,6 +6265,74 @@ const FormListener = (function() {
         ]
       }));
     },
+    "singleton requires": function() {
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "classNameEntry"
+            },
+            content: "Parent Class Handle"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "classNameEntry",
+              placeholder: "Enter Parent Class Handle"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "requiredSymbolEntry"
+            },
+            content: "Required Symbol"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "requiredSymbolEntry",
+              placeholder: "Enter Required Symbol"
+            }
+          }
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "requiredClassEntry"
+            },
+            content: "Required Class"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "requiredClassEntry",
+              placeholder: "Enter Required Class"
+            }
+          }
+        ]
+      }));
+    },
     "scene group": function() {
       $("#codeTypeContainer").append(CONTENT_BUILDER({
         dom: "<div>",
@@ -5488,6 +6452,155 @@ const FormListener = (function() {
     selectDesignTemplate: function() {
       $("#designSectionTemplateForm").html("");
       switch ($("#designSectionTemplateSelect option:selected").val()) {
+        case "key listener handler":
+          {
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "UI SCENE LISTING",
+              dom: "<div>",
+              class: "form-group",
+              attr: { id: "uiSceneGroup" },
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "uiSceneListing"
+                  },
+                  content: "UI Scene"
+                },
+                {
+                  dom: "<select>",
+                  class: "form-select",
+                  attr: { id: "uiSceneListing" },
+                  children: [
+                    {
+                      dom: "<option>",
+                      attr: {
+                        "selected": true
+                      },
+                      content: ""
+                    }
+                  ]
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "LISTENER KEY",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "keyEntry"
+                  },
+                  content: "Listener Key"
+                },
+                {
+                  dom: "<input>",
+                  class: "form-control",
+                  attr: {
+                    type: "text",
+                    id: "keyEntry",
+                    placeholder: "Enter Listener Key"
+                  }
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "KEY LISTENER HANDLER",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "keyListenerCodeEntry"
+                  },
+                  content: "Key Listener Handler"
+                },
+                {
+                  dom: "<textarea>",
+                  class: "form-control",
+                  attr: {
+                    "rows": 10,
+                    id: "keyListenerCodeEntry",
+                    placeholder: "Enter Key Listener Handler"
+                  }
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "ORDER",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "sectionOrderEntry"
+                  },
+                  content: "Order"
+                },
+                {
+                  dom: "<input>",
+                  class: "form-control",
+                  attr: {
+                    type: "text",
+                    id: "sectionOrderEntry",
+                    placeholder: "1, 2, 3. . ."
+                  },
+                  callback: {
+                    keyup: {
+                      args: "",
+                      body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+                    }
+                  }
+                }
+              ]
+            }));
+            
+            let classes = ProjectManager.getClasses();
+            classes.sort(function(a, b) {
+              let aType, bType;
+              for (let i = a.tags.length - 1; i >= 0; i--) {
+                if (a.tags[i] === "class") {
+                  continue;
+                }
+                aType = a.tags[i];
+              }
+              for (let i = b.tags.length - 1; i >= 0; i--) {
+                if (b.tags[i] === "class") {
+                  continue;
+                }
+                bType = b.tags[i];
+              }
+              let c = 0;
+              if (aType < bType) {
+                c = 1;
+              } else if (aType > bType) {
+                c = -1;
+              } else {
+                if (a.classHandle < b.classHandle) {
+                  c = 1;
+                } else if (a.classHandle > b.classHandle) {
+                  c = -1;
+                }
+              }
+              return c;
+            });
+            for (let i = classes.length - 1; i >= 0; i--) {
+              if (classes[i].tags.includes("ui-scene")) {
+                $("#uiSceneListing").append(CONTENT_BUILDER({
+                  dom: "option",
+                  attr: {
+                    value: classes[i].uid
+                  },
+                  content: classes[i].classHandle
+                }));
+              }
+            }
+          }
+          break;
         case "private field":
           {
             $("#designSectionTemplateForm").append(CONTENT_BUILDER({
@@ -5956,6 +7069,272 @@ const FormListener = (function() {
             }));
           }
           break;
+        case "prototype test":
+          {
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "CLASS LISTING",
+              dom: "<div>",
+              class: "form-group",
+              attr: { id: "classGroup" },
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "classListing"
+                  },
+                  content: "Parent Class"
+                },
+                {
+                  dom: "<select>",
+                  class: "form-select",
+                  attr: { id: "classListing" },
+                  children: [
+                    {
+                      dom: "<option>",
+                      attr: {
+                        "selected": true
+                      },
+                      content: ""
+                    }
+                  ]
+                }
+              ]
+            }));
+            
+            let classes = ProjectManager.getClasses();
+            classes.sort(function(a, b) {
+              let aType, bType;
+              for (let i = a.tags.length - 1; i >= 0; i--) {
+                if (a.tags[i] === "class") {
+                  continue;
+                }
+                aType = a.tags[i];
+              }
+              for (let i = b.tags.length - 1; i >= 0; i--) {
+                if (b.tags[i] === "class") {
+                  continue;
+                }
+                bType = b.tags[i];
+              }
+              let c = 0;
+              if (aType < bType) {
+                c = 1;
+              } else if (aType > bType) {
+                c = -1;
+              } else {
+                if (a.classHandle < b.classHandle) {
+                  c = 1;
+                } else if (a.classHandle > b.classHandle) {
+                  c = -1;
+                }
+              }
+              return c;
+            });
+            for (let i = classes.length - 1; i >= 0; i--) {
+              if (classes[i].tags.includes("prototype")) {
+                $("#classListing").append(CONTENT_BUILDER({
+                  dom: "option",
+                  attr: {
+                    value: classes[i].uid
+                  },
+                  content: classes[i].classHandle
+                }));
+              }
+            }
+          }
+          break;
+        case "public member":
+          {
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "CLASS LISTING",
+              dom: "<div>",
+              class: "form-group",
+              attr: { id: "classGroup" },
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "classListing"
+                  },
+                  content: "Parent Class"
+                },
+                {
+                  dom: "<select>",
+                  class: "form-select",
+                  attr: { id: "classListing" },
+                  children: [
+                    {
+                      dom: "<option>",
+                      attr: {
+                        "selected": true
+                      },
+                      content: ""
+                    }
+                  ]
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "MEMBER NAME",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "memberNameEntry"
+                  },
+                  content: "Member Name"
+                },
+                {
+                  dom: "<input>",
+                  class: "form-control",
+                  attr: {
+                    type: "text",
+                    id: "memberNameEntry",
+                    placeholder: "Enter Member Name"
+                  }
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "MEMBER DEFINITION",
+              dom: "div",
+              class: "form-group",
+              children: [
+                {
+                  dom: "label",
+                  attr: {
+                    for: "memberDefinitionEntry"
+                  },
+                  content: "Member Definition"
+                },
+                {
+                  dom: "textarea",
+                  class: "form-control",
+                  attr: {
+                    "rows": 5,
+                    id: "memberDefinitionEntry",
+                    placeholder: "Enter Definition Here"
+                  }
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "MEMBER ARGUMENTS",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "memberArgsEntry"
+                  },
+                  content: "Member Arguments"
+                },
+                {
+                  dom: "<input>",
+                  class: "form-control",
+                  attr: {
+                    id: "memberArgsEntry",
+                    placeholder: "Enter Arguments Here"
+                  }
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "MEMBER CODE",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "memberCodeEntry"
+                  },
+                  content: "Member Body Code"
+                },
+                {
+                  dom: "<textarea>",
+                  class: "form-control",
+                  attr: {
+                    "rows": 10,
+                    id: "memberCodeEntry",
+                    placeholder: "Enter Code Here"
+                  }
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "ORDER",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "sectionOrderEntry"
+                  },
+                  content: "Order"
+                },
+                {
+                  dom: "<input>",
+                  class: "form-control",
+                  attr: {
+                    type: "text",
+                    id: "sectionOrderEntry",
+                    placeholder: "1, 2, 3. . ."
+                  },
+                  callback: {
+                    keyup: {
+                      args: "",
+                      body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+                    }
+                  }
+                }
+              ]
+            }));
+            
+            let classes = ProjectManager.getClasses();
+            classes.sort(function(a, b) {
+              let aType, bType;
+              for (let i = a.tags.length - 1; i >= 0; i--) {
+                if (a.tags[i] === "class") {
+                  continue;
+                }
+                aType = a.tags[i];
+              }
+              for (let i = b.tags.length - 1; i >= 0; i--) {
+                if (b.tags[i] === "class") {
+                  continue;
+                }
+                bType = b.tags[i];
+              }
+              let c = 0;
+              if (aType < bType) {
+                c = 1;
+              } else if (aType > bType) {
+                c = -1;
+              } else {
+                if (a.classHandle < b.classHandle) {
+                  c = 1;
+                } else if (a.classHandle > b.classHandle) {
+                  c = -1;
+                }
+              }
+              return c;
+            });
+            for (let i = classes.length - 1; i >= 0; i--) {
+              $("#classListing").append(CONTENT_BUILDER({
+                dom: "option",
+                attr: {
+                  value: classes[i].uid
+                },
+                content: classes[i].classHandle
+              }));
+            }
+          }
+          break;
         case "scene-container":
           {
             $("#designSectionTemplateForm").append(CONTENT_BUILDER({
@@ -6381,144 +7760,562 @@ const FormListener = (function() {
           break;
         case "ui-scene":
           {
-            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "PROTOTYPE NAMESPACE",
-              dom: "div",
-              class: "form-group",
-              attr: { id: "prototypePathGroup" },
-              children: [
-                {
-                  dom: "<label>",
-                  attr: {
-                    for: "prototypePathSelect"
+            { // FORM BUILDER
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "PROTOTYPE NAMESPACE",
+                dom: "div",
+                class: "form-group",
+                attr: { id: "prototypePathGroup" },
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "prototypePathSelect"
+                    },
+                    content: "Path"
                   },
-                  content: "Path"
-                },
-                {
-                  dom: "<select>",
-                  class: "form-select",
-                  attr: { id: "prototypePathSelect" },
-                  children: [
-                    {
-                      dom: "<option>",
-                      attr: {
-                        "selected": true
+                  {
+                    dom: "<select>",
+                    class: "form-select",
+                    attr: { id: "prototypePathSelect" },
+                    children: [
+                      {
+                        dom: "<option>",
+                        attr: {
+                          "selected": true
+                        },
+                        content: ""
                       },
-                      content: ""
-                    },
-                    {
-                      dom: "<option>",
-                      attr: {
-                        "value": "bus"
+                      {
+                        dom: "<option>",
+                        attr: {
+                          "value": "bus"
+                        },
+                        content: "bus"
                       },
-                      content: "bus"
-                    },
-                    {
-                      dom: "<option>",
-                      attr: {
-                        "value": "graph"
+                      {
+                        dom: "<option>",
+                        attr: {
+                          "value": "graph"
+                        },
+                        content: "graph"
                       },
-                      content: "graph"
-                    },
-                    {
-                      dom: "<option>",
-                      attr: {
-                        "value": "ui"
+                      {
+                        dom: "<option>",
+                        attr: {
+                          "value": "ui"
+                        },
+                        content: "ui"
                       },
-                      content: "ui"
-                    },
-                    {
-                      dom: "<option>",
-                      attr: {
-                        "value": "custom"
-                      },
-                      content: "custom path"
+                      {
+                        dom: "<option>",
+                        attr: {
+                          "value": "custom"
+                        },
+                        content: "custom path"
+                      }
+                    ],
+                    callback: {
+                      change: {
+                        args: "",
+                        body: "FormListener.selectPrototypePath(arguments);"
+                      }
                     }
-                  ],
-                  callback: {
-                    change: {
-                      args: "",
-                      body: "FormListener.selectPrototypePath(arguments);"
+                  },
+                  {
+                    dom: "input",
+                    class: "form-control",
+                    style: "display: none;",
+                    attr: {
+                      type: "text",
+                      id: "prototypePathEntry",
+                      placeholder: "Enter Class Path"
                     }
                   }
-                },
-                {
-                  dom: "input",
-                  class: "form-control",
-                  style: "display: none;",
-                  attr: {
-                    type: "text",
-                    id: "prototypePathEntry",
-                    placeholder: "Enter Class Path"
-                  }
-                }
-              ]
-            }));
-            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "GRID WIDTH",
-              dom: "div",
-              class: "form-group",
-              attr: { id: "gridWidthGroup" },
-              children: [
-                {
-                  dom: "label",
-                  attr: {
-                    for: "gridWidthEntry"
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "INITIAL STATE",
+                dom: "div",
+                class: "form-group",
+                attr: { id: "initialStateGroup" },
+                children: [
+                  {
+                    dom: "label",
+                    attr: {
+                      for: "initialStateEntry"
+                    },
+                    content: "Initial State"
                   },
-                  content: "Alignment Grid Width"
-                },
-                {
-                  dom: "input",
-                  class: "form-control",
-                  attr: {
-                    type: "text",
-                    id: "gridWidthEntry",
-                    placeholder: "1"
+                  {
+                    dom: "input",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "initialStateEntry",
+                      placeholder: "MY_STATE_CONSTANT"
+                    }
                   }
-                }
-              ]
-            }));
-            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "GRID HEIGHT",
-              dom: "div",
-              class: "form-group",
-              attr: { id: "gridHeightGroup" },
-              children: [
-                {
-                  dom: "label",
-                  attr: {
-                    for: "gridHeightEntry"
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "GRID WIDTH",
+                dom: "div",
+                class: "form-group",
+                attr: { id: "gridWidthGroup" },
+                children: [
+                  {
+                    dom: "label",
+                    attr: {
+                      for: "gridWidthEntry"
+                    },
+                    content: "Alignment Grid Width"
                   },
-                  content: "Alignment Grid Height"
-                },
-                {
-                  dom: "input",
-                  class: "form-control",
-                  attr: {
-                    type: "text",
-                    id: "gridHeightEntry",
-                    placeholder: "1"
+                  {
+                    dom: "input",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "gridWidthEntry",
+                      placeholder: "1"
+                    }
                   }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "GRID HEIGHT",
+                dom: "div",
+                class: "form-group",
+                attr: { id: "gridHeightGroup" },
+                children: [
+                  {
+                    dom: "label",
+                    attr: {
+                      for: "gridHeightEntry"
+                    },
+                    content: "Alignment Grid Height"
+                  },
+                  {
+                    dom: "input",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "gridHeightEntry",
+                      placeholder: "1"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "SCENE CONTAINER LISTING",
+                dom: "<div>",
+                class: "form-group",
+                attr: { id: "sceneContainerGroup" },
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "sceneContainerListing"
+                    },
+                    content: "Scene Container"
+                  },
+                  {
+                    dom: "<select>",
+                    class: "form-select",
+                    attr: { id: "sceneContainerListing" },
+                    children: [
+                      {
+                        dom: "<option>",
+                        attr: {
+                          "selected": true
+                        },
+                        content: ""
+                      }
+                    ]
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "CLASS TITLE",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "classTitleEntry"
+                    },
+                    content: "Class Title"
+                  },
+                  {
+                    dom: "<input>",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "classTitleEntry",
+                      placeholder: "Enter Class Title"
+                    },
+                    callback: {
+                      keyup: {
+                        args: "",
+                        body: "$(\"#classNameEntry\").val($(\"#classTitleEntry\").val().replace(/ /gi, \"\").replace(/-/gi, \"\").replace(/!/gi, \"\").replace(/\\?/gi, \"\").replace(/\\&/gi, \"_\")); $(\"#classFilenameEntry\").val($(\"#classTitleEntry\").val().toLowerCase().replace(/ /gi, \"-\").replace(/!/gi, \"\").replace(/\\?/gi, \"\").replace(/\\&/gi, \"-\"));"
+                      }
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "CLASS HANDLE",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "classNameEntry"
+                    },
+                    content: "Class Handle"
+                  },
+                  {
+                    dom: "<input>",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "classNameEntry",
+                      placeholder: "Class Handle",
+                      "readonly": "readonly"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "FILE HANDLE",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "classFilenameEntry"
+                    },
+                    content: "File Handle"
+                  },
+                  {
+                    dom: "<input>",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "classFilenameEntry",
+                      placeholder: "File Handle",
+                      "readonly": "readonly"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "DESCRIPTION",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "sectionContentEntry"
+                    },
+                    content: "Description"
+                  },
+                  {
+                    dom: "<textarea>",
+                    class: "form-control",
+                    attr: {
+                      "rows": 5,
+                      id: "sectionContentEntry",
+                      placeholder: "Enter Description Here"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "WEIGHT",
+                dom: "div",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "weightEntry"
+                    },
+                    content: "Loading Weight (Default is 1)"
+                  },
+                  {
+                    dom: "input",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "weightEntry",
+                      value: 0.5
+                    }
+                  }
+                ]
+              }));
+            }
+            
+            let classes = ProjectManager.getClasses();
+            classes.sort(function(a, b) {
+              let aType, bType;
+              for (let i = a.tags.length - 1; i >= 0; i--) {
+                if (a.tags[i] === "class") {
+                  continue;
                 }
-              ]
-            }));
+                aType = a.tags[i];
+              }
+              for (let i = b.tags.length - 1; i >= 0; i--) {
+                if (b.tags[i] === "class") {
+                  continue;
+                }
+                bType = b.tags[i];
+              }
+              let c = 0;
+              if (aType < bType) {
+                c = 1;
+              } else if (aType > bType) {
+                c = -1;
+              } else {
+                if (a.classHandle < b.classHandle) {
+                  c = 1;
+                } else if (a.classHandle > b.classHandle) {
+                  c = -1;
+                }
+              }
+              return c;
+            });
+            for (let i = classes.length - 1; i >= 0; i--) {
+              if (classes[i].tags.includes("scene-container")) {
+                $("#sceneContainerListing").append(CONTENT_BUILDER({
+                  dom: "option",
+                  attr: {
+                    value: classes[i].uid
+                  },
+                  content: classes[i].classHandle
+                }));
+              }
+            }
+          }
+          break;          
+        case "unit test":
+          {
+            { // FORM BUILDER
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "CLASS LISTING",
+                dom: "<div>",
+                class: "form-group",
+                attr: { id: "classGroup" },
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "classListing"
+                    },
+                    content: "Parent Class"
+                  },
+                  {
+                    dom: "<select>",
+                    class: "form-select",
+                    attr: { id: "classListing" },
+                    children: [
+                      {
+                        dom: "<option>",
+                        attr: {
+                          "selected": true
+                        },
+                        content: ""
+                      }
+                    ]
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "MEMBER HEADER",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "memberHeaderEntry"
+                    },
+                    content: "Test Header"
+                  },
+                  {
+                    dom: "<input>",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "memberHeaderEntry",
+                      placeholder: "Test Header"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "MEMBER DEFINITION",
+                dom: "div",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "label",
+                    attr: {
+                      for: "memberDefinitionEntry"
+                    },
+                    content: "Member Definition"
+                  },
+                  {
+                    dom: "textarea",
+                    class: "form-control",
+                    attr: {
+                      "rows": 5,
+                      id: "memberDefinitionEntry",
+                      placeholder: "Enter Definition Here"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "MEMBER ARGUMENTS",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "memberArgsEntry"
+                    },
+                    content: "Member Arguments"
+                  },
+                  {
+                    dom: "<input>",
+                    class: "form-control",
+                    attr: {
+                      id: "memberArgsEntry",
+                      placeholder: "Enter Arguments Here"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "MEMBER CODE",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "memberCodeEntry"
+                    },
+                    content: "Member Body Code"
+                  },
+                  {
+                    dom: "<textarea>",
+                    class: "form-control",
+                    attr: {
+                      "rows": 10,
+                      id: "memberCodeEntry",
+                      placeholder: "Enter Code Here"
+                    }
+                  }
+                ]
+              }));
+              $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+                comment: "ORDER",
+                dom: "<div>",
+                class: "form-group",
+                children: [
+                  {
+                    dom: "<label>",
+                    attr: {
+                      for: "sectionOrderEntry"
+                    },
+                    content: "Order"
+                  },
+                  {
+                    dom: "<input>",
+                    class: "form-control",
+                    attr: {
+                      type: "text",
+                      id: "sectionOrderEntry",
+                      placeholder: "1, 2, 3. . ."
+                    },
+                    callback: {
+                      keyup: {
+                        args: "",
+                        body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+                      }
+                    }
+                  }
+                ]
+              }));
+            }            
+            let classes = ProjectManager.getClasses();
+            classes.sort(function(a, b) {
+              let aType, bType;
+              for (let i = a.tags.length - 1; i >= 0; i--) {
+                if (a.tags[i] === "class") {
+                  continue;
+                }
+                aType = a.tags[i];
+              }
+              for (let i = b.tags.length - 1; i >= 0; i--) {
+                if (b.tags[i] === "class") {
+                  continue;
+                }
+                bType = b.tags[i];
+              }
+              let c = 0;
+              if (aType < bType) {
+                c = 1;
+              } else if (aType > bType) {
+                c = -1;
+              } else {
+                if (a.classHandle < b.classHandle) {
+                  c = 1;
+                } else if (a.classHandle > b.classHandle) {
+                  c = -1;
+                }
+              }
+              return c;
+            });
+            for (let i = classes.length - 1; i >= 0; i--) {
+              if (classes[i].tags.includes("prototype test") || classes[i].tags.includes("ui-scene test")) {
+                $("#classListing").append(CONTENT_BUILDER({
+                  dom: "option",
+                  attr: {
+                    value: classes[i].uid
+                  },
+                  content: classes[i].classHandle
+                }));
+              }
+            }
+          }
+          break;
+        case "view template":
+          {
             $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "SCENE CONTAINER LISTING",
+              comment: "UI SCENE LISTING",
               dom: "<div>",
               class: "form-group",
-              attr: { id: "sceneContainerGroup" },
+              attr: { id: "uiSceneGroup" },
               children: [
                 {
                   dom: "<label>",
                   attr: {
-                    for: "sceneContainerListing"
+                    for: "uiSceneListing"
                   },
-                  content: "Scene Container"
+                  content: "UI Scene"
                 },
                 {
                   dom: "<select>",
                   class: "form-select",
-                  attr: { id: "sceneContainerListing" },
+                  attr: { id: "uiSceneListing" },
                   children: [
                     {
                       dom: "<option>",
@@ -6532,124 +8329,76 @@ const FormListener = (function() {
               ]
             }));
             $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "CLASS TITLE",
+              comment: "VIEW KEY",
               dom: "<div>",
               class: "form-group",
               children: [
                 {
                   dom: "<label>",
                   attr: {
-                    for: "classTitleEntry"
+                    for: "keyEntry"
                   },
-                  content: "Class Title"
+                  content: "View Key"
                 },
                 {
                   dom: "<input>",
                   class: "form-control",
                   attr: {
                     type: "text",
-                    id: "classTitleEntry",
-                    placeholder: "Enter Class Title"
-                  },
-                  callback: {
-                    keyup: {
-                      args: "",
-                      body: "$(\"#classNameEntry\").val($(\"#classTitleEntry\").val().replace(/ /gi, \"\").replace(/-/gi, \"\").replace(/!/gi, \"\").replace(/\\?/gi, \"\").replace(/\\&/gi, \"_\")); $(\"#classFilenameEntry\").val($(\"#classTitleEntry\").val().toLowerCase().replace(/ /gi, \"-\").replace(/!/gi, \"\").replace(/\\?/gi, \"\").replace(/\\&/gi, \"-\"));"
-                    }
+                    id: "keyEntry",
+                    placeholder: "MY_VIEW_STATE"
                   }
                 }
               ]
             }));
             $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "CLASS HANDLE",
+              comment: "VIEW TEMPLATE",
               dom: "<div>",
               class: "form-group",
               children: [
                 {
                   dom: "<label>",
                   attr: {
-                    for: "classNameEntry"
+                    for: "viewCodeEntry"
                   },
-                  content: "Class Handle"
-                },
-                {
-                  dom: "<input>",
-                  class: "form-control",
-                  attr: {
-                    type: "text",
-                    id: "classNameEntry",
-                    placeholder: "Class Handle",
-                    "readonly": "readonly"
-                  }
-                }
-              ]
-            }));
-            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "FILE HANDLE",
-              dom: "<div>",
-              class: "form-group",
-              children: [
-                {
-                  dom: "<label>",
-                  attr: {
-                    for: "classFilenameEntry"
-                  },
-                  content: "File Handle"
-                },
-                {
-                  dom: "<input>",
-                  class: "form-control",
-                  attr: {
-                    type: "text",
-                    id: "classFilenameEntry",
-                    placeholder: "File Handle",
-                    "readonly": "readonly"
-                  }
-                }
-              ]
-            }));
-            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "DESCRIPTION",
-              dom: "<div>",
-              class: "form-group",
-              children: [
-                {
-                  dom: "<label>",
-                  attr: {
-                    for: "sectionContentEntry"
-                  },
-                  content: "Description"
+                  content: "View Template"
                 },
                 {
                   dom: "<textarea>",
                   class: "form-control",
                   attr: {
-                    "rows": 5,
-                    id: "sectionContentEntry",
-                    placeholder: "Enter Description Here"
+                    "rows": 10,
+                    id: "viewCodeEntry",
+                    placeholder: "View Template"
                   }
                 }
               ]
             }));
             $("#designSectionTemplateForm").append(CONTENT_BUILDER({
-              comment: "WEIGHT",
-              dom: "div",
+              comment: "ORDER",
+              dom: "<div>",
               class: "form-group",
               children: [
                 {
                   dom: "<label>",
                   attr: {
-                    for: "weightEntry"
+                    for: "sectionOrderEntry"
                   },
-                  content: "Loading Weight (Default is 1)"
+                  content: "Order"
                 },
                 {
-                  dom: "input",
+                  dom: "<input>",
                   class: "form-control",
                   attr: {
                     type: "text",
-                    id: "weightEntry",
-                    value: 0.5
+                    id: "sectionOrderEntry",
+                    placeholder: "1, 2, 3. . ."
+                  },
+                  callback: {
+                    keyup: {
+                      args: "",
+                      body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+                    }
                   }
                 }
               ]
@@ -6685,8 +8434,8 @@ const FormListener = (function() {
               return c;
             });
             for (let i = classes.length - 1; i >= 0; i--) {
-              if (classes[i].tags.includes("scene-container")) {
-                $("#sceneContainerListing").append(CONTENT_BUILDER({
+              if (classes[i].tags.includes("ui-scene")) {
+                $("#uiSceneListing").append(CONTENT_BUILDER({
                   dom: "option",
                   attr: {
                     value: classes[i].uid
@@ -6977,6 +8726,24 @@ const FormListener = (function() {
             }
           }
         }
+        { // test
+          if (entry.tags.includes("prototype test")) {
+            $("#injectionListing").append(CONTENT_BUILDER({
+              dom: "<option>",
+              attr: {
+                "value": "required import"
+              },
+              content: "Required Imports"
+            }));
+            $("#injectionListing").append(CONTENT_BUILDER({
+              dom: "<option>",
+              attr: {
+                "value": "before all"
+              },
+              content: "Before All"
+            }));
+          }
+        }
         { // constants
           if (entry.tags.includes("app-constants")) {
             $("#injectionListing").append(CONTENT_BUILDER({
@@ -6985,6 +8752,31 @@ const FormListener = (function() {
                 "value": "group properties"
               },
               content: "Add Group Property"
+            }));
+          }
+        }
+        { // config
+          if (entry.tags.includes("app-config")) {   
+            $("#injectionListing").append(CONTENT_BUILDER({
+              dom: "<option>",
+              attr: {
+                "value": "required import"
+              },
+              content: "Required Imports"
+            }));     
+            $("#injectionListing").append(CONTENT_BUILDER({
+              dom: "<option>",
+              attr: {
+                "value": "prototype requires"
+              },
+              content: "Prototype Required Classes"
+            }));
+            $("#injectionListing").append(CONTENT_BUILDER({
+              dom: "<option>",
+              attr: {
+                "value": "singleton requires"
+              },
+              content: "Singleton Required Classes"
             }));
           }
         }

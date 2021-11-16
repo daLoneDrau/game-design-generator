@@ -24,10 +24,12 @@ const DATA_TEMPLATE = {
 };
 
 const LIB_CLASS_HANDLES = {
+  "app-config": "Config",
   "app-constants": "Constants",
   "scene-controller": "SceneController"
 }
 const LIB_FILE_HANDLES = {
+  "app-config": "config",
   "app-constants": "constants",
   "scene-controller": "scene-controller"
 }

@@ -1,17 +1,20 @@
 if (typeof(module) !== "undefined") {
-  var { Phaser } = require("phaser");
+  var { Dice } = require("../../../../../../../lib/RPGBase-NodeJS/src/services/dice");
+  var { Watchable } = require("../../../../../../../lib/RPGBase-NodeJS/src/bus/watchable");
+  var { RetroC64AkalabethMonsterData } = require("./retroc64-akalabeth-monster-data");
+  var { RetroC64Constants } = require("../../config/retroc64-constants");
 }
 /**
  * @class A class to represent the game world will be created using the 'prototype' template.
  * @param {object} parameterObject optional initialization parameters
  */
 function RetroC64AkalabethWorld(parameterObject) {
-  /** @private placeholder */
-  this._te = [];
-  /** @private placeholder */
-  this._tx = 0;
-  /** @private placeholder */
-  this._ty = 0;
+  /** @private a 21x21 array containing the world terrain. */
+  this._terrain = [];
+  /** @private the player's x-position */
+  this._playerX = 0;
+  /** @private the player's y-position */
+  this._playerY = 0;
   /** @private placeholder */
   this._xx = [];
   /** @private place */
@@ -26,58 +29,178 @@ function RetroC64AkalabethWorld(parameterObject) {
   this._ft = [];
   /** @private place */
   this._lad = [];
+  /** @private The Dungeon level */
+  this._dungeonLevel = [];
+  /** @private The list of monsters generated for the dungeon level. */
+  this._monsters = [];
+  /** @private PX field */
+  this._px = 0;
+  /** @private the PY field */
+  this._py = 0;
+  /** @private The DX field */
+  this._dx = 1;
+  /** @private The DY field */
+  this._dy = 0;
   Watchable.apply(this);
 };
 RetroC64AkalabethWorld.prototype = Object.create(Watchable.prototype);
 RetroC64AkalabethWorld.prototype.constructor = Watchable;
 { // RetroC64AkalabethWorld Getters/Setters
-  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'tx', {
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'playerX', {
     /**
-     * Getter for field _tx.
+     * Getter for field _playerX.
      * @returns {Number}
      */
     get() {
-      return this._tx;
+      return this._playerX;
     },
     /**
-     * Setter for field _tx.
+     * Setter for field _playerX.
      * @param {PropertyKey} value the value
      */
     set(value) {
       if (isNaN(parseInt(value))) {
         throw ["Invalid value", value];
       }
-      this._tx = value;
+      this._playerX = value;
       this.notifyWatchers(this);
     }
   });
-  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'ty', {
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'playerY', {
     /**
-     * Getter for field _ty.
+     * Getter for field _playerY.
      * @returns {Number}
      */
     get() {
-      return this._ty;
+      return this._playerY;
     },
     /**
-     * Setter for field _ty.
+     * Setter for field _playerY.
      * @param {PropertyKey} value the value
      */
     set(value) {
       if (isNaN(parseInt(value))) {
         throw ["Invalid value", value];
       }
-      this._ty = value;
+      this._playerY = value;
       this.notifyWatchers(this);
+    }
+  });
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'dungeonLevel', {
+    /**
+     * Getter for field _dungeonLevel.
+     * @returns {Object}
+     */
+    get() {
+      return this._dungeonLevel;
+    },
+    /**
+     * Setter for field _dungeonLevel.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      this._dungeonLevel = value;
+    }
+  });
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'monsters', {
+    /**
+     * Getter for field _monsters.
+     * @returns {Object}
+     */
+    get() {
+      return this._monsters;
+    },
+    /**
+     * Setter for field _monsters.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      this._monsters = value;
+    }
+  });
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'px', {
+    /**
+     * Getter for field _px.
+     * @returns {Number}
+     */
+    get() {
+      return this._px;
+    },
+    /**
+     * Setter for field _px.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      if (isNaN(parseInt(value))) {
+        throw ["Invalid value", value];
+      }
+      this._px = value;
+    }
+  });
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'py', {
+    /**
+     * Getter for field _py.
+     * @returns {Number}
+     */
+    get() {
+      return this._py;
+    },
+    /**
+     * Setter for field _py.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      if (isNaN(parseInt(value))) {
+        throw ["Invalid value", value];
+      }
+      this._py = value;
+    }
+  });
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'dx', {
+    /**
+     * Getter for field _dx.
+     * @returns {Number}
+     */
+    get() {
+      return this._dx;
+    },
+    /**
+     * Setter for field _dx.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      if (isNaN(parseInt(value))) {
+        throw ["Invalid value", value];
+      }
+      this._dx = value;
+    }
+  });
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'dy', {
+    /**
+     * Getter for field _dy.
+     * @returns {Number}
+     */
+    get() {
+      return this._dy;
+    },
+    /**
+     * Setter for field _dy.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      if (isNaN(parseInt(value))) {
+        throw ["Invalid value", value];
+      }
+      this._dy = value;
     }
   });
   /**
-   * Getter for field _te.
+   * Getter for field _terrain.
    * @returns {Object}
    */
-  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'te', {
+  Object.defineProperty(RetroC64AkalabethWorld.prototype, 'terrain', {
     get() {
-      return this._te;
+      return this._terrain;
     },
   });
   /**
@@ -145,38 +268,48 @@ RetroC64AkalabethWorld.prototype.constructor = Watchable;
   });
 }
 /**
- * Populates a new world.
+ * Procedurally-generates a new world.
  */
 RetroC64AkalabethWorld.prototype.newWorld = function() {
-  // reset the this._te array
-  this._te.length = 0;
-  for (let i = 20; i >= 0; i--) {
+  // reset the this._terrain array - fill a 21x21 array with 0s
+  this._terrain.length = 0;
+  for (let row = 20; row >= 0; row--) {
     let r = [];
-    for (let j = 20; j >= 0; j--) {
+    for (let col = 20; col >= 0; col--) {
       r.push(0);
     }
-    this._te.push(r);
+    this._terrain.push(r);
   }
   // fill the borders with 1s
   for (let i = 0; i <= 20; i++) {
-    this._te[i][0] = 1;
-    this._te[0][i] = 1;
-    this._te[i][20] = 1;
-    this._te[20][i] = 1;
+    this._terrain[i][0] = 1;
+    this._terrain[0][i] = 1;
+    this._terrain[i][20] = 1;
+    this._terrain[20][i] = 1;
   }
   // randomly fill the interior
-  for (let x = 19; x >= 1; x--) {
-    for (let y = 19; y >= 1; y--) {
-      this._te[x][y] = Math.ceil(Math.random() ^ 5 * 4.5);
-      if (this._te[x][y] === 3 && Math.random() > 0.5) {
-        this._te[x][y] = 0;
+  for (let row = 19; row >= 1; row--) {
+    for (let col = 19; col >= 1; col--) {
+      let rand = Math.floor(Math.random() ** 5 * 4.5);
+      while (rand > 4) {
+        rand = Math.floor(Math.random() ** 5 * 4.5);
+      }
+      this._terrain[row][col] = rand;
+      if (this._terrain[row][col] === 3 && Math.random() > 0.5) {
+        this._terrain[row][col] = 0;
       }
     }
   }
-  this._te[Math.ceil(Math.random() * 19 + 1)][Math.ceil(Math.random() * 19 + 1)] = 5;
-  this._tx = Math.ceil(Math.random() * 19 + 1);
-  this._ty = Math.ceil(Math.random() * 19 + 1);
-  this._te[this._tx][this._ty] = 3;
+  // randomly position Lord British's castle
+  this._terrain[Dice.rollDie(19)][Dice.rollDie(19)] = 5;
+  
+  do { // randomly position the player between 1,1 and 19,19, but re-assign if player lands on the castle
+    this._playerX = Dice.rollDie(19);
+    this._playerY = Dice.rollDie(19);
+  } while (this._terrain[this._playerY][this._playerX] === 5);
+  
+  // put a shop at the player's location
+  this._terrain[this._playerY][this._playerX] = 3;
   
   // reset the this._xx and this._yy arrays
   this._xx.length = 0;
@@ -199,8 +332,8 @@ RetroC64AkalabethWorld.prototype.newWorld = function() {
   }
   // fill the this._xx, this._yy, and this._per arrays with random values
   for (let i = 2; i <= 20; i += 2) {
-    this._xx[i / 2] = Math.ceil(Math.atan(1 / i) / Math.atan(1) * 140 + .5);
-    this._yy[i / 2] = Math.ceil(this._xx[i / 2] * 4 / 7);
+    this._xx[i / 2] = Math.floor(Math.atan(1 / i) / Math.atan(1) * 140 + .5);
+    this._yy[i / 2] = Math.floor(this._xx[i / 2] * 4 / 7);
     this._per[i / 2][0] = 139 - this._xx[i / 2];
     this._per[i / 2][1] = 139 + this._xx[i / 2];
     this._per[i / 2][2] = 79 - this._yy[i / 2];
@@ -289,6 +422,111 @@ RetroC64AkalabethWorld.prototype.newWorld = function() {
     this._lad[i][1] = (this._ft[i][0] + 2 * this._ft[i][1]) / 3;
     this._lad[i][3] = this._ft[i][4];
     this._lad[i][2] = 159 - this._lad[i][3];
+  }
+}
+/**
+ * Procedurally-generates a dungeon level.
+ */
+RetroC64AkalabethWorld.prototype.newDungeonLevel = function() {
+  this._dungeonLevel.length = 0;
+  // the dungeon level will be a 11x11 array filled with 0s
+  for(let x = 0; x <= 10; x++) {
+    let r = [];
+    for(let y = 0; y <= 10; y++) {
+      r.push(0);
+    }
+    this._dungeonLevel.push(r);
+  }
+  
+  // fill the edges with 1s (0,0 - 0,10 and then 10,0 - 10,10, as well as the sides)
+  for (let x = 0; x <= 10; x++) {
+    this._dungeonLevel[x][0] = 1;
+    this._dungeonLevel[x][10] = 1;
+    this._dungeonLevel[0][x] = 1;
+    this._dungeonLevel[10][x] = 1;
+  }
+  
+  // set walls at fixed locations
+  for (let x = 2; x <= 8; x += 2) {
+    for (let y = 1; y <= 9; y++) {
+      this._dungeonLevel[x][y] = 1;
+      this._dungeonLevel[y][x] = 1;
+    }
+  }
+  for (let X = 2; X <= 8; X += 2) {
+    for (let Y = 1; Y <= 9; Y += 2) {
+      if (Math.random() > .95) {
+        this._dungeonLevel[X][Y] = 2;
+      }
+      if (Math.random() > .95) {
+        this._dungeonLevel[Y][X] = 2;
+      }
+      if (Math.random() > .6) {
+        this._dungeonLevel[Y][X] = 3;
+      }
+      if (Math.random() > .6) {
+        this._dungeonLevel[X][Y] = 3;
+      }
+      if (Math.random() > .6) {
+        this._dungeonLevel[X][Y] = 4;
+      }
+      if (Math.random() > .6) {
+        this._dungeonLevel[Y][X] = 4;
+      }
+      if (Math.random() > .97) {
+        this._dungeonLevel[Y][X] = 9;
+      }
+      if (Math.random() > .97) {
+        this._dungeonLevel[X][Y] = 9;
+      }
+      if (Math.random() > .94) {
+        this._dungeonLevel[X][Y] = 5;
+      }
+      if (Math.random() > .94) {
+        this._dungeonLevel[Y][X] = 5;
+      }
+    }
+  }
+  this._dungeonLevel[2][1] = 0;
+  if (this.AkalabethController.levelsUnderground % 2 ===  0) { // place on even levels
+    this._dungeonLevel[7][3] = 7;
+    this._dungeonLevel[3][7] = 8;
+  } else { // place on odd levels
+    this._dungeonLevel[7][3] = 8;
+    this._dungeonLevel[3][7] = 7;
+  }
+  if (this.AkalabethController.levelsUnderground === 1) { // place on 1st level
+    this._dungeonLevel[1][1] = 8;
+    this._dungeonLevel[7][3] = 0;
+  }
+  this.generateMonsters();
+}
+/**
+ * Generates monsters for a dungeon level.
+ */
+RetroC64AkalabethWorld.prototype.generateMonsters = function() {
+  this._monsters.length = 0;
+  for (let i = 9; i >= 0; i--) {
+    let monsterData = new RetroC64AkalabethMonsterData();
+    monsterData.type = i;
+    monsterData.hitPoints = i + 4 + RetroC64AkalabethController.levelsUnderground;
+    if (i - 1 > RetroC64AkalabethController.levelsUnderground
+        || Math.random() > .4) {
+      // if the monster type is 3 levels above the dungeon level it won't appear.
+      // there is also a 60% chance a monster won't be placed
+      continue;
+    }
+    let passed = false;
+    do {
+      // place the monster in a random interior location
+      monsterData.x = Dice.rollDie(9);
+      monsterData.y = Dice.rollDie(9);
+      // re-roll if the position isn't empty, or is the player's spot
+    } while (this._dungeonLevel[monsterData.y][monsterData.x] !== 0 || monsterData.x == this._px || monsterData.y == this._py);
+    // mark the monster's position 
+    this._dungeonLevel[monsterData.y][monsterData.x] = monsterData.type * 10;
+    // change the calculation for hit points (why?)
+    monsterData.hitPoints = i * 2 + RetroC64AkalabethController.levelsUnderground * 2 * RetroC64AkalabethController.levelOfPlay;
   }
 }
 if (typeof(module) !== "undefined") {

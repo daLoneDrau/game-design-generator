@@ -1,10 +1,13 @@
 if (typeof(module) !== "undefined") {
-  var { Phaser } = require("phaser");
   var { RetroC64SceneController } = require("./retroc64-scene-controller");
+  var { RetroC64AkalabethGameOverScene } = require("./retroc64-akalabeth-game-over-scene");
+  var { RetroC64AkalabethCastleScene } = require("../scenes/akalabeth/castle/retroc64-akalabeth-castle-scene");
+  var { RetroC64AkalabethDungeonScene } = require("../scenes/akalabeth/dungeon/retroc64-akalabeth-dungeon-scene");
+  var { RetroC64AkalabethCharacterStatsScene } = require("../scenes/akalabeth/character-stats/retroc64-akalabeth-character-stats-scene");
   var { RetroC64AkalabethWorldMapScene } = require("../scenes/akalabeth/retroc64-akalabeth-world-map-scene");
-  var { RetroC64SetupScene } = require("../scenes/akalabeth/retroc64-setup-scene");
-  var { RetroC64ShopScene } = require("../scenes/retroc64-shop-scene");
-  var { RetroC64IntroScene } = require("../scenes/retroc64-introscene");
+  var { RetroC64SetupScene } = require("../scenes/akalabeth/retroc64-akalabeth-setup-scene");
+  var { RetroC64AkalabethShopScene } = require("../scenes/akalabeth/shop/retroc64-akalabeth-shop-scene");
+  var { RetroC64AkalabethCharacterCreationScene } = require("../scenes/akalabeth/character-creation/retroc64-akalabeth-character-creation-scene");
 }
 /**
  * @class undefined
@@ -22,10 +25,14 @@ var RetroC64Game = (function() {
    */
   let _postBoot = function() {
     _game.scene.queueOp("start", "Controller");
+    _game.scene.queueOp("start", "AkalabethGameOverScene");
+    _game.scene.queueOp("start", "AkalabethCastleScene");
+    _game.scene.queueOp("start", "AkalabethDungeonScene");
+    _game.scene.queueOp("start", "AkalabethCharacterStatsScene");
     _game.scene.queueOp("start", "AkalabethWorldMapScene");
-    _game.scene.queueOp("start", "SetupScene");
-    _game.scene.queueOp("start", "IntroScene");
-    _game.scene.queueOp("start", "ShopScene");
+    _game.scene.queueOp("start", "AkalabethSetupScene");
+    _game.scene.queueOp("start", "AkalabethCharacterCreationScene");
+    _game.scene.queueOp("start", "AkalabethShopScene");
     RetroC64SceneController.init();
   }
   /** @private the game configuration. */
@@ -43,10 +50,14 @@ var RetroC64Game = (function() {
       postBoot: _postBoot
     },
     scene: [
+      RetroC64AkalabethCastleScene,
+      RetroC64AkalabethCharacterCreationScene,
+      RetroC64AkalabethCharacterStatsScene,
+      RetroC64AkalabethDungeonScene,
+      RetroC64AkalabethGameOverScene,
+      RetroC64AkalabethSetupScene,
+      RetroC64AkalabethShopScene,
       RetroC64AkalabethWorldMapScene,
-      RetroC64IntroScene,
-      RetroC64SetupScene,
-      RetroC64ShopScene,
       RetroC64SceneController,
     ]
   };

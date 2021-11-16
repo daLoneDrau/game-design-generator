@@ -1,5 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { Phaser } = require("phaser");
+  var { Watchable } = require("../../../../../../../lib/RPGBase-NodeJS/src/bus/watchable");
 }
 /**
  * @class A class to represent equipment items will be added using the 'prototype' template.

@@ -142,6 +142,7 @@ const PhaserCodeGenerator = (function() {
           }
         }
       }
+      markup = markup.replace(/\[entry-key\]/gi, appData.entryKey);
       markup = markup.replace(/\[field-declaration\]/gi, appData.fieldDeclaration);
       markup = markup.replace(/\[field-definition\]/gi, appData.fieldDefinition);
       markup = markup.replace(/\[field-name\]/gi, appData.fieldName);
@@ -203,6 +204,7 @@ const PhaserCodeGenerator = (function() {
       markup = markup.replace(/\[import-file\]/gi, appData.importFilePath);
       markup = markup.replace(/\[import-handle\]/gi, appData.importHandle);
       markup = markup.replace(/\[import-path\]/gi, appData.importPath);
+      markup = markup.replace(/\[initial-state-key\]/gi, appData.initialState);
       markup = markup.replace(/\[member-args-list\]/gi, appData.arguments);
       if (markup.indexOf("[member-definition]") >= 0) {
         let split = appData.memberDefinition.split("\n"), str = [];
@@ -211,6 +213,7 @@ const PhaserCodeGenerator = (function() {
         }
         markup = markup.trim().replace(/\[member-definition\]/gi, str.join("\r\n"));
       }
+      markup = markup.replace(/\[member-header\]/gi, appData.memberHeader);
       markup = markup.replace(/\[member-name\]/gi, appData.memberName);
       markup = markup.replace(/\[namespace\]/gi, appData.namespace);
       markup = markup.replace(/\[optional-class-name\]/gi, appData.optionalClassName);
@@ -227,7 +230,9 @@ const PhaserCodeGenerator = (function() {
       markup = markup.replace(/\[table-name\]/gi, appData.tableName);
       markup = markup.replace(/\[table-random-key\]/gi, appData.tableRandomKey);
       markup = markup.replace(/\[table-raw\]/gi, appData.tableRaw);
-      markup = markup.replace(/\[test-method\]/gi, appData.testMethod);
+      markup = markup.replace(/\[test-args-list\]/gi, appData.arguments);
+      markup = markup.replace(/\[test-definition\]/gi, appData.testDefinition);
+      markup = markup.replace(/\[test-header\]/gi, appData.testHeader);
       if (appData.hasOwnProperty("testParameter")) {
         if (typeof(appData.testParameter) === "string" || appData.testParameter instanceof String) {
           markup = markup.replace(/\[test-parameter\]/gi, ["\"", appData.testParameter, "\""].join(""));
@@ -397,7 +402,8 @@ const PhaserCodeGenerator = (function() {
             for (let i = 0, li = definition.markup.length; i < li; i++) {
               str.push(_markupDelegator["string"](definition.markup[i], codeEntry));
             }
-          } else if (site.indexOf("constructor body") > 0
+          } else if (site.indexOf("before all") > 0
+              || site.indexOf("constructor body") > 0
               || site.indexOf("create") > 0
               || site.indexOf("init") > 0
               || site.indexOf("postboot") > 0
@@ -406,13 +412,19 @@ const PhaserCodeGenerator = (function() {
               || site.indexOf("update") > 0
               || site.indexOf("dictionary body") > 0
               || site.indexOf("inheritance") > 0
+              || site.indexOf("key listener handler") > 0
+              || site.indexOf("prototype requires") > 0
               || site.indexOf("public member") > 0
               || site.indexOf("public getter/setter property") > 0
               || site.indexOf("public getter property") > 0
               || site.indexOf("public setter property") > 0
               || site.indexOf("required import") > 0
               || site.indexOf("scene group") > 0
-              || site.indexOf("start scene") > 0) {
+              || site.indexOf("singleton requires") > 0
+              || site.indexOf("start scene") > 0
+              || site.indexOf("unit test") > 0
+              || site.indexOf("unit test each") > 0
+              || site.indexOf("view template") > 0) {
             for (let i = 0, li = definition.markup.length; i < li; i++) {
               str.push(_markupDelegator["string"](definition.markup[i], codeEntry));
             }
@@ -515,6 +527,8 @@ const PhaserCodeGenerator = (function() {
       classData.dimensions = data.dimensions;
       if (classData.tags.includes("prototype")) {
         template = _templates.phaser.prototype;
+      } else if (classData.tags.includes("prototype test")) {
+        template = _templates.phaser["prototype test"];
       } else if (classData.tags.includes("game")) {
         template = _templates.phaser.game;
       } else if (classData.tags.includes("scene")) {
@@ -529,9 +543,12 @@ const PhaserCodeGenerator = (function() {
         template = _templates.phaser["ui-scene"];
       } else if (classData.tags.includes("app-constants")) {
         template = _templates.phaser.constants;
+      } else if (classData.tags.includes("app-config")) {
+        template = _templates.phaser.config;
       }
       let filePath = [__dirname, '..',  'public'].concat(template.path);
       if (classData.tags.includes("prototype")
+          || classData.tags.includes("prototype test")
           || (classData.tags.includes("scene-container") && classData.hasOwnProperty("filePath"))
           || classData.tags.includes("singleton")
           || classData.tags.includes("ui-scene")) {
@@ -579,14 +596,14 @@ const PhaserCodeGenerator = (function() {
   }
   _processData = function(data) {
     let structure = {
-      "appHandle": data.appHandle,
-      "appName": data.appName,
-      "fileHandle": data.fileHandle,
-      "theme": data.theme,
-      "dimensions": data.dimensions,
-      "classes": [],
-      "scenes": [],
-      "code": []
+      appHandle: data.appHandle,
+      appName: data.appName,
+      fileHandle: data.fileHandle,
+      theme: data.theme,
+      dimensions: data.dimensions,
+      classes: [],
+      scenes: [],
+      code: []
     };
     recursiveProcess(data["Design Notes"]);
     // console.log("structure before fixing code paths",structure)
@@ -614,6 +631,16 @@ const PhaserCodeGenerator = (function() {
             }
             codeEntry.classPath = codeEntry.classPath.join("/").replace(/\[namespace\]/gi, structure.fileHandle);
             codeEntry.classTemplate = "prototype";
+          }
+          if (classEntry.tags.includes("prototype test")) {
+            codeEntry.classPath = JSON.parse(JSON.stringify(_templates.phaser["prototype test"].path));
+            if (Array.isArray(classEntry.filePath)) {
+              codeEntry.classPath = codeEntry.classPath.concat(classEntry.filePath);
+            } else {
+              codeEntry.classPath.push(classEntry.filePath);
+            }
+            codeEntry.classPath = codeEntry.classPath.join("/").replace(/\[namespace\]/gi, structure.fileHandle);
+            codeEntry.classTemplate = "prototype test";
           }
           if (classEntry.tags.includes("app-constants")) {
             codeEntry.classPath = _templates.phaser["constants"].path.join("/").replace(/\[namespace\]/gi, structure.fileHandle);
@@ -677,6 +704,15 @@ const PhaserCodeGenerator = (function() {
           }
           if (obj.tags.includes("prototype")) {
             obj.classPath = JSON.parse(JSON.stringify(_templates.phaser.prototype.path));
+            if (Array.isArray(obj.filePath)) {
+              obj.classPath = obj.classPath.concat(obj.filePath);
+            } else {
+              obj.classPath.push(obj.filePath);
+            }
+            obj.classPath = obj.classPath.join("/").replace(/\[namespace\]/gi, structure.fileHandle);
+          }
+          if (obj.tags.includes("prototype test")) {
+            obj.classPath = JSON.parse(JSON.stringify(_templates.phaser["prototype test"].path));
             if (Array.isArray(obj.filePath)) {
               obj.classPath = obj.classPath.concat(obj.filePath);
             } else {

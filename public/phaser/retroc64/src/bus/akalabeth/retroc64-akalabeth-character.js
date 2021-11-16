@@ -1,5 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { Phaser } = require("phaser");
+  var { Watchable } = require("../../../../../../../lib/RPGBase-NodeJS/src/bus/watchable");
   var { RetroC64AkalabethEquipmentItem } = require("./retroc64-akalabeth-equipment-item");
 }
 /**
@@ -23,6 +23,10 @@ function RetroC64AkalabethCharacter(parameterObject) {
   this._class = "";
   /** @private The player's inventory. */
   this._inventory = {};
+  /** @private The player's name. */
+  this._name = "";
+  /** @private The player's current task from Lord British will be tracked. */
+  this._task = 0;
   Watchable.apply(this);
 };
 RetroC64AkalabethCharacter.prototype = Object.create(Watchable.prototype);
@@ -168,18 +172,60 @@ RetroC64AkalabethCharacter.prototype.constructor = Watchable;
       this.notifyWatchers(this);
     }
   });
+  Object.defineProperty(RetroC64AkalabethCharacter.prototype, 'name', {
+    /**
+     * Getter for field _name.
+     * @returns {String}
+     */
+    get() {
+      return this._name;
+    },
+    /**
+     * Setter for field _name.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      if (typeof(value) !== "string" && !(value instanceof String)) {
+        throw ["Invalid value", value];
+      }
+      this._name = value;
+      this.notifyWatchers(this);
+    }
+  });
+  Object.defineProperty(RetroC64AkalabethCharacter.prototype, 'task', {
+    /**
+     * Getter for field _task.
+     * @returns {Number}
+     */
+    get() {
+      return this._task;
+    },
+    /**
+     * Setter for field _task.
+     * @param {PropertyKey} value the value
+     */
+    set(value) {
+      if (isNaN(parseInt(value))) {
+        throw ["Invalid value", value];
+      }
+      this._task = value;
+      this.notifyWatchers(this);
+    }
+  });
 }
 /**
  * Resets the character's attributes.
  */
 RetroC64AkalabethCharacter.prototype.newCharacter = function() {
-  this._hitPoints = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);
-  this._strength = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);
-  this._dexterity = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);
-  this._stamina = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);
-  this._wisdom = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);
-  this._gold = Math.ceil(Math.sqrt(Math.random()) * 21 + 4);
+  this._hitPoints = Math.floor(Math.sqrt(Math.random()) * 21 + 4);
+  this._strength = Math.floor(Math.sqrt(Math.random()) * 21 + 4);
+  this._dexterity = Math.floor(Math.sqrt(Math.random()) * 21 + 4);
+  this._stamina = Math.floor(Math.sqrt(Math.random()) * 21 + 4);
+  this._wisdom = Math.floor(Math.sqrt(Math.random()) * 21 + 4);
+  this._gold = Math.floor(Math.sqrt(Math.random()) * 21 + 4);
   this._class = "";
+  this._name = "";
+  this._task = 0;
   this._inventory = {};
   this.notifyWatchers(this);
 }
