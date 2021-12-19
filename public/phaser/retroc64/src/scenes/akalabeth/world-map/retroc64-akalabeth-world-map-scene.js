@@ -173,6 +173,12 @@ var RetroC64AkalabethWorldMapScene = (function() {
       }
     };
   }
+  /**
+   * Clears the scene,
+   */
+  _scene.clear = function() {
+    _akalabethWorldMapInterface.clear();
+  }
   return _scene;
 } ());
 

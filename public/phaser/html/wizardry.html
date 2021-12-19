@@ -1,0 +1,54 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- all requests to express are routed through the public folder. treat that as the root to start from, not the current folder -->
+  <link rel="stylesheet" type="text/css" href="/phaser/css/hypercard.css">
+  <title>Wizardry</title>
+</head>
+<body>
+  <div id="domContainer" style="width: 100%; height: calc(100vh - 65px);"></div>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- phaser library -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+
+  <!-- application library -->
+  <!-- <script type="text/javascript" src="/phaser/assets/js/rpgbase.full.min.js"></script> -->
+  <script type="text/javascript" src="/phaser/assets/js/rpgbase.full.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/utility/wizardry-long.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/wizardry-batrslt.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/wizardry-character.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/wizardry-enemy.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/wizardry-enemy2.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/wizardry-maze.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/wizardry-object.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/wizardry-scntoc.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/bus/utility/wizardry-hp-record.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/config/wizardry-config.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/config/wizardry-constants.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/scenes/wizardry-scene-controller.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/services/wizardry-controller.js"></script>
+  <script type="text/javascript" src="/phaser/wizardry/src/singletons/wizardry-game.js"></script>
+  <script>
+  var globalJson;
+  function jsonp(data) {
+    globalJson = data;
+  }
+  
+  $(document).ready(function() {
+    // complete class setup
+    // RpgBaseConfig.init();
+    WizardryConfig.init();
+    // instance of Phaser.Game object. starts the process of bringing the app to life
+    WizardryGame.newGame();
+  });
+  </script>
+  <script type="text/javascript" src="/phaser/undefined/src/dat/undefined-data.jsonp.js"></script>
+
+</body>
+</html>

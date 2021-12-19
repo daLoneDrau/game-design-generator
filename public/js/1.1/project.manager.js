@@ -281,9 +281,9 @@ const ProjectManager = (function() {
   };
   /** the DOM structure of a navigation branch. */
   const _NAV_BRANCH = {
-    "dom": "<a>",
-    "class": "nav-link side-nav",
-    "attr": { "href": "#" }
+    dom: "a",
+    class: "nav-link side-nav",
+    attr: { "href": "#" }
   };
   /** the dictionary of titles assigned to each theme. */
   const _THEME_TITLES = {
@@ -297,6 +297,7 @@ const ProjectManager = (function() {
     "class": 0,
     "prototype": 0,
     "scene": 0,
+    enum: 0,
     "code": 1,
     "private field": 1,
     "constructor body": 2,
@@ -322,11 +323,16 @@ const ProjectManager = (function() {
 
   }
   const ANNOTATIONS_BUILDER = {
-    "app-constants": function($div, entry) {
+    "app-config": function($div, entry) {
       $div.append(_contentBuilder({
         "dom": "p",
         "class": "h6",
         "content": ["Library Class Registered - ", _project.appHandle, entry.classHandle].join("")
+      }));
+      $div.append(_contentBuilder({
+        "dom": "em",
+        "class": "small",
+        "content": [_project.fileHandle, "/src/config/", _project.fileHandle, "-", entry.fileHandle, ".js"].join("")
       }));
       $div.append(_contentBuilder(
         {
@@ -338,6 +344,116 @@ const ProjectManager = (function() {
             "data-uid": entry.uid
           },
           "content": "Remove Library Class",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
+    "app-constants": function($div, entry) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["Library Class Registered - ", _project.appHandle, entry.classHandle].join("")
+      }));
+      $div.append(_contentBuilder({
+        "dom": "em",
+        "class": "small",
+        "content": [_project.fileHandle, "/src/config/", _project.fileHandle, "-", entry.fileHandle, ".js"].join("")
+      }));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Remove Library Class",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
+    enum: function($div, entry) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["Enum Created - ", _project.appHandle, entry.enumHandle].join("")
+      }));
+      $div.append(_contentBuilder({
+        "dom": "em",
+        "class": "small",
+        "content": [_project.fileHandle, "/src/dat/", _project.fileHandle, "-data.jsonp.js"].join("")
+      }));
+      let cont = {
+        "dom": "pre",
+        "class": "language-javascript",
+        children: [
+          {
+            "dom": "code",
+            "class": "language-javascript",
+            children: [
+              {
+                "dom": "span",
+                "class": "token comment",
+                "style": "white-space: normal;",
+                "content": ["/** ",entry.enumDefinition, " */"].join("")
+              },
+              {
+                "dom": "br"
+              },
+              {
+                "dom": "span",
+                "class": "token keyword",
+                "content": "enum"
+              },
+              {
+                "dom": "span",
+                "class": "token class-name",
+                "content": ["&nbsp;", _project.appHandle, entry.enumHandle, " {"].join("")
+              }
+            ]
+          }
+        ]
+      };
+      for (let prop in entry.values) {
+        cont.children[0].children.push(
+          {
+            "dom": "br"
+          },
+          {
+            "dom": "span",
+            "class": "token keyword",
+            "content": ["&nbsp;&nbsp;", prop].join("")
+          }
+        );
+      }
+      cont.children[0].children.push(
+        {
+          "dom": "br"
+        },
+        {
+          "dom": "span",
+          "class": "token keyword",
+          "content": "}"
+        }
+      );
+      $div.append(_contentBuilder(cont));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Enum",
           "callback": {
             "args": "",
             "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
@@ -960,6 +1076,122 @@ const ProjectManager = (function() {
         "class": "h6",
         "content": ["Required Import Added To ", className].join("")
       }));
+      if (entry.hasOwnProperty("imports")) {
+        let o = {
+          dom: "pre",
+          class: "language-javascript",
+          children: []
+        }
+        for (let i = 0, li = entry.imports.length; i < li; i++) {
+          let imp = entry.imports[i];
+          o.children.push(
+            {
+              "dom": "code",
+              "class": "language-javascript",
+              "children": [
+                {
+                  "dom": "span",
+                  "class": "token keyword",
+                  "content": "var"
+                },
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": [" { ", imp.importHandle, " } = "].join("")
+                },
+                {
+                  "dom": "span",
+                  "class": "token keyword",
+                  "content": "require"
+                },
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": ["(\"", imp.importPath, "\");"].join("")
+                }
+              ]
+            }
+          );
+          if (i + 1 < li) {
+            o.children.push({ dom: "br" })
+          }
+        }        
+        $div.append(_contentBuilder(o));
+      } else {
+        $div.append(_contentBuilder(
+          {
+            "dom": "pre",
+            "class": "language-javascript",
+            "children": [
+              {
+                "dom": "code",
+                "class": "language-javascript",
+                "children": [
+                  {
+                    "dom": "span",
+                    "class": "token keyword",
+                    "content": "var"
+                  },
+                  {
+                    "dom": "span",
+                    "class": "token class-name",
+                    "content": [" { ", entry.importHandle, " } = "].join("")
+                  },
+                  {
+                    "dom": "span",
+                    "class": "token keyword",
+                    "content": "require"
+                  },
+                  {
+                    "dom": "span",
+                    "class": "token class-name",
+                    "content": ["(\"", entry.importPath, "\");"].join("")
+                  }
+                ]
+              }
+            ]
+          }
+        ));
+      }
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Edit Import",
+          "callback": {
+            "args": "",
+            "body": ["FormManager.displayEditDesignForm(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Import",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },
+    "required import no bracket": function($div, entry, className) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": ["Required Import Added To ", className].join("")
+      }));
       $div.append(_contentBuilder(
         {
           "dom": "pre",
@@ -977,7 +1209,7 @@ const ProjectManager = (function() {
                 {
                   "dom": "span",
                   "class": "token class-name",
-                  "content": [" { ", entry.importHandle, " } = "].join("")
+                  "content": [" ", entry.importHandle, " = "].join("")
                 },
                 {
                   "dom": "span",
@@ -1232,6 +1464,83 @@ const ProjectManager = (function() {
             "data-uid": entry.uid
           },
           "content": "Delete Scene Group",
+          "callback": {
+            "args": "",
+            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+    },    
+    "scene-controller": function($div, entry) {
+      $div.append(_contentBuilder({
+        "dom": "p",
+        "class": "h6",
+        "content": "Application Scene Controller Created"
+      }));
+      $div.append(_contentBuilder({
+        "dom": "em",
+        "class": "small",
+        "content": [_project.fileHandle, "/src/scenes/", _project.fileHandle, "-", entry.fileHandle, ".js"].join("")
+      }));
+      $div.append(_contentBuilder(
+        {
+          "dom": "pre",
+          "class": "language-javascript",
+          "children": [
+            {
+              "dom": "code",
+              "class": "language-javascript",
+              "children": [
+                {
+                  "dom": "span",
+                  "class": "token comment",
+                  "style": "white-space: normal;",
+                  "content": ["/** @class The Scene Controller will handle switching between scene containers. */"].join("")
+                },
+                {
+                  "dom": "br"
+                },
+                {
+                  "dom": "span",
+                  "class": "token keyword",
+                  "content": "class"
+                },
+                {
+                  "dom": "span",
+                  "class": "token class-name",
+                  "content": ["&nbsp;", _project.appHandle, entry.classHandle].join("")
+                }
+              ]
+            }
+          ]
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Edit Game",
+          "callback": {
+            "args": "",
+            "body": ["FormManager.displayEditDesignForm(\"", entry.uid, "\");"].join("")
+          }
+        }
+      ));
+      $div.append(_contentBuilder(
+        {
+          "dom": "<a>",
+          "class": "btn",
+          "attr": {
+            "href": "#",
+            "role": "button",
+            "data-uid": entry.uid
+          },
+          "content": "Delete Scene",
           "callback": {
             "args": "",
             "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
@@ -1749,6 +2058,7 @@ const ProjectManager = (function() {
     },
   }
   let _buildAnnotations = function(data) {
+    console.log("buildA",data)
     $("#annotations").html("");
     if (data.design.length > 0) {
       let $div = _contentBuilder({
@@ -1762,6 +2072,10 @@ const ProjectManager = (function() {
         "content": data.title
       }));
       let entries = JSON.parse(JSON.stringify(data.design));
+      // look up designs
+      for (let i = entries.length - 1; i >= 0; i--) {
+        entries[i] = ProjectManager.getDesignEntryByUid(entries[i].designUid);
+      }
       // BUCKET ANNOTATIONS BY CLASS
       let classDict = {};
       for (let i = entries.length - 1; i >= 0; i--) {
@@ -1773,16 +2087,23 @@ const ProjectManager = (function() {
           classDict[entry.classHandle].push(entry);
         } else if (entry.tags.includes("code")) {
           // get parent class
-          let parent = ProjectManager.getEntryByUid(entry.classUid);
+          let parent = ProjectManager.getDesignEntryByUid(entry.classUid);
           if (!classDict.hasOwnProperty(parent.classHandle)) {
             classDict[parent.classHandle] = [];
           }
           classDict[parent.classHandle].push(entry);
+        } else if (entry.tags.includes("enum")) {
+          // get parent class
+          if (!classDict.hasOwnProperty("enums")) {
+            classDict.enums = [];
+          }
+          classDict.enums.push(entry);
         }
       }
       let keys = Object.keys(classDict);
       keys.sort();
       for (let j = keys.length - 1; j >= 0; j--) {
+        let key = keys[j];
         // SORT BUCKETS BY DESIGN TYPES
         classDict[keys[j]].sort(function (a, b) {
           let c = 0, aWeight = 0, bWeight = 0;
@@ -1798,8 +2119,13 @@ const ProjectManager = (function() {
               console.log("missing weight for", b.tags[i]);
             }
           }
-          a.weight = aWeight;
-          b.weight = bWeight;
+          // why am I setting the weight? need more comments!!
+          if (!a.tags.includes("enum")) {
+            a.weight = aWeight;
+          }
+          if (!b.tags.includes("enum")) {
+            b.weight = bWeight;
+          }
           if (aWeight < bWeight) {
             c = -1;
           } else if (aWeight > bWeight) {
@@ -1815,14 +2141,17 @@ const ProjectManager = (function() {
           }
           return c;
         });
-        console.log("classDict",classDict)
         // DISPLAY ANNOTATIONS
-        for (let i = 0, li = classDict[keys[j]].length; i < li; i++) {
-          let entry = classDict[keys[j]][i];
-          if (entry.tags.includes("app-constants")) {
-            ANNOTATIONS_BUILDER["app-constants"]($div, entry, keys[j]);
+        for (let i = 0, li = classDict[key].length; i < li; i++) {
+          let entry = classDict[key][i];
+          if (entry.tags.includes("app-config")) {
+            ANNOTATIONS_BUILDER["app-config"]($div, entry, key);
+          } else if (entry.tags.includes("app-constants")) {
+            ANNOTATIONS_BUILDER["app-constants"]($div, entry, key);
+          } else if (entry.tags.includes("enum")) {
+            ANNOTATIONS_BUILDER.enum($div, entry, keys[j]);
           } else if (entry.tags.includes("inheritance")) {
-            ANNOTATIONS_BUILDER.inheritance($div, entry, keys[j]);
+            ANNOTATIONS_BUILDER.inheritance($div, entry, key);
           } else if (entry.tags.includes("prototype")) {
             ANNOTATIONS_BUILDER.prototype($div, entry, keys[j]);
           } else if (entry.tags.includes("game")) {
@@ -1831,12 +2160,12 @@ const ProjectManager = (function() {
             ANNOTATIONS_BUILDER["group properties"]($div, entry, keys[j]);
           } else if (entry.tags.includes("key listener handler")) {
             ANNOTATIONS_BUILDER["key listener handler"]($div, entry, keys[j]);
-          } else if (entry.tags.includes("required import")) {
-            ANNOTATIONS_BUILDER["required import"]($div, entry, keys[j]);
           } else if (entry.tags.includes("scene")) {
             ANNOTATIONS_BUILDER.scene($div, entry, keys[j]);
           } else if (entry.tags.includes("scene-container")) {
             ANNOTATIONS_BUILDER["scene-container"]($div, entry, keys[j]);
+          } else if (entry.tags.includes("scene-controller")) {
+            ANNOTATIONS_BUILDER["scene-controller"]($div, entry, keys[j]);
           } else if (entry.tags.includes("scene group")) {
             ANNOTATIONS_BUILDER["scene group"]($div, entry, keys[j]);
           } else if (entry.tags.includes("private field")) {
@@ -1845,7 +2174,13 @@ const ProjectManager = (function() {
             ANNOTATIONS_BUILDER["scoped dictionary enclosure"]($div, entry, keys[j]);
           } else if (entry.tags.includes("scoped dictionary body 0") || entry.tags.includes("scoped dictionary body 1")) {
             ANNOTATIONS_BUILDER["scoped dictionary body"]($div, entry, keys[j]);
-          } else if (entry.tags.includes("create") || entry.tags.includes("init") || entry.tags.includes("postboot") || entry.tags.includes("preboot") || entry.tags.includes("preload") || entry.tags.includes("update") || entry.tags.includes("constructor body")) {
+          } else if (entry.tags.includes("create")
+              || entry.tags.includes("init")
+              || entry.tags.includes("postboot")
+              || entry.tags.includes("preboot")
+              || entry.tags.includes("preload")
+              || entry.tags.includes("update")
+              || entry.tags.includes("constructor body")) {
             ANNOTATIONS_BUILDER["scoped method body"]($div, entry, keys[j]);
           } else if (entry.tags.includes("prototype requires")) {
             ANNOTATIONS_BUILDER["prototype requires"]($div, entry, keys[j]);
@@ -1853,6 +2188,10 @@ const ProjectManager = (function() {
             ANNOTATIONS_BUILDER["public member"]($div, entry, keys[j]);
           } else if (entry.tags.includes("public setter property")) {
             ANNOTATIONS_BUILDER["public setter property"]($div, entry, keys[j]);
+          } else if (entry.tags.includes("required import")) {
+            ANNOTATIONS_BUILDER["required import"]($div, entry, keys[j]);
+          } else if (entry.tags.includes("required import no bracket")) {
+            ANNOTATIONS_BUILDER["required import no bracket"]($div, entry, keys[j]);
           } else if (entry.tags.includes("singleton")) {
             ANNOTATIONS_BUILDER.singleton($div, entry, keys[j]);
           } else if (entry.tags.includes("singleton requires")) {
@@ -1872,6 +2211,9 @@ const ProjectManager = (function() {
       $div.fadeIn("slow");
     }
   };
+  /**
+   * Builds the section breadcrumbs.
+   */
   let _buildBreadcrumbs = function() {
     let sectionTitle = "root";
     if (typeof(_currentSectionWorkingOn) !== "undefined") {
@@ -1944,10 +2286,14 @@ const ProjectManager = (function() {
       recursiveBuild(_project["Design Notes"][i], 1);
     }
   };
+  /**
+   * Entry point for rendering the page.
+   */
   let _buildPage = function() {
     $("#annotations").html("");
     _buildSidebar();
     _buildContent();
+    console.log(_project)
     if (_project["Design Notes"].length > 0) {
       // enable scrollspy
       $('#projectContent').scrollspy({ target: "#projectNav", method: "position" });
@@ -1972,6 +2318,12 @@ const ProjectManager = (function() {
       }
     ));
     _buildBreadcrumbs();
+    /**
+     * Recursively builds the sidebar content
+     * @param {Array} arr an array of design note objects
+     * @param {Number} level the indentation level
+     * @param {jQuery} $container the parent container
+     */
     function recursiveBuild(arr, level, $container) {
       for (let i = 0, li = arr.length; i < li; i++) {
         let o = JSON.parse(JSON.stringify(_NAV_BRANCH));
@@ -1986,6 +2338,16 @@ const ProjectManager = (function() {
         o.callback = { "args": "", "body": "ProjectManager.clickNavLink(arguments);" };
         if (typeof(_currentSectionWorkingOn) !== "undefined" && _currentSectionWorkingOn.uid === arr[i].uid) {
           o.class = [o.class, " active"].join("");
+        }
+        if (arr[i].hasOwnProperty("unitTestingPercentage")) {
+          o.class = [o.class, " unit-testing"].join("");
+          if (arr[i].unitTestingPercentage < 50) {
+            o.class = [o.class, " low"].join("");
+          } else if (arr[i].unitTestingPercentage < 80) {
+            o.class = [o.class, " medium"].join("");
+          } else {
+            o.class = [o.class, " high"].join("");
+          }
         }
         if (arr[i].hasOwnProperty("children") && arr[i].children.length > 0) {
           o.class = [o.class, " collapsed has-subs"].join("");
@@ -2142,6 +2504,10 @@ const ProjectManager = (function() {
     }
     return recursiveSearch(_project["Design Notes"], uid);
   }
+  /**
+   * Recursively sorts objects and their children by their assigne order.
+   * @param {Array} arr an array of objects that contain an order memmber and possibly children
+   */
   let _recursiveSort = function(arr) {
     arr.sort(function(a, b) {
       let c = 0;
@@ -2178,7 +2544,7 @@ const ProjectManager = (function() {
     get currentTheme() { return _project.theme; },
     get projectAppHandle() { return _project.appHandle; },
     get projectFileHandle() { return _project.fileHandle; },
-    "addSection": function(data) {
+    addSection: function(data) {
       if (typeof(_currentSectionWorkingOn) !== "undefined") {
         _currentSectionWorkingOn.children.push(data);
       } else {
@@ -2186,15 +2552,85 @@ const ProjectManager = (function() {
       }
       _saveProject();
     },
-    "addDesign": function(data) {
+    addDesign: function(data) {
       if (typeof(_currentSectionWorkingOn) !== "undefined") {
-        _currentSectionWorkingOn.design.push(data);
+        _currentSectionWorkingOn.design.push({ designUid: data.uid });
+        if (data.tags.includes("enum")) {
+          // place the enum
+          let o = _project["Design Implementation"];
+          if (!o.hasOwnProperty("config")) {
+            o.config = {};
+          }
+          o = o.config;
+          if (!o.hasOwnProperty("enums")) {
+            o.enums = {};
+          }
+          o = o.enums;
+          o[data.enumName] = data;
+        } else if (data.tags.includes("class")) {
+          // place the class
+          let o = _project["Design Implementation"];
+          for (let j = 0, lj = data.filePath.length; j < lj; j++) {
+            if (!o.hasOwnProperty(data.filePath[j])) {
+              o[data.filePath[j]] = {};
+            }
+            o = o[data.filePath[j]]
+            if (j + 1 >= lj) {
+              o[data.classHandle] = data;
+            }
+          }
+        } else if (data.tags.includes("constructor body")) {
+          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
+          if (!parent.hasOwnProperty("constructor body")) {
+            parent["constructor body"] = [];
+          }
+          parent["constructor body"].push(data);
+        } else if (data.tags.includes("private field")) {
+          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
+          if (!parent.hasOwnProperty("private fields")) {
+            parent["private fields"] = [];
+          }
+          parent["private fields"].push(data);
+        } else if (data.tags.includes("required import")) {
+          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
+          if (!parent.hasOwnProperty("imports")) {
+            parent["imports"] = [];
+          }
+          parent["imports"].push(data);
+        } else if (data.tags.includes("public member")) {
+          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
+          if (!parent.hasOwnProperty("public members")) {
+            parent["public members"] = [];
+          }
+          parent["public members"].push(data);
+        } else if (data.tags.includes("public getter/setter property") || data.tags.includes("public getter property") || data.tags.includes("public setter property")) {
+          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
+          if (!parent.hasOwnProperty("public properties")) {
+            parent["public properties"] = [];
+          }
+          parent["public properties"].push(data);
+        }
+        // sort the design implementation
+        let tmp = {};
+        let keys = Object.keys(_project["Design Implementation"]);
+        keys.sort();
+        for (let i = 0, li = keys.length; i < li; i++) {
+          tmp[keys[i]] = JSON.parse(JSON.stringify(_project["Design Implementation"][keys[i]]));
+          // sort one more level
+          let tmp2 = {}, keys2 = Object.keys(tmp[keys[i]]);
+          keys2.sort();
+          for (let j = 0, lj = keys2.length; j < lj; j++) {
+            tmp2[keys2[j]] = JSON.parse(JSON.stringify(tmp[keys[i]][keys2[j]]));
+          }
+          tmp[keys[i]] = tmp2;
+        }
+        _project["Design Implementation"] = tmp;
       } else {
         throw "Cannot add a design entry to the root";
       }
       _saveProject();
     },
-    "buildProject": function(promises, startAjax) {
+    buildProject: function(promises, startAjax) {
       let endAjax = Date.now();
       let time = endAjax - startAjax;
       console.log("**buildProject** took " + time + "ms for initial promise to resolve", promises.length);
@@ -2229,7 +2665,7 @@ const ProjectManager = (function() {
         }
       }
     },
-    "clearBreadcrumbs": function() {
+    clearBreadcrumbs: function() {
       _currentSectionWorkingOn = undefined;
       // de-activate Edit links
       $("#editSectionLink").addClass("disabled");
@@ -2256,7 +2692,7 @@ const ProjectManager = (function() {
       $("#addTestingNotesLink").removeClass("disabled");
       $("#addNextStepsNotesLink").removeClass("disabled");
     },
-    "deleteDesignEntry": function(uid) {
+    deleteDesignEntry: function(uid) {
       let designParent = _getSectionParent(uid);
       for (let i = designParent.design.length - 1; i >= 0; i--) {
         if (designParent.design[i].uid === uid) {
@@ -2266,7 +2702,7 @@ const ProjectManager = (function() {
       }
       _saveProject();
     },
-    "updateDesignEntry": function(data) {
+    updateDesignEntry: function(data) {
       let designParent = _getSectionParent(data.uid);
       for (let i = designParent.design.length - 1; i >= 0; i--) {
         if (designParent.design[i].uid === data.uid) {
@@ -2276,7 +2712,7 @@ const ProjectManager = (function() {
       }
       _saveProject();
     },
-    "deleteSection": function(data) {
+    deleteSection: function(data) {
       if (typeof(_currentSectionWorkingOn) !== "undefined") {
         // find parent
         let parent = _getSectionParent(_currentSectionWorkingOn.uid);
@@ -2299,7 +2735,7 @@ const ProjectManager = (function() {
       _currentSectionWorkingOn = undefined;
       _saveProject();
     },
-    "editSection": function(data) {
+    editSection: function(data) {
       if (typeof(_currentSectionWorkingOn) !== "undefined") {
         _currentSectionWorkingOn.title = data.title;
         _currentSectionWorkingOn.order = data.order;
@@ -2309,16 +2745,21 @@ const ProjectManager = (function() {
       }
       _saveProject();
     },
-    "generatePhaserCode": function() {
+    generatePhaserCode: function() {
       LibraryManager.generatePhaserProject(_project);
     },
-    "getClasses": function() {
+    getClasses: function() {
       let classes = [];
       function recursiveSearch(arr) {
         for (let i = arr.length - 1; i >= 0; i--) {
           let entry = arr[i];
-          if (entry.hasOwnProperty("tags") && entry.tags.includes("class")) {
-            classes.push(entry);
+          if (entry.hasOwnProperty("designUid")) {
+            let designObject = ProjectManager.getDesignEntryByUid(entry.designUid);
+            if (designObject.hasOwnProperty("tags") && designObject.tags.includes("class")) {
+              if (!classes.includes(designObject)) {
+                classes.push(designObject);
+              }
+            }
           }
           if (entry.hasOwnProperty("children")) {
             recursiveSearch(entry.children);
@@ -2331,7 +2772,34 @@ const ProjectManager = (function() {
       recursiveSearch(_project["Design Notes"]);
       return classes;
     },
-    "getEntryByUid": function(uid) {
+    getDesignEntryByUid: function(uid) {
+      function recursiveSearch(o, uid) {
+        let found;
+        // console.log("check",o,uid)
+        if (o.hasOwnProperty("uid") && o.uid === uid) {
+          found = o;
+        } else {
+          if (Array.isArray(o)) {
+            for (let i = o.length - 1; i >= 0; i--) {
+              found = recursiveSearch(o[i], uid);
+              if (found !== null && typeof(found) !== "undefined") {
+                break;
+              }
+            }
+          } else if (typeof(o) === "object") {
+            for (let prop in o) {
+              found = recursiveSearch(o[prop], uid);
+              if (found !== null && typeof(found) !== "undefined") {
+                break;
+              }
+            }
+          }
+        }
+        return found;
+      }
+      return recursiveSearch(_project["Design Implementation"], uid);
+    },
+    getEntryByUid: function(uid) {
       function recursiveSearch(arr, uid) {
         let found;
         for (let i = arr.length - 1; i >= 0; i--) {

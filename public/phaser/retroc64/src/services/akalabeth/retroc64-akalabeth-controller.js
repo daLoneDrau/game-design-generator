@@ -13,6 +13,8 @@ var RetroC64AkalabethController = (function() {
   let _character = new RetroC64AkalabethCharacter();
   /** @private The game world instance. */
   let _world = null;
+  /** @private The game dungeon instance. */
+  let _dungeon = null;
   /** @private A flag to verify if the PAUSE is on is available. */
   let _pauseOn = false;
   /** @private The hardcoded list of monsters. */
@@ -115,6 +117,16 @@ var RetroC64AkalabethController = (function() {
         _world = new this.WorldClass();
       }
       return _world;
+    },
+    /**
+     * Getter for field _dungeon.
+     * @returns {Object}
+     */
+    get dungeon() {
+      if (_dungeon === null) {
+        _dungeon = new this.DungeonClass();
+      }
+      return _dungeon;
     },
     /**
      * Getter for field _monsters.

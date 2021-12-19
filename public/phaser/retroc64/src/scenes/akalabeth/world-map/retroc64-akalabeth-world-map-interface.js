@@ -560,14 +560,13 @@ function RetroC64AkalabethWorldMapInterface(parameterObject) {
                           function() {
                             // do not delay this call, since it needs to process when hitting the dungeon scene
                             // set direction facing and player location
-                            RetroC64AkalabethController.world.levelsUnderground = 1;
-                            RetroC64AkalabethController.world.newDungeonLevel();
-                            RetroC64AkalabethController.world.dx = 1;
-                            RetroC64AkalabethController.world.dy = 0;
-                            RetroC64AkalabethController.world.px = 1;
-                            RetroC64AkalabethController.world.py = 1;
+                            RetroC64AkalabethController.levelsUnderground = 1;
+                            RetroC64AkalabethController.dungeon.newDungeonLevel();
+                            RetroC64AkalabethController.dungeon.dx = 1;
+                            RetroC64AkalabethController.dungeon.dy = 0;
+                            RetroC64AkalabethController.dungeon.px = 1;
+                            RetroC64AkalabethController.dungeon.py = 1;
                             // signal to the dungeon scene that an action was taken and reduce the player's food
-                            RetroC64AkalabethDungeonScene.actionTaken = true;
                           }
                         ]
                       });
@@ -825,6 +824,14 @@ RetroC64AkalabethWorldMapInterface.prototype.setCommands = function() {
   if (RetroC64AkalabethController.world.terrain[RetroC64AkalabethController.world.playerY][RetroC64AkalabethController.world.playerX] === 5) {
     this._dynamicFields.setVisible("castleLabel", true);
   }
+}
+/** 
+ * Clears the scene.
+ */
+RetroC64AkalabethWorldMapInterface.prototype.clear = function() {
+  this._dynamicFields.setText("commandHistory2", "");
+  this._dynamicFields.setText("commandHistory1", "");
+  this._dynamicFields.setText("commandHistory0", "");
 }
 /**
  * Handles the player action to move north.

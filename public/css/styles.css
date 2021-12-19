@@ -83,3 +83,15 @@ code[class*="language-"], pre[class*="language-"] {
 .has-subs.collapsed::after {
   content: "+"
 }
+.unit-testing {
+  background-color: #000 !important;
+}
+.unit-testing.low {
+  color: #C21F39 !important;
+}
+.unit-testing.medium {
+  color: #f9cd0b !important;
+}
+.unit-testing.high {
+  color: rgb(77,146,33) !important;
+}

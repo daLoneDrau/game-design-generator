@@ -27,6 +27,22 @@
         "scene-controller",
         "game"
       ]
+    },
+    {
+      "title": "Wizardry",
+      "namespace": "wizardry",
+      "appHandle": "Wizardry",
+      "theme": "hypercard",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "lib": [
+        "app-constants",
+        "app-config",
+        "scene-controller",
+        "game"
+      ]
     }
   ]
 }

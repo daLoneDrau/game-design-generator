@@ -931,11 +931,9 @@ function RetroC64AkalabethCharacterCreationInterface(parameterObject) {
           break;
         case "0":
           {
-            console.log(RetroC64AkalabethController.levelOfPlay, )
             if (RetroC64AkalabethController.levelOfPlay === 1) {
               // set level of play to 10
               RetroC64AkalabethController.levelOfPlay = 10;
-              console.log(RetroC64AkalabethController.levelOfPlay)
               // display level of play
             context._dynamicFields.setText("levelOfPlayField2", ["LEVEL OF PLAY (1-10)...... ", RetroC64AkalabethController.levelOfPlay].join(""));
               

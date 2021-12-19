@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-
-const { LibraryLoader } = require("./src/library.utilities");
-const { PhaserCodeGenerator } = require("./src/code.utilties");
+/*
+const { LibraryLoader } = require("./1.0/src/library.utilities");
+const { PhaserCodeGenerator } = require("./1.0/src/code.utilties");
+*/
+const { LibraryLoader } = require("./1.1/src/library.utilities");
+const { PhaserCodeGenerator } = require("./1.1/src/code.utilties");
 
 // route all static files in public through the web server
 app.use(express.static(path.join(__dirname, 'public')));

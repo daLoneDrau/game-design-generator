@@ -168,10 +168,6 @@ RetroC64AkalabethWorldMapGraphics.prototype.createCrosshairs = function() {
  * Draws the world map.
  */
 RetroC64AkalabethWorldMapGraphics.prototype.drawWorldMap = function() {
-  console.log("player",RetroC64AkalabethController.world.playerX,RetroC64AkalabethController.world.playerY)
-  console.log("world",RetroC64AkalabethController.world.terrain)
-  console.log("terrain",this._terrainImages)
-  
   // draw the 8 positions around the player
   for (let y = -2; y <= 2; y++) {
     for (let x = -2; x <= 2; x++) {

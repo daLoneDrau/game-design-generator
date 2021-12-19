@@ -1,6 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { RetroC64AkalabethDungeonInterface } = require("../scenes/akalabeth/dungeon/retroc64-akalabeth-dungeon-interface");
-  var { RetroC64AkalabethDungeonGraphics } = require("./retroc64-akalabeth-dungeon-graphics");
+  var { RetroC64Constants } = require("../../../config/retroc64-constants");
 }
 /**
  * @class The Dungeon View displays the character's trek through the dungeons.
@@ -13,12 +12,16 @@ var RetroC64AkalabethDungeonScene = (function() {
   });
   /** @private The current state. */
   let _state = "";
-  /** @private A flag will be used to track whether the player has performed an action this turn. */
-  let _actionTaken = false;
+  /** @private A flag will be used to indicate when an animation is playing. */
+  let _animationPlaying = false;
+  /** @private A flag will be used to indicate when a 'Move' command has been entered by the player. */
+  let _moveEntered = -1;
+  /** @private  Flag indicating whether the world map needs to be re-drawn. */
+  let _needsMapRedraw = true;
   /** @private RetroC64AkalabethDungeonInterface instance */
-  let _akalabethDungeonInterface = new RetroC64AkalabethDungeonInterface({ scene: _scene, show: true });
+  let _akalabethDungeonInterface = null;
   /** @private RetroC64AkalabethDungeonGraphics instance */
-  let _akalabethDungeonGraphics = new RetroC64AkalabethDungeonGraphics({ scene: _scene, show: true });
+  let _akalabethDungeonGraphics = null;
   /** @private The map of child scenes. */
   const _SCENES = {
     /** @private the scene instances displayed when this view is active */
@@ -42,23 +45,61 @@ var RetroC64AkalabethDungeonScene = (function() {
         }
       }
     });
-    Object.defineProperty(_scene, "actionTaken", {
+    Object.defineProperty(_scene, "animationPlaying", {
       /**
-       * Getter for field _actionTaken.
+       * Getter for field _animationPlaying.
        * @returns {Object}
        */
       get: function() {
-        return _actionTaken;
+        return _animationPlaying;
       },
       /**
-       * Setter for field _actionTaken.
+       * Setter for field _animationPlaying.
        * @param {PropertyKey} value the value
        */
       set: function(value) {
         if (typeof(value) !== "boolean") {
           throw ["Invalid value", value];
         }
-        _actionTaken = value;
+        _animationPlaying = value;
+      }
+    });
+    Object.defineProperty(_scene, "moveEntered", {
+      /**
+       * Getter for field _moveEntered.
+       * @returns {Number}
+       */
+      get: function() {
+        return _moveEntered;
+      },
+      /**
+       * Setter for field _moveEntered.
+       * @param {PropertyKey} value the value
+       */
+      set: function(value) {
+        if (isNaN(parseInt(value))) {
+          throw ["Invalid value", value];
+        }
+        _moveEntered = value;
+      }
+    });
+    Object.defineProperty(_scene, "needsMapRedraw", {
+      /**
+       * Getter for field _needsMapRedraw.
+       * @returns {Object}
+       */
+      get: function() {
+        return _needsMapRedraw;
+      },
+      /**
+       * Setter for field _needsMapRedraw.
+       * @param {PropertyKey} value the value
+       */
+      set: function(value) {
+        if (typeof(value) !== "boolean") {
+          throw ["Invalid value", value];
+        }
+        _needsMapRedraw = value;
       }
     });
   }
@@ -68,6 +109,15 @@ var RetroC64AkalabethDungeonScene = (function() {
      * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.
      */
     _scene.init = function(data) {
+      if (_akalabethDungeonGraphics === null) {
+        _akalabethDungeonGraphics = new this.GraphicsClass({ scene: _scene, show: false });
+        _SCENES[RetroC64Constants.AKALABETH_DUNGEON_MAIN][0] = _akalabethDungeonGraphics;
+      }
+      if (_akalabethDungeonInterface === null) {
+        _akalabethDungeonInterface = new this.InterfaceClass({ scene: _scene, show: false });
+        _SCENES[RetroC64Constants.AKALABETH_DUNGEON_MAIN][1] = _akalabethDungeonInterface;
+      }
+      
     };
     /**
      * This method is called by the Scene Manager, after init() and before create(), only if the Scene has a LoaderPlugin. After this method completes, if the LoaderPlugin's queue isn't empty, the LoaderPlugin will start automatically. Use it to load assets. 
@@ -122,6 +172,13 @@ var RetroC64AkalabethDungeonScene = (function() {
         }
       }
     };
+  }
+  /**
+   * Clears the scene.
+   */
+  _scene.clear = function() {
+    _akalabethDungeonInterface.clear();
+    _needsMapRedraw = true;
   }
   return _scene;
 } ());

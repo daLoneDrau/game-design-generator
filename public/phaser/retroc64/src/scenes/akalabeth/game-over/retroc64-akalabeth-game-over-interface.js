@@ -74,6 +74,8 @@ function RetroC64AkalabethGameOverInterface(parameterObject) {
           RetroC64AkalabethShopScene.callbackState = RetroC64Constants.AKALABETH_SETUP;
           RetroC64AkalabethWorldMapScene.needsMapRedraw = true;
           RetroC64AkalabethCastleScene.goalsStated = true;
+          RetroC64AkalabethWorldMapScene.clear();
+          RetroC64AkalabethDungeonScene.clear();
           RetroC64SceneController.gotoState({ state: RetroC64Constants.AKALABETH_CHARACTER_CREATION });
           break;
       }

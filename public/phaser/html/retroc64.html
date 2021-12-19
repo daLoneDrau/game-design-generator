@@ -35,9 +35,11 @@
   <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/world-map/retroc64-akalabeth-world-map-graphics.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/world-map/retroc64-akalabeth-world-map-interface.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/bus/akalabeth/retroc64-akalabeth-character.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/bus/akalabeth/retroc64-akalabeth-dungeon.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/bus/akalabeth/retroc64-akalabeth-equipment-item.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/bus/akalabeth/retroc64-akalabeth-monster-data.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/bus/akalabeth/retroc64-akalabeth-world.js"></script>
+  <script type="text/javascript" src="/phaser/retroc64/src/config/retroc64-config.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/castle/retroc64-akalabeth-castle-scene.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/character-creation/retroc64-akalabeth-character-creation-scene.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/character-stats/retroc64-akalabeth-character-stats-scene.js"></script>
@@ -48,8 +50,6 @@
   <script type="text/javascript" src="/phaser/retroc64/src/scenes/akalabeth/world-map/retroc64-akalabeth-world-map-scene.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/services/akalabeth/retroc64-akalabeth-controller.js"></script>
   <script type="text/javascript" src="/phaser/retroc64/src/singletons/retroc64-game.js"></script>
-  <script type="text/javascript" src="/phaser/retroc64/tests/bus/akalabeth/retroc64-akalabeth-world.test.js"></script>
-  <script type="text/javascript" src="/undefined/retroc64-config.js"></script>
   <script>
   var globalJson;
   function jsonp(data) {
@@ -57,6 +57,9 @@
   }
   
   $(document).ready(function() {
+    // complete class setup
+    // RpgBaseConfig.init();
+    RetroC64Config.init();
     // instance of Phaser.Game object. starts the process of bringing the app to life
     RetroC64Game.newGame();
   });

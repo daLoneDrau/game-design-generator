@@ -1,0 +1,3174 @@
+{
+  "appName": "Wizardry",
+  "data-path": [
+    "data"
+  ],
+  "templates file": "",
+  "theme": "hypercard",
+  "dimensions": [
+    1024,
+    768
+  ],
+  "library files": [
+    "app-constants",
+    "app-config",
+    "scene-controller",
+    "game"
+  ],
+  "DESIGNER'S JOURNAL": {
+    "Design Notes": {
+      "Dec 15 2021": [
+        "Application data created."
+      ]
+    },
+    "Testing": {},
+    "Next Steps": []
+  },
+  "enums": [],
+  "fileHandle": "wizardry",
+  "appHandle": "Wizardry",
+  "appConstants": [],
+  "Design Notes": [
+    {
+      "title": "Setup",
+      "order": -9999,
+      "content": "Initial project setup; includes the creation of the following utility classes:\r\n * Game\r\n * SceneController\r\n * Config\r\n * Constants",
+      "children": [
+        {
+          "title": "The Controller Class",
+          "order": 1,
+          "content": "The Application will have a defined Controller class.",
+          "children": [
+            {
+              "title": "The Controller Class",
+              "order": 1,
+              "content": "A new class will be defined using the 'singleton' template.",
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxax69mtyxmlkkicr3m"
+                }
+              ],
+              "uid": "kxax69mtzlg5uwvihwc"
+            },
+            {
+              "title": "File Imports",
+              "order": 2,
+              "content": "The Controller class will require the following imports:",
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxayul1pz9jfjztm6d"
+                }
+              ],
+              "uid": "kxax69mt1ns3slo5huu"
+            },
+            {
+              "title": "Private Fields",
+              "order": 3,
+              "content": "The Controller class will have the following private fields:",
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxax8sewpx22ruk08rm"
+                }
+              ],
+              "uid": "kxax69mtqm5y8ikgre"
+            },
+            {
+              "title": "Public Members",
+              "order": 4,
+              "content": "The Controller class will have the following public members:",
+              "children": [],
+              "design": [],
+              "uid": "kxax69mt6trgccdb6a9"
+            }
+          ],
+          "design": [],
+          "uid": "kxax69msmn72iltlau"
+        }
+      ],
+      "design": [
+        {
+          "designUid": "kx7th9ec5c93dlwsse"
+        },
+        {
+          "designUid": "kx7th9ec5b08mbmihl8"
+        },
+        {
+          "designUid": "kx7th9ecs7nnpoh24l"
+        },
+        {
+          "designUid": "kx7th9ecyf4c057qis"
+        }
+      ],
+      "uid": "kx7th9ec98khyhxh6li"
+    },
+    {
+      "title": "Application Defined Objects",
+      "order": 1,
+      "content": "The Application will design several object types for use throughout the game.",
+      "children": [
+        {
+          "title": "Enums",
+          "order": 1,
+          "content": "The Application will have definitions for the following enumerated types:\n\n* Race",
+          "children": [],
+          "design": [
+            {
+              "designUid": "kx84widfiv4xqkharjs"
+            },
+            {
+              "designUid": "kx85tek6exmt40hosfb"
+            },
+            {
+              "designUid": "kx85bfxz4omwdh8zjkc"
+            },
+            {
+              "designUid": "kx85ar0oyxijxd0vcqk"
+            },
+            {
+              "designUid": "kx9gsukbra04lsezi1"
+            },
+            {
+              "designUid": "kx9h95ud5zcmslvy2hi"
+            },
+            {
+              "designUid": "kxan1bpsnksyzgsyolj"
+            },
+            {
+              "designUid": "kxao8iq11ueqnuccds7"
+            },
+            {
+              "designUid": "kxao9375a9jfefs4cxa"
+            },
+            {
+              "designUid": "kxaqcka14fo4sxt56c1"
+            },
+            {
+              "designUid": "kxaqd1gbz6brpoxvqxj"
+            }
+          ],
+          "uid": "kx7tpzexps8zx83iwr"
+        },
+        {
+          "title": "Utility Objects",
+          "order": 2,
+          "content": "The Wizardry Pascal code contains several utility classes.",
+          "children": [
+            {
+              "title": "Wizardry Long",
+              "order": 1,
+              "content": "The application defines a custom class for wrapping Long values.",
+              "children": [
+                {
+                  "title": "The Long Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kx9aoqeuhem9rpvymlk"
+                    },
+                    {
+                      "designUid": "kx9aoqev1h3pzhakemjj"
+                    },
+                    {
+                      "designUid": "kx9aoqevwthrhkjgihf"
+                    }
+                  ],
+                  "uid": "kx9aoqeveckjo4gbi2q"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Long class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kx9aoqevovsietv5hgp"
+                    }
+                  ],
+                  "uid": "kx9aoqevv8x3oh59l1"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Long class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kx9bl9ztgwoznixc4sc"
+                    },
+                    {
+                      "designUid": "kx9dkng99du7cmsv6b"
+                    },
+                    {
+                      "designUid": "kx9g7e2lk3p2b1xikha"
+                    },
+                    {
+                      "designUid": "kx9g7v1d1xpktcqij9o"
+                    }
+                  ],
+                  "uid": "kx9aoqevew86ze1nwnd"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Long class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kx9aoqevpar3h5cy9gr"
+                }
+              ],
+              "design": [],
+              "uid": "kx9aoqeuymvu11qmyyl"
+            },
+            {
+              "title": "HP Record",
+              "order": 2,
+              "content": "The HP record is another utility class.",
+              "children": [
+                {
+                  "title": "The Hp Record Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kx9jmixmpvvcuxv46ri"
+                    },
+                    {
+                      "designUid": "kx9jmixnkz3qshbnjl8"
+                    },
+                    {
+                      "designUid": "kx9jmixn0u1mdzemhj4o"
+                    }
+                  ],
+                  "uid": "kx9jmixmqa2zeqgr8hh"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Hp Record class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kx9jmixnsfx8qe0it0q"
+                    }
+                  ],
+                  "uid": "kx9jmixmasshro814yl"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Hp Record class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxag2twgov6qa0gv6ff"
+                    },
+                    {
+                      "designUid": "kxag55miuo8e0ezfq2r"
+                    },
+                    {
+                      "designUid": "kxag68elpuo6i610ox"
+                    },
+                    {
+                      "designUid": "kxag6yawfzonbeo6abp"
+                    }
+                  ],
+                  "uid": "kx9jmixmsu0dja2td"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Hp Record class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kx9jmixmg9b65jmmrrv"
+                }
+              ],
+              "design": [],
+              "uid": "kx9jmixmgkqn3ged9r"
+            }
+          ],
+          "design": [
+            {
+              "designUid": "kx9aoqeuhem9rpvymlk"
+            },
+            {
+              "designUid": "kx9jmixmpvvcuxv46ri"
+            }
+          ],
+          "uid": "kx97o3n87l9rw489blb"
+        },
+        {
+          "title": "Business Classes",
+          "order": 3,
+          "content": "The application will have definitions for several business classes.",
+          "children": [
+            {
+              "title": "The Character Class",
+              "order": 1,
+              "content": "Player characters are defined by the WizardryCharacter class.",
+              "children": [
+                {
+                  "title": "The Character Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxagi0flb3a2vkz4h74"
+                    },
+                    {
+                      "designUid": "kxagi0flynvq6s1z0z"
+                    },
+                    {
+                      "designUid": "kxagi0fldmygwzc1jal"
+                    }
+                  ],
+                  "uid": "kxagi0flp8omxy1f8kp"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Character class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxagi0flt78wm2syf6"
+                    }
+                  ],
+                  "uid": "kxagi0flrzhmx7g8sxh"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Character class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxahspvtkbbyrlgks09"
+                    }
+                  ],
+                  "uid": "kxagi0floryr5x7opzm"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Character class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kxagi0flunlnpaapete"
+                }
+              ],
+              "design": [],
+              "uid": "kxagi0fkjj7bitglcs"
+            },
+            {
+              "title": "The Object Class",
+              "order": 2,
+              "content": "The application defines a class for objects.",
+              "children": [
+                {
+                  "title": "The Object Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxan2o6kwkcslymvfs"
+                    },
+                    {
+                      "designUid": "kxan2o6kmd4dz2dozhd"
+                    },
+                    {
+                      "designUid": "kxan2o6kjqixnb212f"
+                    }
+                  ],
+                  "uid": "kxan2o6kunzjoluix0d"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Object class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxan2o6kblubx7nhu"
+                    }
+                  ],
+                  "uid": "kxan2o6k7yyr2hyzqv7"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Object class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxan3pl6p44nvjtk4h"
+                    }
+                  ],
+                  "uid": "kxan2o6k38xqq0b1oif"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Object class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kxan2o6k1y53ye5ae2xh"
+                }
+              ],
+              "design": [],
+              "uid": "kxan2o6jz2anb9yceo"
+            },
+            {
+              "title": "The Maze Class",
+              "order": 3,
+              "content": "The application defines a class to represent a maze level.",
+              "children": [
+                {
+                  "title": "The Maze Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaoabqckyvw2r7xim"
+                    },
+                    {
+                      "designUid": "kxaoabqcclqppd7pzrv"
+                    },
+                    {
+                      "designUid": "kxaoabqc4mpehdynues"
+                    }
+                  ],
+                  "uid": "kxaoabqc5rfj9sk3yr4"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Maze class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaoabqchjgbs4ilv6f"
+                    }
+                  ],
+                  "uid": "kxaoabqcqb5zazeah3n"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Maze class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaokxxnjfnal9bfq28"
+                    }
+                  ],
+                  "uid": "kxaoabqcvwkgkzwjbrm"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Maze class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kxaoabqcy9quc0xv2e"
+                },
+                {
+                  "title": "Constructor",
+                  "order": 5,
+                  "content": "The constructor will contain additional code for defining new instances.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaowwv4brpt9nlegbh"
+                    }
+                  ],
+                  "uid": "kxaotwdpesorwmuxrl"
+                }
+              ],
+              "design": [],
+              "uid": "kxaoabqcxb1eeg7hhkp"
+            },
+            {
+              "title": "The Enemy Class",
+              "order": 4,
+              "content": "The Application defines a class for Enemy objects.",
+              "children": [
+                {
+                  "title": "The Enemy Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxap86s8yzxx19qf5tl"
+                    },
+                    {
+                      "designUid": "kxap86s8md7rg5dchs"
+                    },
+                    {
+                      "designUid": "kxap86s8ghibdwosnsv"
+                    }
+                  ],
+                  "uid": "kxap86s8l0qr3snvr1"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Enemy class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxap86s8unxoyurpptq"
+                    }
+                  ],
+                  "uid": "kxap86s8ncikd4q752"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Enemy class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxap9f6r9d22gzvu5ss"
+                    }
+                  ],
+                  "uid": "kxap86s8hrolwjgs0dc"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Enemy class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kxap86s8tvvl90yjcwp"
+                }
+              ],
+              "design": [],
+              "uid": "kxap86s8ok3m8nrf79p"
+            },
+            {
+              "title": "The Enemy2 Class",
+              "order": 5,
+              "content": "A second Enemy class is defined.",
+              "children": [
+                {
+                  "title": "The Enemy2 Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaq804l36s4lxx0ohd"
+                    },
+                    {
+                      "designUid": "kxaq804lyvgcttcuqls"
+                    },
+                    {
+                      "designUid": "kxaq804ll6s08a5vqj8"
+                    }
+                  ],
+                  "uid": "kxaq804l113g6hxigvi"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Enemy2 class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaq804l5gjq2nruznh"
+                    }
+                  ],
+                  "uid": "kxaq804l9b42wrlh9u5"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Enemy2 class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaqatz6i8q3tpetf5"
+                    }
+                  ],
+                  "uid": "kxaq804li1qqwgsk72k"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Enemy2 class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kxaq804l1zjvckhtaki"
+                }
+              ],
+              "design": [],
+              "uid": "kxaq804kum27mxk7ea"
+            },
+            {
+              "title": "ScnToc Class",
+              "order": 5,
+              "content": "Unknown Class definition",
+              "children": [
+                {
+                  "title": "The ScnToc Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaq9i3lv22upk8ihu"
+                    },
+                    {
+                      "designUid": "kxaq9i3mulelj5nr8zi"
+                    },
+                    {
+                      "designUid": "kxaq9i3mhve5o2xa2gp"
+                    }
+                  ],
+                  "uid": "kxaq9i3mlxq7jp9upit"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The ScnToc class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaq9i3mnbt2fh9a2yg"
+                    }
+                  ],
+                  "uid": "kxaq9i3mbz4h78b4aci"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The ScnToc class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxaqbjjfl0ysk9syo5i"
+                    }
+                  ],
+                  "uid": "kxaq9i3m16supw8yi5d"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The ScnToc class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kxaq9i3m6roe2qdfugs"
+                }
+              ],
+              "design": [],
+              "uid": "kxaq9i3lmvui97jsgs"
+            },
+            {
+              "title": "Batrslt Class",
+              "order": 7,
+              "content": "??",
+              "children": [
+                {
+                  "title": "The Batrslt Class",
+                  "order": 1,
+                  "content": "A new class will be defined using the 'prototype' template.",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxar3euwnfkjavnjzzh"
+                    },
+                    {
+                      "designUid": "kxar3euxekehusuzyug"
+                    },
+                    {
+                      "designUid": "kxar3euxr1dy16p8cf"
+                    }
+                  ],
+                  "uid": "kxar3euwxd0de2woqqn"
+                },
+                {
+                  "title": "File Imports",
+                  "order": 2,
+                  "content": "The Batrslt class will require the following imports:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxar3euxmqkd3yig5o"
+                    }
+                  ],
+                  "uid": "kxar3euwqr9s8f010m"
+                },
+                {
+                  "title": "Private Fields",
+                  "order": 3,
+                  "content": "The Batrslt class will have the following private fields:",
+                  "children": [],
+                  "design": [
+                    {
+                      "designUid": "kxar44dq4luvaf804ky"
+                    }
+                  ],
+                  "uid": "kxar3euws85uh3rlu2g"
+                },
+                {
+                  "title": "Public Members",
+                  "order": 4,
+                  "content": "The Batrslt class will have the following public members:",
+                  "children": [],
+                  "design": [],
+                  "uid": "kxar3euw7d6yaiwq46r"
+                }
+              ],
+              "design": [],
+              "uid": "kxar3euwgzxio8hvez7"
+            }
+          ],
+          "design": [
+            {
+              "designUid": "kxagi0flb3a2vkz4h74"
+            },
+            {
+              "designUid": "kxan2o6kwkcslymvfs"
+            },
+            {
+              "designUid": "kxaoabqckyvw2r7xim"
+            },
+            {
+              "designUid": "kxap86s8yzxx19qf5tl"
+            },
+            {
+              "designUid": "kxaq804l36s4lxx0ohd"
+            },
+            {
+              "designUid": "kxaq9i3lv22upk8ihu"
+            },
+            {
+              "designUid": "kxar3euwnfkjavnjzzh"
+            }
+          ],
+          "uid": "kxagb3mzygup50oe0bi"
+        }
+      ],
+      "design": [],
+      "uid": "kx7tp6n93w34e0y9692"
+    },
+    {
+      "title": "",
+      "order": 9999,
+      "content": "",
+      "children": [
+        {
+          "title": "",
+          "order": 9999,
+          "content": "",
+          "children": [
+            {
+              "title": "",
+              "order": 9999,
+              "content": "",
+              "children": [
+                {
+                  "title": "",
+                  "order": 9999,
+                  "content": "",
+                  "children": [
+                    {
+                      "title": "",
+                      "order": 9999,
+                      "content": "",
+                      "children": [
+                        {
+                          "title": "",
+                          "order": 9999,
+                          "content": "",
+                          "children": [
+                            {
+                              "title": "",
+                              "order": 9999,
+                              "content": "",
+                              "children": [
+                                {
+                                  "title": "",
+                                  "order": 9999,
+                                  "content": "",
+                                  "children": [],
+                                  "design": [],
+                                  "uid": "kx7th9ecd6y8x850wfb"
+                                }
+                              ],
+                              "design": [],
+                              "uid": "kx7th9ec14sbpg3306j"
+                            }
+                          ],
+                          "design": [],
+                          "uid": "kx7th9ecoqca8d5jbfn"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kx7th9eciui2ets90m"
+                    }
+                  ],
+                  "design": [],
+                  "uid": "kx7th9eckqaaev9wv0c"
+                }
+              ],
+              "design": [],
+              "uid": "kx7th9ecpxssp3fehhb"
+            }
+          ],
+          "design": [],
+          "uid": "kx7th9ecjpqnkti7g1"
+        }
+      ],
+      "design": [],
+      "uid": "kx7th9eczm27ds115fs"
+    }
+  ],
+  "Design Implementation": {
+    "bus": {
+      "Batrslt": {
+        "classTitle": "Batrslt",
+        "classHandle": "Batrslt",
+        "fileHandle": "batrslt",
+        "tags": [
+          "class",
+          "prototype"
+        ],
+        "classDefinition": "??",
+        "weight": "1",
+        "uid": "kxar3euwnfkjavnjzzh",
+        "filePath": [
+          "bus"
+        ],
+        "constructor body": [
+          {
+            "classUid": "kxar3euwnfkjavnjzzh",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": "Watchable.apply(this);",
+            "order": 9999,
+            "uid": "kxar3euxekehusuzyug"
+          }
+        ],
+        "import": [
+          {
+            "classUid": "kxar3euwnfkjavnjzzh",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "imports": [
+              {
+                "importHandle": "Watchable",
+                "importPath": "../../../../../assets/js/rpgbase.full"
+              }
+            ],
+            "order": 1,
+            "uid": "kxar3euxmqkd3yig5o"
+          }
+        ],
+        "inheritance": [
+          {
+            "classUid": "kxar3euwnfkjavnjzzh",
+            "tags": [
+              "code",
+              "inheritance"
+            ],
+            "classInheritance": "Watchable",
+            "order": 9999,
+            "uid": "kxar3euxr1dy16p8cf"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxar3euwnfkjavnjzzh",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxar44dq4luvaf804ky",
+            "fields": [
+              {
+                "fieldName": "enmyCnt",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "enmyId",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "drained",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              }
+            ]
+          }
+        ]
+      },
+      "Character": {
+        "classTitle": "Character",
+        "classHandle": "Character",
+        "fileHandle": "character",
+        "tags": [
+          "class",
+          "prototype"
+        ],
+        "classDefinition": "Player characters are defined by the WizardryCharacter class.",
+        "weight": "1",
+        "uid": "kxagi0flb3a2vkz4h74",
+        "filePath": [
+          "bus"
+        ],
+        "constructor body": [
+          {
+            "classUid": "kxagi0flb3a2vkz4h74",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": "Watchable.apply(this);",
+            "order": 9999,
+            "uid": "kxagi0flynvq6s1z0z"
+          }
+        ],
+        "import": [
+          {
+            "classUid": "kxagi0flb3a2vkz4h74",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "imports": [
+              {
+                "importHandle": "Watchable",
+                "importPath": "../../../assets/js/rpgbase.full"
+              },
+              {
+                "importHandle": "WizardryAlignment",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryAttribute",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryCharacterClass",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryCharacterStatus",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryRace",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryHpRecord",
+                "importPath": "./utility/wizardry-hp-record"
+              },
+              {
+                "importHandle": "WizardryLong",
+                "importPath": "./utility/wizardry-long"
+              }
+            ],
+            "order": 1,
+            "uid": "kxagi0flt78wm2syf6"
+          }
+        ],
+        "inheritance": [
+          {
+            "classUid": "kxagi0flb3a2vkz4h74",
+            "tags": [
+              "code",
+              "inheritance"
+            ],
+            "classInheritance": "Watchable",
+            "order": 9999,
+            "uid": "kxagi0fldmygwzc1jal"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxagi0flb3a2vkz4h74",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxahspvtkbbyrlgks09",
+            "fields": [
+              {
+                "fieldName": "name",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "the character's name."
+              },
+              {
+                "fieldName": "inMaze",
+                "fieldType": "boolean",
+                "fieldValue": "false",
+                "fieldDefinition": "flag indicating whether the character is in the maze."
+              },
+              {
+                "fieldName": "race",
+                "fieldType": "WizardryRace",
+                "fieldValue": "WizardryRace.NORACE",
+                "fieldDefinition": "the character's race."
+              },
+              {
+                "fieldName": "clazz",
+                "fieldType": "WizardryCharacterClass",
+                "fieldValue": "null",
+                "fieldDefinition": "the character's class."
+              },
+              {
+                "fieldName": "age",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's age."
+              },
+              {
+                "fieldName": "status",
+                "fieldType": "WizardryCharacterStatus",
+                "fieldValue": "WizardryCharacterStatus.OK",
+                "fieldDefinition": "the character's status."
+              },
+              {
+                "fieldName": "alignment",
+                "fieldType": "WizardryAlignment",
+                "fieldValue": "WizardryAlignment.UNALIGN",
+                "fieldDefinition": "the character's alignment."
+              },
+              {
+                "fieldName": "attributes",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    STRENGTH: 0,\n    IQ: 0,\n    PIETY: 0,\n    VITALITY: 0,\n    AGILITY: 0,\n    LUCK: 0,\n  }",
+                "fieldDefinition": "the character's attributes."
+              },
+              {
+                "fieldName": "luckSkill",
+                "fieldType": "array",
+                "fieldValue": "[0, 0, 0, 0, 0]",
+                "fieldDefinition": "the character's luck skills(??)."
+              },
+              {
+                "fieldName": "gold",
+                "fieldType": "WizardryLong",
+                "fieldValue": "new WizardryLong()",
+                "fieldDefinition": "the character's gold."
+              },
+              {
+                "fieldName": "possessions",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    count: 0,\n    possession: [\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      },\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      },\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      },\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      },\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      },\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      },\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      },\n      {\n        equipped: false,\n        cursed: false,\n        identified: false,\n        equipmentIndex: 0\n      }\n    ]  \n  }",
+                "fieldDefinition": "the character's possessions."
+              },
+              {
+                "fieldName": "exp",
+                "fieldType": "WizardryLong",
+                "fieldValue": "new WizardryLong()",
+                "fieldDefinition": "the character's exp."
+              },
+              {
+                "fieldName": "mageSpells",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the character's mage spells."
+              },
+              {
+                "fieldName": "priestSpells",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the character's priest spells."
+              },
+              {
+                "fieldName": "maxLevAc",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's maxLevAc."
+              },
+              {
+                "fieldName": "age",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's age."
+              },
+              {
+                "fieldName": "charLev",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's level."
+              },
+              {
+                "fieldName": "hpLeft",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's hpLeft."
+              },
+              {
+                "fieldName": "hpMax",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's hp max."
+              },
+              {
+                "fieldName": "spellsKnown",
+                "fieldType": "Array",
+                "fieldValue": "[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]",
+                "fieldDefinition": "the character's known spells."
+              },
+              {
+                "fieldName": "mageSpells",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the character's mage spells."
+              },
+              {
+                "fieldName": "priestSpells",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the character's priest spells."
+              },
+              {
+                "fieldName": "hpCalcMd",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's hpCalcMd."
+              },
+              {
+                "fieldName": "armorCl",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's armorCl."
+              },
+              {
+                "fieldName": "healPts",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's heal pts."
+              },
+              {
+                "fieldName": "critHitM",
+                "fieldType": "boolean",
+                "fieldValue": false,
+                "fieldDefinition": "the character's critHitM."
+              },
+              {
+                "fieldName": "swingCnt",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the character's swingCnt."
+              },
+              {
+                "fieldName": "hpDamRc",
+                "fieldType": "WizardryHpRecord",
+                "fieldValue": "new WizardryHpRecord()",
+                "fieldDefinition": "the character's hpDamRc."
+              },
+              {
+                "fieldName": "wepVsty2",
+                "fieldType": "Array",
+                "fieldValue": "[\n    [false, false, false, false, false, false, false, false, false, false, false, false, false],\n    [false, false, false, false, false, false, false, false, false, false, false, false, false]\n  ]",
+                "fieldDefinition": "the character's wepVsty2."
+              },
+              {
+                "fieldName": "wepVsty3",
+                "fieldType": "Array",
+                "fieldValue": "[\n    [false, false, false, false, false, false],\n    [false, false, false, false, false, false]\n  ]",
+                "fieldDefinition": "the character's wepVsty3."
+              },
+              {
+                "fieldName": "wepVstyP",
+                "fieldType": "Array",
+                "fieldValue": "[false, false, false, false, false, false, false, false, false, false, false, false, false]",
+                "fieldDefinition": "the character's wepVstyP."
+              },
+              {
+                "fieldName": "lostXyl",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    location: [0, 0, 0, 0],\n    poisonAmt: [0, 0, 0, 0],\n    awards: [0, 0, 0, 0],\n  }",
+                "fieldDefinition": "the character's lostXyl."
+              }
+            ]
+          }
+        ]
+      },
+      "Enemy": {
+        "classTitle": "Enemy",
+        "classHandle": "Enemy",
+        "fileHandle": "enemy",
+        "tags": [
+          "class",
+          "prototype"
+        ],
+        "classDefinition": "The Application defines a class for Enemy objects.",
+        "weight": "1",
+        "uid": "kxap86s8yzxx19qf5tl",
+        "filePath": [
+          "bus"
+        ],
+        "constructor body": [
+          {
+            "classUid": "kxap86s8yzxx19qf5tl",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": "Watchable.apply(this);",
+            "order": 9999,
+            "uid": "kxap86s8md7rg5dchs"
+          }
+        ],
+        "import": [
+          {
+            "classUid": "kxap86s8yzxx19qf5tl",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "imports": [
+              {
+                "importHandle": "Watchable",
+                "importPath": "../../../../../assets/js/rpgbase.full"
+              },
+              {
+                "importHandle": "WizardryHpRecord",
+                "importPath": "./utility/wizardry-hp-record"
+              },
+              {
+                "importHandle": "WizardryLong",
+                "importPath": "./utility/wizardry-long"
+              }
+            ],
+            "order": 1,
+            "uid": "kxap86s8unxoyurpptq"
+          }
+        ],
+        "inheritance": [
+          {
+            "classUid": "kxap86s8yzxx19qf5tl",
+            "tags": [
+              "code",
+              "inheritance"
+            ],
+            "classInheritance": "Watchable",
+            "order": 9999,
+            "uid": "kxap86s8ghibdwosnsv"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxap86s8yzxx19qf5tl",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxap9f6r9d22gzvu5ss",
+            "fields": [
+              {
+                "fieldName": "nameUnknownPlural",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "unknown name for an enemy group."
+              },
+              {
+                "fieldName": "namePlural",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "name for an enemy group."
+              },
+              {
+                "fieldName": "nameUnknown",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "unknown name for an enemy."
+              },
+              {
+                "fieldName": "name",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "name for an enemy."
+              },
+              {
+                "fieldName": "pic",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's pic."
+              },
+              {
+                "fieldName": "calc1",
+                "fieldType": "WizardryLong",
+                "fieldValue": "new WizardryLong()",
+                "fieldDefinition": "the enemy's calc1."
+              },
+              {
+                "fieldName": "hpRec",
+                "fieldType": "WizardryHpRecord",
+                "fieldValue": "new WizardryHpRecord()",
+                "fieldDefinition": "the enemy's hpRec."
+              },
+              {
+                "fieldName": "clazz",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's clazz."
+              },
+              {
+                "fieldName": "ac",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's ac."
+              },
+              {
+                "fieldName": "recSn",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's recSn."
+              },
+              {
+                "fieldName": "recs",
+                "fieldType": "Array",
+                "fieldValue": "[\n    new WizardryHpRecord(), new WizardryHpRecord(), new WizardryHpRecord(), new WizardryHpRecord(), new WizardryHpRecord(), new WizardryHpRecord(), new WizardryHpRecord()\n  ]",
+                "fieldDefinition": "the enemy's recs."
+              },
+              {
+                "fieldName": "expAmt",
+                "fieldType": "WizardryLong",
+                "fieldValue": "new WizardryLong()",
+                "fieldDefinition": "the enemy's expAmt."
+              },
+              {
+                "fieldName": "drainAmt",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's drainAmt."
+              },
+              {
+                "fieldName": "healPts",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's healPts."
+              },
+              {
+                "fieldName": "reward1",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's reward1."
+              },
+              {
+                "fieldName": "reward2",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's reward2."
+              },
+              {
+                "fieldName": "enmyTeam",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's enmyTeam."
+              },
+              {
+                "fieldName": "teamPerc",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's teamPerc."
+              },
+              {
+                "fieldName": "magSpels",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's magSpels."
+              },
+              {
+                "fieldName": "priSpels",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's priSpels."
+              },
+              {
+                "fieldName": "unique",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's unique."
+              },
+              {
+                "fieldName": "breathe",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's breathe."
+              },
+              {
+                "fieldName": "unaffect",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the enemy's unaffect."
+              },
+              {
+                "fieldName": "wepVsty3",
+                "fieldType": "Array",
+                "fieldValue": "[\n    false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false\n  ]",
+                "fieldDefinition": "the enemy's wepVsty3."
+              },
+              {
+                "fieldName": "sppc",
+                "fieldType": "Array",
+                "fieldValue": "[\n    false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false\n  ]",
+                "fieldDefinition": "the enemy's sppc."
+              }
+            ]
+          }
+        ]
+      },
+      "Enemy2": {
+        "classTitle": "Enemy2",
+        "classHandle": "Enemy2",
+        "fileHandle": "enemy2",
+        "tags": [
+          "class",
+          "prototype"
+        ],
+        "classDefinition": "A second Enemy class is defined.",
+        "weight": "1",
+        "uid": "kxaq804l36s4lxx0ohd",
+        "filePath": [
+          "bus"
+        ],
+        "constructor body": [
+          {
+            "classUid": "kxaq804l36s4lxx0ohd",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": "Watchable.apply(this);",
+            "order": 9999,
+            "uid": "kxaq804lyvgcttcuqls"
+          }
+        ],
+        "import": [
+          {
+            "classUid": "kxaq804l36s4lxx0ohd",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "imports": [
+              {
+                "importHandle": "Watchable",
+                "importPath": "../../../../../assets/js/rpgbase.full"
+              },
+              {
+                "importHandle": "WizardryCharacterStatus",
+                "importPath": "../config/wizardry-constants"
+              }
+            ],
+            "order": 1,
+            "uid": "kxaq804l5gjq2nruznh"
+          }
+        ],
+        "inheritance": [
+          {
+            "classUid": "kxaq804l36s4lxx0ohd",
+            "tags": [
+              "code",
+              "inheritance"
+            ],
+            "classInheritance": "Watchable",
+            "order": 9999,
+            "uid": "kxaq804ll6s08a5vqj8"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxaq804l36s4lxx0ohd",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxaqatz6i8q3tpetf5",
+            "fields": [
+              {
+                "fieldName": "a",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    identified: false,\n    aliveCnt: 0,\n    enemyCnt: 0,\n    enemyId: 0,\n    temp04: [\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      },\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      },\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      },\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      },\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      },\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      },\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      },\n      {\n        victim: 0,\n        spellHsh: 0,\n        agility: 0,\n        hpLeft: 0,\n        armorCl: 0,\n        inaudCnt: 0,\n        status: WizardryCharacterStatus.OK\n      }\n    ]\n  }",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "b",
+                "fieldType": "WizardryEnemy",
+                "fieldValue": "null",
+                "fieldDefinition": "??"
+              }
+            ]
+          }
+        ]
+      },
+      "Maze": {
+        "classTitle": "Maze",
+        "classHandle": "Maze",
+        "fileHandle": "maze",
+        "tags": [
+          "class",
+          "prototype"
+        ],
+        "classDefinition": "The application defines a class to represent a maze level.",
+        "weight": "1",
+        "uid": "kxaoabqckyvw2r7xim",
+        "filePath": [
+          "bus"
+        ],
+        "constructor body": [
+          {
+            "classUid": "kxaoabqckyvw2r7xim",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": "Watchable.apply(this);",
+            "order": 9999,
+            "uid": "kxaoabqcclqppd7pzrv"
+          },
+          {
+            "classUid": "kxaoabqckyvw2r7xim",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": [
+              "// fill the maze with walls",
+              "// TODO - fill with data"
+            ],
+            "order": "1",
+            "uid": "kxaowwv4brpt9nlegbh"
+          }
+        ],
+        "import": [
+          {
+            "classUid": "kxaoabqckyvw2r7xim",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "imports": [
+              {
+                "importHandle": "Watchable",
+                "importPath": "../../../../../assets/js/rpgbase.full"
+              },
+              {
+                "importHandle": "WizardrySquare",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryWall",
+                "importPath": "../config/wizardry-constants"
+              }
+            ],
+            "order": 1,
+            "uid": "kxaoabqchjgbs4ilv6f"
+          }
+        ],
+        "inheritance": [
+          {
+            "classUid": "kxaoabqckyvw2r7xim",
+            "tags": [
+              "code",
+              "inheritance"
+            ],
+            "classInheritance": "Watchable",
+            "order": 9999,
+            "uid": "kxaoabqc4mpehdynues"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxaoabqckyvw2r7xim",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxaokxxnjfnal9bfq28",
+            "fields": [
+              {
+                "fieldName": "w",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of map wall locations."
+              },
+              {
+                "fieldName": "s",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of map wall locations."
+              },
+              {
+                "fieldName": "w",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of map wall locations."
+              },
+              {
+                "fieldName": "n",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of map wall locations."
+              },
+              {
+                "fieldName": "fights",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of fights."
+              },
+              {
+                "fieldName": "sqreXtra",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of sqreXtra."
+              },
+              {
+                "fieldName": "sqreType",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of sqreType."
+              },
+              {
+                "fieldName": "aux0",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of aux0."
+              },
+              {
+                "fieldName": "aux1",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of aux1."
+              },
+              {
+                "fieldName": "aux2",
+                "fieldType": "array",
+                "fieldValue": "[]",
+                "fieldDefinition": "the array of aux2."
+              },
+              {
+                "fieldName": "enmyCalc",
+                "fieldType": "array",
+                "fieldValue": "[\n    {\n      minEnemy: 0,\n      multWors: 0,\n      worse01: 0,\n      rangeOn: 0,\n      percWors: 0\n    },\n    {\n      minEnemy: 0,\n      multWors: 0,\n      worse01: 0,\n      rangeOn: 0,\n      percWors: 0\n    },\n    {\n      minEnemy: 0,\n      multWors: 0,\n      worse01: 0,\n      rangeOn: 0,\n      percWors: 0\n    }\n  ]",
+                "fieldDefinition": "the array of aux2."
+              }
+            ]
+          }
+        ]
+      },
+      "Object": {
+        "classTitle": "Object",
+        "classHandle": "Object",
+        "fileHandle": "object",
+        "tags": [
+          "class",
+          "prototype"
+        ],
+        "classDefinition": "The application defines a class for objects.",
+        "weight": "1",
+        "uid": "kxan2o6kwkcslymvfs",
+        "filePath": [
+          "bus"
+        ],
+        "constructor body": [
+          {
+            "classUid": "kxan2o6kwkcslymvfs",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": "Watchable.apply(this);",
+            "order": 9999,
+            "uid": "kxan2o6kmd4dz2dozhd"
+          }
+        ],
+        "import": [
+          {
+            "classUid": "kxan2o6kwkcslymvfs",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "imports": [
+              {
+                "importHandle": "Watchable",
+                "importPath": "../../../../../assets/js/rpgbase.full"
+              },
+              {
+                "importHandle": "WizardryObjectType",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryHpRecord",
+                "importPath": "./utility/wizardry-hp-record"
+              },
+              {
+                "importHandle": "WizardryLong",
+                "importPath": "./utility/wizardry-long"
+              }
+            ],
+            "order": 1,
+            "uid": "kxan2o6kblubx7nhu"
+          }
+        ],
+        "inheritance": [
+          {
+            "classUid": "kxan2o6kwkcslymvfs",
+            "tags": [
+              "code",
+              "inheritance"
+            ],
+            "classInheritance": "Watchable",
+            "order": 9999,
+            "uid": "kxan2o6kjqixnb212f"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxan2o6kwkcslymvfs",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxan3pl6p44nvjtk4h",
+            "fields": [
+              {
+                "fieldName": "name",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "The object's name."
+              },
+              {
+                "fieldName": "nameUnknown",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "The object's unidentified name."
+              },
+              {
+                "fieldName": "type",
+                "fieldType": "WizardryObjectType",
+                "fieldValue": "null",
+                "fieldDefinition": "the object's type."
+              },
+              {
+                "fieldName": "alignment",
+                "fieldType": "WizardryAlignment",
+                "fieldValue": "WizardryAlignment.UNALIGN",
+                "fieldDefinition": "the object's alignment."
+              },
+              {
+                "fieldName": "cursed",
+                "fieldType": "boolean",
+                "fieldValue": "false",
+                "fieldDefinition": "a flag indicating whether the object is cursed."
+              },
+              {
+                "fieldName": "special",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's special."
+              },
+              {
+                "fieldName": "changeTo",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's changeTo."
+              },
+              {
+                "fieldName": "changeChance",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's changeChance."
+              },
+              {
+                "fieldName": "price",
+                "fieldType": "WizardryLong",
+                "fieldValue": "new WizardryLong()",
+                "fieldDefinition": "the object's price."
+              },
+              {
+                "fieldName": "boltAcXx",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's boltAcXx."
+              },
+              {
+                "fieldName": "spellPower",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's spellPower."
+              },
+              {
+                "fieldName": "classUse",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    FIGHTER: false,\n    MAGE: false,\n    PRIEST: false,\n    THIEF: false,\n    BISHOP: false,\n    SAMURAI: false,\n    LORD: false,\n    NINJA: false\n  }",
+                "fieldDefinition": "the object's dictionary of classes allowed to use it."
+              },
+              {
+                "fieldName": "healPts",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's healPts."
+              },
+              {
+                "fieldName": "wepVsty2",
+                "fieldType": "Array",
+                "fieldValue": "[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]",
+                "fieldDefinition": "the object's wepVsty2."
+              },
+              {
+                "fieldName": "wepVsty3",
+                "fieldType": "Array",
+                "fieldValue": "[false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]",
+                "fieldDefinition": "the object's wepVsty3."
+              },
+              {
+                "fieldName": "armorMod",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's armorMod."
+              },
+              {
+                "fieldName": "wepHitMod",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's wepHitMod."
+              },
+              {
+                "fieldName": "wepHpDam",
+                "fieldType": "WizardryHpRecord",
+                "fieldValue": "new WizardryHpRecord()",
+                "fieldDefinition": "the object's wepHpDam."
+              },
+              {
+                "fieldName": "xtraSwing",
+                "fieldType": "int",
+                "fieldValue": "0",
+                "fieldDefinition": "the object's xtraSwing."
+              },
+              {
+                "fieldName": "critHitM",
+                "fieldType": "boolean",
+                "fieldValue": false,
+                "fieldDefinition": "the object's critHitM."
+              },
+              {
+                "fieldName": "wepVstyp",
+                "fieldType": "Array",
+                "fieldValue": "[false, false, false, false, false, false, false, false, false, false, false, false, false, false]",
+                "fieldDefinition": "the object's wepVstyp."
+              }
+            ]
+          }
+        ]
+      },
+      "ScnToc": {
+        "classTitle": "ScnToc",
+        "classHandle": "ScnToc",
+        "fileHandle": "scntoc",
+        "tags": [
+          "class",
+          "prototype"
+        ],
+        "classDefinition": "Unknown Class definition",
+        "weight": "1",
+        "uid": "kxaq9i3lv22upk8ihu",
+        "filePath": [
+          "bus"
+        ],
+        "constructor body": [
+          {
+            "classUid": "kxaq9i3lv22upk8ihu",
+            "tags": [
+              "code",
+              "constructor body"
+            ],
+            "code": "Watchable.apply(this);",
+            "order": 9999,
+            "uid": "kxaq9i3mulelj5nr8zi"
+          }
+        ],
+        "import": [
+          {
+            "classUid": "kxaq9i3lv22upk8ihu",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "imports": [
+              {
+                "importHandle": "Watchable",
+                "importPath": "../../../../../assets/js/rpgbase.full"
+              },
+              {
+                "importHandle": "WizardryZscn",
+                "importPath": "../config/wizardry-constants"
+              }
+            ],
+            "order": 1,
+            "uid": "kxaq9i3mnbt2fh9a2yg"
+          }
+        ],
+        "inheritance": [
+          {
+            "classUid": "kxaq9i3lv22upk8ihu",
+            "tags": [
+              "code",
+              "inheritance"
+            ],
+            "classInheritance": "Watchable",
+            "order": 9999,
+            "uid": "kxaq9i3mhve5o2xa2gp"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxaq9i3lv22upk8ihu",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxaqbjjfl0ysk9syo5i",
+            "fields": [
+              {
+                "fieldName": "gameName",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "name"
+              },
+              {
+                "fieldName": "recPerDk",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "unusedXX",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "recPer2b",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "blOff",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "race",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "clazz",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "status",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "align",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "spellHsh",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "spellGrp",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "spell012",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              }
+            ]
+          }
+        ]
+      },
+      "utility": {
+        "Long": {
+          "classTitle": "Long",
+          "classHandle": "Long",
+          "fileHandle": "long",
+          "tags": [
+            "class",
+            "prototype"
+          ],
+          "classDefinition": "The application defines a custom class for wrapping Long values.",
+          "weight": 0,
+          "uid": "kx9aoqeuhem9rpvymlk",
+          "filePath": [
+            "bus",
+            "utility"
+          ],
+          "constructor body": [
+            {
+              "classUid": "kx9aoqeuhem9rpvymlk",
+              "tags": [
+                "code",
+                "constructor body"
+              ],
+              "code": "Watchable.apply(this);",
+              "order": 9999,
+              "uid": "kx9aoqev1h3pzhakemjj",
+              "weight": 3
+            }
+          ],
+          "import": [
+            {
+              "classUid": "kx9aoqeuhem9rpvymlk",
+              "tags": [
+                "code",
+                "required import"
+              ],
+              "imports": [
+                {
+                  "importHandle": "Watchable",
+                  "importPath": "../../../../assets/js/rpgbase.full"
+                }
+              ],
+              "order": 1,
+              "uid": "kx9aoqevovsietv5hgp"
+            }
+          ],
+          "inheritance": [
+            {
+              "classUid": "kx9aoqeuhem9rpvymlk",
+              "tags": [
+                "code",
+                "inheritance"
+              ],
+              "classInheritance": "Watchable",
+              "order": 9999,
+              "uid": "kx9aoqevwthrhkjgihf",
+              "weight": 4
+            }
+          ],
+          "private fields": [
+            {
+              "classUid": "kx9aoqeuhem9rpvymlk",
+              "tags": [
+                "code",
+                "private field"
+              ],
+              "order": "1",
+              "uid": "kx9bl9ztgwoznixc4sc",
+              "fields": [
+                {
+                  "fieldDefinition": "The low portion of the Long.",
+                  "fieldName": "_low",
+                  "fieldType": "int",
+                  "fieldValue": 0
+                },
+                {
+                  "fieldDefinition": "The mid portion of the Long.",
+                  "fieldName": "_mid",
+                  "fieldType": "int",
+                  "fieldValue": 0
+                },
+                {
+                  "fieldDefinition": "The high portion of the Long.",
+                  "fieldName": "_high",
+                  "fieldType": "int",
+                  "fieldValue": 0
+                }
+              ],
+              "weight": 2
+            }
+          ],
+          "public properties": [
+            {
+              "classUid": "kx9aoqeuhem9rpvymlk",
+              "tags": [
+                "code",
+                "public getter/setter property"
+              ],
+              "propertyName": "low",
+              "order": "1",
+              "uid": "kx9dkng99du7cmsv6b",
+              "getterDefinition": "/** Getter for the _low field. */",
+              "getterBody": [
+                "return this._low;"
+              ],
+              "setterDefinition": "/** Setter for the _low field. */",
+              "setterBody": [
+                "if (isNaN(parseInt(value))) {",
+                "  throw [\"Invalid value\", value];",
+                "}",
+                "this._low = value;"
+              ],
+              "weight": 9
+            },
+            {
+              "classUid": "kx9aoqeuhem9rpvymlk",
+              "tags": [
+                "code",
+                "public getter/setter property"
+              ],
+              "propertyName": "mid",
+              "order": "2",
+              "uid": "kx9g7e2lk3p2b1xikha",
+              "getterDefinition": "/** Getter for the _mid field. */",
+              "getterBody": [
+                "return this._mid;"
+              ],
+              "setterDefinition": "/** Setter for the _mid field. */",
+              "setterBody": [
+                "if (isNaN(parseInt(value))) {",
+                "  throw [\"Invalid value\", value];",
+                "}",
+                "this._mid = value;"
+              ],
+              "weight": 9
+            },
+            {
+              "classUid": "kx9aoqeuhem9rpvymlk",
+              "tags": [
+                "code",
+                "public getter/setter property"
+              ],
+              "propertyName": "high",
+              "order": "3",
+              "uid": "kx9g7v1d1xpktcqij9o",
+              "getterDefinition": "/** Getter for the _high field. */",
+              "getterBody": [
+                "return this._high;"
+              ],
+              "setterDefinition": "/** Setter for the _high field. */",
+              "setterBody": [
+                "if (isNaN(parseInt(value))) {",
+                "  throw [\"Invalid value\", value];",
+                "}",
+                "this._high = value;"
+              ],
+              "weight": 9
+            }
+          ]
+        },
+        "HpRecord": {
+          "classTitle": "Hp Record",
+          "classHandle": "HpRecord",
+          "fileHandle": "hp-record",
+          "tags": [
+            "class",
+            "prototype"
+          ],
+          "classDefinition": "The HP record is another utility class.",
+          "weight": "1",
+          "uid": "kx9jmixmpvvcuxv46ri",
+          "filePath": [
+            "bus",
+            "utility"
+          ],
+          "constructor body": [
+            {
+              "classUid": "kx9jmixmpvvcuxv46ri",
+              "tags": [
+                "code",
+                "constructor body"
+              ],
+              "code": "Watchable.apply(this);",
+              "order": 9999,
+              "uid": "kx9jmixnkz3qshbnjl8"
+            }
+          ],
+          "import": [
+            {
+              "classUid": "kx9jmixmpvvcuxv46ri",
+              "tags": [
+                "code",
+                "required import"
+              ],
+              "imports": [
+                {
+                  "importHandle": "Watchable",
+                  "importPath": "../../../../../assets/js/rpgbase.full"
+                }
+              ],
+              "order": 1,
+              "uid": "kx9jmixnsfx8qe0it0q"
+            }
+          ],
+          "inheritance": [
+            {
+              "classUid": "kx9jmixmpvvcuxv46ri",
+              "tags": [
+                "code",
+                "inheritance"
+              ],
+              "classInheritance": "Watchable",
+              "order": 9999,
+              "uid": "kx9jmixn0u1mdzemhj4o"
+            }
+          ],
+          "private fields": [
+            {
+              "classUid": "kx9jmixmpvvcuxv46ri",
+              "tags": [
+                "code",
+                "private field"
+              ],
+              "order": "1",
+              "uid": "kxag2twgov6qa0gv6ff",
+              "fields": [
+                {
+                  "fieldName": "_level",
+                  "fieldType": "int",
+                  "fieldValue": 0,
+                  "fieldDefinition": "The level."
+                },
+                {
+                  "fieldName": "_hpfac",
+                  "fieldType": "int",
+                  "fieldValue": 0,
+                  "fieldDefinition": "The hpfac."
+                },
+                {
+                  "fieldName": "_hpminad",
+                  "fieldType": "int",
+                  "fieldValue": 0,
+                  "fieldDefinition": "The hpminad."
+                }
+              ]
+            }
+          ],
+          "public properties": [
+            {
+              "classUid": "kx9jmixmpvvcuxv46ri",
+              "tags": [
+                "code",
+                "public getter/setter property"
+              ],
+              "propertyName": "level",
+              "order": "1",
+              "uid": "kxag55miuo8e0ezfq2r",
+              "getterDefinition": "/** Getter for the _level field. */",
+              "getterBody": [
+                "return this._level;"
+              ],
+              "setterDefinition": "/** Setter for the _level field. */",
+              "setterBody": [
+                "if (isNaN(parseInt(value))) {",
+                "  throw [\"Invalid value\", value];",
+                "}",
+                "this._level = value;"
+              ],
+              "weight": 9
+            },
+            {
+              "classUid": "kx9jmixmpvvcuxv46ri",
+              "tags": [
+                "code",
+                "public getter/setter property"
+              ],
+              "propertyName": "hpfac",
+              "order": "2",
+              "uid": "kxag68elpuo6i610ox",
+              "getterDefinition": "/** Getter for the _hpfac field. */",
+              "getterBody": [
+                "return this._hpfac;"
+              ],
+              "setterDefinition": "/** Setter for the _hpfac field. */",
+              "setterBody": [
+                "if (isNaN(parseInt(value))) {",
+                "  throw [\"Invalid value\", value];",
+                "}",
+                "this._hpfac = value;"
+              ],
+              "weight": 9
+            },
+            {
+              "classUid": "kx9jmixmpvvcuxv46ri",
+              "tags": [
+                "code",
+                "public getter/setter property"
+              ],
+              "propertyName": "hpminad",
+              "order": "3",
+              "uid": "kxag6yawfzonbeo6abp",
+              "getterDefinition": "/** Getter for the _hpminad field. */",
+              "getterBody": [
+                "return this._hpminad;"
+              ],
+              "setterDefinition": "/** Setter for the _hpminad field. */",
+              "setterBody": [
+                "if (isNaN(parseInt(value))) {",
+                "  throw [\"Invalid value\", value];",
+                "}",
+                "this._hpminad = value;"
+              ],
+              "weight": 9
+            }
+          ]
+        }
+      }
+    },
+    "config": {
+      "Config": {
+        "tags": [
+          "class",
+          "app-config"
+        ],
+        "classHandle": "Config",
+        "fileHandle": "config",
+        "filePath": [
+          "config"
+        ],
+        "uid": "kx7th9ec5b08mbmihl8"
+      },
+      "Constants": {
+        "tags": [
+          "class",
+          "app-constants"
+        ],
+        "classHandle": "Constants",
+        "fileHandle": "constants",
+        "filePath": [
+          "config"
+        ],
+        "uid": "kx7th9ec5c93dlwsse"
+      },
+      "enums": {
+        "Race": {
+          "enumName": "Race",
+          "enumHandle": "Race",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "Character races.",
+          "enumProperties": [
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            },
+            {
+              "enumFieldName": "description",
+              "type": "string"
+            }
+          ],
+          "weight": 10,
+          "uid": "kx84widfiv4xqkharjs",
+          "values": {
+            "NORACE": {
+              "name": "NORACE",
+              "description": ""
+            },
+            "HUMAN": {
+              "name": "HUMAN",
+              "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
+            },
+            "ELF": {
+              "name": "ELF",
+              "description": "Elves are intelligent and pious, but not very hardy. They make good spell-casters."
+            },
+            "DWARF": {
+              "name": "DWARF",
+              "description": "Dwarves are strong and robust, and make excellent warriors."
+            },
+            "GNOME": {
+              "name": "GNOME",
+              "description": "Gnomes are pious and agile, probably from worshipping underground during earthquakes. They make excellent Priests."
+            },
+            "HOBBIT": {
+              "name": "HOBBIT",
+              "description": "Hobbits are agile and very, very lucky. They make excellent Thieves."
+            }
+          }
+        },
+        "Character Class": {
+          "enumName": "Character Class",
+          "enumHandle": "CharacterClass",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "Character classes.",
+          "enumProperties": [
+            {
+              "enumFieldName": "description",
+              "type": "string"
+            },
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": 10,
+          "uid": "kx85ar0oyxijxd0vcqk",
+          "values": {
+            "FIGHTER": {
+              "name": "FIGHTER",
+              "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and characteristically have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment."
+            },
+            "MAGE": {
+              "name": "MAGE",
+              "description": "The sorcerer. Mages need a minimum I.Q. of 11, and have poor hit points. They can use only daggers and staffs as weapons, and can wear no armor except for robes! They can use magical spells, however, and may be of any alignment. "
+            },
+            "PRIEST": {
+              "name": "PRIEST",
+              "description": "The holy one. Priests have a minimum Piety of 11. They have fairly high hit points, and, although they cannot wear helmets, may use most any armor or shield. Priests do not fare as well in combat as Fighters, and must use specially consecrated weapons, such as maces and flails. Priests have unusual abilities, however: in addition to throwing priestly spells, they can Dispell monsters. Priests may not be of Neutral alignment."
+            },
+            "THIEF": {
+              "name": "THIEF",
+              "description": "The trickster. Thieves have at least 11 Agility points, and generally get better hit points than Mages do. Their weapons are daggers or short swords; they can wear leather armor and use a shield. Thieves are very good at circumventing the noxious traps which may lie between a party of adventurers and their hard-earned loot. They may not be of Good alignment."
+            },
+            "BISHOP": {
+              "name": "BISHOP",
+              "description": "A combination of Priest and Mage, with some advantages and disadvantages of both. Bishops have average hit points, can wear leather armor and use Priests' weapons. They use both magical and priestly spells: although they do not learn them as quickly as the other classes do. Bishops start learning Mage spells immed1ately, but must reach the fourth level of ability before acquiring knowledge of Priest spells. Bishops are capable of identifying. magical items, and do need not pay the hefty charge levied for that service in the Shop. Bishops may not be Neutral."
+            },
+            "SAMURAI": {
+              "name": "SAMURAI",
+              "description": "These folk are fantastic warriors, and can use all Fighter weapons and armor. They start out life with more hit points than Fighters; in the long run, though, a Fighter will have better hit points. At the fourth level of ability, Samurai slowly begin to learn magical spells. They cannot be of Evil alignment."
+            },
+            "LORD": {
+              "name": "LORD",
+              "description": "A combination of Fighter and Priest. They have the hit points and abilities of Fighters, but at the fourth level of ability they gain the use of priestly spells, and the ability to Dispell. Lords must be of Good alignment."
+            },
+            "NINJA": {
+              "name": "NINJA",
+              "description": "A superhuman fighting machine. Ninjas can use any weapons or armor, but work best without any! When fighting with their bare hands they can wreak havoc and destruction, sometimes killing the strongest opponent with a single blow. Their great training gives them lower and lower Armor Class as they reach higher and higher levels of ability. However, they earn hit points as does a Thief, and gain no spells. Finally, they must be Evil."
+            }
+          }
+        },
+        "Character Status": {
+          "enumName": "Character Status",
+          "enumHandle": "CharacterStatus",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "Character statuses.",
+          "enumProperties": [
+            {
+              "enumFieldName": "description",
+              "type": "string"
+            },
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": 10,
+          "uid": "kx85bfxz4omwdh8zjkc",
+          "values": {
+            "OK": {
+              "name": "OK",
+              "description": ""
+            },
+            "AFRAID": {
+              "name": "AFRAID",
+              "description": ""
+            },
+            "PLYZE": {
+              "name": "PLYZE",
+              "description": ""
+            },
+            "STONED": {
+              "name": "STONED",
+              "description": ""
+            },
+            "DEAD": {
+              "name": "DEAD",
+              "description": ""
+            },
+            "ASHES": {
+              "name": "ASHES",
+              "description": ""
+            },
+            "LOST": {
+              "name": "LOST",
+              "description": ""
+            }
+          }
+        },
+        "Alignment": {
+          "enumName": "Alignment",
+          "enumHandle": "Alignment",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "Character alignments.",
+          "enumProperties": [
+            {
+              "enumFieldName": "description",
+              "type": "string"
+            },
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": 10,
+          "uid": "kx85tek6exmt40hosfb",
+          "values": {
+            "UNALIGN": {
+              "name": "UNALIGN",
+              "description": ""
+            },
+            "GOOD": {
+              "name": "GOOD",
+              "description": "Good characters are really good. They go out of their way to help old ladies cross the street."
+            },
+            "NEUTRAL": {
+              "name": "NEUTRAL",
+              "description": "Neutral characters take life as it comes. They would help an old lady across the street if they also happened to need to cross it."
+            },
+            "EVIL": {
+              "name": "EVIL",
+              "description": "Evil characters are not really evil when compared to some of the things they fight in the Maze. They are self-centered, and always want to know \"what's in it for them.\" Evil characters won't help old ladies across the street; young ladies, on the other hand, might be assisted."
+            }
+          }
+        },
+        "Xgoto": {
+          "enumName": "Xgoto",
+          "enumHandle": "Xgoto",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "Xgoto",
+          "enumProperties": [
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": 1,
+          "uid": "kx9gsukbra04lsezi1",
+          "values": {
+            "XDONE": {
+              "name": "XDONE"
+            },
+            "XTRAININ": {
+              "name": "XTRAININ"
+            },
+            "XCASTLE": {
+              "name": "XCASTLE"
+            },
+            "XGILGAMS": {
+              "name": "XGILGAMS"
+            },
+            "XINSPECT": {
+              "name": "XINSPECT"
+            },
+            "XBOLTAC": {
+              "name": "XBOLTAC"
+            },
+            "XCANT": {
+              "name": "XCANT"
+            },
+            "XRUNNER": {
+              "name": "XRUNNER"
+            },
+            "XCOMBAT": {
+              "name": "XCOMBAT"
+            },
+            "XNEWMAZE": {
+              "name": "XNEWMAZE"
+            },
+            "XCHK4WIN": {
+              "name": "XCHK4WIN"
+            },
+            "XREWARD": {
+              "name": "XREWARD"
+            },
+            "XINSPCT2": {
+              "name": "XINSPCT2"
+            },
+            "XEQUIP6": {
+              "name": "XEQUIP6"
+            },
+            "XEQPDSP": {
+              "name": "XEQPDSP"
+            },
+            "XREORDER": {
+              "name": "XREORDER"
+            },
+            "XCEMETRY": {
+              "name": "XCEMETRY"
+            },
+            "XINSPCT3": {
+              "name": "XINSPCT3"
+            },
+            "XBCK2CMP": {
+              "name": "XBCK2CMP"
+            },
+            "XBCK2ROL": {
+              "name": "XBCK2ROL"
+            },
+            "XCMP2EQ6": {
+              "name": "XCMP2EQ6"
+            },
+            "XUNUSED": {
+              "name": "XUNUSED"
+            },
+            "XREWARD2": {
+              "name": "XREWARD2"
+            },
+            "XSCNMSG": {
+              "name": "XSCNMSG"
+            },
+            "XCAMPSTF": {
+              "name": "XCAMPSTF"
+            },
+            "XEDGTOWN": {
+              "name": "XEDGTOWN"
+            },
+            "XINSAREA": {
+              "name": "XINSAREA"
+            },
+            "XBK2CMP2": {
+              "name": "XBK2CMP2"
+            }
+          }
+        },
+        "Attribute": {
+          "enumName": "Attribute",
+          "enumHandle": "Attribute",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "The character attributes.",
+          "enumProperties": [
+            {
+              "enumFieldName": "description",
+              "type": "string"
+            },
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": 10,
+          "uid": "kx9h95ud5zcmslvy2hi",
+          "values": {
+            "STRENGTH": {
+              "name": "STRENGTH",
+              "description": "Strength affects your skill in combat. "
+            },
+            "IQ": {
+              "name": "IQ",
+              "description": "I.Q. influences your ability to cast and resist spells."
+            },
+            "PIETY": {
+              "name": "PIETY",
+              "description": "Piety influences your ability to cast and resist spells."
+            },
+            "VITALITY": {
+              "name": "VITALITY",
+              "description": "Vitality affects your ability to withstand damage."
+            },
+            "AGILITY": {
+              "name": "AGILITY",
+              "description": "Agility helps you avoid attacks and open treasure chests."
+            },
+            "LUCK": {
+              "name": "LUCK",
+              "description": "Luck comes to your aid in many mysterious ways."
+            }
+          }
+        },
+        "Object Type": {
+          "enumName": "Object Type",
+          "enumHandle": "ObjectType",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "The types of objects.",
+          "enumProperties": [
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": "",
+          "uid": "kxan1bpsnksyzgsyolj",
+          "values": {
+            "WEAPON": {
+              "name": "WEAPON"
+            },
+            "ARMOR": {
+              "name": "ARMOR"
+            },
+            "SHIELD": {
+              "name": "SHIELD"
+            },
+            "HELMET": {
+              "name": "HELMET"
+            },
+            "GAUNTLET": {
+              "name": "GAUNTLET"
+            },
+            "SPECIAL": {
+              "name": "SPECIAL"
+            },
+            "MISC": {
+              "name": "MISC"
+            }
+          }
+        },
+        "Wall": {
+          "enumName": "Wall",
+          "enumHandle": "Wall",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "Wall types",
+          "enumProperties": [
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": "",
+          "uid": "kxao8iq11ueqnuccds7",
+          "values": {
+            "OPEN": {
+              "name": "OPEN"
+            },
+            "WALL": {
+              "name": "WALL"
+            },
+            "DOOR": {
+              "name": "DOOR"
+            },
+            "HIDEDOOR": {
+              "name": "HIDEDOOR"
+            }
+          }
+        },
+        "Square": {
+          "enumName": "Square",
+          "enumHandle": "Square",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "Dungeon square types",
+          "enumProperties": [
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": "",
+          "uid": "kxao9375a9jfefs4cxa",
+          "values": {
+            "NORMAL": {
+              "name": "NORMAL"
+            },
+            "STAIRS": {
+              "name": "STAIRS"
+            },
+            "PIT": {
+              "name": "PIT"
+            },
+            "CHUTE": {
+              "name": "CHUTE"
+            },
+            "SPINNER": {
+              "name": "SPINNER"
+            },
+            "DARK": {
+              "name": "DARK"
+            },
+            "TRANSFER": {
+              "name": "TRANSFER"
+            },
+            "OUCHY": {
+              "name": "OUCHY"
+            },
+            "BUTTONZ": {
+              "name": "BUTTONZ"
+            },
+            "ROCKWATE": {
+              "name": "ROCKWATE"
+            },
+            "FIZZLE": {
+              "name": "FIZZLE"
+            },
+            "SCNMSG": {
+              "name": "SCNMSG"
+            },
+            "ENCOUNTE": {
+              "name": "ENCOUNTE"
+            }
+          }
+        },
+        "Spel012": {
+          "enumName": "Spel012",
+          "enumHandle": "Spel012",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "??",
+          "enumProperties": [
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": 10,
+          "uid": "kxaqcka14fo4sxt56c1",
+          "values": {
+            "GENERIC": {
+              "name": "GENERIC"
+            },
+            "PERSON": {
+              "name": "PERSON"
+            },
+            "GROUP": {
+              "name": "GROUP"
+            }
+          }
+        },
+        "Zscn": {
+          "enumName": "Zscn",
+          "enumHandle": "Zscn",
+          "tags": [
+            "enum"
+          ],
+          "enumDefinition": "??",
+          "enumProperties": [
+            {
+              "enumFieldName": "name",
+              "type": "string"
+            }
+          ],
+          "weight": 10,
+          "uid": "kxaqd1gbz6brpoxvqxj",
+          "values": {
+            "ZZERO": {
+              "name": "ZZERO"
+            },
+            "ZMAZE": {
+              "name": "ZMAZE"
+            },
+            "ZENEMY": {
+              "name": "ZENEMY"
+            },
+            "ZREWARD": {
+              "name": "ZREWARD"
+            },
+            "ZOBJECT": {
+              "name": "ZOBJECT"
+            },
+            "ZCHAR": {
+              "name": "ZCHAR"
+            },
+            "ZSPCCHRS": {
+              "name": "ZSPCCHRS"
+            },
+            "ZEXP": {
+              "name": "ZEXP"
+            }
+          }
+        }
+      }
+    },
+    "scenes": {
+      "SceneController": {
+        "tags": [
+          "class",
+          "scene-controller"
+        ],
+        "classHandle": "SceneController",
+        "fileHandle": "scene-controller",
+        "filePath": [
+          "scenes"
+        ],
+        "uid": "kx7th9ecs7nnpoh24l"
+      }
+    },
+    "services": {
+      "Controller": {
+        "classTitle": "Controller",
+        "classHandle": "Controller",
+        "fileHandle": "controller",
+        "tags": [
+          "class",
+          "singleton"
+        ],
+        "classDefinition": "The Application will have a defined Controller class.",
+        "weight": "1",
+        "uid": "kxax69mtyxmlkkicr3m",
+        "filePath": [
+          "services"
+        ],
+        "imports": [
+          {
+            "classUid": "kxax69mtyxmlkkicr3m",
+            "importHandle": "WizardryXgoto",
+            "importPath": "../config/wizardry-constants",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "uid": "kxayul1pz9jfjztm6d"
+          },
+          {
+            "classUid": "kxax69mtyxmlkkicr3m",
+            "importHandle": "WizardryScnToc",
+            "importPath": "../bus/wizardry-scntoc",
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "uid": "kxayul1pz9jfjztm6d"
+          }
+        ],
+        "private fields": [
+          {
+            "classUid": "kxax69mtyxmlkkicr3m",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxax8sewpx22ruk08rm",
+            "fields": [
+              {
+                "fieldName": "_partyCnt",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "the partyCnt."
+              },
+              {
+                "fieldName": "_cachebl",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_scntocbl",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_llbase04",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_timeDelay",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_cacheWri",
+                "fieldType": "boolean",
+                "fieldValue": false,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_inChar",
+                "fieldType": "string",
+                "fieldValue": "\"\"",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_xgoto",
+                "fieldType": "WizardryXgoto",
+                "fieldValue": "null",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_xgoto2",
+                "fieldType": "WizardryXgoto",
+                "fieldValue": "null",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_attk012",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_fizzles",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_chestAlarm",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_light",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_acMod2",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_enStreng",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_base12",
+                "fieldType": "dictionary",
+                "fieldValue": "{\n    mystreng: 0,\n    gotox: null\n  }",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_enemyInX",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_saveLev",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_saveY",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_saveX",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_directIo",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_mazeLev",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_mazeY",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_mazeX",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_encB4Run",
+                "fieldType": "boolean",
+                "fieldValue": false,
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_fightMap",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_charDsk",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_characters",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_scnToc",
+                "fieldType": "WizardryScnToc",
+                "fieldValue": "new WizardryScnToc()",
+                "fieldDefinition": "??."
+              },
+              {
+                "fieldName": "_iocache",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "singletons": {
+      "Game": {
+        "tags": [
+          "class",
+          "game"
+        ],
+        "classHandle": "Game",
+        "fileHandle": "game",
+        "filePath": [
+          "singletons"
+        ],
+        "uid": "kx7th9ecyf4c057qis"
+      }
+    }
+  }
+}

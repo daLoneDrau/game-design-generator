@@ -54,7 +54,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
     }
   };
   /** @private A delay of 2 seconds will occur after the player presses a key. */
-  this._delay = 2000;
+  this._delay = 1;
   { // RetroC64AkalabethShopCommandsInterface View Templates
     this._VIEWS[[RetroC64Constants.AKALABETH_EQUIPMENT_SHOP_PURCHASE]] = {
       group: null,
@@ -72,7 +72,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
             0, // x
             0, // y
             "c64_pro_style_16", // font
-            "F-FOOD", // text
+            "\uE246-FOOD", // text
           ],
           position: [0, 9],
           origin: [0, 0.5],
@@ -84,7 +84,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
             0, // x
             0, // y
             "c64_pro_style_16", // font
-            "R-RAPIER", // text
+            "\uE252-RAPIER", // text
           ],
           position: [0, 10],
           origin: [0, 0.5],
@@ -96,7 +96,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
             0, // x
             0, // y
             "c64_pro_style_16", // font
-            "A-AXE", // text
+            "\uE241-AXE", // text
           ],
           position: [3, 9],
           origin: [0, 0.5],
@@ -108,7 +108,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
             0, // x
             0, // y
             "c64_pro_style_16", // font
-            "S-SHIELD", // text
+            "\uE253-SHIELD", // text
           ],
           position: [3, 10],
           origin: [0, 0.5],
@@ -120,7 +120,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
             0, // x
             0, // y
             "c64_pro_style_16", // font
-            "Q-QUIT", // text
+            "\uE251-QUIT", // text
           ],
           position: [3, 11],
           origin: [0, 0.5],
@@ -132,7 +132,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
             0, // x
             0, // y
             "c64_pro_style_16", // font
-            "B-BOW AND ARROW", // text
+            "\uE242-BOW AND ARROW", // text
           ],
           position: [5, 9],
           origin: [0, 0.5],
@@ -144,7 +144,7 @@ function RetroC64AkalabethShopCommandsInterface(parameterObject) {
             0, // x
             0, // y
             "c64_pro_style_16", // font
-            "M-MAGIC AMULET", // text
+            "\uE24D-MAGIC AMULET", // text
           ],
           position: [5, 10],
           origin: [0, 0.5],

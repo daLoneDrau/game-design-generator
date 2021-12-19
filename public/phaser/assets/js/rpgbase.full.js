@@ -1,6 +1,7 @@
 var $;
 if (typeof(module) !== "undefined") {
   $ = require('jquery');
+  var Phaser = require("phaser");
 }
 /**
  * @class Conditional class.

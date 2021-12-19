@@ -14,9 +14,9 @@ function RetroC64AkalabethSetupInterface(parameterObject) {
   /** @private Flag indicating the first update has been called. */
   this._firstUpdate = true;
   /** @private The time each cycle of the scene is supposed to last. */
-  this._cycleLength = 500;
+  this._cycleLength = 1;
   /** @private The number of cycles to run before moving to the next scene. */
-  this._maxCycles = 10;
+  this._maxCycles = 1;
   /** @private A field to track the time (in ms) when the last cycle was started. */
   this._cycleStartTime = 0;
   /** @private The number of cycles that have run. */

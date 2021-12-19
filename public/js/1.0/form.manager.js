@@ -1326,7 +1326,7 @@ const FormManager = (function() {
                     {
                       dom: "option",
                       attr: {
-                        "value": "ui scene test"
+                        "value": "ui-scene test"
                       },
                       content: "UI Scene Test Class"
                     },
@@ -2548,6 +2548,86 @@ const FormManager = (function() {
       $("#classFilenameEntry").val(designEntry.fileHandle);
       $("#sectionContentEntry").val(designEntry.classDefinition);
     },
+    "required import": function(designEntry) {
+      $("#hiddenTag").val("required import");
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        comment: "PARENT CLASS",
+        dom: "input",
+        attr: {
+          type: "hidden",
+          id: "classUid"
+        }
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [          
+          {
+            dom: "<label>",
+            attr: {
+              for: "sceneKeyEntry"
+            },
+            content: "Scene key"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "sceneKeyEntry",
+              value: designEntry.sceneKey
+            }
+          },
+          {
+            dom: "<label>",
+            attr: {
+              for: "sceneValueEntry"
+            },
+            content: "Scene Value"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "sceneValueEntry",
+              value: designEntry.sceneValue
+            }
+          },
+        ]
+      }));
+      $("#codeTypeContainer").append(CONTENT_BUILDER({
+        dom: "<div>",
+        class: "form-group",
+        children: [
+          {
+            dom: "<label>",
+            attr: {
+              for: "sectionOrderEntry"
+            },
+            content: "Order"
+          },
+          {
+            dom: "<input>",
+            class: "form-control",
+            attr: {
+              type: "text",
+              id: "sectionOrderEntry",
+              placeholder: "1, 2, 3. . ."
+            },
+            callback: {
+              keyup: {
+                args: "",
+                body: "$(\"#sectionOrderEntry\").val($(\"#sectionOrderEntry\").val().replace(/[^0-9\\.]/g, \"\"));"
+              }
+            }
+          }
+        ]
+      }));
+      $("#classUid").val(designEntry.classUid);
+      $("#sectionContentEntry").val(designEntry.setterBody);
+      $("#sectionOrderEntry").val(designEntry.order);
+    },
     "scene group": function(designEntry) {
       $("#hiddenTag").val("scene group");
       $("#codeTypeContainer").append(CONTENT_BUILDER({
@@ -3412,7 +3492,7 @@ const FormManager = (function() {
         if ($("#sceneControllerCheckbox").is(":checked")) {
           lib.push("scene-controller");
         }
-        if ($("#gamerCheckbox").is(":checked")) {
+        if ($("#gameCheckbox").is(":checked")) {
           lib.push("game");
         }
         LibraryManager.createProject(
@@ -4708,10 +4788,10 @@ const FormManager = (function() {
               {
                 classTitle: [classObject.classTitle, " Test"].join(""),
                 classHandle: [classObject.classHandle, "Test"].join(""),
-                fileHandle:  [classObject.fileHandle, "-test"].join(""),
+                fileHandle:  [classObject.fileHandle, ".test"].join(""),
                 tags: [
                   "class",
-                  "prototype test"
+                  "ui-scene test"
                 ],
                 classDefinition: o.content,
                 weight: 1,
@@ -4928,7 +5008,7 @@ const FormListener = (function() {
             attr: {
               for: "sectionContentEntry"
             },
-            content: "Constructor Body Code"
+            content: "Body Code"
           },
           {
             dom: "<textarea>",
@@ -8101,7 +8181,81 @@ const FormListener = (function() {
               }
             }
           }
-          break;          
+          break;
+        case "ui-scene test":
+          {
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "CLASS LISTING",
+              dom: "<div>",
+              class: "form-group",
+              attr: { id: "classGroup" },
+              children: [
+                {
+                  dom: "<label>",
+                  attr: {
+                    for: "classListing"
+                  },
+                  content: "Parent Class"
+                },
+                {
+                  dom: "<select>",
+                  class: "form-select",
+                  attr: { id: "classListing" },
+                  children: [
+                    {
+                      dom: "<option>",
+                      attr: {
+                        "selected": true
+                      },
+                      content: ""
+                    }
+                  ]
+                }
+              ]
+            }));
+            
+            let classes = ProjectManager.getClasses();
+            classes.sort(function(a, b) {
+              let aType, bType;
+              for (let i = a.tags.length - 1; i >= 0; i--) {
+                if (a.tags[i] === "class") {
+                  continue;
+                }
+                aType = a.tags[i];
+              }
+              for (let i = b.tags.length - 1; i >= 0; i--) {
+                if (b.tags[i] === "class") {
+                  continue;
+                }
+                bType = b.tags[i];
+              }
+              let c = 0;
+              if (aType < bType) {
+                c = 1;
+              } else if (aType > bType) {
+                c = -1;
+              } else {
+                if (a.classHandle < b.classHandle) {
+                  c = 1;
+                } else if (a.classHandle > b.classHandle) {
+                  c = -1;
+                }
+              }
+              return c;
+            });
+            for (let i = classes.length - 1; i >= 0; i--) {
+              if (classes[i].tags.includes("ui-scene")) {
+                $("#classListing").append(CONTENT_BUILDER({
+                  dom: "option",
+                  attr: {
+                    value: classes[i].uid
+                  },
+                  content: classes[i].classHandle
+                }));
+              }
+            }
+          }
+          break;
         case "unit test":
           {
             { // FORM BUILDER
@@ -8639,6 +8793,38 @@ const FormListener = (function() {
               if (entry.tags.includes("scene")) {
               }
             }
+            { // SCENE CONTAINER
+              if (entry.tags.includes("scene-container")) {
+                $("#injectionListing").append(CONTENT_BUILDER({
+                  dom: "<option>",
+                  attr: {
+                    "value": "init"
+                  },
+                  content: "Init Method Body Code"
+                }));
+                $("#injectionListing").append(CONTENT_BUILDER({
+                  dom: "<option>",
+                  attr: {
+                    "value": "preload"
+                  },
+                  content: "Preload Method Body Code"
+                }));
+                $("#injectionListing").append(CONTENT_BUILDER({
+                  dom: "<option>",
+                  attr: {
+                    "value": "create"
+                  },
+                  content: "Create Method Body Code"
+                }));
+                $("#injectionListing").append(CONTENT_BUILDER({
+                  dom: "<option>",
+                  attr: {
+                    "value": "update"
+                  },
+                  content: "Update Method Body Code"
+                }));
+              }
+            }
             { // SCENE CONTROLLER
               if (entry.tags.includes("scene-controller")) {
                 $("#injectionListing").append(CONTENT_BUILDER({
@@ -8727,7 +8913,7 @@ const FormListener = (function() {
           }
         }
         { // test
-          if (entry.tags.includes("prototype test")) {
+          if (entry.tags.includes("prototype test") || entry.tags.includes("ui-scene test")) {
             $("#injectionListing").append(CONTENT_BUILDER({
               dom: "<option>",
               attr: {
