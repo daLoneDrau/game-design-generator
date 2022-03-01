@@ -506,7 +506,7 @@ const FormManager = (function() {
               ]
             },
             {
-              "comment": "LIBRARY FILES",
+              comment: "LIBRARY FILES",
               dom: "<div>",
               class: "form-group",
               children: [
@@ -3969,16 +3969,6 @@ const FormManager = (function() {
               || o.order.length === 0) {
               $("#mainModal").show();
             } else {
-              o.members = [{
-                memberName: o.memberName,
-                memberDefinition: o.memberDefinition,
-                code: o.code,
-                order: o.fieldDefinorderition
-              }];
-              delete o.memberName;
-              delete o.memberDefinition;
-              delete o.code;
-              delete o.order;
               ProjectManager.addDesign(o);
             }
           }
@@ -4050,7 +4040,7 @@ const FormManager = (function() {
             let o = {
               "classUid": $("#classListing option:selected").val(),
               "tags": ["code", $("#injectionListing option:selected").val()],
-              "code": $("#sectionContentEntry").val(),
+              "code": $("#sectionContentEntry").val().split("\n"),
               "order": $("#sectionOrderEntry").val(),
               "uid": [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
             };
@@ -4077,7 +4067,7 @@ const FormManager = (function() {
                   order: 1
                 }
               ],
-              "uid": [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+              "uid": [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
             };
             if (o.groupName.length === 0
               || o.elements[0].elementName.length === 0
@@ -4093,12 +4083,14 @@ const FormManager = (function() {
           {
             let o = {
               classUid: $("#classListing option:selected").val(),
-              importHandle: $("#importHandleEntry").val(),
-              importPath: $("#importPathEntry").val(),
+              imports: [{
+                importHandle: $("#importHandleEntry").val(),
+                importPath: $("#importPathEntry").val()
+              }],
               tags: ["code", $("#injectionListing option:selected").val()],
               uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
             };
-            if (o.importHandle.length === 0 || o.importPath.length === 0) {
+            if (o.imports[0].importHandle.length === 0 || o.imports[0].importPath.length === 0) {
               $("#mainModal").show();
             } else {
               ProjectManager.addDesign(o);
@@ -4365,29 +4357,30 @@ const FormManager = (function() {
       switch ($("#designSectionTemplateSelect option:selected").val()) {
         case "key listener handler":
           {
+            let classUid = $("#uiSceneListing option:selected").val();
             let designObject = {
-              classUid: $("#uiSceneListing option:selected").val(),
+              classUid: classUid,
               tags: ["code", "key listener handler"],
               entryKey: $("#keyEntry").val(),
               code: $("#keyListenerCodeEntry").val(),
               order: $("#sectionOrderEntry").val(),
               uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
             };
-            let parent = ProjectManager.getDesignEntryByUid(entries[i].designUid);
-            if (!parent.hasOwnProperty("key listener handlers")) {
-              parent["key listener handlers"] = [];
+            let parent = ProjectManager.getDesignEntryByUid(classUid);
+            if (!parent.hasOwnProperty("listeners")) {
+              parent.listeners = [];
             }
-            parent["key listener handlers"].push(designObject);
-            parent["key listener handlers"].sort(function(a, b) {
+            parent.listeners.push(designObject);
+            parent.listeners.sort(function(a, b) {
               let c = 0;
-              if (a.order < b.order) {
+              if (a.entryKey < b.entryKey) {
                 c = -1;
-              } else if (a.order > b.order) {
+              } else if (a.entryKey > b.entryKey) {
                 c = 1;
               } else {
-                if (a.entryKey < b.entryKey) {
+                if (a.order < b.order) {
                   c = -1;
-                } else if (a.entryKey > b.entryKey) {
+                } else if (a.order > b.order) {
                   c = 1;
                 }
               }
@@ -4411,7 +4404,7 @@ const FormManager = (function() {
             } else {
               returnType = "Object";
             }
-            designObject = {
+            let designObject = {
               classUid: classUid,
               tags: ["code", "private field"],
               fieldName: fieldName,
@@ -4421,7 +4414,7 @@ const FormManager = (function() {
               order: order,
               uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
             };
-            o.design.push({ desdesignUid: deisgnObject.uid });
+            o.design.push({ designUid: designObject.uid });
             if ($("#getterEntry").is(":checked")
                 && $("#setterEntry").is(":checked")) {
               let setterBody = [];
@@ -4603,7 +4596,7 @@ const FormManager = (function() {
               o.children[0].design.push({ designUid: uid });
 
               uid = [Date.now().toString(36), Math.random().toString(36).substring(2)].join("");
-              designObject["import"] = [{
+              designObject["imports"] = [{
                 classUid: classUid,
                 tags: ["code", "required import"],
                 imports: [
@@ -4693,18 +4686,32 @@ const FormManager = (function() {
           break;
         case "public member":
           {
-            o.design.push(
-              {
-                classUid: $("#classListing option:selected").val(),
-                tags: ["code", "public member"],
-                memberName: $("#memberNameEntry").val(),
-                memberDefinition: $("#memberDefinitionEntry").val(),
-                arguments: $("#memberArgsEntry").val(),
-                code: $("#memberCodeEntry").val(),
-                order: $("#sectionOrderEntry").val(),
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+            let classUid = $("#classListing option:selected").val();
+            let designObject = {
+              classUid: classUid,
+              tags: ["code", "public member"],
+              memberName: $("#memberNameEntry").val(),
+              memberDefinition: $("#memberDefinitionEntry").val(),
+              arguments: $("#memberArgsEntry").val(),
+              code: $("#memberCodeEntry").val().split("\n"),
+              order: $("#sectionOrderEntry").val(),
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+            };
+            let parent = ProjectManager.getDesignEntryByUid(classUid);
+            if (!parent.hasOwnProperty("members")) {
+              parent.members = [];
+            }
+            parent.members.push(designObject);
+            parent.members.sort(function(a, b) {
+              let c = 0;
+              if (a.order < b.order) {
+                c = -1;
+              } else if (a.order > b.order) {
+                c = 1;
               }
-            );
+              return c;
+            });
+            o.design.push({ designUid: designObject.uid });
           }
           break;
         case "scene-container":
@@ -4714,13 +4721,16 @@ const FormManager = (function() {
               filePath = $("#prototypePathEntry").val();
               if (filePath.indexOf(",") > 0) {
                 filePath = filePath.split(",");
-              }
-              if (filePath.indexOf("/") > 0) {
+              } else if (filePath.indexOf("/") > 0) {
                 filePath = filePath.split("/");
+              } else {
+                filePath = [filePath];
               }
+            } else {
+              filePath = [filePath];
             }
-            let classUid = [Date.now().toString(36), Math.random().toString(36).substr(2)].join("");
-            let gameUid, sceneControllerUid, constantsUid;
+            let classUid = [Date.now().toString(36), Math.random().toString(36).substring(2)].join("");
+            let gameUid, sceneControllerUid, constantsUid, configUid;
             let classes = ProjectManager.getClasses();
             for (let i = classes.length - 1; i >= 0; i--) {
               if (classes[i].tags.includes("game")) {
@@ -4732,30 +4742,110 @@ const FormManager = (function() {
               if (classes[i].tags.includes("app-constants")) {
                 constantsUid = classes[i].uid;
               }
+              if (classes[i].tags.includes("app-config")) {
+                configUid = classes[i].uid;
+              }
             }
+            let designs = [];
+            let designObject = { // ADDED
+              classTitle: $("#classTitleEntry").val(),
+              classHandle: $("#classNameEntry").val(),
+              fileHandle: $("#classFilenameEntry").val(),
+              tags: [
+                "class",
+                "scene-container"
+              ],
+              classDefinition: $("#sectionContentEntry").val(),
+              weight: $("#weightEntry").val(),
+              uid: classUid,
+              filePath: filePath
+            };
+            designs.push(designObject);
+            let fileImportObject = { // ADDED
+              classUid: gameUid,
+              imports: [{
+                importHandle: [ProjectManager.projectAppHandle, $("#classNameEntry").val()].join(""),
+                importPath: ["../", filePath.join("/"), "/", ProjectManager.projectFileHandle, "-", $("#classFilenameEntry").val()].join(""),
+              }],
+              tags: [
+                "code",
+                "required import"
+              ],
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+            };
+            designs.push(fileImportObject);
+            let postBootObject = { // ADDED
+              classUid: gameUid,
+              tags: [
+                "code",
+                "postboot"
+              ],
+              code: ["_game.scene.queueOp(\"start\", \"", $("#classNameEntry").val(), "\");"].join(""),
+              order: "1",
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+            };
+            designs.push(postBootObject);
+            let sceneKeyObject = { // ADDED
+              classUid: sceneControllerUid,
+              tags: [
+                "code",
+                "scene group"
+              ],
+              sceneKey: $("#sceneKeyEntry").val(),
+              sceneValue: ["\"", $("#classNameEntry").val(), "\""].join(""),
+              order: "1",
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+            };
+            designs.push(sceneKeyObject);
+            let sceneGroupObject = { // ADDED
+              classUid: constantsUid,
+              groupName: "GROUP_NAME_TBD",
+              tags: [
+                "code",
+                "group properties"
+              ],
+              elements: [
+                {
+                  elementName: "GROUP_ELEMENT_NAME_TBD",
+                  elementValue: "1",
+                  elementDefinition: "The initial state.",
+                  order: 1
+                }
+              ],
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+            };
+            let sceneDictionaryObject = { // ADDED
+              tags: [
+                "code",
+                "scoped dictionary body 0"
+              ],
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join(""),
+              classUid: classUid,
+              dictionaryKey: ["[", ProjectManager.projectAppHandle, "Constants.GROUP_ELEMENT_NAME_TBD]"].join(""),
+              dictionaryDefinition: "the scene instances displayed when this view is active",
+              dictionaryValue: "[_uiInstance0, _uiInstance1]",
+              order: 1
+            };
+            designs.push(sceneGroupObject, sceneDictionaryObject);
+            let sceneInitialStateObject = { // ADDED
+              tags: [
+                "create",
+                "code"
+              ],
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join(""),
+              classUid: sceneControllerUid,
+              code: ["\n\n// set initial state for INSERT VIEW NAME\n", ProjectManager.projectAppHandle, $("#classNameEntry").val(), ".state = ", ProjectManager.projectAppHandle, "Constants.GROUP_ELEMENT_NAME_TBD;"].join(""),
+              order: "ORDER_TBD"
+            };
+            designs.push(sceneInitialStateObject);
             o.children.push(
               {
                 title: "The Scene Container Class",
                 order: 1,
                 content: "A Scene Container class will need to be defined.  The Scene Container template will be used.",
                 children: [],
-                design: [
-                  // ADD SCENE CLASS DESIGN OBJECT
-                  {
-                    classTitle: $("#classTitleEntry").val(),
-                    classHandle: $("#classNameEntry").val(),
-                    fileHandle: $("#classFilenameEntry").val(),
-                    tags: [
-                      "class",
-                      "scene-container"
-                    ],
-                    classDefinition: $("#sectionContentEntry").val(),
-                    weight: $("#weightEntry").val(),
-                    uid: classUid,
-                    filePath: filePath
-                  }
-                ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                design: [{ designUid: designObject.uid }],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "File Imports",
@@ -4763,20 +4853,8 @@ const FormManager = (function() {
                 content: "The Game class will include the Scene Container as a required import.\nThe Scene Container class will require the following imports:",
                 "requires design": true,
                 children: [],
-                design: [
-                  // ADD SCENE FILE IMPORT TO GAME
-                  {
-                    classUid: gameUid,
-                    importHandle: [ProjectManager.projectAppHandle, $("#classNameEntry").val()].join(""),
-                    importPath: ["../", filePath.join("/"), "/", ProjectManager.projectFileHandle, "-", $("#classFilenameEntry").val()].join(""),
-                    tags: [
-                      "code",
-                      "required import"
-                    ],
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  }
-                ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                design: [{ designUid: fileImportObject.uid }],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "Postboot Processing",
@@ -4784,19 +4862,8 @@ const FormManager = (function() {
                 content: "The Scene Container class will need to be added to the Game class postboot processing.",
                 "requires design": true,
                 children: [],
-                design: [
-                  {
-                    classUid: gameUid,
-                    tags: [
-                      "code",
-                      "postboot"
-                    ],
-                    code: ["_game.scene.queueOp(\"start\", \"", $("#classNameEntry").val(), "\");"].join(""),
-                    order: "1",
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  }
-                ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                design: [{ designUid: postBootObject.uid }],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "Scene Key",
@@ -4804,20 +4871,8 @@ const FormManager = (function() {
                 content: "The Scene Container class will need to be added to the scene groups in the Scene Controller class.",
                 "requires design": true,
                 children: [],
-                design: [
-                  {
-                    classUid: sceneControllerUid,
-                    tags: [
-                      "code",
-                      "scene group"
-                    ],
-                    sceneKey: $("#sceneKeyEntry").val(),
-                    sceneValue: ["\"", $("#classNameEntry").val(), "\""].join(""),
-                    order: "1",
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  }
-                ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                design: [{ designUid: sceneKeyObject.uid }],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "Scene states",
@@ -4825,37 +4880,8 @@ const FormManager = (function() {
                 content: "A State Group will need to be added to the App Constants for this Scene Container",
                 "requires design": true,
                 children: [],
-                design: [
-                  {
-                    classUid: constantsUid,
-                    groupName: "GROUP_NAME_TBD",
-                    tags: [
-                      "code",
-                      "group properties"
-                    ],
-                    elements: [
-                      {
-                        elementName: "GROUP_ELEMENT_NAME_TBD",
-                        elementValue: "1",
-                        elementDefinition: "The initial state.",
-                        order: 1
-                      }
-                    ],
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
-                  },
-                  {
-                    tags: [
-                      "scoped dictionary body 0",
-                      "code"
-                    ],
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join(""),
-                    classUid: classUid,
-                    dictionaryKey: ["[", ProjectManager.projectAppHandle, "Constants.GROUP_ELEMENT_NAME_TBD]"].join(""),
-                    dictionaryDefinition: "the scene instances displayed when this view is active",
-                    dictionaryValue: "[_uiInstance0, _uiInstance1]"
-                  }
-                ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                design: [{ designUid: sceneGroupObject.uid }, { designUid: sceneDictionaryObject.uid }],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "Scene Initial State",
@@ -4863,19 +4889,8 @@ const FormManager = (function() {
                 content: "The Scene Container initial state is set in the 'create' method of the Scene Controller class. It will be set to the following state:",
                 "requires design": true,
                 children: [],
-                design: [
-                  {
-                    tags: [
-                      "create",
-                      "code"
-                    ],
-                    uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join(""),
-                    classUid: sceneControllerUid,
-                    code: ["\n\n// set initial state for INSERT VIEW NAME\n", ProjectManager.projectAppHandle, $("#classNameEntry").val(), ".state = ", ProjectManager.projectAppHandle, "Constants.GROUP_ELEMENT_NAME_TBD;"].join(""),
-                    order: "ORDER_TBD"
-                  }
-                ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                design: [{ designUid: sceneInitialStateObject.uid }],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "Private Fields",
@@ -4883,7 +4898,7 @@ const FormManager = (function() {
                 content: "The Scene Container may have a few private fields. If so, they will be added here.",
                 children: [],
                 design: [],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "Public Members",
@@ -4891,7 +4906,7 @@ const FormManager = (function() {
                 content: "The Scene Container may have a few public members. If so, they will be added here.",
                 children: [],
                 design: [],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "Child Scenes",
@@ -4900,9 +4915,518 @@ const FormManager = (function() {
                 "requires design": true,
                 children: [],
                 design: [],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               }
             );
+            let graphicsClassObject, interfaceClassObject;
+            if ($("#sceneGraphicsCheckbox").is(":checked")) {
+              // add graphics class
+              graphicsClassObject = {
+                classTitle: [designObject.classTitle, " Graphics"].join(""),
+                classHandle: [designObject.classHandle, "Graphics"].join(""),
+                fileHandle: [designObject.fileHandle, "-graphics"].join(""),
+                tags: [
+                  "class",
+                  "ui-scene"
+                ],
+                classDefinition: ["The graphical renderer for the ", designObject.classTitle, "."].join(""),
+                weight: 1,
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join(""),
+                filePath: filePath.concat([designObject.fileHandle]),
+                initialState: "TBD",
+                gridWidth: "TBD",
+                gridHeight: "TBD"
+              };
+              designs.push(graphicsClassObject);
+              let import1 = { 
+                classUid: graphicsClassObject.uid,
+                imports: [
+                  // ADD SCENE CONTROLLER FILE IMPORT TO UI SCENE
+                  {
+                    importHandle: [ProjectManager.projectAppHandle, "SceneController"].join(""),
+                    importPath: ["../", ProjectManager.projectFileHandle, "-scene-controller"].join("")
+                  },
+                  // ADD PARENT SCENE FILE IMPORT TO UI SCENE
+                  {
+                    importHandle: [ProjectManager.projectAppHandle, designObject.classHandle].join(""),
+                    importPath: ["../", ProjectManager.projectFileHandle, "-", designObject.fileHandle].join(""),
+                  }
+                ],
+                tags: [
+                  "code",
+                  "required import"
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              let import2 = { // ADD GRAPHICS FILE IMPORT TO PARENT SCENE
+                classUid: designObject.uid,
+                imports: [
+                  {
+                    importHandle: [ProjectManager.projectAppHandle, graphicsClassObject.classHandle].join(""),
+                    importPath: ["../", ProjectManager.projectFileHandle, graphicsClassObject.fileHandle].join("")
+                  }
+                ],
+                tags: [
+                  "code",
+                  "required import"
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(import1, import2);
+              let privateField = { // ADD UI SCENE INSTANCE TO PARENT SCENE
+                classUid: designObject.uid,
+                tags: [
+                  "code",
+                  "private field"
+                ],
+                fields: [
+                  {
+                    fieldName: ["_", graphicsClassObject.classHandle.charAt(0).toLowerCase(), graphicsClassObject.classHandle.slice(1)].join(""),
+                    fieldType: "UiScene",
+                    fieldValue: ["new ", ProjectManager.projectAppHandle, graphicsClassObject.classHandle, "({ scene: _scene, show: true })"].join(""),
+                    fieldDefinition: [ProjectManager.projectAppHandle, graphicsClassObject.classHandle, " instance"].join(""),
+                  }
+                ],                
+                order: "10",
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(privateField);
+              let viewTemplate = {
+                classUid: graphicsClassObject.uid,
+                tags: [
+                  "code",
+                  "view template"
+                ],
+                entryKey: "GROUP_ELEMENT_NAME_TBD",
+                code: "group: null,\nchildren: []",
+                order: "1",
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(viewTemplate);
+              let keyListener = {
+                classUid: graphicsClassObject.uid,
+                tags: [
+                  "code",
+                  "key listener handler"
+                ],
+                entryKey: "GROUP_ELEMENT_NAME_TBD",
+                code: "",
+                order: "1",
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(keyListener);
+              let graphicsSection = [
+                {
+                  title: ["The ", designObject.classTitle, " Graphics Class"].join(""),
+                  order: 1,
+                  content: "A UI Graphics class will need to be defined.  The Ui Scene template will be used.",
+                  children: [],
+                  design: [{ designUid: graphicsClassObject.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "File Imports",
+                  order: 2,
+                  content: "The UI Graphics class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                  children: [],
+                  design: [{ designUid: import1.uid }, { designUid: import2.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                },
+                {
+                  title: "Private Fields",
+                  order: 3,
+                  content: "The UI Graphics class will be added as a private member of its scene parent.\nThe scene parent will have the following private fields:",
+                  children: [],
+                  design: [{ designUid: privateField.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "View Templates",
+                  order: 4,
+                  content: "The UI Graphics class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                  "requires design": true,
+                  children: [
+                    {
+                      title: "Default View",
+                      order: 1,
+                      content: "This is the default view for the scene.",
+                      children: [],
+                      design: [{ designUid: viewTemplate.uid }],
+                      uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                    }
+                  ],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Key Listeners",
+                  order: 5,
+                  content: "The UI Graphics class will have key listeners for the following views:",
+                  "requires design": true,
+                  children: [
+                    {
+                      title: "Inactive Key Listener",
+                      order: 1,
+                      content: "The default key listener is inactive.",
+                      children: [],
+                      design: [{ designUid: keyListener.uid }],
+                      uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                    }
+                  ],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Updates to the 'create' methods",
+                  order: 6,
+                  content: "The UI Graphics class will have the following updates to the 'create' method:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Scene start/reset",
+                  order: 7,
+                  content: "When the UI Graphics Scene is started/reset, the following changes are applied for each view:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Public Members",
+                  order: 8,
+                  content: "Occasionally, the UI Graphics Scene will need some further public members added.  This UI has added the following public members:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                }
+              ];
+              o.children[o.children.length - 1].children = o.children[o.children.length - 1].children.concat(graphicsSection);
+            }
+            if ($("#sceneInterfaceCheckbox").is(":checked")) {
+              // add interface class
+              interfaceClassObject = {
+                classTitle: [designObject.classTitle, " Interface"].join(""),
+                classHandle: [designObject.classHandle, "Interface"].join(""),
+                fileHandle: [designObject.fileHandle, "-interface"].join(""),
+                tags: [
+                  "class",
+                  "ui-scene"
+                ],
+                classDefinition: ["The interface renderer for the ", designObject.classTitle, "."].join(""),
+                weight: 1,
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join(""),
+                filePath: filePath.concat([designObject.fileHandle]),
+                initialState: "TBD",
+                gridWidth: "TBD",
+                gridHeight: "TBD"
+              };
+              designs.push(interfaceClassObject);
+              let import1 = { 
+                classUid: interfaceClassObject.uid,
+                imports: [
+                  // ADD SCENE CONTROLLER FILE IMPORT TO UI SCENE
+                  {
+                    importHandle: [ProjectManager.projectAppHandle, "SceneController"].join(""),
+                    importPath: ["../", ProjectManager.projectFileHandle, "-scene-controller"].join("")
+                  },
+                  // ADD PARENT SCENE FILE IMPORT TO UI SCENE
+                  {
+                    importHandle: [ProjectManager.projectAppHandle, designObject.classHandle].join(""),
+                    importPath: ["../", ProjectManager.projectFileHandle, "-", designObject.fileHandle].join(""),
+                  }
+                ],
+                tags: [
+                  "code",
+                  "required import"
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              let import2 = { // ADD GRAPHICS FILE IMPORT TO PARENT SCENE
+                classUid: designObject.uid,
+                imports: [
+                  {
+                    importHandle: [ProjectManager.projectAppHandle, interfaceClassObject.classHandle].join(""),
+                    importPath: ["../", ProjectManager.projectFileHandle, interfaceClassObject.fileHandle].join("")
+                  }
+                ],
+                tags: [
+                  "code",
+                  "required import"
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(import1, import2);
+              let privateField = { // ADD UI SCENE INSTANCE TO PARENT SCENE
+                classUid: designObject.uid,
+                tags: [
+                  "code",
+                  "private field"
+                ],
+                fields: [
+                  {
+                    fieldName: ["_", interfaceClassObject.classHandle.charAt(0).toLowerCase(), interfaceClassObject.classHandle.slice(1)].join(""),
+                    fieldType: "UiScene",
+                    fieldValue: ["new ", ProjectManager.projectAppHandle, interfaceClassObject.classHandle, "({ scene: _scene, show: true })"].join(""),
+                    fieldDefinition: [ProjectManager.projectAppHandle, interfaceClassObject.classHandle, " instance"].join(""),
+                  }
+                ],                
+                order: "10",
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(privateField);
+              let viewTemplate = {
+                classUid: interfaceClassObject.uid,
+                tags: [
+                  "code",
+                  "view template"
+                ],
+                entryKey: "GROUP_ELEMENT_NAME_TBD",
+                code: "group: null,\nchildren: []",
+                order: "1",
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(viewTemplate);
+              let keyListener = {
+                classUid: interfaceClassObject.uid,
+                tags: [
+                  "code",
+                  "key listener handler"
+                ],
+                entryKey: "GROUP_ELEMENT_NAME_TBD",
+                code: "",
+                order: "1",
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(keyListener);
+              let interfaceSection = [
+                {
+                  title: ["The ", designObject.classTitle, " Interface Class"].join(""),
+                  order: 1,
+                  content: "A UI Interface class will need to be defined.  The Ui Scene template will be used.",
+                  children: [],
+                  design: [{ designUid: interfaceClassObject.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "File Imports",
+                  order: 2,
+                  content: "The UI Interface class will require the following imports:\n* Scene Contoller\n* Parent Scene",
+                  children: [],
+                  design: [{ designUid: import1.uid }, { designUid: import2.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                },
+                {
+                  title: "Private Fields",
+                  order: 3,
+                  content: "The UI Interface class will be added as a private member of its scene parent.\nThe scene parent will have the following private fields:",
+                  children: [],
+                  design: [{ designUid: privateField.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "View Templates",
+                  order: 4,
+                  content: "The UI Interface class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                  "requires design": true,
+                  children: [
+                    {
+                      title: "Default View",
+                      order: 1,
+                      content: "This is the default view for the scene.",
+                      children: [],
+                      design: [{ designUid: viewTemplate.uid }],
+                      uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                    }
+                  ],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Key Listeners",
+                  order: 5,
+                  content: "The UI Interface class will have key listeners for the following views:",
+                  "requires design": true,
+                  children: [
+                    {
+                      title: "Inactive Key Listener",
+                      order: 1,
+                      content: "The default key listener is inactive.",
+                      children: [],
+                      design: [{ designUid: keyListener.uid }],
+                      uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                    }
+                  ],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Updates to the 'create' methods",
+                  order: 6,
+                  content: "The UI Interface class will have the following updates to the 'create' method:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Scene start/reset",
+                  order: 7,
+                  content: "When the UI Interface Scene is started/reset, the following changes are applied for each view:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Public Members",
+                  order: 8,
+                  content: "Occasionally, the UI Interface Scene will need some further public members added.  This UI has added the following public members:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                }
+              ];
+              o.children[o.children.length - 1].children = o.children[o.children.length - 1].children.concat(interfaceSection);
+            }
+            if ($("#sceneEventHandlerCheckbox").is(":checked")) {
+              // add event handler class
+              let eventHandlerObject = {
+                classTitle: [designObject.classTitle, " Event Handler"].join(""),
+                classHandle: [designObject.classHandle, "EventHandler"].join(""),
+                fileHandle: [designObject.fileHandle, "-event-handler"].join(""),
+                tags: [
+                  "class",
+                  "singleton"
+                ],
+                classDefinition: ["The event handler for the ", designObject.classTitle, "."].join(""),
+                weight: 1,
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join(""),
+                filePath: filePath.concat([designObject.fileHandle])
+              };
+              designs.push(eventHandlerObject);
+              // CIRCULAR IMPORT TO INCLUDE SINGLETON IN PARENT
+              let import2 = { 
+                classUid: configUid,
+                circularImports: [
+                  {
+                    className: [ProjectManager.projectAppHandle, interfaceClassObject.classHandle].join(""),
+                    requiredSymbol: eventHandlerObject.classHandle,
+                    requiredClass: [ProjectManager.projectAppHandle, eventHandlerObject.classHandle].join("")
+                  }
+                ],
+                tags: [
+                  "code",
+                  "prototype requires"
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(import2);
+              let eventhandlerSection = [
+                {
+                  title: ["The ", designObject.classTitle, " Event Handler Class"].join(""),
+                  order: 1,
+                  content: "A UI Event Handler class will need to be defined.  The Ui Scene template will be used.",
+                  children: [],
+                  design: [{ designUid: eventHandlerObject.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "File Imports",
+                  order: 2,
+                  content: "The UI Event Handler class will require the following circular imports:\n* Parent -> Event Handler",
+                  children: [],
+                  design: [{ designUid: import2.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Private Fields",
+                  order: 3,
+                  content: "The Event Handler may require some private fields.",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Public Members",
+                  order: 4,
+                  content: "Occasionally, the Event Handler will need some further public members added.  This Event Handler has added the following public members:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                }
+              ];
+              o.children[o.children.length - 1].children = o.children[o.children.length - 1].children.concat(eventhandlerSection);
+            }
+            if ($("#sceneActionDispatcherCheckbox").is(":checked")) {
+              // add action dispatcher class
+              let actionDispatcherObject = {
+                classTitle: [designObject.classTitle, " Action Dispatcher"].join(""),
+                classHandle: [designObject.classHandle, "ActionDispatcher"].join(""),
+                fileHandle: [designObject.fileHandle, "-action-dispatcher"].join(""),
+                tags: [
+                  "class",
+                  "singleton"
+                ],
+                classDefinition: ["The action dispatcher for the ", designObject.classTitle, "."].join(""),
+                weight: 1,
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join(""),
+                filePath: filePath.concat([designObject.fileHandle])
+              };
+              designs.push(actionDispatcherObject);
+              // CIRCULAR IMPORT TO INCLUDE SINGLETON IN PARENT
+              let import2 = { 
+                classUid: configUid,
+                circularImports: [
+                  {
+                    className: [ProjectManager.projectAppHandle, interfaceClassObject.classHandle].join(""),
+                    requiredSymbol: actionDispatcherObject.classHandle,
+                    requiredClass: [ProjectManager.projectAppHandle, actionDispatcherObject.classHandle].join("")
+                  }
+                ],
+                tags: [
+                  "code",
+                  "prototype requires"
+                ],
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+              };
+              designs.push(import2);
+              let actionDispatcherSection = [
+                {
+                  title: ["The ", designObject.classTitle, " Action Dispatcher Class"].join(""),
+                  order: 1,
+                  content: "A UI Action Dispatcher class will need to be defined.  The singleton template will be used.",
+                  children: [],
+                  design: [{ designUid: actionDispatcherObject.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "File Imports",
+                  order: 2,
+                  content: "The UI Action Dispatcher class will require the following circular imports:\n* Parent -> Action Dispatcher\n* Action Dispatcher -> Parent Scene",
+                  children: [],
+                  design: [{ designUid: import2.uid }],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Private Fields",
+                  order: 3,
+                  content: "The Action Dispatcher may require some private fields.",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                },
+                {
+                  title: "Public Members",
+                  order: 4,
+                  content: "Occasionally, the Action Dispatcher will need some further public members added.  This Action Dispatcher has added the following public members:",
+                  children: [],
+                  design: [],
+                  uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+                }
+              ];
+              o.children[o.children.length - 1].children = o.children[o.children.length - 1].children.concat(actionDispatcherSection);
+            }
+            // add design object last, since it will be unmutable afterwards
+            ProjectManager.addDesign(designs, true);
           }
           break;
         case "ui-scene":
@@ -4944,7 +5468,7 @@ const FormManager = (function() {
                     gridHeight: $("#gridHeightEntry").val(),
                   }
                 ],
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+                uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
               },
               {
                 title: "File Imports",
@@ -5245,16 +5769,36 @@ const FormManager = (function() {
           break;
         case "view template":
           {
-            o.design.push(
-              {
-                classUid: $("#uiSceneListing option:selected").val(),
-                tags: ["code", "view template"],
-                entryKey: $("#keyEntry").val(),
-                code: $("#viewCodeEntry").val(),
-                order: $("#sectionOrderEntry").val(),
-                uid: [Date.now().toString(36), Math.random().toString(36).substr(2)].join("")
+            let classUid = $("#uiSceneListing option:selected").val();
+            let designObject = {
+              classUid: classUid,
+              tags: ["code", "view template"],
+              entryKey: $("#keyEntry").val(),
+              code: $("#viewCodeEntry").val(),
+              order: $("#sectionOrderEntry").val(),
+              uid: [Date.now().toString(36), Math.random().toString(36).substring(2)].join("")
+            };
+            let parent = ProjectManager.getDesignEntryByUid(classUid);
+            if (!parent.hasOwnProperty("views")) {
+              parent.views = [];
+            }
+            parent.views.push(designObject);
+            parent.views.sort(function(a, b) {
+              let c = 0;
+              if (a.entryKey < b.entryKey) {
+                c = -1;
+              } else if (a.entryKey > b.entryKey) {
+                c = 1;
+              } else {
+                if (a.order < b.order) {
+                  c = -1;
+                } else if (a.order > b.order) {
+                  c = 1;
+                }
               }
-            );
+              return c;
+            });
+            o.design.push({ designUid: designObject.uid });
           }
           break;
       }
@@ -7976,6 +8520,133 @@ const FormListener = (function() {
                     id: "sceneKeyEntry",
                     placeholder: "[MyAppConstants.SCENE_STATE]"
                   }
+                }
+              ]
+            }));
+            $("#designSectionTemplateForm").append(CONTENT_BUILDER({
+              comment: "SCENE FILES",
+              dom: "<div>",
+              class: "form-group",
+              children: [
+                {
+                  dom: "<label>",
+                  content: "Scene Files"
+                },
+                {
+                  dom: "div",
+                  class: "container",
+                  children: [
+                    {
+                      dom: "div",
+                      class: "row",
+                      children: [
+                        {
+                          dom: "div",
+                          class: "col-6",
+                          children: [
+                            {
+                              dom: "div",
+                              class: "form-check",
+                              children: [
+                                {
+                                  dom: "input",
+                                  class: "form-check-input",
+                                  attr: {
+                                    type: "checkbox",
+                                    value: "",
+                                    id: "sceneGraphicsCheckbox"
+                                  }
+                                },
+                                {
+                                  dom: "label",
+                                  class: "form-check-label",
+                                  attr: {
+                                    for: "sceneGraphicsCheckbox"
+                                  },
+                                  content: "Scene Graphics"
+                                }
+                              ]
+                            },
+                            {
+                              dom: "div",
+                              class: "form-check",
+                              children: [
+                                {
+                                  dom: "input",
+                                  class: "form-check-input",
+                                  attr: {
+                                    type: "checkbox",
+                                    value: "",
+                                    id: "sceneInterfaceCheckbox"
+                                  }
+                                },
+                                {
+                                  dom: "label",
+                                  class: "form-check-label",
+                                  attr: {
+                                    for: "sceneInterfaceCheckbox"
+                                  },
+                                  content: "Scene Interface"
+                                }
+                              ]
+                            }                    
+                          ]
+                        },
+                        {
+                          dom: "div",
+                          class: "col-6",
+                          children: [
+                            {
+                              dom: "div",
+                              class: "form-check",
+                              children: [
+                                {
+                                  dom: "input",
+                                  class: "form-check-input",
+                                  attr: {
+                                    type: "checkbox",
+                                    value: "",
+                                    id: "sceneEventHandlerCheckbox"
+                                  }
+                                },
+                                {
+                                  dom: "label",
+                                  class: "form-check-label",
+                                  attr: {
+                                    for: "sceneEventHandlerCheckbox"
+                                  },
+                                  content: "Event Handler"
+                                }
+                              ]
+                            },
+                            {
+                              dom: "div",
+                              class: "form-check",
+                              children: [
+                                {
+                                  dom: "input",
+                                  class: "form-check-input",
+                                  attr: {
+                                    type: "checkbox",
+                                    value: "",
+                                    id: "sceneActionDispatcherCheckbox"
+                                  }
+                                },
+                                {
+                                  dom: "label",
+                                  class: "form-check-label",
+                                  attr: {
+                                    for: "sceneActionDispatcherCheckbox"
+                                  },
+                                  content: "Action Dispatcher"
+                                }
+                              ]
+                            }  
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }));

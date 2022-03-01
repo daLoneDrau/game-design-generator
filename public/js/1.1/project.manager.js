@@ -49,6 +49,23 @@ const ProjectManager = (function() {
               "children": [
                 {
                   "dom": "<a>",
+                  "class": "dropdown-item",
+                  "attr": {
+                    "href": "#"
+                  },
+                  "content": "Generate Babylon Code",
+                  "callback": {
+                    "args": "",
+                    "body": "ProjectManager.generateBabylonCode();"
+                  }
+                }
+              ]
+            },
+            {
+              "dom": "<li>",
+              "children": [
+                {
+                  "dom": "<a>",
                   "class": "dropdown-item disabled",
                   "attr": {
                     "href": "#"
@@ -714,76 +731,121 @@ const ProjectManager = (function() {
       ));
     },
     "private field": function($div, entry, className) {
-      $div.append(_contentBuilder({
-        "dom": "p",
-        "class": "h6",
-        "content": ["Private Field '", entry.fieldName, "' Created In Class ", className].join("")
-      }));
-      $div.append(_contentBuilder(
-        {
-          "dom": "pre",
-          "class": "language-javascript",
-          "children": [
+      // console.trace(entry)
+      if (entry.hasOwnProperty("fields")) {
+        for (let i = 0, li = entry.fields.length; i < li; i++) {
+          let field = entry.fields[i];
+          $div.append(_contentBuilder({
+            "dom": "p",
+            "class": "h6",
+            "content": ["Private Field '", field.fieldName, "' Created In Class ", className].join("")
+          }));
+          $div.append(_contentBuilder(
             {
-              "dom": "code",
+              "dom": "pre",
               "class": "language-javascript",
               "children": [
                 {
-                  "dom": "span",
-                  "class": "token comment",
-                  "style": "white-space: normal;",
-                  "content": ["/** ", entry.fieldDefinition, "*/"].join("")
-                },
-                {
-                  "dom": "br"
-                },
-                {
-                  "dom": "span",
-                  "class": "token keyword",
-                  "content": entry.fieldName
-                },
-                {
-                  "dom": "span",
-                  "class": "token class-name",
-                  "content": ["&nbsp;=&nbsp;", entry.fieldValue, ";"].join("")
+                  "dom": "code",
+                  "class": "language-javascript",
+                  "children": [
+                    {
+                      "dom": "span",
+                      "class": "token comment",
+                      "style": "white-space: normal;",
+                      "content": ["/** ", field.fieldDefinition, "*/"].join("")
+                    },
+                    {
+                      "dom": "br"
+                    },
+                    {
+                      "dom": "span",
+                      "class": "token keyword",
+                      "content": field.fieldName
+                    },
+                    {
+                      "dom": "span",
+                      "class": "token class-name",
+                      "content": ["&nbsp;=&nbsp;", field.fieldValue, ";"].join("")
+                    }
+                  ]
                 }
               ]
             }
-          ]
+          ));
         }
-      ));
-      $div.append(_contentBuilder(
-        {
-          "dom": "<a>",
-          "class": "btn",
-          "attr": {
-            "href": "#",
-            "role": "button",
-            "data-uid": entry.uid
-          },
-          "content": "Edit Private Field",
-          "callback": {
-            "args": "",
-            "body": ["FormManager.displayEditDesignForm(\"", entry.uid, "\");"].join("")
+      } else {
+        $div.append(_contentBuilder({
+          "dom": "p",
+          "class": "h6",
+          "content": ["Private Field '", entry.fieldName, "' Created In Class ", className].join("")
+        }));
+        $div.append(_contentBuilder(
+          {
+            "dom": "pre",
+            "class": "language-javascript",
+            "children": [
+              {
+                "dom": "code",
+                "class": "language-javascript",
+                "children": [
+                  {
+                    "dom": "span",
+                    "class": "token comment",
+                    "style": "white-space: normal;",
+                    "content": ["/** ", entry.fieldDefinition, "*/"].join("")
+                  },
+                  {
+                    "dom": "br"
+                  },
+                  {
+                    "dom": "span",
+                    "class": "token keyword",
+                    "content": entry.fieldName
+                  },
+                  {
+                    "dom": "span",
+                    "class": "token class-name",
+                    "content": ["&nbsp;=&nbsp;", entry.fieldValue, ";"].join("")
+                  }
+                ]
+              }
+            ]
           }
-        }
-      ));
-      $div.append(_contentBuilder(
-        {
-          "dom": "<a>",
-          "class": "btn",
-          "attr": {
-            "href": "#",
-            "role": "button",
-            "data-uid": entry.uid
-          },
-          "content": "Delete Private Field",
-          "callback": {
-            "args": "",
-            "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+        ));
+        $div.append(_contentBuilder(
+          {
+            "dom": "<a>",
+            "class": "btn",
+            "attr": {
+              "href": "#",
+              "role": "button",
+              "data-uid": entry.uid
+            },
+            "content": "Edit Private Field",
+            "callback": {
+              "args": "",
+              "body": ["FormManager.displayEditDesignForm(\"", entry.uid, "\");"].join("")
+            }
           }
-        }
-      ));
+        ));
+        $div.append(_contentBuilder(
+          {
+            "dom": "<a>",
+            "class": "btn",
+            "attr": {
+              "href": "#",
+              "role": "button",
+              "data-uid": entry.uid
+            },
+            "content": "Delete Private Field",
+            "callback": {
+              "args": "",
+              "body": ["ProjectManager.deleteDesignEntry(\"", entry.uid, "\");"].join("")
+            }
+          }
+        ));
+      }
     },
     prototype: function($div, entry) {
       $div.append(_contentBuilder({
@@ -939,7 +1001,7 @@ const ProjectManager = (function() {
                 {
                   "dom": "span",
                   "class": "token class-name",
-                  "content": entry.code.replace(/\n/g, "<br>")
+                  "content": Array.isArray(entry.code) ? entry.code.join("<br>") : entry.code.replace(/\n/g, "<br>")
                 },
                 {
                   "dom": "br"
@@ -2537,6 +2599,287 @@ const ProjectManager = (function() {
     let section = ProjectManager.getEntryByUid(e.relatedTarget.substring(1));
     _buildAnnotations(section);
   }
+  //** @private dictionary to match design object tags to their collated members and sorting techniques. */
+  const _DESIGN_TAGS = {
+    create: {
+      member: "create",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "constructor body": {
+      member: "constructor body",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "group properties": {
+      member: "group properties",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.groupName < b.groupName) {
+          c = -1;
+        } else if (a.groupName > b.groupName) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "key listener handler": {
+      member: "listeners",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    postboot: {
+      member: "postboot",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    preboot: {
+      member: "preboot",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    preload: {
+      member: "preload",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "private field": {
+      member: "fields",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "prototype requires": {
+      member: "circularImports",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "public getter/setter property": {
+      member: "public properties",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "public getter property": {
+      member: "public properties",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "public setter property": {
+      member: "public properties",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "public member": {
+      member: "members",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "required import": {
+      member: "imports",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "scene group": {
+      member: "scene group",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "scoped dictionary body 0": {
+      member: "dictionaries",
+      sort: function(a, b) {
+        let aType, bType;
+        for (let i = a.tags.length - 1; i >= 0; i--) {
+          if (a.tags[i] !== "code") {
+            aType = a.tags[i];
+            break;
+          }
+        }
+        for (let i = b.tags.length - 1; i >= 0; i--) {
+          if (b.tags[i] !== "code") {
+            bType = b.tags[i];
+            break;
+          }
+        }
+        let c = 0;
+        if (aType < bType) {
+          c = -1;
+        } else if (aType > bType) {
+          c = 1;
+        } else {
+          if (a.order < b.order) {
+            c = -1;
+          } else if (a.order > b.order) {
+            c = 1;
+          }
+        }
+        return c;
+      }
+    },
+    "scoped dictionary body 1": {
+      member: "dictionaries",
+      sort: function(a, b) {
+        let aType, bType;
+        for (let i = a.tags.length - 1; i >= 0; i--) {
+          if (a.tags[i] !== "code") {
+            aType = a.tags[i];
+            break;
+          }
+        }
+        for (let i = b.tags.length - 1; i >= 0; i--) {
+          if (b.tags[i] !== "code") {
+            bType = b.tags[i];
+            break;
+          }
+        }
+        let c = 0;
+        if (aType < bType) {
+          c = -1;
+        } else if (aType > bType) {
+          c = 1;
+        } else {
+          if (a.order < b.order) {
+            c = -1;
+          } else if (a.order > b.order) {
+            c = 1;
+          }
+        }
+        return c;
+      }
+    },
+    "singleton requires": {
+      member: "circularImports",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    update: {
+      member: "update",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+    "view template": {
+      member: "views",
+      sort: function(a, b) {
+        let c = 0;
+        if (a.order < b.order) {
+          c = -1;
+        } else if (a.order > b.order) {
+          c = 1;
+        }
+        return c;
+      }
+    },
+  }
   return {
     /** Gets the current section. */
     get currentSection() { return _currentSectionWorkingOn; },
@@ -2552,81 +2895,149 @@ const ProjectManager = (function() {
       }
       _saveProject();
     },
-    addDesign: function(data) {
-      if (typeof(_currentSectionWorkingOn) !== "undefined") {
-        _currentSectionWorkingOn.design.push({ designUid: data.uid });
-        if (data.tags.includes("enum")) {
-          // place the enum
-          let o = _project["Design Implementation"];
-          if (!o.hasOwnProperty("config")) {
-            o.config = {};
-          }
-          o = o.config;
-          if (!o.hasOwnProperty("enums")) {
-            o.enums = {};
-          }
-          o = o.enums;
-          o[data.enumName] = data;
-        } else if (data.tags.includes("class")) {
-          // place the class
-          let o = _project["Design Implementation"];
-          for (let j = 0, lj = data.filePath.length; j < lj; j++) {
-            if (!o.hasOwnProperty(data.filePath[j])) {
-              o[data.filePath[j]] = {};
+    addDesign: function(data, isNewSection) {
+      if (Array.isArray(data)) {
+        for (let i = 0, li = data.length; i < li; i++) {
+          let dataObject = data[i];
+          if (typeof(_currentSectionWorkingOn) !== "undefined") {
+            if (typeof(isNewSection) !== "undefined" && isNewSection) {
+            } else {
+              _currentSectionWorkingOn.design.push({ designUid: dataObject.uid });
             }
-            o = o[data.filePath[j]]
-            if (j + 1 >= lj) {
-              o[data.classHandle] = data;
+            if (dataObject.tags.includes("enum")) {
+              // place the enum
+              let o = _project["Design Implementation"];
+              if (!o.hasOwnProperty("config")) {
+                o.config = {};
+              }
+              o = o.config;
+              if (!o.hasOwnProperty("enums")) {
+                o.enums = {};
+              }
+              o = o.enums;
+              o[dataObject.enumName] = dataObject;
+            } else if (dataObject.tags.includes("class")) {
+              // place the class
+              let o = _project["Design Implementation"];
+              for (let j = 0, lj = dataObject.filePath.length; j < lj; j++) {
+                if (!o.hasOwnProperty(dataObject.filePath[j])) {
+                  o[dataObject.filePath[j]] = {};
+                }
+                o = o[dataObject.filePath[j]]
+                if (j + 1 >= lj) {
+                  o[dataObject.classHandle] = dataObject;
+                }
+              }
+            } else {
+              // identify what type of design this is
+              let identifyingTag;
+              for (let j = dataObject.tags.length - 1; j >= 0; j--) {
+                if (dataObject.tags[j] !== "code") {
+                  identifyingTag = dataObject.tags[j];
+                  break;
+                }
+              }
+              if (_DESIGN_TAGS.hasOwnProperty(identifyingTag)) {
+                let designMember = _DESIGN_TAGS[identifyingTag].member, sort = _DESIGN_TAGS[identifyingTag].sort;
+                let parent = ProjectManager.getDesignEntryByUid(dataObject.classUid);
+                if (!parent.hasOwnProperty(designMember)) {
+                  parent[designMember] = [];
+                }
+                parent[designMember].push(dataObject);
+                parent[designMember].sort(sort);
+              } else {
+                console.log("missing assignment for tags",dataObject.tags)
+              }
             }
+            // sort the design implementation
+            let tmp = {};
+            let keys = Object.keys(_project["Design Implementation"]);
+            keys.sort();
+            for (let i = 0, li = keys.length; i < li; i++) {
+              tmp[keys[i]] = JSON.parse(JSON.stringify(_project["Design Implementation"][keys[i]]));
+              // sort one more level
+              let tmp2 = {}, keys2 = Object.keys(tmp[keys[i]]);
+              keys2.sort();
+              for (let j = 0, lj = keys2.length; j < lj; j++) {
+                tmp2[keys2[j]] = JSON.parse(JSON.stringify(tmp[keys[i]][keys2[j]]));
+              }
+              tmp[keys[i]] = tmp2;
+            }
+            _project["Design Implementation"] = tmp;
+          } else {
+            throw "Cannot add a design entry to the root";
           }
-        } else if (data.tags.includes("constructor body")) {
-          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
-          if (!parent.hasOwnProperty("constructor body")) {
-            parent["constructor body"] = [];
-          }
-          parent["constructor body"].push(data);
-        } else if (data.tags.includes("private field")) {
-          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
-          if (!parent.hasOwnProperty("private fields")) {
-            parent["private fields"] = [];
-          }
-          parent["private fields"].push(data);
-        } else if (data.tags.includes("required import")) {
-          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
-          if (!parent.hasOwnProperty("imports")) {
-            parent["imports"] = [];
-          }
-          parent["imports"].push(data);
-        } else if (data.tags.includes("public member")) {
-          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
-          if (!parent.hasOwnProperty("public members")) {
-            parent["public members"] = [];
-          }
-          parent["public members"].push(data);
-        } else if (data.tags.includes("public getter/setter property") || data.tags.includes("public getter property") || data.tags.includes("public setter property")) {
-          let parent = ProjectManager.getDesignEntryByUid(data.classUid);
-          if (!parent.hasOwnProperty("public properties")) {
-            parent["public properties"] = [];
-          }
-          parent["public properties"].push(data);
         }
-        // sort the design implementation
-        let tmp = {};
-        let keys = Object.keys(_project["Design Implementation"]);
-        keys.sort();
-        for (let i = 0, li = keys.length; i < li; i++) {
-          tmp[keys[i]] = JSON.parse(JSON.stringify(_project["Design Implementation"][keys[i]]));
-          // sort one more level
-          let tmp2 = {}, keys2 = Object.keys(tmp[keys[i]]);
-          keys2.sort();
-          for (let j = 0, lj = keys2.length; j < lj; j++) {
-            tmp2[keys2[j]] = JSON.parse(JSON.stringify(tmp[keys[i]][keys2[j]]));
-          }
-          tmp[keys[i]] = tmp2;
-        }
-        _project["Design Implementation"] = tmp;
       } else {
-        throw "Cannot add a design entry to the root";
+        let dataObject = data;
+        if (typeof(_currentSectionWorkingOn) !== "undefined") {
+          if (typeof(isNewSection) !== "undefined" && isNewSection) {
+          } else {
+            _currentSectionWorkingOn.design.push({ designUid: dataObject.uid });
+          }
+          if (dataObject.tags.includes("enum")) {
+            // place the enum
+            let o = _project["Design Implementation"];
+            if (!o.hasOwnProperty("config")) {
+              o.config = {};
+            }
+            o = o.config;
+            if (!o.hasOwnProperty("enums")) {
+              o.enums = {};
+            }
+            o = o.enums;
+            o[dataObject.enumName] = dataObject;
+          } else if (dataObject.tags.includes("class")) {
+            // place the class
+            let o = _project["Design Implementation"];
+            for (let j = 0, lj = dataObject.filePath.length; j < lj; j++) {
+              if (!o.hasOwnProperty(dataObject.filePath[j])) {
+                o[dataObject.filePath[j]] = {};
+              }
+              o = o[dataObject.filePath[j]]
+              if (j + 1 >= lj) {
+                o[dataObject.classHandle] = dataObject;
+              }
+            }
+          } else {
+            // identify what type of design this is
+            let identifyingTag;
+            for (let j = dataObject.tags.length - 1; j >= 0; j--) {
+              if (dataObject.tags[j] !== "code") {
+                identifyingTag = dataObject.tags[j];
+                break;
+              }
+            }
+            if (_DESIGN_TAGS.hasOwnProperty(identifyingTag)) {
+              let designMember = _DESIGN_TAGS[identifyingTag].member, sort = _DESIGN_TAGS[identifyingTag].sort;
+              let parent = ProjectManager.getDesignEntryByUid(dataObject.classUid);
+              if (!parent.hasOwnProperty(designMember)) {
+                parent[designMember] = [];
+              }
+              parent[designMember].push(dataObject);
+              parent[designMember].sort(sort);
+            } else {
+              console.log("missing assignment for tags",dataObject.tags)
+            }
+          }
+          // sort the design implementation
+          let tmp = {};
+          let keys = Object.keys(_project["Design Implementation"]);
+          keys.sort();
+          for (let i = 0, li = keys.length; i < li; i++) {
+            tmp[keys[i]] = JSON.parse(JSON.stringify(_project["Design Implementation"][keys[i]]));
+            // sort one more level
+            let tmp2 = {}, keys2 = Object.keys(tmp[keys[i]]);
+            keys2.sort();
+            for (let j = 0, lj = keys2.length; j < lj; j++) {
+              tmp2[keys2[j]] = JSON.parse(JSON.stringify(tmp[keys[i]][keys2[j]]));
+            }
+            tmp[keys[i]] = tmp2;
+          }
+          _project["Design Implementation"] = tmp;
+        } else {
+          throw "Cannot add a design entry to the root";
+        }
       }
       _saveProject();
     },
@@ -2676,7 +3087,7 @@ const ProjectManager = (function() {
       $("#addNextStepsNotesLink").addClass("disabled");
       _buildBreadcrumbs();
     },
-    "clickNavLink": function() {
+    clickNavLink: function() {
       let $a = $(arguments[0][0].target);
       $(".nav-link").each(function() {
         $(this).removeClass('active'); 
@@ -2755,10 +3166,15 @@ const ProjectManager = (function() {
           let entry = arr[i];
           if (entry.hasOwnProperty("designUid")) {
             let designObject = ProjectManager.getDesignEntryByUid(entry.designUid);
-            if (designObject.hasOwnProperty("tags") && designObject.tags.includes("class")) {
-              if (!classes.includes(designObject)) {
-                classes.push(designObject);
+            try {
+              if (designObject.hasOwnProperty("tags") && designObject.tags.includes("class")) {
+                if (!classes.includes(designObject)) {
+                  classes.push(designObject);
+                }
               }
+            } catch (e) {
+              console.log(entry.designUid);
+              throw e;
             }
           }
           if (entry.hasOwnProperty("children")) {

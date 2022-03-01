@@ -6,6 +6,40 @@ var WizardryConstants = {
    * EQUIPMENT ELEMENTS - generated dynamically
    ********************/
   EQUIPMENT_ELEMENTS: {},
+  /*********************
+   * APP_STATES
+   ********************/
+  /** the Specials scene */
+  SPECIALS: 1,
+  /** the Castle scene */
+  CASTLE: 2,
+  /** the Shops scene */
+  SHOPS: 3,
+  /** the Castle scene */
+  CASTLE: 4,
+  /** the Utilities scene */
+  UTILITIES: 5,
+  /** the Roller scene */
+  ROLLER: 6,
+  /** the Runner scene */
+  RUNNER: 7,
+  /** the Rewards scene */
+  REWARDS: 8,
+  /** the Combat scene */
+  COMBAT: 9,
+  /** the Camp scene */
+  CAMP: 10,
+  /*********************
+   * SPECIALS_STATES
+   ********************/
+  /** The main state for the Specials scene. */
+  SPECIALS_MAIN: 1,
+  /** The 'inspect' state for the Specials scene. */
+  SPECIALS_INSPECT: 2,
+  /** The 'init game' state for the Specials scene. */
+  SPECIALS_INITGAME: 3,
+  /** The 'misc' state for the Specials scene. */
+  SPECIALS_MISC: 4,
 }
 /**
  * @class Class enum using singleton pattern
@@ -19,7 +53,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Object Type enum using singleton pattern
  * @todo documentation
  */
- const WizardryObjectType = function () {
+ var WizardryObjectType = function () {
   console.trace();
   throw "Class WizardryObjectType is an enum; no instances of it can be created.";
 };
@@ -27,7 +61,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Square enum using singleton pattern
  * @todo documentation
  */
- const WizardrySquare = function () {
+ var WizardrySquare = function () {
   console.trace();
   throw "Class WizardrySquare is an enum; no instances of it can be created.";
 };
@@ -35,7 +69,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Wall enum using singleton pattern
  * @todo documentation
  */
- const WizardryWall = function () {
+ var WizardryWall = function () {
   console.trace();
   throw "Class WizardryWall is an enum; no instances of it can be created.";
 };
@@ -43,7 +77,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Xgoto enum using singleton pattern
  * @todo documentation
  */
- const WizardryXgoto = function () {
+ var WizardryXgoto = function () {
   console.trace();
   throw "Class WizardryXgoto is an enum; no instances of it can be created.";
 };
@@ -51,7 +85,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Alignment enum using singleton pattern
  * @todo documentation
  */
- const WizardryAlignment = function () {
+ var WizardryAlignment = function () {
   console.trace();
   throw "Class WizardryAlignment is an enum; no instances of it can be created.";
 };
@@ -59,7 +93,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Attribute enum using singleton pattern
  * @todo documentation
  */
- const WizardryAttribute = function () {
+ var WizardryAttribute = function () {
   console.trace();
   throw "Class WizardryAttribute is an enum; no instances of it can be created.";
 };
@@ -67,7 +101,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Character Class enum using singleton pattern
  * @todo documentation
  */
- const WizardryCharacterClass = function () {
+ var WizardryCharacterClass = function () {
   console.trace();
   throw "Class WizardryCharacterClass is an enum; no instances of it can be created.";
 };
@@ -75,7 +109,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Character Status enum using singleton pattern
  * @todo documentation
  */
- const WizardryCharacterStatus = function () {
+ var WizardryCharacterStatus = function () {
   console.trace();
   throw "Class WizardryCharacterStatus is an enum; no instances of it can be created.";
 };
@@ -83,7 +117,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Race enum using singleton pattern
  * @todo documentation
  */
- const WizardryRace = function () {
+ var WizardryRace = function () {
   console.trace();
   throw "Class WizardryRace is an enum; no instances of it can be created.";
 };
@@ -91,7 +125,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Spel012 enum using singleton pattern
  * @todo documentation
  */
- const WizardrySpel012 = function () {
+ var WizardrySpel012 = function () {
   console.trace();
   throw "Class WizardrySpel012 is an enum; no instances of it can be created.";
 };
@@ -99,7 +133,7 @@ const WizardryAttributeDescriptors = function () {
  * @class Zscn enum using singleton pattern
  * @todo documentation
  */
- const WizardryZscn = function () {
+ var WizardryZscn = function () {
   console.trace();
   throw "Class WizardryZscn is an enum; no instances of it can be created.";
 };

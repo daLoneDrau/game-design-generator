@@ -13,9 +13,17 @@ var WizardrySceneController = (function() {
   });
   /** @private The current scene group being displayed. */
   let _currentGroup = "";
+  /** @private flag indicating whether the create member has finished. */
+  let _createCompleted = false;
   /** @private The dictionary of scene groups, where groups of scenes are associated with a specific scene key. */
   let _sceneGroups = {};
   { // Getters/Setters
+    /** Gets the _createCompleted field value. */
+    Object.defineProperty(_scene, "createCompleted", {
+      get: function() {
+        return _createCompleted;
+      }
+    });
     /** Gets the scene groups dictionary. */
     Object.defineProperty(_scene, "groups", {
       get: function() {
@@ -46,12 +54,22 @@ var WizardrySceneController = (function() {
      * This method is called by the Scene Manager, after init() and before create(), only if the Scene has a LoaderPlugin. After this method completes, if the LoaderPlugin's queue isn't empty, the LoaderPlugin will start automatically. Use it to load assets. 
      */
     _scene.preload = function() {
+      // load the theme fonts
+      this.load.bitmapFont("chicago_16", "/phaser/assets/font/chicago_16.png", "/phaser/assets/font/chicago_16.xml");
     };
     /**
      * This method is called by the Game at the end of the boot sequence. The purpose is to register the scene groups and switch to the first scene.
      * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.
      */
     _scene.create = function(data) {
+      _sceneGroups[[WizardryConstants.SPECIALS]] = ["SpecialsScene"];
+      
+      
+      // set initial state for Specials Scene
+      WizardrySpecialsScene.state = WizardryConstants.SPECIALS_MAIN;
+      // set current scene
+      _switch(WizardryConstants.SPECIALS);
+      _createCompleted = true;
     };
   }
   /**

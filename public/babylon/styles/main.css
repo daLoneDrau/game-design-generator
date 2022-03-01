@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "C64 Pro";
+  src: url("/phaser/assets/font/giana.woff") format("woff");
+}
+@font-face {
+  font-family: "C64 Pro Mono";
+  src: url("/phaser/assets/font/giana.woff") format("woff");
+}
+@font-face {
+  font-family: "C64ProMono";
+  src: url("/phaser/assets/font/giana.woff") format("woff");
+}
+
+body {
+  /* remove margins and scroll bars */
+  margin: 0;
+  overflow: hidden;
+
+  /* style text */
+  text-align: center;
+  font-size: 16px;
+  font-family: "C64 Pro Mono", courier, monospace;
+
+  color: #A6A1FF;
+  background-color: #A6A1FF;
+}
+
+h1 {
+  /* position the heading */
+  position: absolute;
+  width: 100%;
+
+  /* make sure that the heading is drawn on top */
+  z-index: 1;
+}
+#game-container {
+  top: 50%;
+  width: 800px;
+  height: 600px;
+  /* background-color: #4342E6; */
+  left: 50%;
+  position: absolute;
+  /* margin: 0; */
+  transform: translate(-50%, -50%);
+}
+
+#scene-container {
+  /* tell our scene container to take up the full page */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /*
+    Set the container's background color to the same as the scene's
+    background to prevent flashing on load
+  */
+  background-color: #A6A1FF;
+}
+#scene-container > canvas {
+  margin:auto;
+}

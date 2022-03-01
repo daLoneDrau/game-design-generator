@@ -1,5 +1,6 @@
 if (typeof(module) !== "undefined") {
   var { WizardrySceneController } = require("./wizardry-scene-controller");
+  var { WizardrySpecialsScene } = require("../scenes/wizardry-specials-scene");
 }
 /**
  * @class undefined
@@ -10,6 +11,7 @@ var WizardryGame = (function() {
    * @param {Phaser.Game} game The game.
    */
   let _preBoot = function(game) {
+    WizardryController.llbase04 = -1;
   }
   /**
    * A function to run at the end of the boot sequence. At this point, all the game systems have started and plugins have been loaded.
@@ -17,6 +19,7 @@ var WizardryGame = (function() {
    */
   let _postBoot = function() {
     _game.scene.queueOp("start", "Controller");
+    _game.scene.queueOp("start", "SpecialsScene");
     WizardrySceneController.init();
   }
   /** @private the game configuration. */
@@ -34,6 +37,7 @@ var WizardryGame = (function() {
       postBoot: _postBoot
     },
     scene: [
+      WizardrySpecialsScene,
       WizardrySceneController,
     ]
   };

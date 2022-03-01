@@ -1,4 +1,7 @@
 if (typeof(module) !== "undefined") {
+  var { WizardrySpecialsceneActionDispatcher } = require("../scenes/specials-scene/wizardry-specials-scene-action-dispatcher");
+  var { WizardrySpecialsSceneEventHandler } = require("../scenes/specials-scene/wizardry-specials-scene-event-handler");
+  var { WizardrySpecialsSceneInterface } = require("../scenes/specials-scene/wizardry-specials-scene-interface");
 }
 /**
  * @class Utility class to circumvent cyclical dependencies in the architecture.
@@ -12,6 +15,8 @@ const WizardryConfig = (function() {
     init: function() {
 
 
+      WizardrySpecialsSceneInterface.prototype.SpecialsSceneEventHandler = WizardrySpecialsSceneEventHandler;
+      WizardrySpecialsSceneInterface.prototype.SpecialsSceneEventHandler = WizardrySpecialsSceneEventHandler;
       { // ENUM - Object Type
         let index = 0;
         /**

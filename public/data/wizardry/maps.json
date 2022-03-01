@@ -1,0 +1,1707 @@
+{
+  "1": {
+    "rooms": {
+      "SW entry corridor - SE branch": {
+        "positions": {
+          "0,0": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "STAIRS",
+            "comment": "the AUX0 field defines which floor the stairs lead to. if AUX0 < the maze level, it is stairs up; otherwise they are stairs down. fields AUX1 and AUX2 correspond to the x and y positions on the new map level to which the stairs lead",
+            "AUX0": 0,
+            "AUX1": 0,
+            "AUX2": 0
+          },
+          "1,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,0": {
+            "WALLS": 4,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,0": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW entry corridor - N branch": {
+        "positions": {
+          "0,7": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "0,6": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "0,5": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "0,4": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "0,3": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "0,2": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "0,1": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW entry corridor - NE branch": {
+        "positions": {
+          "0,8": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "1,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,8": {
+            "WALLS": 1,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,8": {
+            "WALLS": 1,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,8": {
+            "WALLS": 5,
+            "DOORS": 2,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW hall to room #2": {
+        "positions": {
+          "3,7": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,6": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,5": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,4": {
+            "WALLS": 10,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW hall to room #3": {
+        "positions": {
+          "6,7": {
+            "WALLS": 10,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW hidden corridor": {
+        "positions": {
+          "0,9": {
+            "WALLS": 13,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "1,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "TRANSFER",
+            "comment": "the AUX0 field defines which floor the transfer leads to. fields AUX1 and AUX2 correspond to the x and y positions on the new map location to which the stairs lead",
+            "AUX0": 0,
+            "AUX1": 0,
+            "AUX2": 0
+          },
+          "6,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,9": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW room #1": {
+        "positions": {
+          "6,1": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,1": {
+            "WALLS": 0,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,1": {
+            "WALLS": 6,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,2": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,2": {
+            "WALLS": 1,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,2": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": true
+      },
+      "SW room #2": {
+        "positions": {
+          "2,2": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,2": {
+            "WALLS": 4,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,2": {
+            "WALLS": 6,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,3": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,3": {
+            "WALLS": 0,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,3": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": true
+      },
+      "SW room #3": {
+        "positions": {
+          "5,6": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,6": {
+            "WALLS": 0,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,6": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,5": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,5": {
+            "WALLS": 4,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,5": {
+            "WALLS": 6,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": true
+      },
+      "SW interior space #1": {
+        "positions": {
+          "1,7": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,7": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "1,6": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,6": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "1,5": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,5": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "1,4": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,4": {
+            "WALLS": 6,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW interior space #2": {
+        "positions": {
+          "5,4": {
+            "WALLS": 1,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,4": {
+            "WALLS": 1,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,4": {
+            "WALLS": 1,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,4": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,3": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,3": {
+            "WALLS": 4,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,3": {
+            "WALLS": 4,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,3": {
+            "WALLS": 6,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW interior corridor #1": {
+        "positions": {
+          "1,3": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "1,2": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "1,1": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "2,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,1": {
+            "WALLS": 2,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,2": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW interior corridor #2": {
+        "positions": {
+          "4,4": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,5": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,6": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,7": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,7": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SW interior corridor #3": {
+        "positions": {
+          "8,5": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,6": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,7": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,7": {
+            "WALLS": 13,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SE dark corridor": {
+        "positions": {
+          "11,0": {
+            "WALLS": 5,
+            "DOORS": 8,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "12,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "13,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "14,0": {
+            "y": 0,
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "15,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "16,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "17,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "18,0": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "19,0": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SE interior corridor #1": {
+        "positions": {
+          "18,6": {
+            "WALLS": 11,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,5": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,4": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,3": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,2": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,1": {
+            "WALLS": 6,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "16,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,1":  {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,1": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,1": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,2": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,3": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,4": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,5": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,6": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,7": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,8": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "16,8": {
+            "WALLS": 1,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,8": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,8": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SE interior corridor #2": {
+        "positions": {
+          "16,3": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "16,4": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 8,
+            "TYPE": "NORMAL"
+          },
+          "16,5": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "16,6": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "16,7": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SE main corridor #1": {
+        "positions": {
+          "19,1": {
+            "WALLS": 10,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,2": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,3": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,4": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,5": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,6": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,7": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,7": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,7": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,6": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,5": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,4": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,3": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,2": {
+            "WALLS": 6,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "16,2": {
+            "WALLS": 5,
+            "DOORS": 8,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SE hall of doors #1": {
+        "positions": {
+          "15,2": {
+            "WALLS": 4,
+            "DOORS": 3,
+            "HIDDEN": 8,
+            "TYPE": "NORMAL"
+          },
+          "14,2": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 8,
+            "TYPE": "NORMAL"
+          },
+          "13,2": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 8,
+            "TYPE": "NORMAL"
+          },
+          "12,2": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 1,
+            "TYPE": "NORMAL"
+          },
+          "12,3": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 1,
+            "TYPE": "NORMAL"
+          },
+          "12,4": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 1,
+            "TYPE": "NORMAL"
+          },
+          "12,5": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 1,
+            "TYPE": "NORMAL"
+          },
+          "12,6": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 1,
+            "TYPE": "NORMAL"
+          },
+          "12,7": {
+            "WALLS": 13,
+            "DOORS": 0,
+            "HIDDEN": 2,
+            "TYPE": "NORMAL"
+          },
+          "13,7": {
+            "WALLS": 11,
+            "DOORS": 0,
+            "HIDDEN": 4,
+            "TYPE": "NORMAL"
+          },
+          "14,7": {
+            "WALLS": 5,
+            "DOORS": 8,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,7": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,6": {
+            "WALLS": 10,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,6": {
+            "WALLS": 13,
+            "DOORS": 0,
+            "HIDDEN": 2,
+            "TYPE": "NORMAL"
+          },
+          "14,6": {
+            "WALLS": 11,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SE room #1": {
+        "positions": {
+          "14,3": {
+            "WALLS": 0,
+            "DOORS": 12,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,3": {
+            "WALLS": 0,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,4": {
+            "WALLS": 0,
+            "DOORS": 8,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,4": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,5": {
+            "WALLS": 0,
+            "DOORS": 9,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,5": {
+            "WALLS": 2,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "SE rooms #2-4": {
+        "positions": {
+          "13,3": {
+            "WALLS": 13,
+            "DOORS": 2,
+            "HIDDEN": 1,
+            "TYPE": "SCNMSG",
+            "comment": "this location has a message. the message id is stored in the SQREXTRA field.",
+            "SQREXTRA": 18
+          },
+          "13,4": {
+            "WALLS": 13,
+            "DOORS": 2,
+            "HIDDEN": 0,
+            "TYPE": "TRANSFER",
+            "comment": "the AUX0 field defines which floor the transfer leads to. fields AUX1 and AUX2 correspond to the x and y positions on the new map location to which the stairs lead",
+            "AUX0": 0,
+            "AUX1": 0,
+            "AUX2": 0
+          },
+          "13,5": {
+            "WALLS": 13,
+            "DOORS": 2,
+            "HIDDEN": 1,
+            "TYPE": "SCNMSG",
+            "comment": "this location has a message. the message id is stored in the SQREXTRA field.",
+            "SQREXTRA": 11
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "S dark corridor": {
+        "positions": {
+          "9,0": {
+            "WALLS": 12,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,0": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "9,1": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,1": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "9,2": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,2": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "9,3": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,3": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "9,4": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,4": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "9,5": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,5": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "9,6": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,6": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "9,7": {
+            "WALLS": 9,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,7": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "DARK"
+          },
+          "10,8": {
+            "WALLS": 11,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "BUTTONZ",
+            "comment": "the AUX0 field is a flag. if AUX0 === 0, then the elevator takes the party to the same spot on the chosen level. if AUX0 !== 0, then the player is sent to a random x and y on the selected level. the AUX1 field is the lowest level the elevator leads to  (1-10). AUX2 is the highest level (1-10)",
+            "AUX0": 0,
+            "AUX1": 1,
+            "AUX2": 4
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "CENTRAL room #1": {
+        "positions": {
+          "9,8": {
+            "WALLS": 6,
+            "DOORS": 8,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "9,9": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "10,9": {
+            "WALLS": 4,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "9,10": {
+            "WALLS": 0,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "10,10": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "9,11": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "10,11": {
+            "WALLS": 2,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "9,12": {
+            "WALLS": 8,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "SCNMSG",
+            "comment": "this location has a message. the message id is stored in the SQREXTRA field.",
+            "SQREXTRA": 0
+          },
+          "10,12": {
+            "WALLS": 3,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "NW stairs down corridor": {
+        "positions": {
+          "0,10": {
+            "WALLS": 13,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "STAIRS",
+            "comment": "the AUX0 field defines which floor the stairs lead to. if AUX0 < the maze level, it is stairs up; otherwise they are stairs down. fields AUX1 and AUX2 correspond to the x and y positions on the new map level to which the stairs lead",
+            "AUX0": 2,
+            "AUX1": 12,
+            "AUX2": 7
+          },
+          "2,10": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "3,10": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "4,10": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "5,10": {
+            "WALLS": 4,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "6,10": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "7,10": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "8,10": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "NE southern corridor": {
+        "positions": {
+          "11,9": {
+            "WALLS": 4,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,9": {
+            "WALLS": 4,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,9": {
+            "WALLS": 4,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "16,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "17,9": {
+            "WALLS": 4,
+            "DOORS": 1,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "18,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "19,9": {
+            "WALLS": 5,
+            "DOORS": 0,
+            "HIDDEN": 2,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "NE corridor #1": {
+        "positions": {
+          "11,10": {
+            "WALLS": 10,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,11": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,12": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,13": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,14": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,15": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,16": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,17": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,18": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "11,19": {
+            "WALLS": 9,
+            "DOORS": 2,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "NE corridor #2": {
+        "positions": {
+          "12,10": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,11": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,12": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,13": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,14": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,15": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,16": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "12,17": {
+            "WALLS": 3,
+            "DOORS": 8,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "NE corridor #3": {
+        "positions": {
+          "13,10": {
+            "WALLS": 10,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,11": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,12": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,13": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,14": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,15": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,16": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "13,17": {
+            "WALLS": 9,
+            "DOORS": 2,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "NE corridor #4": {
+        "positions": {
+          "14,10": {
+            "WALLS": 14,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,11": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,12": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,13": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,14": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,15": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "14,16": {
+            "WALLS": 1,
+            "DOORS": 8,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,16": {
+            "WALLS": 7,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      },
+      "NE corridor #5": {
+        "positions": {
+          "15,10": {
+            "WALLS": 10,
+            "DOORS": 4,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,11": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,12": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,13": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,14": {
+            "WALLS": 10,
+            "DOORS": 0,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          },
+          "15,15": {
+            "WALLS": 9,
+            "DOORS": 2,
+            "HIDDEN": 0,
+            "TYPE": "NORMAL"
+          }
+        },
+        "isTreasureRoom": false
+      }
+    }
+  }
+}

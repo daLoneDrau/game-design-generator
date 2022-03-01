@@ -234,6 +234,33 @@ const LibraryLoader = (function() {
         logger.write(JSON.stringify(data, null, 2));
       }
     },
+    /** WIZARDRY */
+    getWizardryCharacterRoster: function() {
+      let jsonPath = path.join(__dirname, '..', '..',  'public', 'data', "wizardry", "roster.json");
+      let rosterData = JSON.parse(fs.readFileSync(jsonPath, { encoding:'utf8', flag:'r' }));
+      console.log("+++++++serving roster data");
+      return rosterData;   
+    },
+    getWizardryEquipmentList: function() {
+      let jsonPath = path.join(__dirname, '..', '..',  'public', 'data', "wizardry", "objects.json");
+      let data = JSON.parse(fs.readFileSync(jsonPath, { encoding:'utf8', flag:'r' }));
+      console.log("+++++++serving equipment data");
+      return data;   
+    },
+    getWizardryMaps: function() {
+      let jsonPath = path.join(__dirname, '..', '..',  'public', 'data', "wizardry", "maps.json");
+      let data = JSON.parse(fs.readFileSync(jsonPath, { encoding:'utf8', flag:'r' }));
+      console.log("+++++++serving map data");
+      return data;   
+    },
+    updateWizardryCharacterRoster: function(data) {
+      // update design file
+      let filePath = path.join(__dirname, '..', '..',  'public', 'data', "wizardry", "roster.json");
+      let logger = fs.createWriteStream(filePath, {
+        flags: 'w' // create new file or truncate existing
+      });
+      logger.write(JSON.stringify(data, null, 2));
+    },
   }
 } ());
 

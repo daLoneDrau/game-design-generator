@@ -1,5 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { Watchable } = require("../../../../../assets/js/rpgbase.full");
+  var { Watchable } = require("../../../../assets/js/rpgbase.full");
 }
 /**
  * @class The HP record is another utility class.

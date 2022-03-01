@@ -21,6 +21,10 @@ app.get('/phaser/:appname', (req, res) => {
   // serve all get requests to local with index page of public folder
   res.sendFile(`${__dirname}/public/phaser/html/${req.params.appname}.html`);
 });
+app.get('/babylon/:appname', (req, res) => {
+  // serve all get requests to local with index page of public folder
+  res.sendFile(`${__dirname}/public/babylon/html/${req.params.appname}.html`);
+});
 
 /* Create - POST method */
 app.post('/library/data', (req, res) => {
@@ -50,6 +54,29 @@ app.get('/library/data/:appname', (req, res) => {
 app.put('/library/data/:appname', (req, res) => {
   LibraryLoader.updateProjectData(req.body);
   res.send({success: true, msg: 'Project data updated successfully'});
+});
+
+/** WIZARDRY */
+
+/* Read - GET character roster method */
+app.get('/wizardry/characters', (req, res) => {
+  let data = LibraryLoader.getWizardryCharacterRoster();
+  res.send(data)
+});
+/* Read - GET character roster method */
+app.get('/wizardry/equipment', (req, res) => {
+  let data = LibraryLoader.getWizardryEquipmentList();
+  res.send(data)
+});
+/* Read - GET maps method */
+app.get('/wizardry/maps', (req, res) => {
+  let data = LibraryLoader.getWizardryMaps();
+  res.send(data)
+});
+/* Read - PUT character roster method */
+app.put('/wizardry/roster', (req, res) => {
+  LibraryLoader.updateWizardryCharacterRoster(req.body);
+  res.send({success: true, msg: 'Wizardry Roster data updated successfully'});
 });
 
 

@@ -25,7 +25,7 @@ const PhaserCodeGenerator = (function() {
           && (markup.match(/\[class-name\]/gi) !== null
           || markup.match(/\[required-symbol\]/gi) !== null
           || markup.match(/\[required-class\]/gi) !== null)) {
-        let lines = []
+        let lines = [];
         for (let i = 0, li = appData.circularImports.length; i < li; i++) {
           lines.push(
             markup.replace(/\[class-name\]/gi, appData.circularImports[i].className)
@@ -46,10 +46,37 @@ const PhaserCodeGenerator = (function() {
         }
         leadingSpaces = leadingSpaces.join("");
         let split;
-        if (Array.isArray(appData.code)) {
-          split = appData.code;
+        if (typeof(appData.code) === "undefined") {
+          // no code member to iterate. is there a list containing code entries?
+          let list;
+          if (appData.hasOwnProperty("views")) {
+            list = appData.views;
+          } else if (appData.hasOwnProperty("listeners")) {
+            list = appData.listeners;
+          }
+          list.sort(function(a, b) {
+            let c = 0;
+            if (a.order < b.order) {
+              c = -1;
+            } else if (a.order > b.order) {
+              c = 1;
+            }
+            return c;
+          });
+          split = [];
+          for (let i = 0, li = list.length; i < li; i++) {
+            if (Array.isArray(list[i].code)) {
+              split = split.concat(list[i].code);
+            } else {
+              split = split.concat(list[i].code.split("\n"));
+            }
+          }
         } else {
-          split = appData.code.split("\n");
+          if (Array.isArray(appData.code)) {
+            split = appData.code;
+          } else {
+            split = appData.code.split("\n");
+          }
         }
         let str = [];
         // add each line of code after 1st with leading spaces
@@ -163,6 +190,8 @@ const PhaserCodeGenerator = (function() {
           }
         }
       }
+      if (markup.indexOf("[entry-key]") >= 0) {
+      }
       markup = markup.replace(/\[entry-key\]/gi, appData.entryKey);
       if (appData.hasOwnProperty("private fields")
           && (markup.match(/\[field-declaration\]/gi) !== null
@@ -171,19 +200,27 @@ const PhaserCodeGenerator = (function() {
           || markup.match(/\[field-value\]/gi) !== null)) {
         let lines = []
         for (let i = 0, li = appData["private fields"].length; i < li; i++) {
-          lines.push(
-            markup.replace(/\[field-declaration\]/gi, appData["private fields"][i].fieldDeclaration)
-              .replace(/\[field-definition\]/gi, appData["private fields"][i].fieldDefinition)
-              .replace(/\[field-name\]/gi, appData["private fields"][i].fieldName)
-              .replace(/\[field-value\]/gi, appData["private fields"][i].fieldValue)
-          );
+          let s = markup.replace(/\[field-declaration\]/gi, appData["private fields"][i].fieldDeclaration)
+            .replace(/\[field-definition\]/gi, appData["private fields"][i].fieldDefinition)
+            .replace(/\[field-name\]/gi, appData["private fields"][i].fieldName);
+          if (Array.isArray(appData["private fields"][i].fieldValue)) {
+            s = s.replace(/\[field-value\]/gi, appData["private fields"][i].fieldValue.join("\n"));
+          } else {
+            s = s.replace(/\[field-value\]/gi, appData["private fields"][i].fieldValue);
+          }
+          lines.push(s);
         }
         markup = lines.join("\n");
       } else {
-        markup = markup.replace(/\[field-declaration\]/gi, appData.fieldDeclaration);
-        markup = markup.replace(/\[field-definition\]/gi, appData.fieldDefinition);
-        markup = markup.replace(/\[field-name\]/gi, appData.fieldName);
-        markup = markup.replace(/\[field-value\]/gi, appData.fieldValue);
+        let s = markup.replace(/\[field-declaration\]/gi, appData.fieldDeclaration)
+          .replace(/\[field-definition\]/gi, appData.fieldDefinition)
+          .replace(/\[field-name\]/gi, appData.fieldName);
+        if (Array.isArray(appData.fieldValue)) {
+          s = s.replace(/\[field-value\]/gi, appData.fieldValue.join("\n"));
+        } else {
+          s = s.replace(/\[field-value\]/gi, appData.fieldValue);
+        }
+        markup = s;
       }
       if (markup.indexOf("[getter-body]") >= 0) {
         // get leading spaces
@@ -904,10 +941,11 @@ const PhaserCodeGenerator = (function() {
       });
       logger.write("    enums: {\r\n");
       for (let i = 0, li = list.length; i < li; i++) {
-        let s = JSON.stringify(list[i], null, 2).split("\n");
-        logger.write("      ");
-        logger.write(list[i].enumHandle);
-        logger.write(": {\r\n");
+        logger.write("      \"");
+        logger.write(list[i].enumName);
+        logger.write("\": {\r\n");
+        // write values
+        let s = JSON.stringify(list[i].values, null, 2).split("\n");
         for (let j = 1, lj = s.length; j < lj; j++) {
           logger.write("      ");
           logger.write(s[j]);

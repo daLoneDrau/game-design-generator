@@ -71,6 +71,15 @@
               "design": [
                 {
                   "designUid": "kxax8sewpx22ruk08rm"
+                },
+                {
+                  "designUid": "kxhu2ejxq73qk2kc1ml"
+                },
+                {
+                  "designUid": "kxhugrtbn90633n62to"
+                },
+                {
+                  "designUid": "kxhzoxu7ff78w6s6gx"
                 }
               ],
               "uid": "kxax69mtqm5y8ikgre"
@@ -86,6 +95,66 @@
           ],
           "design": [],
           "uid": "kxax69msmn72iltlau"
+        },
+        {
+          "title": "Config File Imports",
+          "order": 2,
+          "content": "The config file will require the following imports:\n\n",
+          "children": [],
+          "design": [
+            {
+              "designUid": "kxgmb7wp57yqn6sun3m"
+            }
+          ],
+          "uid": "kxglujwdfh8g1pqpheo"
+        },
+        {
+          "title": "The Application States",
+          "order": 3,
+          "content": "The application will have several states which determine which scene is displayed.",
+          "children": [],
+          "design": [
+            {
+              "designUid": "kxhmnjqcvlmm4m2y7to"
+            }
+          ],
+          "uid": "kxhl47hi3mx9lc2xhws"
+        },
+        {
+          "title": "Application Initial State",
+          "order": 4,
+          "content": "The application will initially begin in the Specials state.",
+          "children": [],
+          "design": [
+            {
+              "designUid": "kxhnrdzdoumw602v41"
+            }
+          ],
+          "uid": "kxhnnxnx23lfyk2fb7ch"
+        },
+        {
+          "title": "Font preload",
+          "order": 5,
+          "content": "The game font will be preloaded in the Scene Controller.",
+          "children": [],
+          "design": [
+            {
+              "designUid": "kxhrh1719p8xcm1ftcb"
+            }
+          ],
+          "uid": "kxhrepb3b0i7pctmjr"
+        },
+        {
+          "title": "Application Preboot",
+          "order": 6,
+          "content": "The preboot member will contain initialization code for the application.",
+          "children": [],
+          "design": [
+            {
+              "designUid": "kxhubzr309rr5bz0ou26"
+            }
+          ],
+          "uid": "kxhub7vrpee560rpg7"
         }
       ],
       "design": [
@@ -764,6 +833,529 @@
       "uid": "kx7tp6n93w34e0y9692"
     },
     {
+      "title": "Scenes",
+      "order": 3,
+      "content": "Application scenes go here.",
+      "children": [
+        {
+          "title": "Specials Scene",
+          "order": 1,
+          "content": "The initial scene will load scenario data and initialize variables.",
+          "children": [
+            {
+              "title": "The Scene Container Class",
+              "order": 1,
+              "content": "A Scene Container class will need to be defined.  The Scene Container template will be used.",
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxgdx7xpoihpuid853n"
+                }
+              ],
+              "uid": "kxgdx7y18c1i5q39ojf"
+            },
+            {
+              "title": "File Imports",
+              "order": 2,
+              "content": "The Game class will include the Scene Container as a required import.\nThe Scene Container class will require the following imports:",
+              "requires design": true,
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxgdx7y1m8hhwk4aez9"
+                }
+              ],
+              "uid": "kxgdx7y1nvjbd7zu2lo"
+            },
+            {
+              "title": "Postboot Processing",
+              "order": 3,
+              "content": "The Scene Container class will need to be added to the Game class postboot processing.",
+              "requires design": true,
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxgdx7y1juzxhbcbmjn"
+                }
+              ],
+              "uid": "kxgdx7y1t2jpn1v269"
+            },
+            {
+              "title": "Scene Key",
+              "order": 4,
+              "content": "The Scene Container class will need to be added to the scene groups in the Scene Controller class.",
+              "requires design": true,
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxgdx7y1kk8q4twpex"
+                }
+              ],
+              "uid": "kxgdx7y14bk9op49gwv"
+            },
+            {
+              "title": "Scene states",
+              "order": 5,
+              "content": "A State Group will need to be added to the App Constants for this Scene Container",
+              "requires design": true,
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxgdx7y1foe29uqldf9"
+                },
+                {
+                  "designUid": "kxgdx7y1iz4x21nqi6g"
+                },
+                {
+                  "designUid": "kxj06utehh3oiff2095"
+                }
+              ],
+              "uid": "kxgdx7y19w76l1fn2cn"
+            },
+            {
+              "title": "Scene Initial State",
+              "order": 6,
+              "content": "The Scene Container initial state is set in the 'create' method of the Scene Controller class. It will be set to the following state:",
+              "requires design": true,
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxgdx7y1cdvshye38t"
+                }
+              ],
+              "uid": "kxgdx7y1lern04ojj"
+            },
+            {
+              "title": "Private Fields",
+              "order": 7,
+              "content": "The Scene Container may have a few private fields. If so, they will be added here.",
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxhzr50hxy6353rwwn"
+                }
+              ],
+              "uid": "kxgdx7y1pgqwiovz6ko"
+            },
+            {
+              "title": "Public Members",
+              "order": 8,
+              "content": "The Scene Container may have a few public members. If so, they will be added here.",
+              "children": [],
+              "design": [],
+              "uid": "kxgdx7y1n012nzk37dh"
+            },
+            {
+              "title": "Updates to the 'update' method.",
+              "order": 9,
+              "content": "The 'update' member will check for changes to the game state before processing the updates.",
+              "children": [],
+              "design": [
+                {
+                  "designUid": "kxhv43iezr0cwh4rl1p"
+                }
+              ],
+              "uid": "kxhv3h0j7720aluz38f"
+            },
+            {
+              "title": "Child Scenes",
+              "order": 10,
+              "content": "The Scene Container is just that: a container.  It will manage the following child scenes:",
+              "requires design": true,
+              "children": [
+                {
+                  "title": "The Specials Scene Graphics Class",
+                  "order": 1,
+                  "content": "A UI Graphics class will need to be defined.  The Ui Scene template will be used.",
+                  "children": [
+                    {
+                      "title": "File Imports",
+                      "order": 1,
+                      "content": "The UI Graphics class will require the following imports:\n* Scene Controller\n* Parent Scene",
+                      "children": [],
+                      "design": [
+                        {
+                          "designUid": "kxgdx7y2c4pst7nbk1o"
+                        },
+                        {
+                          "designUid": "kxgdx7y2v9686kv8ho"
+                        }
+                      ],
+                      "uid": "kxgdx7y25wukfic4tj3"
+                    },
+                    {
+                      "title": "Private Fields",
+                      "order": 2,
+                      "content": "The UI Graphics class will be added as a private member of its scene parent.\nThe scene parent will have the following private fields:",
+                      "children": [],
+                      "design": [
+                        {
+                          "designUid": "kxgdx7y2uz3wg9140p"
+                        },
+                        {
+                          "designUid": "kxjddprovfafix684ss"
+                        },
+                        {
+                          "designUid": "kxkwmcs2wrauk2n0gc"
+                        }
+                      ],
+                      "uid": "kxgdx7y22fqnryyi146"
+                    },
+                    {
+                      "title": "View Templates",
+                      "order": 3,
+                      "content": "The UI Graphics class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                      "requires design": true,
+                      "children": [
+                        {
+                          "title": "Default View",
+                          "order": 1,
+                          "content": "This is the default view for the scene.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxgdx7y2ew08kw6roz"
+                            }
+                          ],
+                          "uid": "kxgdx7y2tnl5i7dnnh"
+                        },
+                        {
+                          "title": "The Init Game View",
+                          "order": 2,
+                          "content": "A view will be needed for the Init Game state.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxizmmdghre87uil8l"
+                            }
+                          ],
+                          "uid": "kxizmmdfti3t6yp9q7"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kxgdx7y2v0hd7v4xuyc"
+                    },
+                    {
+                      "title": "Key Listeners",
+                      "order": 4,
+                      "content": "The UI Graphics class will have key listeners for the following views:",
+                      "requires design": true,
+                      "children": [
+                        {
+                          "title": "Inactive Key Listener",
+                          "order": 1,
+                          "content": "The default key listener is inactive.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxgdx7y21myfiympjjn"
+                            }
+                          ],
+                          "uid": "kxgdx7y2zxpxnna2ks"
+                        },
+                        {
+                          "title": "Inactive Key Listener for INIT GAME",
+                          "order": 2,
+                          "content": "An inactive listener is also used for the INIT GAME state.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxizoyylpjwyj6g73h"
+                            }
+                          ],
+                          "uid": "kxizoyyk5whcaho0bbr"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kxgdx7y2ppcgis3fhhp"
+                    },
+                    {
+                      "title": "Updates to the 'create' methods",
+                      "order": 5,
+                      "content": "The UI Graphics class will have the following updates to the 'create' method:",
+                      "children": [],
+                      "design": [
+                        {
+                          "designUid": "kxjdaee4a5b0thzekl8"
+                        }
+                      ],
+                      "uid": "kxgdx7y29cgstxu34b4"
+                    },
+                    {
+                      "title": "Scene start/reset",
+                      "order": 6,
+                      "content": "When the UI Graphics Scene is started/reset, the following changes are applied for each view:",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y24ifascfhrei"
+                    },
+                    {
+                      "title": "Public Members",
+                      "order": 7,
+                      "content": "Occasionally, the UI Graphics Scene will need some further public members added.  This UI has added the following public members:",
+                      "children": [
+                        {
+                          "title": "Render Polygon",
+                          "order": 1,
+                          "content": "A method to render polygons will be needed.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxjalszlwr9m6ocrimk"
+                            }
+                          ],
+                          "uid": "kxjalszj0osgimn7pfc"
+                        },
+                        {
+                          "title": "Screen outline",
+                          "order": 2,
+                          "content": "There will be a member to create a texture for the screen outline.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxjdclzn7x5tf8lieoa"
+                            },
+                            {
+                              "designUid": "kxkweczbs9d6jqo3dz"
+                            }
+                          ],
+                          "uid": "kxjdclzmj79c1azalp"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kxgdx7y2ez1bbxe3kw4"
+                    }
+                  ],
+                  "design": [
+                    {
+                      "designUid": "kxgdx7y2w9bp305mvaf"
+                    }
+                  ],
+                  "uid": "kxgdx7y2na0xx7vttmi"
+                },
+                {
+                  "title": "The Specials Scene Interface Class",
+                  "order": 2,
+                  "content": "A UI Interface class will need to be defined.  The Ui Scene template will be used.",
+                  "children": [
+                    {
+                      "title": "File Imports",
+                      "order": 1,
+                      "content": "The UI Interface class will require the following imports:\n* Scene Controller\n* Parent Scene",
+                      "children": [],
+                      "design": [
+                        {
+                          "designUid": "kxgdx7y2v5h0w5jy9w"
+                        },
+                        {
+                          "designUid": "kxgdx7y25rhaqhgtkaj"
+                        }
+                      ],
+                      "uid": "kxgdx7y2q6t56crhh5l"
+                    },
+                    {
+                      "title": "Private Fields",
+                      "order": 2,
+                      "content": "The UI Interface class will be added as a private member of its scene parent.\nThe scene parent will have the following private fields:",
+                      "children": [],
+                      "design": [
+                        {
+                          "designUid": "kxgdx7y2sxk3pwxx83c"
+                        }
+                      ],
+                      "uid": "kxgdx7y2q92pzu4lm9q"
+                    },
+                    {
+                      "title": "View Templates",
+                      "order": 3,
+                      "content": "The UI Interface class will have defined templates for each view. These will be added to the Constructor Body. Templates have been defined for the following views:",
+                      "requires design": true,
+                      "children": [
+                        {
+                          "title": "Default View",
+                          "order": 1,
+                          "content": "This is the default view for the scene.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxgdx7y2lx8jqzno77k"
+                            }
+                          ],
+                          "uid": "kxgdx7y2dve0ujro2in"
+                        },
+                        {
+                          "title": "Init Game View",
+                          "order": 2,
+                          "content": "The view for the INIT GAME state",
+                          "children": [],
+                          "design": [{ "designUid": "kxi156e6jax7b4uys1d" }],
+                          "uid": "kxi156e38m3gdpk3at4"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kxgdx7y2wi1c4j0o9w"
+                    },
+                    {
+                      "title": "Key Listeners",
+                      "order": 4,
+                      "content": "The UI Interface class will have key listeners for the following views:",
+                      "requires design": true,
+                      "children": [
+                        {
+                          "title": "Inactive Key Listener",
+                          "order": 1,
+                          "content": "The default key listener is inactive.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxgdx7y2952vudub81a"
+                            }
+                          ],
+                          "uid": "kxgdx7y2go68ohvhxj"
+                        },
+                        {
+                          "title": "Inactive Key Listener for INIT GAME",
+                          "order": 2,
+                          "content": "The key listener for INIT GAME will be inactive.",
+                          "children": [],
+                          "design": [
+                            {
+                              "designUid": "kxizqwxy2aunej9catr"
+                            }
+                          ],
+                          "uid": "kxizqwxxpzj67yf4j7f"
+                        }
+                      ],
+                      "design": [],
+                      "uid": "kxgdx7y2voe2fgvyxsj"
+                    },
+                    {
+                      "title": "Updates to the 'create' methods",
+                      "order": 5,
+                      "content": "The UI Interface class will have the following updates to the 'create' method:",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y29e7pjkk19cv"
+                    },
+                    {
+                      "title": "Scene start/reset",
+                      "order": 6,
+                      "content": "When the UI Interface Scene is started/reset, the following changes are applied for each view:",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y299kg5uxjgx9"
+                    },
+                    {
+                      "title": "Public Members",
+                      "order": 7,
+                      "content": "Occasionally, the UI Interface Scene will need some further public members added.  This UI has added the following public members:",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y2qbvd9vhdbm"
+                    }
+                  ],
+                  "design": [
+                    {
+                      "designUid": "kxgdx7y2p35o5xkou3h"
+                    }
+                  ],
+                  "uid": "kxgdx7y2rd6iopfs6ni"
+                },
+                {
+                  "title": "The Specials Scene Event Handler Class",
+                  "order": 3,
+                  "content": "A UI Event Handler class will need to be defined.  The Ui Scene template will be used.",
+                  "children": [
+                    {
+                      "title": "File Imports",
+                      "order": 1,
+                      "content": "The UI Event Handler class will require the following circular imports:\n* Parent -> Event Handler\n* Event Handler -> Parent Scene",
+                      "children": [],
+                      "design": [
+                        {
+                          "designUid": "kxgdx7y26et4mf85ft5"
+                        }
+                      ],
+                      "uid": "kxgdx7y2ng9ym9bdwy"
+                    },
+                    {
+                      "title": "Private Fields",
+                      "order": 2,
+                      "content": "The Event Handler may require some private fields.",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y22iu8x518b3a"
+                    },
+                    {
+                      "title": "Public Members",
+                      "order": 3,
+                      "content": "Occasionally, the Event Handler will need some further public members added.  This Event Handler has added the following public members:",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y2c1h0zvxr96s"
+                    }
+                  ],
+                  "design": [
+                    {
+                      "designUid": "kxgdx7y2yqaadyheec"
+                    }
+                  ],
+                  "uid": "kxgdx7y23dye8g9k2pa"
+                },
+                {
+                  "title": "The Specials Scene Action Dispatcher Class",
+                  "order": 4,
+                  "content": "A UI Action Dispatcher class will need to be defined.  The singleton template will be used.",
+                  "children": [
+                    {
+                      "title": "File Imports",
+                      "order": 1,
+                      "content": "The UI Action Dispatcher class will require the following circular imports:\n* Parent -> Event Handler\n* Event Handler -> Parent Scene",
+                      "children": [],
+                      "design": [
+                        {
+                          "designUid": "kxgdx7y2y3e67n7t6an"
+                        }
+                      ],
+                      "uid": "kxgdx7y2bbyyhchf26b"
+                    },
+                    {
+                      "title": "Private Fields",
+                      "order": 2,
+                      "content": "The Action Dispatcher may require some private fields.",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y2j53v1oj8fd"
+                    },
+                    {
+                      "title": "Public Members",
+                      "order": 3,
+                      "content": "Occasionally, the Action Dispatcher will need some further public members added.  This Action Dispatcher has added the following public members:",
+                      "children": [],
+                      "design": [],
+                      "uid": "kxgdx7y2m265457f1ns"
+                    }
+                  ],
+                  "design": [
+                    {
+                      "designUid": "kxgdx7y2h2w0ukmhsg"
+                    }
+                  ],
+                  "uid": "kxgdx7y22o8boe1p4c4"
+                }
+              ],
+              "design": [],
+              "uid": "kxgdx7y1y8laoz27yw"
+            }
+          ],
+          "design": [],
+          "uid": "kxgdx7xo8qrbt6l8q5l"
+        }
+      ],
+      "design": [],
+      "uid": "kxdkxggvnru8bcrdex"
+    },
+    {
       "title": "",
       "order": 9999,
       "content": "",
@@ -863,7 +1455,7 @@
             "uid": "kxar3euxekehusuzyug"
           }
         ],
-        "import": [
+        "imports": [
           {
             "classUid": "kxar3euwnfkjavnjzzh",
             "tags": [
@@ -873,7 +1465,7 @@
             "imports": [
               {
                 "importHandle": "Watchable",
-                "importPath": "../../../../../assets/js/rpgbase.full"
+                "importPath": "../../../assets/js/rpgbase.full"
               }
             ],
             "order": 1,
@@ -903,6 +1495,12 @@
             "uid": "kxar44dq4luvaf804ky",
             "fields": [
               {
+                "fieldName": "drained",
+                "fieldType": "Array",
+                "fieldValue": "[]",
+                "fieldDefinition": "??"
+              },
+              {
                 "fieldName": "enmyCnt",
                 "fieldType": "Array",
                 "fieldValue": "[]",
@@ -910,12 +1508,6 @@
               },
               {
                 "fieldName": "enmyId",
-                "fieldType": "Array",
-                "fieldValue": "[]",
-                "fieldDefinition": "??"
-              },
-              {
-                "fieldName": "drained",
                 "fieldType": "Array",
                 "fieldValue": "[]",
                 "fieldDefinition": "??"
@@ -950,7 +1542,7 @@
             "uid": "kxagi0flynvq6s1z0z"
           }
         ],
-        "import": [
+        "imports": [
           {
             "classUid": "kxagi0flb3a2vkz4h74",
             "tags": [
@@ -1239,7 +1831,7 @@
             "uid": "kxap86s8md7rg5dchs"
           }
         ],
-        "import": [
+        "imports": [
           {
             "classUid": "kxap86s8yzxx19qf5tl",
             "tags": [
@@ -1249,7 +1841,7 @@
             "imports": [
               {
                 "importHandle": "Watchable",
-                "importPath": "../../../../../assets/js/rpgbase.full"
+                "importPath": "../../../assets/js/rpgbase.full"
               },
               {
                 "importHandle": "WizardryHpRecord",
@@ -1466,7 +2058,7 @@
             "uid": "kxaq804lyvgcttcuqls"
           }
         ],
-        "import": [
+        "imports": [
           {
             "classUid": "kxaq804l36s4lxx0ohd",
             "tags": [
@@ -1476,7 +2068,7 @@
             "imports": [
               {
                 "importHandle": "Watchable",
-                "importPath": "../../../../../assets/js/rpgbase.full"
+                "importPath": "../../../assets/js/rpgbase.full"
               },
               {
                 "importHandle": "WizardryCharacterStatus",
@@ -1560,11 +2152,11 @@
               "// fill the maze with walls",
               "// TODO - fill with data"
             ],
-            "order": "1",
+            "order": 1,
             "uid": "kxaowwv4brpt9nlegbh"
           }
         ],
-        "import": [
+        "imports": [
           {
             "classUid": "kxaoabqckyvw2r7xim",
             "tags": [
@@ -1574,7 +2166,7 @@
             "imports": [
               {
                 "importHandle": "Watchable",
-                "importPath": "../../../../../assets/js/rpgbase.full"
+                "importPath": "../../../assets/js/rpgbase.full"
               },
               {
                 "importHandle": "WizardrySquare",
@@ -1612,67 +2204,67 @@
             "uid": "kxaokxxnjfnal9bfq28",
             "fields": [
               {
-                "fieldName": "w",
+                "fieldName": "_w",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of map wall locations."
               },
               {
-                "fieldName": "s",
+                "fieldName": "_s",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of map wall locations."
               },
               {
-                "fieldName": "w",
+                "fieldName": "_e",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of map wall locations."
               },
               {
-                "fieldName": "n",
+                "fieldName": "_n",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of map wall locations."
               },
               {
-                "fieldName": "fights",
+                "fieldName": "_fights",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of fights."
               },
               {
-                "fieldName": "sqreXtra",
+                "fieldName": "_sqreXtra",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of sqreXtra."
               },
               {
-                "fieldName": "sqreType",
+                "fieldName": "_sqreType",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of sqreType."
               },
               {
-                "fieldName": "aux0",
+                "fieldName": "_aux0",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of aux0."
               },
               {
-                "fieldName": "aux1",
+                "fieldName": "_aux1",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of aux1."
               },
               {
-                "fieldName": "aux2",
+                "fieldName": "_aux2",
                 "fieldType": "array",
                 "fieldValue": "[]",
                 "fieldDefinition": "the array of aux2."
               },
               {
-                "fieldName": "enmyCalc",
+                "fieldName": "_enmyCalc",
                 "fieldType": "array",
                 "fieldValue": "[\n    {\n      minEnemy: 0,\n      multWors: 0,\n      worse01: 0,\n      rangeOn: 0,\n      percWors: 0\n    },\n    {\n      minEnemy: 0,\n      multWors: 0,\n      worse01: 0,\n      rangeOn: 0,\n      percWors: 0\n    },\n    {\n      minEnemy: 0,\n      multWors: 0,\n      worse01: 0,\n      rangeOn: 0,\n      percWors: 0\n    }\n  ]",
                 "fieldDefinition": "the array of aux2."
@@ -1707,7 +2299,7 @@
             "uid": "kxan2o6kmd4dz2dozhd"
           }
         ],
-        "import": [
+        "imports": [
           {
             "classUid": "kxan2o6kwkcslymvfs",
             "tags": [
@@ -1717,7 +2309,7 @@
             "imports": [
               {
                 "importHandle": "Watchable",
-                "importPath": "../../../../../assets/js/rpgbase.full"
+                "importPath": "../../../assets/js/rpgbase.full"
               },
               {
                 "importHandle": "WizardryObjectType",
@@ -1914,7 +2506,7 @@
             "uid": "kxaq9i3mulelj5nr8zi"
           }
         ],
-        "import": [
+        "imports": [
           {
             "classUid": "kxaq9i3lv22upk8ihu",
             "tags": [
@@ -1924,7 +2516,7 @@
             "imports": [
               {
                 "importHandle": "Watchable",
-                "importPath": "../../../../../assets/js/rpgbase.full"
+                "importPath": "../../../assets/js/rpgbase.full"
               },
               {
                 "importHandle": "WizardryZscn",
@@ -1966,25 +2558,25 @@
               {
                 "fieldName": "recPerDk",
                 "fieldType": "dictionary",
-                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldValue": "{\n    ZZERO: 0,\n    ZMAZE: 0,\n    ZENEMY: 0,\n    ZREWARD: 0,\n    ZOBJECT: 0,\n    ZCHAR: 0,\n    ZSPCCHRS: 0,\n    ZEXP: 0\n  }",
                 "fieldDefinition": "??"
               },
               {
                 "fieldName": "unusedXX",
                 "fieldType": "dictionary",
-                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldValue": "{\n    ZZERO: 0,\n    ZMAZE: 0,\n    ZENEMY: 0,\n    ZREWARD: 0,\n    ZOBJECT: 0,\n    ZCHAR: 0,\n    ZSPCCHRS: 0,\n    ZEXP: 0\n  }",
                 "fieldDefinition": "??"
               },
               {
                 "fieldName": "recPer2b",
                 "fieldType": "dictionary",
-                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldValue": "{\n    ZZERO: 0,\n    ZMAZE: 0,\n    ZENEMY: 0,\n    ZREWARD: 0,\n    ZOBJECT: 0,\n    ZCHAR: 0,\n    ZSPCCHRS: 0,\n    ZEXP: 0\n  }",
                 "fieldDefinition": "??"
               },
               {
                 "fieldName": "blOff",
                 "fieldType": "dictionary",
-                "fieldValue": "{\n    WizardryZscn.ZZERO: 0,\n    WizardryZscn.ZMAZE: 0,\n    WizardryZscn.ZENEMY: 0,\n    WizardryZscn.ZREWARD: 0,\n    WizardryZscn.ZOBJECT: 0,\n    WizardryZscn.ZCHAR: 0,\n    WizardryZscn.ZSPCCHRS: 0,\n    WizardryZscn.ZEXP: 0\n  }",
+                "fieldValue": "{\n    ZZERO: 0,\n    ZMAZE: 0,\n    ZENEMY: 0,\n    ZREWARD: 0,\n    ZOBJECT: 0,\n    ZCHAR: 0,\n    ZSPCCHRS: 0,\n    ZEXP: 0\n  }",
                 "fieldDefinition": "??"
               },
               {
@@ -2062,7 +2654,7 @@
               "weight": 3
             }
           ],
-          "import": [
+          "imports": [
             {
               "classUid": "kx9aoqeuhem9rpvymlk",
               "tags": [
@@ -2220,7 +2812,7 @@
               "uid": "kx9jmixnkz3qshbnjl8"
             }
           ],
-          "import": [
+          "imports": [
             {
               "classUid": "kx9jmixmpvvcuxv46ri",
               "tags": [
@@ -2230,7 +2822,7 @@
               "imports": [
                 {
                   "importHandle": "Watchable",
-                  "importPath": "../../../../../assets/js/rpgbase.full"
+                  "importPath": "../../../../assets/js/rpgbase.full"
                 }
               ],
               "order": 1,
@@ -2277,7 +2869,8 @@
                   "fieldValue": 0,
                   "fieldDefinition": "The hpminad."
                 }
-              ]
+              ],
+              "weight": 2
             }
           ],
           "public properties": [
@@ -2362,7 +2955,63 @@
         "filePath": [
           "config"
         ],
-        "uid": "kx7th9ec5b08mbmihl8"
+        "uid": "kx7th9ec5b08mbmihl8",
+        "circularImports": [
+          {
+            "classUid": "kx7th9ec5b08mbmihl8",
+            "circularImports": [
+              {
+                "className": "WizardrySpecialsSceneInterface",
+                "requiredSymbol": "SpecialsSceneEventHandler",
+                "requiredClass": "WizardrySpecialsSceneEventHandler"
+              }
+            ],
+            "tags": [
+              "code",
+              "prototype requires"
+            ],
+            "uid": "kxgdx7y26et4mf85ft5"
+          },
+          {
+            "classUid": "kx7th9ec5b08mbmihl8",
+            "circularImports": [
+              {
+                "className": "WizardrySpecialsSceneInterface",
+                "requiredSymbol": "SpecialsSceneEventHandler",
+                "requiredClass": "WizardrySpecialsSceneEventHandler"
+              }
+            ],
+            "tags": [
+              "code",
+              "prototype requires"
+            ],
+            "uid": "kxgdx7y2y3e67n7t6an"
+          }
+        ],
+        "imports": [
+          {
+            "classUid": "kx7th9ec5b08mbmihl8",
+            "imports": [
+              {
+                "importHandle": "WizardrySpecialsceneActionDispatcher",
+                "importPath": "../scenes/specials-scene/wizardry-specials-scene-action-dispatcher"
+              },
+              {
+                "importHandle": "WizardrySpecialsSceneEventHandler",
+                "importPath": "../scenes/specials-scene/wizardry-specials-scene-event-handler"
+              },
+              {
+                "importHandle": "WizardrySpecialsSceneInterface",
+                "importPath": "../scenes/specials-scene/wizardry-specials-scene-interface"
+              }
+            ],
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "uid": "kxgmb7wp57yqn6sun3m"
+          }
+        ]
       },
       "Constants": {
         "tags": [
@@ -2374,7 +3023,115 @@
         "filePath": [
           "config"
         ],
-        "uid": "kx7th9ec5c93dlwsse"
+        "uid": "kx7th9ec5c93dlwsse",
+        "group properties": [
+          {
+            "classUid": "kx7th9ec5c93dlwsse",
+            "groupName": "APP_STATES",
+            "tags": [
+              "code",
+              "group properties"
+            ],
+            "elements": [
+              {
+                "elementName": "SPECIALS",
+                "elementValue": 1,
+                "elementDefinition": "the Specials scene",
+                "order": 1
+              },
+              {
+                "elementName": "CASTLE",
+                "elementValue": 2,
+                "elementDefinition": "the Castle scene",
+                "order": 2
+              },
+              {
+                "elementName": "SHOPS",
+                "elementValue": 3,
+                "elementDefinition": "the Shops scene",
+                "order": 3
+              },
+              {
+                "elementName": "CASTLE",
+                "elementValue": 4,
+                "elementDefinition": "the Castle scene",
+                "order": 4
+              },
+              {
+                "elementName": "UTILITIES",
+                "elementValue": 5,
+                "elementDefinition": "the Utilities scene",
+                "order": 5
+              },
+              {
+                "elementName": "ROLLER",
+                "elementValue": 6,
+                "elementDefinition": "the Roller scene",
+                "order": 6
+              },
+              {
+                "elementName": "RUNNER",
+                "elementValue": 7,
+                "elementDefinition": "the Runner scene",
+                "order": 7
+              },
+              {
+                "elementName": "REWARDS",
+                "elementValue": 8,
+                "elementDefinition": "the Rewards scene",
+                "order": 8
+              },
+              {
+                "elementName": "COMBAT",
+                "elementValue": 9,
+                "elementDefinition": "the Combat scene",
+                "order": 9
+              },
+              {
+                "elementName": "CAMP",
+                "elementValue": 10,
+                "elementDefinition": "the Camp scene",
+                "order": 10
+              }
+            ],
+            "uid": "kxhmnjqcvlmm4m2y7to"
+          },
+          {
+            "classUid": "kx7th9ec5c93dlwsse",
+            "groupName": "SPECIALS_STATES",
+            "tags": [
+              "code",
+              "group properties"
+            ],
+            "elements": [
+              {
+                "elementName": "SPECIALS_MAIN",
+                "elementValue": 1,
+                "elementDefinition": "The main state for the Specials scene.",
+                "order": 1
+              },
+              {
+                "elementName": "SPECIALS_INSPECT",
+                "elementValue": 2,
+                "elementDefinition": "The 'inspect' state for the Specials scene.",
+                "order": 2
+              },
+              {
+                "elementName": "SPECIALS_INITGAME",
+                "elementValue": 3,
+                "elementDefinition": "The 'init game' state for the Specials scene.",
+                "order": 3
+              },
+              {
+                "elementName": "SPECIALS_MISC",
+                "elementValue": 4,
+                "elementDefinition": "The 'misc' state for the Specials scene.",
+                "order": 4
+              }
+            ],
+            "uid": "kxgdx7y1foe29uqldf9"
+          }
+        ]
       },
       "enums": {
         "Race": {
@@ -2921,7 +3678,628 @@
         "filePath": [
           "scenes"
         ],
-        "uid": "kx7th9ecs7nnpoh24l"
+        "uid": "kx7th9ecs7nnpoh24l",
+        "scene group": [
+          {
+            "classUid": "kx7th9ecs7nnpoh24l",
+            "tags": [
+              "code",
+              "scene group"
+            ],
+            "sceneKey": "[WizardryConstants.SPECIALS]",
+            "sceneValue": "\"SpecialsScene\"",
+            "order": "1",
+            "uid": "kxgdx7y1kk8q4twpex"
+          }
+        ],
+        "create": [
+          {
+            "classUid": "kx7th9ecs7nnpoh24l",
+            "tags": [
+              "code",
+              "create"
+            ],
+            "code": "// set current scene\n_switch(WizardryConstants.SPECIALS);",
+            "order": "9999",
+            "uid": "kxhnrdzdoumw602v41"
+          },
+          {
+            "tags": [
+              "create",
+              "code"
+            ],
+            "uid": "kxgdx7y1cdvshye38t",
+            "classUid": "kx7th9ecs7nnpoh24l",
+            "code": "\n\n// set initial state for Specials Scene\nWizardrySpecialsScene.state = WizardryConstants.SPECIALS_MAIN;",
+            "order": 1
+          }
+        ],
+        "preload": [
+          {
+            "classUid": "kx7th9ecs7nnpoh24l",
+            "tags": [
+              "code",
+              "preload"
+            ],
+            "code": "// load the theme fonts\nthis.load.bitmapFont(\"[theme-font-import]\", \"/phaser/assets/font/[theme-font-import].png\", \"/phaser/assets/font/[theme-font-import].xml\");",
+            "order": "1",
+            "uid": "kxhrh1719p8xcm1ftcb"
+          }
+        ]
+      },
+      "SpecialsScene": {
+        "classTitle": "Specials Scene",
+        "classHandle": "SpecialsScene",
+        "fileHandle": "specials-scene",
+        "tags": [
+          "class",
+          "scene-container"
+        ],
+        "classDefinition": "The initial scene will load scenario data and initialize variables.",
+        "weight": "10",
+        "uid": "kxgdx7xpoihpuid853n",
+        "filePath": [
+          "scenes"
+        ],
+        "dictionaries": [
+          {
+            "tags": [
+              "code",
+              "scoped dictionary body 0"
+            ],
+            "uid": "kxgdx7y1iz4x21nqi6g",
+            "classUid": "kxgdx7xpoihpuid853n",
+            "dictionaryKey": "[WizardryConstants.SPECIALS_MAIN]",
+            "dictionaryDefinition": "the scene instances displayed when this view is active",
+            "dictionaryValue": "[_specialsSceneGraphics, _specialsSceneInterface]",
+            "order": 1
+          },
+          {
+            "classUid": "kxgdx7xpoihpuid853n",
+            "tags": [
+              "code",
+              "scoped dictionary body 0"
+            ],
+            "dictionaryKey": "[WizardryConstants.SPECIALS_INITGAME]",
+            "dictionaryDefinition": "the scene instances displayed when this view is active",
+            "dictionaryValue": "[_specialsSceneGraphics, _specialsSceneInterface]",
+            "uid": "kxj06utehh3oiff2095",
+            "order": 2
+          }
+        ],
+        "imports": [
+          {
+            "classUid": "kxgdx7xpoihpuid853n",
+            "imports": [
+              {
+                "importHandle": "WizardrySceneController",
+                "importPath": "./wizardry-scene-controller"
+              },
+              {
+                "importHandle": "WizardrySpecialsSceneGraphics",
+                "importPath": "./specials-scene/wizardry-specials-scene-graphics"
+              }
+            ],
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "uid": "kxgdx7y2v9686kv8ho"
+          },
+          {
+            "classUid": "kxgdx7xpoihpuid853n",
+            "imports": [
+              {
+                "importHandle": "WizardrySpecialsSceneInterface",
+                "importPath": "./specials-scene/wizardry-specials-scene-interface"
+              },
+              {
+                "importHandle": "WizardryConstants",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryXgoto",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryController",
+                "importPath": "../services/wizardry-controller"
+              }
+            ],
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "uid": "kxgdx7y25rhaqhgtkaj"
+          }
+        ],
+        "fields": [
+          {
+            "classUid": "kxgdx7xpoihpuid853n",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "order": "1",
+            "uid": "kxhzr50hxy6353rwwn",
+            "fields": [
+              {
+                "fieldName": "_spcIndex",
+                "fieldType": "int",
+                "fieldValue": 0,
+                "fieldDefinition": "??"
+              },
+              {
+                "fieldName": "_gameInitialized",
+                "fieldType": "boolean",
+                "fieldValue": false,
+                "fieldDefinition": "flag indicating whether the game has been initialized"
+              },
+              {
+                "fieldName": "_initGame",
+                "fieldType": "function",
+                "fieldValue": [
+                  "function() {",
+                  "    // load scenario data",
+                  "    WizardryController.xgoto = WizardryXgoto.XCASTLE;",
+                  "    // WRITE( CHR( 12)); // form feed",
+                  "    // TEXTMODE; // put screen in text mode",
+                  "    // MAZESCRN;",
+                  "    //  CLRRECT( 0, 0, 40, 24);  // clear a rectangle on the screen starting at 0,0 that is 40x24",
+                  "    //  draw the screen outline in the Graphics",
+                  "    /*",
+                  "    MAZEX    := 0;",
+                  "    MAZEY    := 0;",
+                  "    MAZELEV  := 0;",
+                  "    PARTYCNT := 0;",
+                  "    DIRECTIO := 0;",
+                  "    ACMOD2   := 0;",
+                  "    */",
+                  "  };"
+                ],
+                "fieldDefinition": "flag indicating whether the game has been initialized"
+              }
+            ]
+          },
+          {
+            "classUid": "kxgdx7xpoihpuid853n",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "fields": [
+              {
+                "fieldName": "_specialsSceneGraphics",
+                "fieldType": "UiScene",
+                "fieldValue": "new WizardrySpecialsSceneGraphics({ scene: _scene, show: true })",
+                "fieldDefinition": "WizardrySpecialsSceneGraphics instance"
+              }
+            ],
+            "order": "10",
+            "uid": "kxgdx7y2uz3wg9140p"
+          },
+          {
+            "classUid": "kxgdx7xpoihpuid853n",
+            "tags": [
+              "code",
+              "private field"
+            ],
+            "fields": [
+              {
+                "fieldName": "_specialsSceneInterface",
+                "fieldType": "UiScene",
+                "fieldValue": "new WizardrySpecialsSceneInterface({ scene: _scene, show: true })",
+                "fieldDefinition": "WizardrySpecialsSceneInterface instance"
+              }
+            ],
+            "order": "10",
+            "uid": "kxgdx7y2sxk3pwxx83c"
+          }
+        ],
+        "update": [
+          {
+            "classUid": "kxgdx7xpoihpuid853n",
+            "tags": [
+              "code",
+              "update"
+            ],
+            "code": [
+              "if (WizardrySceneController.createCompleted) {",
+              "  if (WizardryController.xgoto === WizardryXgoto.XINSAREA) {",
+              "    // if the state isn't INSPECT, then change to that state. INSPECT goes to the RUNNER state",
+              "    if (_state !== WizardryConstants.SPECIALS_INSPECT) {",
+              "      _scene.state = WizardryConstants.SPECIALS_INSPECT;",
+              "    }",
+              "  } else {",
+              "    WizardryController.xgoto = WizardryController.xgoto2;",
+              "    _spcIndex = WizardryController.llbase04;",
+              "    if (_spcIndex < 0) {",
+              "      if (_state !== WizardryConstants.SPECIALS_INITGAME) {",
+              "        _scene.state = WizardryConstants.SPECIALS_INITGAME;",
+              "      }",
+              "    } else {",
+              "      if (_state !== WizardryConstants.SPECIALS_MISC) {",
+              "        _scene.state = WizardryConstants.SPECIALS_MISC;",
+              "      }",
+              "    }",
+              "  }",
+              "}"
+            ],
+            "order": "1",
+            "uid": "kxhv43iezr0cwh4rl1p"
+          }
+        ],
+        "public properties": []
+      },
+      "specials-scene": {
+        "SpecialsSceneGraphics": {
+          "classTitle": "Specials Scene Graphics",
+          "classHandle": "SpecialsSceneGraphics",
+          "fileHandle": "specials-scene-graphics",
+          "tags": [
+            "class",
+            "ui-scene"
+          ],
+          "classDefinition": "The graphical renderer for the Specials Scene.",
+          "weight": 1,
+          "uid": "kxgdx7y2w9bp305mvaf",
+          "filePath": [
+            "scenes",
+            "specials-scene"
+          ],
+          "initialState": "SPECIALS_MAIN",
+          "gridWidth": 40,
+          "gridHeight": 24,
+          "imports": [
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "imports": [
+                {
+                  "importHandle": "WizardryConstants",
+                  "importPath": "../../config/wizardry-constants"
+                },
+                {
+                  "importHandle": "WizardrySceneController",
+                  "importPath": "../wizardry-scene-controller"
+                },
+                {
+                  "importHandle": "WizardrySpecialsScene",
+                  "importPath": "../wizardry-specials-scene"
+                }
+              ],
+              "tags": [
+                "code",
+                "required import"
+              ],
+              "uid": "kxgdx7y2c4pst7nbk1o"
+            }
+          ],
+          "views": [
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "view template"
+              ],
+              "entryKey": "SPECIALS_INITGAME",
+              "code": "group: null,\nchildren: []",
+              "order": "2",
+              "uid": "kxizmmdghre87uil8l"
+            },
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "view template"
+              ],
+              "entryKey": "SPECIALS_MAIN",
+              "code": "group: null,\nchildren: []",
+              "order": "1",
+              "uid": "kxgdx7y2ew08kw6roz"
+            }
+          ],
+          "listeners": [
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "key listener handler"
+              ],
+              "entryKey": "SPECIALS_INITGAME",
+              "code": "",
+              "order": "2",
+              "uid": "kxizoyylpjwyj6g73h"
+            },
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "key listener handler"
+              ],
+              "entryKey": "SPECIALS_MAIN",
+              "code": "",
+              "order": "1",
+              "uid": "kxgdx7y21myfiympjjn"
+            }
+          ],
+          "members": [
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "public member"
+              ],
+              "memberName": "renderPolygon",
+              "memberDefinition": "/**\n * Renders a polygon based on the supplied points.\n * @param {string | Array.<number> | Array} points the list of points defining the perimeter of this Polygon\n * @param {Phaser.Graphics} graphics the graphics instance used for rendering the polygon\n */",
+              "arguments": "points, graphics",
+              "code": [
+                "if (!Array.isArray(points)) {",
+                "  throw [\"Array is required\", points];",
+                "}",
+                "let polygon = new Phaser.Geom.Polygon(points);",
+                "// create a polygon out of the points",
+                "graphics.beginPath();",
+                "graphics.moveTo(polygon.points[0].x, polygon.points[0].y);",
+                "for (let i = 1; i < polygon.points.length; i++) {",
+                "  graphics.lineTo(polygon.points[i].x, polygon.points[i].y);",
+                "}",
+                "// graphics.closePath();",
+                "graphics.strokePath();"
+              ],
+              "order": "1",
+              "uid": "kxjalszlwr9m6ocrimk"
+            },
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "public member"
+              ],
+              "memberName": "generateScreenOutlineTexture",
+              "memberDefinition": "/**\n * Generates the texture for the screen outline.\n */",
+              "arguments": "",
+              "code": [
+                "this.renderPolygon([",
+                "  12.8, 15,",
+                "  1011.2, 15,",
+                "  1011.2, 753,",
+                "  12.8, 753,",
+                "  12.8, 15",
+                "], this._graphics);",
+                "// generate the texture",
+                "this._graphics.generateTexture('screen_outline', 1024, 768);",
+                "this._graphics.clear();"
+              ],
+              "order": "2",
+              "uid": "kxjdclzn7x5tf8lieoa"
+            },
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "public member"
+              ],
+              "arguments": "",
+              "memberName": "generateBlankTexture",
+              "memberDefinition": "/**\n * Generates a blank texture.\n */",
+              "code": [
+                "this._graphics.generateTexture('blank', 1, 1);",
+                "this._graphics.clear();"
+              ],
+              "uid": "kxkweczbs9d6jqo3dz",
+              "order": 3
+            }
+          ],
+          "create": [
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "create"
+              ],
+              "code": [
+                "this._graphics = this._scene.make.graphics({ lineStyle: { width: 3, color: 10920447 } });",
+                "this.generateScreenOutlineTexture();",
+                "this.generateBlankTexture();",
+                "this._uiFrame = this._scene.add.image(0, 0, 'blank');",
+                "this._uiFrame.setOrigin(0,0);",
+                "this._uiFrame.setDepth(10);"
+              ],
+              "order": "1",
+              "uid": "kxjdaee4a5b0thzekl8"
+            }
+          ],
+          "fields": [
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "private field"
+              ],
+              "order": "1",
+              "uid": "kxjddprovfafix684ss",
+              "fields": [
+                {
+                  "fieldName": "_graphics",
+                  "fieldType": "Phaser.Graphics",
+                  "fieldValue": "null",
+                  "fieldDefinition": "the Phaser.Graphics instance"
+                },
+                {
+                  "fieldName": "_resetScreen",
+                  "fieldType": "boolean",
+                  "fieldValue": "true",
+                  "fieldDefinition": "flag indicating whether the screen needs to be reset"
+                },
+                {
+                  "fieldName": "_uiFrame",
+                  "fieldType": "Phaser.GameObjects.Image",
+                  "fieldValue": "null",
+                  "fieldDefinition": "the UI frame"
+                }
+              ]
+            }
+          ],
+          "public properties": [
+            {
+              "classUid": "kxgdx7y2w9bp305mvaf",
+              "tags": [
+                "code",
+                "public getter/setter property"
+              ],
+              "propertyName": "resetScreen",
+              "order": "1",
+              "uid": "kxkwmcs2wrauk2n0gc",
+              "getterDefinition": "/** Getter for the _resetScreen property. */",
+              "getterBody": [
+                "return this._resetScreen;"
+              ],
+              "setterDefinition": "/** Getter for the _resetScreen property. */",
+              "setterBody": [
+                "this._resetScreen = value;"
+              ]
+            }
+          ]
+        },
+        "SpecialsSceneInterface": {
+          "classTitle": "Specials Scene Interface",
+          "classHandle": "SpecialsSceneInterface",
+          "fileHandle": "specials-scene-interface",
+          "tags": [
+            "class",
+            "ui-scene"
+          ],
+          "classDefinition": "The interface renderer for the Specials Scene.",
+          "weight": 1,
+          "uid": "kxgdx7y2p35o5xkou3h",
+          "filePath": [
+            "scenes",
+            "specials-scene"
+          ],
+          "initialState": "SPECIALS_MAIN",
+          "gridWidth": 1,
+          "gridHeight": 24,
+          "imports": [
+            {
+              "classUid": "kxgdx7y2p35o5xkou3h",
+              "imports": [
+                {
+                  "importHandle": "WizardryConstants",
+                  "importPath": "../../config/wizardry-constants"
+                },
+                {
+                  "importHandle": "WizardrySceneController",
+                  "importPath": "../wizardry-scene-controller"
+                },
+                {
+                  "importHandle": "WizardrySpecialsScene",
+                  "importPath": "../wizardry-specials-scene"
+                }
+              ],
+              "tags": [
+                "code",
+                "required import"
+              ],
+              "uid": "kxgdx7y2v5h0w5jy9w"
+            }
+          ],
+          "views": [
+            {
+              "classUid": "kxgdx7y2p35o5xkou3h",
+              "tags": [
+                "code",
+                "view template"
+              ],
+              "entryKey": "SPECIALS_MAIN",
+              "code": "group: null,\nchildren: []",
+              "order": "1",
+              "uid": "kxgdx7y2lx8jqzno77k"
+            },
+            {
+              "classUid": "kxgdx7y2p35o5xkou3h",
+              "tags": [
+                "code",
+                "view template"
+              ],
+              "entryKey": "SPECIALS_INITGAME",
+              "code": [
+                "group: null,",
+                "children: [",
+                "  {",
+                "    type: \"bitmapText\",",
+                "    args: [",
+                "      0, // x",
+                "      0, // y",
+                "      \"chicago_16\", // font",
+                "      \"#\", // text",
+                "    ],",
+                "    position: [1, 16],",
+                "    origin: [0.5, 0.5],",
+                "    tint: 0",
+                "  }",
+                "]"
+              ],
+              "order": "2",
+              "uid": "kxi156e6jax7b4uys1d"
+            }
+          ],
+          "listeners": [
+            {
+              "classUid": "kxgdx7y2p35o5xkou3h",
+              "tags": [
+                "code",
+                "key listener handler"
+              ],
+              "entryKey": "SPECIALS_INITGAME",
+              "code": "",
+              "order": "2",
+              "uid": "kxizqwxy2aunej9catr"
+            },
+            {
+              "classUid": "kxgdx7y2p35o5xkou3h",
+              "tags": [
+                "code",
+                "key listener handler"
+              ],
+              "entryKey": "SPECIALS_MAIN",
+              "code": "",
+              "order": "1",
+              "uid": "kxgdx7y2952vudub81a"
+            }
+          ]
+        },
+        "SpecialsSceneEventHandler": {
+          "classTitle": "Specials Scene Event Handler",
+          "classHandle": "SpecialsSceneEventHandler",
+          "fileHandle": "specials-scene-event-handler",
+          "tags": [
+            "class",
+            "singleton"
+          ],
+          "classDefinition": "The event handler for the Specials Scene.",
+          "weight": 1,
+          "uid": "kxgdx7y2yqaadyheec",
+          "filePath": [
+            "scenes",
+            "specials-scene"
+          ]
+        },
+        "SpecialsSceneActionDispatcher": {
+          "classTitle": "Specials Scene Action Dispatcher",
+          "classHandle": "SpecialsSceneActionDispatcher",
+          "fileHandle": "specials-scene-action-dispatcher",
+          "tags": [
+            "class",
+            "singleton"
+          ],
+          "classDefinition": "The action dispatcher for the Specials Scene.",
+          "weight": 1,
+          "uid": "kxgdx7y2h2w0ukmhsg",
+          "filePath": [
+            "scenes",
+            "specials-scene"
+          ]
+        }
       }
     },
     "services": {
@@ -2942,18 +4320,16 @@
         "imports": [
           {
             "classUid": "kxax69mtyxmlkkicr3m",
-            "importHandle": "WizardryXgoto",
-            "importPath": "../config/wizardry-constants",
-            "tags": [
-              "code",
-              "required import"
+            "imports": [
+              {
+                "importHandle": "WizardryXgoto",
+                "importPath": "../config/wizardry-constants"
+              },
+              {
+                "importHandle": "WizardryScnToc",
+                "importPath": "../bus/wizardry-scntoc"
+              }
             ],
-            "uid": "kxayul1pz9jfjztm6d"
-          },
-          {
-            "classUid": "kxax69mtyxmlkkicr3m",
-            "importHandle": "WizardryScnToc",
-            "importPath": "../bus/wizardry-scntoc",
             "tags": [
               "code",
               "required import"
@@ -3151,6 +4527,68 @@
                 "fieldValue": "[]",
                 "fieldDefinition": "??."
               }
+            ],
+            "weight": 2
+          }
+        ],
+        "public properties": [
+          {
+            "classUid": "kxax69mtyxmlkkicr3m",
+            "tags": [
+              "code",
+              "public getter/setter property"
+            ],
+            "propertyName": "llbase04",
+            "order": "1",
+            "uid": "kxhu2ejxq73qk2kc1ml",
+            "getterDefinition": "/** Getter the _llbase04 property. */",
+            "getterBody": [
+              "return _llbase04;"
+            ],
+            "setterDefinition": "/** Setter the _llbase04 property. */",
+            "setterBody": [
+              "if (isNaN(parseInt(value))) {",
+              "  throw [\"Invalid value\", value];",
+              "}",
+              "_llbase04 = value;"
+            ],
+            "weight": 9
+          },
+          {
+            "classUid": "kxax69mtyxmlkkicr3m",
+            "tags": [
+              "code",
+              "public getter/setter property"
+            ],
+            "propertyName": "xgoto",
+            "order": "2",
+            "uid": "kxhugrtbn90633n62to",
+            "getterDefinition": "/** Getter the _xgoto property. */",
+            "getterBody": [
+              "return _xgoto;"
+            ],
+            "setterDefinition": "/** Setter the _xgoto property. */",
+            "setterBody": [
+              "_xgoto = value;"
+            ],
+            "weight": 9
+          },
+          {
+            "classUid": "kxax69mtyxmlkkicr3m",
+            "tags": [
+              "code",
+              "public getter/setter property"
+            ],
+            "propertyName": "xgoto2",
+            "order": "3",
+            "uid": "kxhzoxu7ff78w6s6gx",
+            "getterDefinition": "/** Getter the _xgoto2 property. */",
+            "getterBody": [
+              "return _xgoto2;"
+            ],
+            "setterDefinition": "/** Setter the _xgoto2 property. */",
+            "setterBody": [
+              "_xgoto2 = value;"
             ]
           }
         ]
@@ -3167,7 +4605,48 @@
         "filePath": [
           "singletons"
         ],
-        "uid": "kx7th9ecyf4c057qis"
+        "weight": 9999,
+        "uid": "kx7th9ecyf4c057qis",
+        "imports": [
+          {
+            "classUid": "kx7th9ecyf4c057qis",
+            "imports": [
+              {
+                "importHandle": "WizardrySpecialsScene",
+                "importPath": "../scenes/wizardry-specials-scene"
+              }
+            ],
+            "tags": [
+              "code",
+              "required import"
+            ],
+            "uid": "kxgdx7y1m8hhwk4aez9"
+          }
+        ],
+        "postboot": [
+          {
+            "classUid": "kx7th9ecyf4c057qis",
+            "tags": [
+              "code",
+              "postboot"
+            ],
+            "code": "_game.scene.queueOp(\"start\", \"SpecialsScene\");",
+            "order": "1",
+            "uid": "kxgdx7y1juzxhbcbmjn"
+          }
+        ],
+        "preboot": [
+          {
+            "classUid": "kx7th9ecyf4c057qis",
+            "tags": [
+              "code",
+              "preboot"
+            ],
+            "code": "WizardryController.llbase04 = -1;",
+            "order": "1",
+            "uid": "kxhubzr309rr5bz0ou26"
+          }
+        ]
       }
     }
   }

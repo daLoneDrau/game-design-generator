@@ -1,5 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { Watchable } = require("../../../../../assets/js/rpgbase.full");
+  var { Watchable } = require("../../../assets/js/rpgbase.full");
   var { WizardrySquare } = require("../config/wizardry-constants");
   var { WizardryWall } = require("../config/wizardry-constants");
 }
@@ -9,27 +9,27 @@ if (typeof(module) !== "undefined") {
  */
 function WizardryMaze(parameterObject) {
   /** @private the array of map wall locations. */
-  this.w = [];
+  this._w = [];
   /** @private the array of map wall locations. */
-  this.s = [];
+  this._s = [];
   /** @private the array of map wall locations. */
-  this.w = [];
+  this._e = [];
   /** @private the array of map wall locations. */
-  this.n = [];
+  this._n = [];
   /** @private the array of fights. */
-  this.fights = [];
+  this._fights = [];
   /** @private the array of sqreXtra. */
-  this.sqreXtra = [];
+  this._sqreXtra = [];
   /** @private the array of sqreType. */
-  this.sqreType = [];
+  this._sqreType = [];
   /** @private the array of aux0. */
-  this.aux0 = [];
+  this._aux0 = [];
   /** @private the array of aux1. */
-  this.aux1 = [];
+  this._aux1 = [];
   /** @private the array of aux2. */
-  this.aux2 = [];
+  this._aux2 = [];
   /** @private the array of aux2. */
-  this.enmyCalc = [
+  this._enmyCalc = [
     {
       minEnemy: 0,
       multWors: 0,

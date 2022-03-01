@@ -1,5 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { Watchable } = require("../../../../../assets/js/rpgbase.full");
+  var { Watchable } = require("../../../assets/js/rpgbase.full");
   var { WizardryZscn } = require("../config/wizardry-constants");
 }
 /**
@@ -11,47 +11,47 @@ function WizardryScnToc(parameterObject) {
   this.gameName = "";
   /** @private ?? */
   this.recPerDk = {
-    WizardryZscn.ZZERO: 0,
-    WizardryZscn.ZMAZE: 0,
-    WizardryZscn.ZENEMY: 0,
-    WizardryZscn.ZREWARD: 0,
-    WizardryZscn.ZOBJECT: 0,
-    WizardryZscn.ZCHAR: 0,
-    WizardryZscn.ZSPCCHRS: 0,
-    WizardryZscn.ZEXP: 0
+    ZZERO: 0,
+    ZMAZE: 0,
+    ZENEMY: 0,
+    ZREWARD: 0,
+    ZOBJECT: 0,
+    ZCHAR: 0,
+    ZSPCCHRS: 0,
+    ZEXP: 0
   };
   /** @private ?? */
   this.unusedXX = {
-    WizardryZscn.ZZERO: 0,
-    WizardryZscn.ZMAZE: 0,
-    WizardryZscn.ZENEMY: 0,
-    WizardryZscn.ZREWARD: 0,
-    WizardryZscn.ZOBJECT: 0,
-    WizardryZscn.ZCHAR: 0,
-    WizardryZscn.ZSPCCHRS: 0,
-    WizardryZscn.ZEXP: 0
+    ZZERO: 0,
+    ZMAZE: 0,
+    ZENEMY: 0,
+    ZREWARD: 0,
+    ZOBJECT: 0,
+    ZCHAR: 0,
+    ZSPCCHRS: 0,
+    ZEXP: 0
   };
   /** @private ?? */
   this.recPer2b = {
-    WizardryZscn.ZZERO: 0,
-    WizardryZscn.ZMAZE: 0,
-    WizardryZscn.ZENEMY: 0,
-    WizardryZscn.ZREWARD: 0,
-    WizardryZscn.ZOBJECT: 0,
-    WizardryZscn.ZCHAR: 0,
-    WizardryZscn.ZSPCCHRS: 0,
-    WizardryZscn.ZEXP: 0
+    ZZERO: 0,
+    ZMAZE: 0,
+    ZENEMY: 0,
+    ZREWARD: 0,
+    ZOBJECT: 0,
+    ZCHAR: 0,
+    ZSPCCHRS: 0,
+    ZEXP: 0
   };
   /** @private ?? */
   this.blOff = {
-    WizardryZscn.ZZERO: 0,
-    WizardryZscn.ZMAZE: 0,
-    WizardryZscn.ZENEMY: 0,
-    WizardryZscn.ZREWARD: 0,
-    WizardryZscn.ZOBJECT: 0,
-    WizardryZscn.ZCHAR: 0,
-    WizardryZscn.ZSPCCHRS: 0,
-    WizardryZscn.ZEXP: 0
+    ZZERO: 0,
+    ZMAZE: 0,
+    ZENEMY: 0,
+    ZREWARD: 0,
+    ZOBJECT: 0,
+    ZCHAR: 0,
+    ZSPCCHRS: 0,
+    ZEXP: 0
   };
   /** @private ?? */
   this.race = [];

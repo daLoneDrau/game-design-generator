@@ -1,5 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { Watchable } = require("../../../../../assets/js/rpgbase.full");
+  var { Watchable } = require("../../../assets/js/rpgbase.full");
 }
 /**
  * @class ??
@@ -7,11 +7,11 @@ if (typeof(module) !== "undefined") {
  */
 function WizardryBatrslt(parameterObject) {
   /** @private ?? */
+  this.drained = [];
+  /** @private ?? */
   this.enmyCnt = [];
   /** @private ?? */
   this.enmyId = [];
-  /** @private ?? */
-  this.drained = [];
   Watchable.apply(this);
 };
 WizardryBatrslt.prototype = Object.create(Watchable.prototype);

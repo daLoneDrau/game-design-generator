@@ -195,7 +195,7 @@
             " * @class [enum-name] enum using singleton pattern",
             " * @todo documentation",
             " */",
-            " const [app-handle][enum-handle] = function () {",
+            " var [app-handle][enum-handle] = function () {",
             "  console.trace();",
             "  throw \"Class [app-handle][enum-handle] is an enum; no instances of it can be created.\";",
             "};"
@@ -435,7 +435,7 @@
         "    [app-handle]Game.newGame();",
         "  });",
         "  </script>",
-        "  <script type=\"text/javascript\" src=\"/phaser/[namespace]/src/dat/[namespace]-data.jsonp.js\"></script>",
+        "  <script type=\"text/javascript\" src=\"/phaser/[file-handle]/src/dat/[file-handle]-data.jsonp.js\"></script>",
         "",
         "</body>",
         "</html>"
@@ -526,7 +526,7 @@
           "comment": "CONSTRUCTOR",
           "type": "injection marker",
           "marker id": "[class-handle] constructor body",
-          "markup": ["  [code-body]" ]
+          "markup": ["  [code-body]"]
         },
         "};",
         {
@@ -916,6 +916,8 @@
         "  });",
         "  /** @private The current scene group being displayed. */",
         "  let _currentGroup = \"\";",
+        "  /** @private flag indicating whether the create member has finished. */",
+        "  let _createCompleted = false;",
         "  /** @private The dictionary of scene groups, where groups of scenes are associated with a specific scene key. */",
         "  let _sceneGroups = {};",
         {
@@ -976,6 +978,12 @@
           "markup": ["  };"]
         },
         "  { // Getters/Setters",
+        "    /** Gets the _createCompleted field value. */",
+        "    Object.defineProperty(_scene, \"createCompleted\", {",
+        "      get: function() {",
+        "        return _createCompleted;",
+        "      }",
+        "    });",
         "    /** Gets the scene groups dictionary. */",
         "    Object.defineProperty(_scene, \"groups\", {",
         "      get: function() {",
@@ -1044,6 +1052,7 @@
             "      [code-body]"
           ]
         },
+        "      _createCompleted = true;",
         "    };",
         "  }",
         "  /**",
@@ -1198,8 +1207,11 @@
           "markup": ["  };"]
         },        
         "  { // [app-handle][class-handle] Getters/Setters",
-        "    /** Sets the current state */",
+        "    /** Getter/Setter the current state */",
         "    Object.defineProperty(_scene, \"state\", {",
+        "      get: function() {",
+        "        return _state;",
+        "      },",
         "      set: function(value) {",
         "        if (!_SCENES.hasOwnProperty(value)) {",
         "          throw [\"Missing scenes for state\", value];",
@@ -1212,6 +1224,9 @@
         "          }",
         "        } else {",
         "          scenes.startScene();",
+        "        }",
+        "        if (typeof(_executePostStateSetter) !== \"undefined\") {",
+        "          _executePostStateSetter();",
         "        }",
         "      }",
         "    });",

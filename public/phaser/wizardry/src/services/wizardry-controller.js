@@ -1,6 +1,6 @@
 if (typeof(module) !== "undefined") {
-  var { WizardryScnToc } = require("../bus/wizardry-scntoc");
   var { WizardryXgoto } = require("../config/wizardry-constants");
+  var { WizardryScnToc } = require("../bus/wizardry-scntoc");
 }
 /**
  * @class The Application will have a defined Controller class.
@@ -70,6 +70,33 @@ var WizardryController = (function() {
   /** @private ??. */
   let _iocache = [];
   return {
+    /** Getter the _llbase04 property. */
+    get llbase04() {
+      return _llbase04;
+    },
+    /** Setter the _llbase04 property. */
+    set llbase04(value) {
+      if (isNaN(parseInt(value))) {
+        throw ["Invalid value", value];
+      }
+      _llbase04 = value;
+    },
+    /** Getter the _xgoto property. */
+    get xgoto() {
+      return _xgoto;
+    },
+    /** Setter the _xgoto property. */
+    set xgoto(value) {
+      _xgoto = value;
+    },
+    /** Getter the _xgoto2 property. */
+    get xgoto2() {
+      return _xgoto2;
+    },
+    /** Setter the _xgoto2 property. */
+    set xgoto2(value) {
+      _xgoto2 = value;
+    },
   };
 } ());
 

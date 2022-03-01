@@ -1,5 +1,5 @@
 if (typeof(module) !== "undefined") {
-  var { Watchable } = require("../../../../../assets/js/rpgbase.full");
+  var { Watchable } = require("../../../assets/js/rpgbase.full");
   var { WizardryHpRecord } = require("./utility/wizardry-hp-record");
   var { WizardryLong } = require("./utility/wizardry-long");
 }

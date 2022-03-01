@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Discoverthreejs.com - The Structure of a three.js App</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+
+  <link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
+
+  <link href="./styles/main.css" rel="stylesheet" type="text/css">
+
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+  <script src="./vendor/enable3d.phaserExtension.0.24.1.js"></script>
+
+</head>
+
+<body>
+  <h1>Discoverthreejs.com - Nothing to see here yet :)</h1>
+
+  <div id="scene-container">
+    <!-- Our <canvas> will be inserted here -->
+  </div>
+
+  <script type="module">
+    import { MainScene } from "./src/main.js";    
+    
+    const config = {
+      type: Phaser.WEBGL,
+      transparent: true,
+      scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: window.innerWidth * Math.max(1, window.devicePixelRatio / 2),
+        height: window.innerHeight * Math.max(1, window.devicePixelRatio / 2)
+      },
+      scene: [new MainScene()],
+        ...ENABLE3D.Canvas()
+    }
+    
+
+    window.addEventListener('load', () => {
+      console.log(ENABLE3D)
+      ENABLE3D.enable3d(() => new Phaser.Game(config)).withPhysics("./vendor/ammo")
+    })
+  </script>
+</body>
+
+</html>

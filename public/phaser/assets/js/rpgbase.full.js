@@ -2611,6 +2611,7 @@ Watcher.prototype.watchUpdated = function(data) { };
 Object.defineProperty(Watcher.prototype, 'watcherId', {
   get() { return this._watcherId; }
 });
+
 /**
  * @class Priority queue for .
  * @param {Number} nmax the maximum number of elements.
@@ -5068,6 +5069,7 @@ AlignmentGrid.prototype.show = function() {
     maxYPosition = this._yOffset + gridHeight;
   }
   maxYPosition = Math.min(maxYPosition, this._parent.scale.height);
+  
   for (let i = this._xOffset; i <= maxXPosition; i += this._cellWidth) {
     let line = new Phaser.Geom.Line(i, 0, i, gridHeight);
     this.graphics.strokeLineShape(line);
@@ -5154,6 +5156,61 @@ CardGame.prototype.drawCard = function() {
 CardGame.prototype.shuffleDeck = function() {
   for (let i = this._discard.length - 1; i >= 0; i--) {
     this._deck.push(this._discard.splice(i, 1)[0]);
+  }
+}
+/**
+ * @class Utility class used to break a scene's viewport into a grid of cells. Useful for positioning text and buttons.
+ * @param {object} parameterObject optional initialization parameters
+ */
+function OffsetGrid(parameterObject) {
+  /** @private The parent object used to determine the screen dimensions. If a Phaser.Scene instance is not supplied it defaults to the Phaser.Game instance. */
+  this._parent = null;
+  /** @private The width of a grid cell. */
+  this._cellWidth = 0;
+  /** @private The height of a grid cell. */
+  this._cellHeight = 0;
+  /** @private The grid's x-offset. */
+  this._xOffset = 0;
+  /** @private The grid's y-offset. */
+  this._yOffset = 0;
+  
+  this._parent = parameterObject.parent;
+  this._cellWidth = this._parent.scale.width / parameterObject.columns;
+  this._cellHeight = this._parent.scale.height / parameterObject.rows;
+};
+AlignmentGrid.prototype = Object.create(Phaser.GameObjects.Group.prototype);
+AlignmentGrid.prototype.constructor = Phaser.GameObjects.Group;
+{ // AlignmentGrid Getters/Setters
+}
+/**
+ * Places an object in relation to the grid.
+ * @param {Number} x the x-coordinate of the cell where the object should be placed
+ * @param {Number} y the y-coordinate of the cell where the object should be placed
+ * @param {Phaser.GameObjects.GameObject} obj game object being placed
+ */
+AlignmentGrid.prototype.placeAt = function(x, y, obj) {
+  //calculate the center of the cell
+  //by adding half of the height and width
+  //to the x and y of the coordinates
+  let x2 = this._cellWidth * x + this._cellWidth / 2;
+  let y2 = this._cellHeight * y + this._cellHeight / 2;
+  obj.x = x2;
+  obj.y = y2;
+}
+/**
+ * Draws a red border demarcating the grid cells.
+ */
+AlignmentGrid.prototype.show = function() {
+  if (typeof(this.graphics) === "undefined") {
+    this.graphics = this._parent.add.graphics({ lineStyle: { width: 4, color: 0xff0000, alpha: 1 } });
+  }
+  for (let i = 0; i <= this._parent.scale.width; i += this._cellWidth) {
+    let line = new Phaser.Geom.Line(i, 0, i, this._parent.scale.height);
+    this.graphics.strokeLineShape(line);
+  }
+  for (let i = 0; i <= this._parent.scale.height; i += this._cellHeight) {
+    let line = new Phaser.Geom.Line(0, i, this._parent.scale.width, i);
+    this.graphics.strokeLineShape(line);
   }
 }
 
@@ -5349,6 +5406,28 @@ function UiScene(parameterObject) {
 UiScene.prototype = Object.create(Phaser.Scene.prototype);
 UiScene.prototype.constructor = Phaser.Scene;
 Object.assign(UiScene.prototype, Watcher.prototype);
+{ // UiScene Getters/Setters
+  Object.defineProperty(UiScene.prototype, 'state', {
+    /** Getter for the _state field. */
+    get() {
+      return this._state;
+    },
+    /** Setter for the _state field. */
+    set(value) {
+      this._state = value;
+    }
+  });
+  Object.defineProperty(UiScene.prototype, 'stateChangeResolved', {
+    /** Getter for the _stateChangeResolved field. */
+    get() {
+      return this._stateChangeResolved;
+    },
+    /** Setter for the _stateChangeResolved field. */
+    set(value) {
+      this._stateChangeResolved = value;
+    }
+  });
+}
 /**
  * This method is called by the Scene Manager when the scene starts, after init() and preload(). If the LoaderPlugin started after preload(), then this method is called only after loading is complete. Use it to create your game objects.
  * @param {object} data Any data passed via ScenePlugin.add() or ScenePlugin.start(). Same as Scene.settings.data.
