@@ -45,64 +45,79 @@ const WizardryConstants = {
   /** The 'misc' state for the Specials scene. */
   SPECIALS_MISC: 4,
   /*********************
+   * MARKET_STATES
+   ********************/
+  /** The main menu state for the Market scene. */
+  MARKET_MAIN: 11,
+  /*********************
+   * INN_STATES
+   ********************/
+  /** The main menu state for the Adventurer's Inn scene. */
+  INN_MAIN: 21,
+  /** The player menu state for the Adventurer's Inn scene. */
+  INN_PLAYER_MENU: 22,
+  /** The nap menu state for the Adventurer's Inn scene. */
+  INN_NAP_MENU: 23,
+  /*********************
+   * GILGAMESH_STATES
+   ********************/
+  /** The main menu state for the Gilgamesh Tavern scene. */
+  GILGAMESH_MAIN: 31,
+  /** The add to party state for the Gilgamesh Tavern scene. */
+  GILGAMESH_ADD_PARTY: 33,
+  /** The remove from party state for the Gilgamesh Tavern scene. */
+  GILGAMESH_REMOVE_PARTY: 34,
+  /*********************
    * BOLTAC_STATES
    ********************/
   /** The main menu state for the Boltac's Trading Post scene. */
-  BOLTAC_MAIN: 1,
+  BOLTAC_SELECT_CHARACTER: 41,
   /** The player menu state for the Boltac's Trading Post scene. */
-  BOLTAC_PLAYER_MENU: 2,
+  BOLTAC_MAIN_MENU: 42,
   /** The buy menu state for the Boltac's Trading Post scene. */
-  BOLTAC_BUY_MENU: 3,
+  BOLTAC_BUY_MENU: 43,
   /** The sell menu state for the Boltac's Trading Post scene. */
-  BOLTAC_SELL_MENU: 4,
+  BOLTAC_SELL_MENU: 44,
   /** The uncurse menu state for the Boltac's Trading Post scene. */
-  BOLTAC_UNCURSE_MENU: 5,
+  BOLTAC_UNCURSE_MENU: 45,
   /** The identify menu state for the Boltac's Trading Post scene. */
-  BOLTAC_IDENTIFY_MENU: 6,
-  /*********************
-   * CAMP_STATES
-   ********************/
-  /** The main menu state for the Camp scene in the Maze. */
-  CAMP_MAZE_MAIN: 1,
-  /** The reorder menu state for the Camp scene. */
-  CAMP_MAZE_REORDER: 2,
+  BOLTAC_IDENTIFY_MENU: 46,
   /*********************
    * CANT_STATES
    ********************/
   /** The main menu state for the Temple of Cant scene. */
-  CANT_MAIN: 1,
+  CANT_MAIN: 51,
   /** The payment menu state for the Temple of Cant scene. */
-  CANT_PAY: 2,
+  CANT_PAY: 52,
+  /*********************
+   * EDGE_TOWN_STATES
+   ********************/
+  /** The main menu state for the Edge of Town scene. */
+  EDGE_TOWN_MAIN: 61,
+  /** The maze state for the Edge of Town scene. */
+  EDGE_TOWN_MAZE: 62,
+  /*********************
+   * CAMP_STATES
+   ********************/
+  /** The main menu state for the Camp scene in the Maze. */
+  CAMP_MAZE_MAIN: 71,
+  /** The reorder menu state for the Camp scene. */
+  CAMP_MAZE_REORDER: 72,
+  /*********************
+   * MAZE_RUNNER_STATES
+   ********************/
+  /** The main menu state for the Camp scene in the Maze. */
+  MAZE_RUNNER_MAIN: 81,
+  /*********************
+   * INN_REST_STATES
+   ********************/
+  INN_REST_HEALING: 1,
+  INN_REST_LEVELING: 2,
   /*********************
    * CASTLE_STATES
    ********************/
   /** The main menu state for the Castle Market scene. */
   CASTLE_MAIN: 1,
-  /*********************
-   * EDGE_TOWN_STATES
-   ********************/
-  /** The main menu state for the Edge of Town scene. */
-  EDGE_TOWN_MAIN: 1,
-  /** The maze state for the Edge of Town scene. */
-  EDGE_TOWN_MAZE: 2,
-  /*********************
-   * GILGAMESH_STATES
-   ********************/
-  /** The main menu state for the Gilgamesh Tavern scene. */
-  GILGAMESH_MAIN: 1,
-  /** The add to party state for the Gilgamesh Tavern scene. */
-  GILGAMESH_ADD_PARTY: 2,
-  /** The remove from party state for the Gilgamesh Tavern scene. */
-  GILGAMESH_REMOVE_PARTY: 3,
-  /*********************
-   * INN_STATES
-   ********************/
-  /** The main menu state for the Adventurer's Inn scene. */
-  INN_MAIN: 1,
-  /** The player menu state for the Adventurer's Inn scene. */
-  INN_PLAYER_MENU: 2,
-  /** The nap menu state for the Adventurer's Inn scene. */
-  INN_NAP_MENU: 3,
   /*********************
    * INN_ROOMS
    ********************/
@@ -159,11 +174,6 @@ const WizardryConstants = {
   /** The state for action waiting in the Make Character scene. */
   MAKE_CHARACTER_WAIT: 9999,
   /*********************
-   * MARKET_STATES
-   ********************/
-  /** The main menu state for the Market scene. */
-  MARKET_MAIN: 1,
-  /*********************
    * TRAINING_GROUNDS_STATES
    ********************/
   /** The main menu state for the Training Grounds scene. */
@@ -191,9 +201,14 @@ const DIV6  = 0.1666666666666666666666;
 const DIV7  = 0.1428571428571428571428;
 const DIV8  = 0.125;
 const DIV9  = 0.1111111111111111111111;
+const DIV11 = 0.0909090909090909090909;
+const DIV12 = 0.0833333333333333333333;
+const DIV18	= 0.0555555555555555555555;
 const DIV24 = 0.0416666666666666666666;
+const DIV26	= 0.0384615384615384615384;
 const DIV38 = 0.0263157894736842105263;
 const DIV40 = 0.025;
+const DIV78 = 0.0128205128205128205128;
 
 /**
  * @class Class enum using singleton pattern
@@ -300,4 +315,4 @@ const WizardrySpell = function () {
   throw "Class WizardrySpell is an enum; no instances of it can be created.";
 };
 
-export { DIV2, DIV3, DIV4, DIV5, DIV6, DIV7, DIV8, DIV9, DIV24, DIV38, DIV40, WizardryConstants, WizardryAlignment, WizardryAttribute, WizardryAttributeDescriptors, WizardryCharacterClass, WizardryCharacterStatus, WizardryObjectType, WizardryRace, WizardrySpel012, WizardrySpell, WizardrySquare, WizardryWall, WizardryXgoto, WizardryZscn };
+export { DIV2, DIV3, DIV4, DIV5, DIV6, DIV7, DIV8, DIV9, DIV11, DIV12, DIV18, DIV24, DIV26, DIV38, DIV40, WizardryConstants, WizardryAlignment, WizardryAttribute, WizardryAttributeDescriptors, WizardryCharacterClass, WizardryCharacterStatus, WizardryObjectType, WizardryRace, WizardrySpel012, WizardrySpell, WizardrySquare, WizardryWall, WizardryXgoto, WizardryZscn };

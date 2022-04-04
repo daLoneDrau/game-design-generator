@@ -386,11 +386,57 @@ RetroC64AkalabethDungeon.prototype.plotQuadrant = function(maxDistance) {
   return plot;
 }
 RetroC64AkalabethDungeon.prototype.getRings8Topolgy = function(maxDistance) {
-  function ShadowCastingCell() {
-    this._arc = [];
-    this._occupant = 0;
-    this._vector;
-    this._visible = true;
+  class ShadowCastingCell {
+    constructor() {
+      this._arc = [];
+      this._occupant = 0;
+      this._vector;
+      this._visible = true;
+    }
+    addArc(arcStart, arcEnd) {
+      let arr = [arcStart, arcEnd];
+      arr.sort(function (a, b) {
+        let c = 0;
+        if (a < b) {
+          c = -1;
+        } else if (a > b) {
+          c = 1;
+        }
+        return c;
+      });
+      this._arc.push(arr);
+    }
+    toString() {
+      let s = ["ShadowCastingCell {\r\n"];
+      s.push("  arc: [ ");
+      for (let i = 0, li = this._arc.length; i < li; i++) {
+        s.push("[ ");
+        let arr = this._arc[i];
+        for (let j = 0, lj = arr.length; j < lj; j++) {
+          s.push(arr[j]);
+          if (j + 1 < lj) {
+            s.push(", ");
+          }
+        }
+        s.push(" ]");
+        if (i + 1 < li) {
+          s.push(", ");
+        }
+      }
+      s.push(" ],");
+      s.push("\r\n  vector: { ");
+      s.push(this._vector.x);
+      s.push(", ");
+      s.push(this._vector.y);
+      s.push(" },");
+      s.push("\r\n  visible: ");
+      s.push(this._visible);
+      s.push(",");
+      s.push("\r\n  occupant: ");
+      s.push(this._occupant);
+      s.push("\r\n}");
+      return s.join("");
+    }
   }
   Object.defineProperty(ShadowCastingCell.prototype, 'arc', {
     /**
@@ -449,50 +495,6 @@ RetroC64AkalabethDungeon.prototype.getRings8Topolgy = function(maxDistance) {
       this._vector = value;
     }
   });
-  ShadowCastingCell.prototype.addArc = function(arcStart, arcEnd) {
-    let arr = [arcStart, arcEnd];
-    arr.sort(function(a, b) {
-      let c = 0;
-      if (a < b) {
-        c = -1;
-      } else if (a > b) {
-        c = 1;
-      }
-      return c;
-    });
-    this._arc.push(arr);
-  }
-  ShadowCastingCell.prototype.toString = function() {
-    let s = ["ShadowCastingCell {\r\n"];
-    s.push("  arc: [ ");
-    for (let i = 0, li = this._arc.length; i < li; i++) {
-      s.push("[ ");
-      let arr = this._arc[i];
-      for (let j = 0, lj = arr.length; j < lj; j++) {
-        s.push(arr[j]);
-        if (j + 1 < lj) {
-          s.push(", ");
-        }
-      }
-      s.push(" ]");
-      if (i + 1 < li) {
-        s.push(", ");
-      }
-    }
-    s.push(" ],");
-    s.push("\r\n  vector: { ");
-    s.push(this._vector.x);
-    s.push(", ");
-    s.push(this._vector.y);
-    s.push(" },");
-    s.push("\r\n  visible: ");
-    s.push(this._visible);
-    s.push(",");
-    s.push("\r\n  occupant: ");
-    s.push(this._occupant);
-    s.push("\r\n}");
-    return s.join("");
-  }
 
   let rings = [];
   for (let i = 1; i <= maxDistance; i++) {
@@ -543,98 +545,16 @@ RetroC64AkalabethDungeon.prototype.getRings8Topolgy = function(maxDistance) {
   return rings;
 }
 RetroC64AkalabethDungeon.prototype.shadowCastQuadrant = function(maxDistance) {
-  function ShadowQueue() {
-    this._arcSegments = [];
-  };
-  ShadowQueue.prototype.isInFullShadow = function(cell) {
-    let fullyShadowed = true;
-    // go through every arc the cell represents
-    for (let j = cell.arc.length - 1; j >= 0; j--) {
-      let arc = JSON.parse(JSON.stringify(cell.arc[j]));
-      arc.sort(function(a, b) {
-        let c = 0;
-        if (a < b) {
-          c = -1;
-        } else if (a > b) {
-          c = 1;
-        }
-        return c;
-      });
-      let arcHasCoverage = false;
-      // go through each shadowed arc
-      for (let i = this._arcSegments.length - 1; i >= 0; i--) {
-        let shadow = this._arcSegments[i];
-        shadow.sort(function(a, b) {
-          let c = 0;
-          if (a < b) {
-            c = -1;
-          } else if (a > b) {
-            c = 1;
-          }
-          return c;
-        });
-        if (shadow[0] <= arc[0] && arc[1] <= shadow[1]) {
-          // the arc is covered if and only if its starting point is at or after the shadow's starting point and its end point is at or before the shadow's end point
-          arcHasCoverage = true;
-          break;
-        }
-      }
-      if (!arcHasCoverage) {
-        // if any of the cell's arcs is uncovered it is not considered fully covered.
-        fullyShadowed = false;
-        break;
-      }
+  class ShadowQueue {
+    constructor() {
+      this._arcSegments = [];
     }
-    return fullyShadowed;
-  }
-  ShadowQueue.prototype.isInPartialShadow = function(cell) {
-    let partiallyShadowed = false;
-    // go through every arc the cell represents
-    for (let j = cell.arc.length - 1; j >= 0; j--) {
-      let arc = cell.arc[j];
-      arc.sort(function(a, b) {
-        let c = 0;
-        if (a < b) {
-          c = -1;
-        } else if (a > b) {
-          c = 1;
-        }
-        return c;
-      });
-      // go through each shadowed arc
-      for (let i = this._arcSegments.length - 1; i >= 0; i--) {
-        let shadow = this._arcSegments[i];
-        shadow.sort(function(a, b) {
-          let c = 0;
-          if (a < b) {
-            c = -1;
-          } else if (a > b) {
-            c = 1;
-          }
-          return c;
-        });
-        if ((shadow[0] <= arc[0] && arc[0] <= shadow[1])
-            || (shadow[0] <= arc[1] && arc[1] <= shadow[1])) {
-          // the arc is covered if and only if its starting point or endpoint is between the shadow's starting or ending points
-          partiallyShadowed = true;
-          break;
-        }
-      }
-      if (partiallyShadowed) {
-        break;
-      }
-    }
-    return partiallyShadowed;
-  }
-  ShadowQueue.prototype.merge = function(cell) {
-    if (this.isInFullShadow(cell)) {
-      // cell is fully covered. nothing to do
-    } else if (this.isInPartialShadow(cell)) {
-      // cell is partially covered. need to add one of the endpoints to extend a shadow
-      // find the segment(s) the first and/or second part of the arc belongs to
+    isInFullShadow(cell) {
+      let fullyShadowed = true;
+      // go through every arc the cell represents
       for (let j = cell.arc.length - 1; j >= 0; j--) {
         let arc = JSON.parse(JSON.stringify(cell.arc[j]));
-        arc.sort(function(a, b) {
+        arc.sort(function (a, b) {
           let c = 0;
           if (a < b) {
             c = -1;
@@ -643,10 +563,11 @@ RetroC64AkalabethDungeon.prototype.shadowCastQuadrant = function(maxDistance) {
           }
           return c;
         });
-        let startIndex = -1, endIndex = -1;
-        for (let i = 0, li = this._arcSegments.length; i < li; i++) {
+        let arcHasCoverage = false;
+        // go through each shadowed arc
+        for (let i = this._arcSegments.length - 1; i >= 0; i--) {
           let shadow = this._arcSegments[i];
-          shadow.sort(function(a, b) {
+          shadow.sort(function (a, b) {
             let c = 0;
             if (a < b) {
               c = -1;
@@ -655,32 +576,26 @@ RetroC64AkalabethDungeon.prototype.shadowCastQuadrant = function(maxDistance) {
             }
             return c;
           });
-          if (shadow[0] <= arc[0] && arc[0] <= shadow[1]) {
-            startIndex = i;
+          if (shadow[0] <= arc[0] && arc[1] <= shadow[1]) {
+            // the arc is covered if and only if its starting point is at or after the shadow's starting point and its end point is at or before the shadow's end point
+            arcHasCoverage = true;
+            break;
           }
-          if (shadow[0] <= arc[1] && arc[1] <= shadow[1]) {
-            endIndex = i;
-          }
         }
-        if (startIndex >= 0 && endIndex < 0) {
-          // console.log("cell",cell.vector,"is partly shadowed by",this._arcSegments[startIndex])
-          this._arcSegments[startIndex][1] = arc[1];
+        if (!arcHasCoverage) {
+          // if any of the cell's arcs is uncovered it is not considered fully covered.
+          fullyShadowed = false;
+          break;
         }
-        if (startIndex < 0 && endIndex >= 0) {
-          // console.log("cell",cell.vector,"is partly shadowed by",this._arcSegments[endIndex])
-          this._arcSegments[endIndex][0] = arc[0];
-        }
-        if (startIndex >= 0 && endIndex >= 0) {
-          // console.log("cell",cell.vector,"bridges",this._arcSegments[startIndex],this._arcSegments[endIndex])
-          this._arcSegments[startIndex][1] = this._arcSegments[endIndex][1];
-          this._arcSegments.splice(endIndex, 1);
-        }
-        // console.log("merged",cell.toString(),"into shadows",this._arcSegments.toString());
       }
-    } else {
-      for (let i = cell.arc.length - 1; i >= 0; i--) {
-        let arr = JSON.parse(JSON.stringify(cell.arc[i]));
-        arr.sort(function(a, b) {
+      return fullyShadowed;
+    }
+    isInPartialShadow(cell) {
+      let partiallyShadowed = false;
+      // go through every arc the cell represents
+      for (let j = cell.arc.length - 1; j >= 0; j--) {
+        let arc = cell.arc[j];
+        arc.sort(function (a, b) {
           let c = 0;
           if (a < b) {
             c = -1;
@@ -689,20 +604,109 @@ RetroC64AkalabethDungeon.prototype.shadowCastQuadrant = function(maxDistance) {
           }
           return c;
         });
-        this._arcSegments.push(arr);
-      }
-      this._arcSegments.sort(function(a, b) {
-        let c = 0;
-        if (a[0] < b[0]) {
-          c = -1;
-        } else if (a[0] > b[0]) {
-          c = 1;
+        // go through each shadowed arc
+        for (let i = this._arcSegments.length - 1; i >= 0; i--) {
+          let shadow = this._arcSegments[i];
+          shadow.sort(function (a, b) {
+            let c = 0;
+            if (a < b) {
+              c = -1;
+            } else if (a > b) {
+              c = 1;
+            }
+            return c;
+          });
+          if ((shadow[0] <= arc[0] && arc[0] <= shadow[1])
+            || (shadow[0] <= arc[1] && arc[1] <= shadow[1])) {
+            // the arc is covered if and only if its starting point or endpoint is between the shadow's starting or ending points
+            partiallyShadowed = true;
+            break;
+          }
         }
-        return c;
-      });
-      // console.log("merged",cell.toString(),"into shadows",this._arcSegments.toString());
+        if (partiallyShadowed) {
+          break;
+        }
+      }
+      return partiallyShadowed;
     }
-  }
+    merge(cell) {
+      if (this.isInFullShadow(cell)) {
+        // cell is fully covered. nothing to do
+      } else if (this.isInPartialShadow(cell)) {
+        // cell is partially covered. need to add one of the endpoints to extend a shadow
+        // find the segment(s) the first and/or second part of the arc belongs to
+        for (let j = cell.arc.length - 1; j >= 0; j--) {
+          let arc = JSON.parse(JSON.stringify(cell.arc[j]));
+          arc.sort(function (a, b) {
+            let c = 0;
+            if (a < b) {
+              c = -1;
+            } else if (a > b) {
+              c = 1;
+            }
+            return c;
+          });
+          let startIndex = -1, endIndex = -1;
+          for (let i = 0, li = this._arcSegments.length; i < li; i++) {
+            let shadow = this._arcSegments[i];
+            shadow.sort(function (a, b) {
+              let c = 0;
+              if (a < b) {
+                c = -1;
+              } else if (a > b) {
+                c = 1;
+              }
+              return c;
+            });
+            if (shadow[0] <= arc[0] && arc[0] <= shadow[1]) {
+              startIndex = i;
+            }
+            if (shadow[0] <= arc[1] && arc[1] <= shadow[1]) {
+              endIndex = i;
+            }
+          }
+          if (startIndex >= 0 && endIndex < 0) {
+            // console.log("cell",cell.vector,"is partly shadowed by",this._arcSegments[startIndex])
+            this._arcSegments[startIndex][1] = arc[1];
+          }
+          if (startIndex < 0 && endIndex >= 0) {
+            // console.log("cell",cell.vector,"is partly shadowed by",this._arcSegments[endIndex])
+            this._arcSegments[endIndex][0] = arc[0];
+          }
+          if (startIndex >= 0 && endIndex >= 0) {
+            // console.log("cell",cell.vector,"bridges",this._arcSegments[startIndex],this._arcSegments[endIndex])
+            this._arcSegments[startIndex][1] = this._arcSegments[endIndex][1];
+            this._arcSegments.splice(endIndex, 1);
+          }
+          // console.log("merged",cell.toString(),"into shadows",this._arcSegments.toString());
+        }
+      } else {
+        for (let i = cell.arc.length - 1; i >= 0; i--) {
+          let arr = JSON.parse(JSON.stringify(cell.arc[i]));
+          arr.sort(function (a, b) {
+            let c = 0;
+            if (a < b) {
+              c = -1;
+            } else if (a > b) {
+              c = 1;
+            }
+            return c;
+          });
+          this._arcSegments.push(arr);
+        }
+        this._arcSegments.sort(function (a, b) {
+          let c = 0;
+          if (a[0] < b[0]) {
+            c = -1;
+          } else if (a[0] > b[0]) {
+            c = 1;
+          }
+          return c;
+        });
+        // console.log("merged",cell.toString(),"into shadows",this._arcSegments.toString());
+      }
+    }
+  };
   let shadowQueue = new ShadowQueue();
   // step 1 - get rings
   let rings = this.getRings8Topolgy(maxDistance);

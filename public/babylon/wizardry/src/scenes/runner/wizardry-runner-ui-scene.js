@@ -1,20 +1,21 @@
-import { WizardryUiStateScene }   from "../../wizardry-ui-state-scene.js";
-import { WizardryConstants }      from "../../../config/wizardry-constants.js";
-import { WizardryInterface } from "../../../components/ui/wizardry-interface.js";
-import { WizardryUiConfig } from "../../../config/wizardry-ui-config.js";
+import { WizardryInterface } from "../../components/ui/wizardry-interface.js";
+import { WizardryConstants } from "../../config/wizardry-constants.js";
+import { WizardryUiConfig } from "../../config/wizardry-ui-config.js";
+import { WizardryUiStateScene } from "../wizardry-ui-state-scene.js";
+
 
 /**
- * @class The character inspection scene.
+ * @class The maze runner scene.
  */
-class WizardryCampMazeScene extends WizardryUiStateScene {
+class WizardryMazeRunnerUiScene extends WizardryUiStateScene {
   /**
    * Creates a new WizardryCampInspectScene instance. 
    * @param {BABYLON.Engine} engine the engine running the scene
    */
   constructor(engine) {
     super(engine);
-    this._state = WizardryConstants.CAMP_MAZE_MAIN;
-    this._uiConfigurations[[WizardryConstants.CAMP_MAZE_MAIN]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.CAMP_MAZE_MAIN]);
+    this._state = WizardryConstants.MAZE_RUNNER_MAIN;
+    this._uiConfigurations[[WizardryConstants.MAZE_RUNNER_MAIN]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.MAZE_RUNNER_MAIN]);
   }
   /**
    * Render the scene.
@@ -31,7 +32,7 @@ class WizardryCampMazeScene extends WizardryUiStateScene {
       this._enterScene = false;
 
       // reset local variables
-      this.state = WizardryConstants.CAMP_MAZE_MAIN;
+      this.state = WizardryConstants.MAZE_RUNNER_MAIN;
 
       // reset screen state
       for (let prop in this._uiConfigurations) {
@@ -43,4 +44,4 @@ class WizardryCampMazeScene extends WizardryUiStateScene {
   }
 }
 
- export { WizardryCampMazeScene };
+ export { WizardryMazeRunnerUiScene };

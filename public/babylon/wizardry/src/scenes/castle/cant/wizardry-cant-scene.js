@@ -1,7 +1,7 @@
-import { WizardryCantMainUi }   from "./ui/wizardry-cant-main-ui.js";
-import { WizardryCantPayUi }    from "./ui/wizardry-cant-pay-ui.js";
 import { WizardryUiStateScene } from "../../wizardry-ui-state-scene.js";
+import { WizardryInterface }    from "../../../components/ui/wizardry-interface.js";
 import { WizardryConstants }    from "../../../config/wizardry-constants.js";
+import { WizardryUiConfig }     from "../../../config/wizardry-ui-config.js";
 
 /**
  * @class Temple of Cant scene.
@@ -14,8 +14,34 @@ import { WizardryConstants }    from "../../../config/wizardry-constants.js";
   constructor(engine) {
     super(engine);
     this._state = WizardryConstants.CANT_MAIN;
-    this._uiConfigurations[[WizardryConstants.CANT_MAIN]] = new WizardryCantMainUi(this);
-    this._uiConfigurations[[WizardryConstants.CANT_PAY]]  = new WizardryCantPayUi(this);
+    this._uiConfigurations[[WizardryConstants.CANT_MAIN]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.CANT_MAIN]);
+    this._uiConfigurations[[WizardryConstants.CANT_PAY]]  = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.CANT_PAY]);
+    this._healingPhase = 0;
+    this._donationRequired = 0;
+  }
+  /**
+   * Gets the current phase of healing
+   */
+  get donationRequired() {
+    return this._donationRequired;
+  }
+  /**
+   * Sets the current phase of healing.
+   */
+  set donationRequired(value) {
+    this._donationRequired = value;
+  }
+  /**
+   * Gets the current phase of healing
+   */
+  get healingPhase() {
+    return this._healingPhase;
+  }
+  /**
+   * Sets the current phase of healing.
+   */
+  set healingPhase(value) {
+    this._healingPhase = value;
   }
   /**
    * Render the scene.

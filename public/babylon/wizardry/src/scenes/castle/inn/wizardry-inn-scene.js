@@ -1,8 +1,7 @@
-import { WizardryInnMainUi }    from "./ui/wizardry-inn-main-ui.js";
-import { WizardryInnNapUi }  from "./ui/wizardry-inn-nap-ui.js";
-import { WizardryInnPlayerUi }  from "./ui/wizardry-inn-player-ui.js";
 import { WizardryUiStateScene } from "../../wizardry-ui-state-scene.js";
 import { WizardryConstants }    from "../../../config/wizardry-constants.js";
+import { WizardryInterface } from "../../../components/ui/wizardry-interface.js";
+import { WizardryUiConfig } from "../../../config/wizardry-ui-config.js";
 
 /**
  * @class Adventurer's Inn scene.
@@ -15,11 +14,19 @@ import { WizardryConstants }    from "../../../config/wizardry-constants.js";
   constructor(engine) {
     super(engine);
     this._state = WizardryConstants.INN_MAIN;
-    this._uiConfigurations[[WizardryConstants.INN_MAIN]]        = new WizardryInnMainUi(this);
-    this._uiConfigurations[[WizardryConstants.INN_PLAYER_MENU]] = new WizardryInnPlayerUi(this);
-    this._uiConfigurations[[WizardryConstants.INN_NAP_MENU]]    = new WizardryInnNapUi(this);
+    this._uiConfigurations[[WizardryConstants.INN_MAIN]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.INN_MAIN]);
+    this._uiConfigurations[[WizardryConstants.INN_PLAYER_MENU]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.INN_PLAYER_MENU]);
+    this._uiConfigurations[[WizardryConstants.INN_NAP_MENU]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.INN_NAP_MENU]);
     /** @private the room selected for resting. */
     this._room = WizardryConstants.INN_ROOM_NONE;
+    /** @private the current resting state. */
+    this._currentRestState = WizardryConstants.INN_REST_HEALING;
+  }
+  get restState() {
+    return this._currentRestState;
+  }
+  set restState(value) {
+    return this._currentRestState = value;
   }
   /**
    * Gets the type of room selected.

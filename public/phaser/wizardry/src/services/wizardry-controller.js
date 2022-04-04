@@ -6,8 +6,6 @@ if (typeof(module) !== "undefined") {
  * @class The Application will have a defined Controller class.
  */
 var WizardryController = (function() {
-  /** @private the partyCnt. */
-  let _partyCnt = 0;
   /** @private ??. */
   let _cachebl = 0;
   /** @private ??. */
@@ -51,8 +49,6 @@ var WizardryController = (function() {
   let _saveX = 0;
   /** @private ??. */
   let _directIo = 0;
-  /** @private ??. */
-  let _mazeLev = 0;
   /** @private ??. */
   let _mazeY = 0;
   /** @private ??. */

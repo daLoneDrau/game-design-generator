@@ -1,11 +1,15 @@
 import { WizardryHpRecord } from "./utility/wizardry-hp-record.js";
-import { WizardryAlignment,
+import { DIV3,
+  DIV5,
+  DIV6,
+  WizardryAlignment,
   WizardryAttribute,
   WizardryCharacterStatus,
   WizardryCharacterClass,
   WizardryRace,
   WizardrySpell }           from "../config/wizardry-constants.js";
 import { Watchable }        from "../../../assets/js/base.js";
+import { WizardryController } from "../services/wizardry-controller.js";
 
 const IGNORE_JSON_FIELDS = {
   _watchers: 0,
@@ -672,8 +676,233 @@ class WizardryCharacter extends Watchable {
     super.addWatcher(watcher);
   }
   /**
+   * Computes a player's full stats, such as luck modifiers, cursed item modifiers, and equipment modifiers.
+   * @param {Boolean} removeAllEquipment flag indicating whether the character should remove all equipment during the process
+   */
+  computeFullStats(removeAllEquipment) {
+    /**
+     * Adjusts the character's luck/skill modifier.
+     * @param {Number} index the index of the luck modifier
+     * @param {Number} modifier the modifier amount
+     */
+    const adjustLuckSkill = (index, modifier) => {
+      modifier = this._luckSkill[index] - modifier;
+      if (modifier < 1) {
+        modifier = 1;
+      }
+      this._luckSkill[index] = modifier;
+    }
+    /**
+     * Initializes the cryptically-named wepVsty arrays.
+     */
+    const initStuff = () => {
+      for (let i = 13; i >= 0; i--) {
+        this._wepVsty2[0][i] = false;
+        this._wepVsty2[1][i] = false;
+        this._wepVstyP[i] = false;
+      }
+      for (let i = 6; i >= 0; i--) {
+        this._wepVsty3[0][i] = false;
+        this._wepVsty3[1][i] = false;
+      }
+    }
+    /**
+     * ????
+     */
+    const normPow = () => {
+      for (let i = this._possessions.possession.length - 1; i >= 0; i--) {
+        if (this._possessions.possession[i].equipmentIndex < 0) {
+          continue;
+        }
+        const item = WizardryController.equipmentListInstance.getEquipmentItem(this._possessions.possession[i].equipmentIndex);
+        if (item.classUse[this._clazz]) {
+          CANUSE[item.objType] = true;
+        }
+        if (this._healPts < item.healPts) {
+          this._healPts = item.healPts;
+        }
+        for (let i = 13; i >= 0; i--) {
+          this._wepVsty2[0][i] = this._wepVsty2[0][i] || item.wepVsty2[i];
+        }
+        for (let i = 6; i >= 0; i--) {
+          this._wepVsty3[0][i] = this._wepVsty3[0][i] || item.wepVsty3[i];
+        }
+      }
+    }
+    const ARM4CHAR = () => {
+      for (let i = this._possessions.possession.length - 1; i >= 0; i--) {
+        if (this._possessions.possession[i].equipmentIndex < 0) {
+          continue;
+        }
+        if (this._possessions.possession[i].equipped) {
+          ARMORPOW(i);
+        }
+      }
+    }
+    /**
+     * Checks an equipped item and applies modifiers to the character based on the item's stats.
+     * @param {Number} itemIndex the inventory slot the item is in.
+     */
+    const ARMORPOW = (itemIndex) => {
+      // set the unarmed flag since the character obviously has an item equipped
+      unarmed = false;
+      /** the item's data in the character's possession (identified, cursed, etc...). */
+      const possessionObject = this._possessions.possession[itemIndex];
+      /** the item data. */
+      const item = WizardryController.equipmentListInstance.getEquipmentItem(possessionObject.equipmentIndex);
+      possessionObject.cursed = item.cursed;
+      if (item.alignment === WizardryAlignment.UNALIGN || item.alignment === this._alignment) {
+          if (item.xtraSwing > this._swingCnt) {
+            this._swingCnt = item.xtraSwing;
+          }
+          this._armorCl -= item.armorMod;
+          this._hpCalcMd += item.wepHitMod;
+          if (item.objType === WizardryObjectType.WEAPON) {
+            let tmp = this._hpDamRc.hpminad;
+            {
+              this._hpDamRc.hpfac = item.wepHpDam.hpfac;
+              this._hpDamRc.hpminad = item.wepHpDam.hpminad + tmp;
+              this._hpDamRc.level = item.wepHpDam.level;
+            }
+            this._critHitM = (this._critHitM || item.critHitM);
+            for (let i = this._wepVstyP.length - 1; i >= 0; i--) {
+              this._wepVstyP[i] = item.wepVstyP[i];
+            }
+          }
+      } else {
+        // an equipped item that has the wrong alignment causes the player to be cursed
+        this._hpCalcMd--;
+        this._armorCl++;
+        this._critHitM = false;
+        possessionObject.cursed = true;
+      }
+    }
+    /** modifier value is 20 - (char lvl / 5) - (char luck / 6) */
+    const luckModifier = (20 - parseInt(this._charLev * DIV5)) - parseInt(this.getAttribute(WizardryAttribute.LUCK) * DIV6);
+    /** a flag indicating whether the player is completely unarmed. this will change during processing */
+    let unarmed = false;
+    let CANUSE = {};
+    if (luckModifier < 1) {
+      luckModifier = 1;
+    }
+    for (let i = this._luckSkill.length - 1; i >= 0; i--) {
+      this._luckSkill[i] = luckModifier;
+    }
+    // adjust luck for class
+    switch (this._clazz) {
+      case WizardryCharacterClass.FIGHTER:
+        adjustLuckSkill(0, 3);
+        break;
+      case WizardryCharacterClass.MAGE:
+        adjustLuckSkill(4, 3);
+        break;
+      case WizardryCharacterClass.PRIEST:
+        adjustLuckSkill(1, 3);
+        break;
+      case WizardryCharacterClass.THIEF:
+        adjustLuckSkill(3, 3);
+        break;
+      case WizardryCharacterClass.BISHOP:
+        adjustLuckSkill(2, 2);
+        adjustLuckSkill(4, 2);
+        adjustLuckSkill(1, 2);
+        break;
+      case WizardryCharacterClass.SAMURAI:
+        adjustLuckSkill(0, 2);
+        adjustLuckSkill(4, 2);
+        break;
+      case WizardryCharacterClass.LORD:
+        adjustLuckSkill(0, 2);
+        adjustLuckSkill(1, 2);
+        break;
+      case WizardryCharacterClass.NINJA:
+        adjustLuckSkill(0, 3);
+        adjustLuckSkill(1, 2);
+        adjustLuckSkill(2, 4);
+        adjustLuckSkill(3, 3);
+        adjustLuckSkill(4, 2);
+        break;
+      default:
+        throw ["Invalid class", this];
+    }
+    // adjust luck for race
+    switch (this._race) {
+      case WizardryRace.HUMAN:
+        adjustLuckSkill(0, 1);
+        break;
+      case WizardryRace.ELF:
+        adjustLuckSkill(2, 2);
+        break;
+      case WizardryRace.DWARF:
+        adjustLuckSkill(3, 4);
+        break;
+      case WizardryRace.GNOME:
+        adjustLuckSkill(1, 2);
+        break;
+      case WizardryRace.HOBBIT:
+        adjustLuckSkill(4, 3);
+        break;
+      default:
+        throw ["Invalid race", this];
+    }
+
+    if (removeAllEquipment) {
+      for (let i = 7; i >= 0; i--) {
+        this._possessions.possession[i].equipped = false;
+      }
+    }
+
+    if (this._clazz === WizardryCharacterClass.PRIEST
+        || this._clazz === WizardryCharacterClass.FIGHTER
+        ||this._clazz === WizardryCharacterClass.SAMURAI) {
+      this._hpCalcMd = 2 + parseInt(this._charLev * DIV3);
+    } else {
+      this._hpCalcMd = parseInt(this._charLev * DIV5);
+    }
+
+    this._hpDamRc.level   = 2;
+    this._hpDamRc.hpfac   = 2;
+    this._hpDamRc.hpminad = 0;
+
+    if (this.getAttribute(WizardryAttribute.STRENGTH) > 15) {
+      this._hpCalcMd += this.getAttribute(WizardryAttribute.STRENGTH) - 15;
+      this._hpDamRc.hpminad = this.getAttribute(WizardryAttribute.STRENGTH) - 15;
+    } else if (this.getAttribute(WizardryAttribute.STRENGTH) < 6) {
+      this._hpCalcMd += this.getAttribute(WizardryAttribute.STRENGTH) - 6;
+    }
+
+    this._healPts = 0;
+
+    this._critHitM = (this._clazz === WizardryCharacterClass.NINJA);
+
+    this._swingCnt = 1;
+
+    if (this._clazz === WizardryCharacterClass.NINJA ) {
+      this._hpDamRc.hpfac = 4;
+    }
+    this._armorCl = 10;
+      
+    if (this._clazz === WizardryCharacterClass.FIGHTER
+        || this._clazz === WizardryCharacterClass.SAMURAI
+        || this._clazz === WizardryCharacterClass.LORD
+        || this._clazz === WizardryCharacterClass.NINJA) {
+      this._swingCnt += parseInt(this._charLev * DIV5) + this._clazz === WizardryCharacterClass.NINJA ? 1 : 0;
+    }
+      
+    if (this._swingCnt > 10) {
+      this._swingCnt = 10;
+    }
+      
+    initStuff();
+    normPow();
+    unarmed = true;
+    if (!removeAllEquipment) {
+      ARM4CHAR();
+    }
+  }
+  /**
    * Gets an attribute's value.
-   * @param {WizardryAttribute} attribute the attribute being set
+   * @param {WizardryAttribute} attribute the attribute being
    * @return {Number} the value
    */
   getAttribute(attribute) {

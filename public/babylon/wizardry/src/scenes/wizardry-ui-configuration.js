@@ -1,7 +1,13 @@
 import { WizardryScene } from "./wizardry-scene.js";
 
+/**
+ * The rate of frames per second the FADE animation runs at.
+ */
 const ALPHA_FADE_FRAMERATE = 10;
-// fade animation
+/**
+ * A fade animation that lasts 3 seconds.
+ * @type {BABYLON.Animation}
+ */
 const FADE = new BABYLON.Animation(
   "alphaFade", // Name of the animation
   "alpha", // Property to animate

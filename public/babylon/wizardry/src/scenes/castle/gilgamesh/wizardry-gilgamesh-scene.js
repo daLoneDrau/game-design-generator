@@ -1,8 +1,7 @@
-import { WizardryGilgameshAddPartyUi }      from "./ui/wizardry-gilgamesh-add-party-ui.js";
-import { WizardryGilgameshMainUi }          from "./ui/wizardry-gilgamesh-main-ui.js";
-import { WizardryGilgameshRemovePartyUi }   from "./ui/wizardry-gilgamesh-remove-party-ui.js";
 import { WizardryUiStateScene }             from "../../wizardry-ui-state-scene.js";
+import { WizardryInterface }                from "../../../components/ui/wizardry-interface.js";
 import { WizardryConstants }                from "../../../config/wizardry-constants.js";
+import { WizardryUiConfig }                 from "../../../config/wizardry-ui-config.js";
 
 /**
  * @class Gilgamesh' Tavern scene.
@@ -12,9 +11,20 @@ import { WizardryConstants }                from "../../../config/wizardry-const
   constructor(engine) {
     super(engine);
     this._state = WizardryConstants.GILGAMESH_MAIN;
-    this._uiConfigurations[[WizardryConstants.GILGAMESH_MAIN]]         = new WizardryGilgameshMainUi(this);
-    this._uiConfigurations[[WizardryConstants.GILGAMESH_ADD_PARTY]]    = new WizardryGilgameshAddPartyUi(this);
-    this._uiConfigurations[[WizardryConstants.GILGAMESH_REMOVE_PARTY]] = new WizardryGilgameshRemovePartyUi(this);
+    this._uiConfigurations[[WizardryConstants.GILGAMESH_MAIN]]         = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.GILGAMESH_MAIN]);
+    this._uiConfigurations[[WizardryConstants.GILGAMESH_ADD_PARTY]]    = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.GILGAMESH_ADD_PARTY]);
+    this._uiConfigurations[[WizardryConstants.GILGAMESH_REMOVE_PARTY]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.GILGAMESH_REMOVE_PARTY]);
+    /**
+     * the current roster page
+     * @type {Number}
+     */
+    this._currentPage = 0;
+  }
+  get rosterPage() {
+    return this._currentPage;
+  }
+  set rosterPage(value) {
+    this._currentPage = value;
   }
   /**
    * Render the scene.

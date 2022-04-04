@@ -134,11 +134,17 @@ class WizardryScene extends BABYLON.Scene {
   static createGrid(parameterObject) {
     let grid = new BABYLON.GUI.Grid(parameterObject.hasOwnProperty("key") ? parameterObject.key : WizardryScene.randomKey());
     if (parameterObject.hasOwnProperty("columns")) {
+      if (!Array.isArray(parameterObject.columns)) {
+        throw ["column widths need to be in Array format", parameterObject.columns];
+      }
       for (let i = 0, li = parameterObject.columns.length; i < li; i++) {
         grid.addColumnDefinition(parameterObject.columns[i]);
       }
     }
     if (parameterObject.hasOwnProperty("rows")) {
+      if (!Array.isArray(parameterObject.rows)) {
+        throw ["row heights need to be in Array format", parameterObject.rows];
+      }
       for (let i = 0, li = parameterObject.rows.length; i < li; i++) {
         grid.addRowDefinition(parameterObject.rows[i]);
       }
@@ -233,7 +239,7 @@ class WizardryScene extends BABYLON.Scene {
    * @param {object} parameterObject the button parameters
    * @returns {object} a return object with two properties: a BABYLON.GUI.Rectangle instance and a BABYLON.GUI.TextBlock instance
    */
-  createButton(parameterObject) {
+  createButton(parameterObject, scopeObject) {
     const rectangle = new BABYLON.GUI.Rectangle(parameterObject.hasOwnProperty("key") ? parameterObject.key : WizardryScene.randomKey());
 
     const text = this.createTextBlock(parameterObject.text);
@@ -270,11 +276,29 @@ class WizardryScene extends BABYLON.Scene {
       rectangle.isPointerBlocker = true;
     }
     if (parameterObject.background.hasOwnProperty("onPointerClickObservable")) {
-      rectangle.onPointerClickObservable.add(...parameterObject.background.onPointerClickObservable);
+      if (Array.isArray(parameterObject.background.onPointerClickObservable)) {
+        rectangle.onPointerClickObservable.add(...parameterObject.background.onPointerClickObservable);
+      } else {
+        rectangle.onPointerClickObservable.add(...[
+          parameterObject.background.onPointerClickObservable, // callback method
+          -1,                                                  // the mask used to filter observers
+          false,                                               // the callback will be inserted at the last position, executed after all the others already present
+          scopeObject                                          // scope for the callback to be called from
+        ]);
+      }
       rectangle.hoverCursor = "pointer";
     }
     if (parameterObject.background.hasOwnProperty("onPointerEnterObservable")) {
-      rectangle.onPointerEnterObservable.add(...parameterObject.background.onPointerEnterObservable);
+      if (Array.isArray(parameterObject.background.onPointerEnterObservable)) {
+        rectangle.onPointerEnterObservable.add(...parameterObject.background.onPointerEnterObservable);
+      } else {
+        rectangle.onPointerEnterObservable.add(...[
+          parameterObject.background.onPointerEnterObservable, // callback method
+          -1,                                                  // the mask used to filter observers
+          false,                                               // the callback will be inserted at the last position, executed after all the others already present
+          scopeObject                                          // scope for the callback to be called from
+        ]);
+      }
       if (parameterObject.background.hasOwnProperty("onPointerClickObservable")) {
         rectangle.onPointerEnterObservable.add((eventData, eventState) => {
           if (retObj.enabled) {
@@ -288,7 +312,16 @@ class WizardryScene extends BABYLON.Scene {
       }
     }
     if (parameterObject.background.hasOwnProperty("onPointerOutObservable")) {
-      rectangle.onPointerOutObservable.add(...parameterObject.background.onPointerOutObservable);
+      if (Array.isArray(parameterObject.background.onPointerOutObservable)) {
+        rectangle.onPointerOutObservable.add(...parameterObject.background.onPointerOutObservable);
+      } else {
+        rectangle.onPointerOutObservable.add(...[
+          parameterObject.background.onPointerOutObservable, // callback method
+          -1,                                                // the mask used to filter observers
+          false,                                             // the callback will be inserted at the last position, executed after all the others already present
+          scopeObject                                        // scope for the callback to be called from
+        ]);
+      }
       if (parameterObject.background.hasOwnProperty("onPointerClickObservable")) {
         rectangle.onPointerOutObservable.add((eventData, eventState) => {
           rectangle.background = Materials.darkRGB;
@@ -445,6 +478,12 @@ class WizardryScene extends BABYLON.Scene {
     }
     if (parameterObject.hasOwnProperty("textWrapping")) {
       text.textWrapping = parameterObject.textWrapping;
+    }
+    if (parameterObject.hasOwnProperty("animations")) {
+      if (typeof(text.animations) === "undefined") {
+        text.animations = [];
+      }
+      text.animations = text.animations.concat(parameterObject.animations);
     }
     this._textBlocks.push(text);
     return text;

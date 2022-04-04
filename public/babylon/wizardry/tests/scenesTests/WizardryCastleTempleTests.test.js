@@ -23,7 +23,6 @@ beforeAll(() => {
 });
 beforeEach(() => {
   WizardryController.xgoto = WizardryXgoto.XCANT;
-  WizardryController.partyCnt = 0;
   WizardryController.characterRecord = "";
   WizardryController.characters.length = 0;
   WizardryController.rosterInstance._roster = {}

@@ -1,9 +1,8 @@
-import { WizardryMarketMainUi } from "./ui/wizardry-market-main-ui.js";
 import { WizardryUiStateScene } from "../../wizardry-ui-state-scene.js";
 import { WizardryConstants }    from "../../../config/wizardry-constants.js";
 import { WizardryController }   from "../../../services/wizardry-controller.js";
 import { WizardryInterface }    from "../../../components/ui/wizardry-interface.js";
-import { WizardryUiConfig } from "../../../config/wizardry-ui-config.js";
+import { WizardryUiConfig }     from "../../../config/wizardry-ui-config.js";
 
 /**
  * @class Castle scene.

@@ -1,7 +1,7 @@
 [
   {
     "_watchers": [],
-    "_age": 952,
+    "_age": 1055,
     "_alignment": {
       "title": "GOOD",
       "index": 1,
@@ -10,1190 +10,38 @@
     },
     "_armorCl": 10,
     "_attributes": {
-      "STRENGTH": 17,
-      "IQ": 8,
-      "PIETY": 5,
-      "VITALITY": 8,
-      "AGILITY": 8,
-      "LUCK": 9
-    },
-    "_charLev": 1,
-    "_clazz": {
-      "title": "FIGHTER",
-      "index": 0,
-      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
-      "name": "FIGHTER",
-      "nextLevel": {
-        "0": 289709,
-        "1": 1000,
-        "2": 1724,
-        "3": 2972,
-        "4": 5124,
-        "5": 8834,
-        "6": 15231,
-        "7": 26260,
-        "8": 45275,
-        "9": 78060,
-        "10": 134586,
-        "11": 232044,
-        "12": 400075
-      }
-    },
-    "_critHitM": false,
-    "_exp": 0,
-    "_gold": 143,
-    "_healPts": 0,
-    "_hpCalcMd": 0,
-    "_hpDamRc": {
-      "_watchers": [],
-      "_hpfac": 0,
-      "_hpminad": 0,
-      "_level": 0
-    },
-    "_hpLeft": 9,
-    "_hpMax": 9,
-    "_inMaze": false,
-    "_lostXyl": {
-      "location": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "poisonAmt": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "awards": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "_luckSkill": [
-      16,
-      16,
-      16,
-      16,
-      16
-    ],
-    "_mageSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_maxLevAc": 1,
-    "_name": "EFEF",
-    "_partyOrder": -1,
-    "_possessions": {
-      "count": 0,
-      "possession": [
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        }
-      ]
-    },
-    "_priestSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_race": {
-      "title": "HUMAN",
-      "index": 1,
-      "name": "HUMAN",
-      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
-    },
-    "_refId": "kyudvfgagdac57dq888",
-    "_spellsKnown": {
-      "TILTOWAIT": false,
-      "MAHAMAN": false,
-      "MALOR": false,
-      "HAMAN": false,
-      "MASOPIC": false,
-      "ZILWAN": false,
-      "LAKANITO": false,
-      "MADALTO": false,
-      "MAKANITO": false,
-      "MAMORLIS": false,
-      "LAHALITO": false,
-      "DALTO": false,
-      "MORLIS": false,
-      "MOLITO": false,
-      "MAHALITO": false,
-      "SOPIC": false,
-      "DILTO": false,
-      "DUMAPIC": false,
-      "KATINO": false,
-      "MOGREF": false,
-      "HALITO": false,
-      "KADORTO": false,
-      "MALIKTO": false,
-      "LOKTOFEIT": false,
-      "MABADI": false,
-      "MADI": false,
-      "LORTO": false,
-      "BADI": false,
-      "DI": false,
-      "KANDI": false,
-      "LITOKAN": false,
-      "BADIALMA": false,
-      "DIALMA": false,
-      "MAPORFIC": false,
-      "LATUMOFIS": false,
-      "BADIAL": false,
-      "DIAL": false,
-      "BAMATU": false,
-      "LATUMAPIC": false,
-      "DIALKO": false,
-      "LOMILWA": false,
-      "MONTINO": false,
-      "MANIFO": false,
-      "CALFO": false,
-      "MATU": false,
-      "PORFIC": false,
-      "MILWA": false,
-      "BADIOS": false,
-      "DIOS": false,
-      "KALKI": false
-    },
-    "_status": {
-      "title": "OK",
-      "index": 0,
-      "description": "",
-      "name": "OK"
-    },
-    "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.523Z",
-    "_wepVsty2": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVsty3": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVstyP": [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ]
-  },
-  {
-    "_watchers": [],
-    "_age": 1080,
-    "_alignment": {
-      "title": "GOOD",
-      "index": 1,
-      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
-      "name": "GOOD"
-    },
-    "_armorCl": 10,
-    "_attributes": {
-      "STRENGTH": 18,
-      "IQ": 9,
-      "PIETY": 10,
+      "STRENGTH": 5,
+      "IQ": 11,
+      "PIETY": 18,
       "VITALITY": 10,
-      "AGILITY": 5,
-      "LUCK": 6
+      "AGILITY": 10,
+      "LUCK": 15
     },
     "_charLev": 1,
     "_clazz": {
-      "title": "FIGHTER",
-      "index": 0,
-      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
-      "name": "FIGHTER",
-      "nextLevel": {
-        "0": 289709,
-        "1": 1000,
-        "2": 1724,
-        "3": 2972,
-        "4": 5124,
-        "5": 8834,
-        "6": 15231,
-        "7": 26260,
-        "8": 45275,
-        "9": 78060,
-        "10": 134586,
-        "11": 232044,
-        "12": 400075
-      }
-    },
-    "_critHitM": false,
-    "_exp": 0,
-    "_gold": 171,
-    "_healPts": 0,
-    "_hpCalcMd": 0,
-    "_hpDamRc": {
-      "_watchers": [],
-      "_hpfac": 0,
-      "_hpminad": 0,
-      "_level": 0
-    },
-    "_hpLeft": 9,
-    "_hpMax": 9,
-    "_inMaze": false,
-    "_lostXyl": {
-      "location": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "poisonAmt": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "awards": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "_luckSkill": [
-      16,
-      16,
-      16,
-      16,
-      16
-    ],
-    "_mageSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_maxLevAc": 1,
-    "_name": "EFQD",
-    "_partyOrder": -1,
-    "_possessions": {
-      "count": 0,
-      "possession": [
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        }
-      ]
-    },
-    "_priestSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_race": {
-      "title": "DWARF",
-      "index": 3,
-      "name": "DWARF",
-      "description": "Dwarves are strong and robust, and make excellent warriors."
-    },
-    "_refId": "kyudv4ayriai6bhaxai",
-    "_spellsKnown": {
-      "TILTOWAIT": false,
-      "MAHAMAN": false,
-      "MALOR": false,
-      "HAMAN": false,
-      "MASOPIC": false,
-      "ZILWAN": false,
-      "LAKANITO": false,
-      "MADALTO": false,
-      "MAKANITO": false,
-      "MAMORLIS": false,
-      "LAHALITO": false,
-      "DALTO": false,
-      "MORLIS": false,
-      "MOLITO": false,
-      "MAHALITO": false,
-      "SOPIC": false,
-      "DILTO": false,
-      "DUMAPIC": false,
-      "KATINO": false,
-      "MOGREF": false,
-      "HALITO": false,
-      "KADORTO": false,
-      "MALIKTO": false,
-      "LOKTOFEIT": false,
-      "MABADI": false,
-      "MADI": false,
-      "LORTO": false,
-      "BADI": false,
-      "DI": false,
-      "KANDI": false,
-      "LITOKAN": false,
-      "BADIALMA": false,
-      "DIALMA": false,
-      "MAPORFIC": false,
-      "LATUMOFIS": false,
-      "BADIAL": false,
-      "DIAL": false,
-      "BAMATU": false,
-      "LATUMAPIC": false,
-      "DIALKO": false,
-      "LOMILWA": false,
-      "MONTINO": false,
-      "MANIFO": false,
-      "CALFO": false,
-      "MATU": false,
-      "PORFIC": false,
-      "MILWA": false,
-      "BADIOS": false,
-      "DIOS": false,
-      "KALKI": false
-    },
-    "_status": {
-      "title": "OK",
-      "index": 0,
-      "description": "",
-      "name": "OK"
-    },
-    "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.525Z",
-    "_wepVsty2": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVsty3": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVstyP": [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ]
-  },
-  {
-    "_watchers": [],
-    "_age": 1068,
-    "_alignment": {
-      "title": "GOOD",
-      "index": 1,
-      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
-      "name": "GOOD"
-    },
-    "_armorCl": 10,
-    "_attributes": {
-      "STRENGTH": 18,
-      "IQ": 8,
-      "PIETY": 5,
-      "VITALITY": 8,
-      "AGILITY": 8,
-      "LUCK": 9
-    },
-    "_charLev": 1,
-    "_clazz": {
-      "title": "FIGHTER",
-      "index": 0,
-      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
-      "name": "FIGHTER",
-      "nextLevel": {
-        "0": 289709,
-        "1": 1000,
-        "2": 1724,
-        "3": 2972,
-        "4": 5124,
-        "5": 8834,
-        "6": 15231,
-        "7": 26260,
-        "8": 45275,
-        "9": 78060,
-        "10": 134586,
-        "11": 232044,
-        "12": 400075
-      }
-    },
-    "_critHitM": false,
-    "_exp": 0,
-    "_gold": 160,
-    "_healPts": 0,
-    "_hpCalcMd": 0,
-    "_hpDamRc": {
-      "_watchers": [],
-      "_hpfac": 0,
-      "_hpminad": 0,
-      "_level": 0
-    },
-    "_hpLeft": 9,
-    "_hpMax": 9,
-    "_inMaze": true,
-    "_lostXyl": {
-      "location": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "poisonAmt": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "awards": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "_luckSkill": [
-      16,
-      16,
-      16,
-      16,
-      16
-    ],
-    "_mageSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_maxLevAc": 1,
-    "_name": "WF",
-    "_partyOrder": 0,
-    "_possessions": {
-      "count": 0,
-      "possession": [
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        }
-      ]
-    },
-    "_priestSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_race": {
-      "title": "HUMAN",
-      "index": 1,
-      "name": "HUMAN",
-      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
-    },
-    "_refId": "kyuduv364ueoi95qgo2",
-    "_spellsKnown": {
-      "TILTOWAIT": false,
-      "MAHAMAN": false,
-      "MALOR": false,
-      "HAMAN": false,
-      "MASOPIC": false,
-      "ZILWAN": false,
-      "LAKANITO": false,
-      "MADALTO": false,
-      "MAKANITO": false,
-      "MAMORLIS": false,
-      "LAHALITO": false,
-      "DALTO": false,
-      "MORLIS": false,
-      "MOLITO": false,
-      "MAHALITO": false,
-      "SOPIC": false,
-      "DILTO": false,
-      "DUMAPIC": false,
-      "KATINO": false,
-      "MOGREF": false,
-      "HALITO": false,
-      "KADORTO": false,
-      "MALIKTO": false,
-      "LOKTOFEIT": false,
-      "MABADI": false,
-      "MADI": false,
-      "LORTO": false,
-      "BADI": false,
-      "DI": false,
-      "KANDI": false,
-      "LITOKAN": false,
-      "BADIALMA": false,
-      "DIALMA": false,
-      "MAPORFIC": false,
-      "LATUMOFIS": false,
-      "BADIAL": false,
-      "DIAL": false,
-      "BAMATU": false,
-      "LATUMAPIC": false,
-      "DIALKO": false,
-      "LOMILWA": false,
-      "MONTINO": false,
-      "MANIFO": false,
-      "CALFO": false,
-      "MATU": false,
-      "PORFIC": false,
-      "MILWA": false,
-      "BADIOS": false,
-      "DIOS": false,
-      "KALKI": false
-    },
-    "_status": {
-      "title": "OK",
-      "index": 0,
-      "description": "",
-      "name": "OK"
-    },
-    "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.527Z",
-    "_wepVsty2": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVsty3": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVstyP": [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ]
-  },
-  {
-    "_watchers": [],
-    "_age": 1215,
-    "_alignment": {
-      "title": "GOOD",
-      "index": 1,
-      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
-      "name": "GOOD"
-    },
-    "_armorCl": 10,
-    "_attributes": {
-      "STRENGTH": 17,
-      "IQ": 10,
-      "PIETY": 10,
-      "VITALITY": 6,
-      "AGILITY": 9,
-      "LUCK": 6
-    },
-    "_charLev": 1,
-    "_clazz": {
-      "title": "FIGHTER",
-      "index": 0,
-      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
-      "name": "FIGHTER",
-      "nextLevel": {
-        "0": 289709,
-        "1": 1000,
-        "2": 1724,
-        "3": 2972,
-        "4": 5124,
-        "5": 8834,
-        "6": 15231,
-        "7": 26260,
-        "8": 45275,
-        "9": 78060,
-        "10": 134586,
-        "11": 232044,
-        "12": 400075
-      }
-    },
-    "_critHitM": false,
-    "_exp": 0,
-    "_gold": 179,
-    "_healPts": 0,
-    "_hpCalcMd": 0,
-    "_hpDamRc": {
-      "_watchers": [],
-      "_hpfac": 0,
-      "_hpminad": 0,
-      "_level": 0
-    },
-    "_hpLeft": 8,
-    "_hpMax": 8,
-    "_inMaze": false,
-    "_lostXyl": {
-      "location": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "poisonAmt": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "awards": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "_luckSkill": [
-      16,
-      16,
-      16,
-      16,
-      16
-    ],
-    "_mageSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_maxLevAc": 1,
-    "_name": "DFVBDFVB",
-    "_partyOrder": -1,
-    "_possessions": {
-      "count": 0,
-      "possession": [
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        }
-      ]
-    },
-    "_priestSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_race": {
-      "title": "ELF",
+      "title": "PRIEST",
       "index": 2,
-      "name": "ELF",
-      "description": "Elves are intelligent and pious, but not very hardy. They make good spell-casters."
-    },
-    "_refId": "kyudul6brn9zy6o5c5d",
-    "_spellsKnown": {
-      "TILTOWAIT": false,
-      "MAHAMAN": false,
-      "MALOR": false,
-      "HAMAN": false,
-      "MASOPIC": false,
-      "ZILWAN": false,
-      "LAKANITO": false,
-      "MADALTO": false,
-      "MAKANITO": false,
-      "MAMORLIS": false,
-      "LAHALITO": false,
-      "DALTO": false,
-      "MORLIS": false,
-      "MOLITO": false,
-      "MAHALITO": false,
-      "SOPIC": false,
-      "DILTO": false,
-      "DUMAPIC": false,
-      "KATINO": false,
-      "MOGREF": false,
-      "HALITO": false,
-      "KADORTO": false,
-      "MALIKTO": false,
-      "LOKTOFEIT": false,
-      "MABADI": false,
-      "MADI": false,
-      "LORTO": false,
-      "BADI": false,
-      "DI": false,
-      "KANDI": false,
-      "LITOKAN": false,
-      "BADIALMA": false,
-      "DIALMA": false,
-      "MAPORFIC": false,
-      "LATUMOFIS": false,
-      "BADIAL": false,
-      "DIAL": false,
-      "BAMATU": false,
-      "LATUMAPIC": false,
-      "DIALKO": false,
-      "LOMILWA": false,
-      "MONTINO": false,
-      "MANIFO": false,
-      "CALFO": false,
-      "MATU": false,
-      "PORFIC": false,
-      "MILWA": false,
-      "BADIOS": false,
-      "DIOS": false,
-      "KALKI": false
-    },
-    "_status": {
-      "title": "OK",
-      "index": 0,
-      "description": "",
-      "name": "OK"
-    },
-    "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.529Z",
-    "_wepVsty2": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVsty3": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVstyP": [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ]
-  },
-  {
-    "_watchers": [],
-    "_age": 980,
-    "_alignment": {
-      "title": "GOOD",
-      "index": 1,
-      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
-      "name": "GOOD"
-    },
-    "_armorCl": 10,
-    "_attributes": {
-      "STRENGTH": 16,
-      "IQ": 8,
-      "PIETY": 5,
-      "VITALITY": 8,
-      "AGILITY": 8,
-      "LUCK": 9
-    },
-    "_charLev": 1,
-    "_clazz": {
-      "title": "FIGHTER",
-      "index": 0,
-      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
-      "name": "FIGHTER",
+      "description": "The holy one. Priests need 11 or more Piety points, and have fairly high hit points. In addition to priestly spells they can Dispell monsters. Priests may not be of Neutral alignment.",
+      "name": "PRIEST",
       "nextLevel": {
-        "0": 289709,
-        "1": 1000,
-        "2": 1724,
-        "3": 2972,
-        "4": 5124,
-        "5": 8834,
-        "6": 15231,
-        "7": 26260,
-        "8": 45275,
-        "9": 78060,
-        "10": 134586,
-        "11": 232044,
-        "12": 400075
+        "0": 304132,
+        "1": 1050,
+        "2": 1810,
+        "3": 3120,
+        "4": 5379,
+        "5": 9274,
+        "6": 15989,
+        "7": 27567,
+        "8": 47529,
+        "9": 81946,
+        "10": 141286,
+        "11": 243596,
+        "12": 419993
       }
     },
     "_critHitM": false,
     "_exp": 0,
-    "_gold": 172,
+    "_gold": 116,
     "_healPts": 0,
     "_hpCalcMd": 0,
     "_hpDamRc": {
@@ -1202,8 +50,8 @@
       "_hpminad": 0,
       "_level": 0
     },
-    "_hpLeft": 9,
-    "_hpMax": 9,
+    "_hpLeft": 7,
+    "_hpMax": 7,
     "_inMaze": false,
     "_lostXyl": {
       "location": [
@@ -1242,8 +90,8 @@
       0
     ],
     "_maxLevAc": 1,
-    "_name": "QEDQE",
-    "_partyOrder": 1,
+    "_name": "HGPRI",
+    "_partyOrder": 2,
     "_possessions": {
       "count": 0,
       "possession": [
@@ -1298,7 +146,7 @@
       ]
     },
     "_priestSpells": [
-      0,
+      2,
       0,
       0,
       0,
@@ -1307,12 +155,12 @@
       0
     ],
     "_race": {
-      "title": "HUMAN",
-      "index": 1,
-      "name": "HUMAN",
-      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
+      "title": "HOBBIT",
+      "index": 5,
+      "name": "HOBBIT",
+      "description": "Hobbits are agile and very, very lucky. They make excellent Thieves."
     },
-    "_refId": "kyudub175g4n3kjb3cj",
+    "_refId": "kyt87if0c0oqpp79fcn",
     "_spellsKnown": {
       "TILTOWAIT": false,
       "MAHAMAN": false,
@@ -1360,8 +208,8 @@
       "CALFO": false,
       "MATU": false,
       "PORFIC": false,
-      "MILWA": false,
-      "BADIOS": false,
+      "MILWA": true,
+      "BADIOS": true,
       "DIOS": false,
       "KALKI": false
     },
@@ -1372,7 +220,7 @@
       "name": "OK"
     },
     "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.531Z",
+    "_timeCreated": "2022-02-25T16:28:10.538Z",
     "_wepVsty2": [
       [
         false,
@@ -1441,583 +289,7 @@
   },
   {
     "_watchers": [],
-    "_age": 971,
-    "_alignment": {
-      "title": "GOOD",
-      "index": 1,
-      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
-      "name": "GOOD"
-    },
-    "_armorCl": 10,
-    "_attributes": {
-      "STRENGTH": 17,
-      "IQ": 8,
-      "PIETY": 5,
-      "VITALITY": 8,
-      "AGILITY": 8,
-      "LUCK": 9
-    },
-    "_charLev": 1,
-    "_clazz": {
-      "title": "FIGHTER",
-      "index": 0,
-      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
-      "name": "FIGHTER",
-      "nextLevel": {
-        "0": 289709,
-        "1": 1000,
-        "2": 1724,
-        "3": 2972,
-        "4": 5124,
-        "5": 8834,
-        "6": 15231,
-        "7": 26260,
-        "8": 45275,
-        "9": 78060,
-        "10": 134586,
-        "11": 232044,
-        "12": 400075
-      }
-    },
-    "_critHitM": false,
-    "_exp": 0,
-    "_gold": 136,
-    "_healPts": 0,
-    "_hpCalcMd": 0,
-    "_hpDamRc": {
-      "_watchers": [],
-      "_hpfac": 0,
-      "_hpminad": 0,
-      "_level": 0
-    },
-    "_hpLeft": 9,
-    "_hpMax": 9,
-    "_inMaze": false,
-    "_lostXyl": {
-      "location": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "poisonAmt": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "awards": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "_luckSkill": [
-      16,
-      16,
-      16,
-      16,
-      16
-    ],
-    "_mageSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_maxLevAc": 1,
-    "_name": "FEF",
-    "_partyOrder": -1,
-    "_possessions": {
-      "count": 0,
-      "possession": [
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        }
-      ]
-    },
-    "_priestSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_race": {
-      "title": "HUMAN",
-      "index": 1,
-      "name": "HUMAN",
-      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
-    },
-    "_refId": "kyudtz91p599khtxli",
-    "_spellsKnown": {
-      "TILTOWAIT": false,
-      "MAHAMAN": false,
-      "MALOR": false,
-      "HAMAN": false,
-      "MASOPIC": false,
-      "ZILWAN": false,
-      "LAKANITO": false,
-      "MADALTO": false,
-      "MAKANITO": false,
-      "MAMORLIS": false,
-      "LAHALITO": false,
-      "DALTO": false,
-      "MORLIS": false,
-      "MOLITO": false,
-      "MAHALITO": false,
-      "SOPIC": false,
-      "DILTO": false,
-      "DUMAPIC": false,
-      "KATINO": false,
-      "MOGREF": false,
-      "HALITO": false,
-      "KADORTO": false,
-      "MALIKTO": false,
-      "LOKTOFEIT": false,
-      "MABADI": false,
-      "MADI": false,
-      "LORTO": false,
-      "BADI": false,
-      "DI": false,
-      "KANDI": false,
-      "LITOKAN": false,
-      "BADIALMA": false,
-      "DIALMA": false,
-      "MAPORFIC": false,
-      "LATUMOFIS": false,
-      "BADIAL": false,
-      "DIAL": false,
-      "BAMATU": false,
-      "LATUMAPIC": false,
-      "DIALKO": false,
-      "LOMILWA": false,
-      "MONTINO": false,
-      "MANIFO": false,
-      "CALFO": false,
-      "MATU": false,
-      "PORFIC": false,
-      "MILWA": false,
-      "BADIOS": false,
-      "DIOS": false,
-      "KALKI": false
-    },
-    "_status": {
-      "title": "OK",
-      "index": 0,
-      "description": "",
-      "name": "OK"
-    },
-    "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.532Z",
-    "_wepVsty2": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVsty3": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVstyP": [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ]
-  },
-  {
-    "_watchers": [],
-    "_age": 1151,
-    "_alignment": {
-      "title": "GOOD",
-      "index": 1,
-      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
-      "name": "GOOD"
-    },
-    "_armorCl": 10,
-    "_attributes": {
-      "STRENGTH": 18,
-      "IQ": 7,
-      "PIETY": 10,
-      "VITALITY": 10,
-      "AGILITY": 5,
-      "LUCK": 6
-    },
-    "_charLev": 1,
-    "_clazz": {
-      "title": "FIGHTER",
-      "index": 0,
-      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
-      "name": "FIGHTER",
-      "nextLevel": {
-        "0": 289709,
-        "1": 1000,
-        "2": 1724,
-        "3": 2972,
-        "4": 5124,
-        "5": 8834,
-        "6": 15231,
-        "7": 26260,
-        "8": 45275,
-        "9": 78060,
-        "10": 134586,
-        "11": 232044,
-        "12": 400075
-      }
-    },
-    "_critHitM": false,
-    "_exp": 0,
-    "_gold": 113,
-    "_healPts": 0,
-    "_hpCalcMd": 0,
-    "_hpDamRc": {
-      "_watchers": [],
-      "_hpfac": 0,
-      "_hpminad": 0,
-      "_level": 0
-    },
-    "_hpLeft": 9,
-    "_hpMax": 9,
-    "_inMaze": false,
-    "_lostXyl": {
-      "location": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "poisonAmt": [
-        0,
-        0,
-        0,
-        0
-      ],
-      "awards": [
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    "_luckSkill": [
-      16,
-      16,
-      16,
-      16,
-      16
-    ],
-    "_mageSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_maxLevAc": 1,
-    "_name": "DGFIG",
-    "_partyOrder": -1,
-    "_possessions": {
-      "count": 0,
-      "possession": [
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        },
-        {
-          "equipped": false,
-          "cursed": false,
-          "identified": false,
-          "equipmentIndex": -1
-        }
-      ]
-    },
-    "_priestSpells": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "_race": {
-      "title": "DWARF",
-      "index": 3,
-      "name": "DWARF",
-      "description": "Dwarves are strong and robust, and make excellent warriors."
-    },
-    "_refId": "kysqou4o2g1zpe5mk8v",
-    "_spellsKnown": {
-      "TILTOWAIT": false,
-      "MAHAMAN": false,
-      "MALOR": false,
-      "HAMAN": false,
-      "MASOPIC": false,
-      "ZILWAN": false,
-      "LAKANITO": false,
-      "MADALTO": false,
-      "MAKANITO": false,
-      "MAMORLIS": false,
-      "LAHALITO": false,
-      "DALTO": false,
-      "MORLIS": false,
-      "MOLITO": false,
-      "MAHALITO": false,
-      "SOPIC": false,
-      "DILTO": false,
-      "DUMAPIC": false,
-      "KATINO": false,
-      "MOGREF": false,
-      "HALITO": false,
-      "KADORTO": false,
-      "MALIKTO": false,
-      "LOKTOFEIT": false,
-      "MABADI": false,
-      "MADI": false,
-      "LORTO": false,
-      "BADI": false,
-      "DI": false,
-      "KANDI": false,
-      "LITOKAN": false,
-      "BADIALMA": false,
-      "DIALMA": false,
-      "MAPORFIC": false,
-      "LATUMOFIS": false,
-      "BADIAL": false,
-      "DIAL": false,
-      "BAMATU": false,
-      "LATUMAPIC": false,
-      "DIALKO": false,
-      "LOMILWA": false,
-      "MONTINO": false,
-      "MANIFO": false,
-      "CALFO": false,
-      "MATU": false,
-      "PORFIC": false,
-      "MILWA": false,
-      "BADIOS": false,
-      "DIOS": false,
-      "KALKI": false
-    },
-    "_status": {
-      "title": "OK",
-      "index": 0,
-      "description": "",
-      "name": "OK"
-    },
-    "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.533Z",
-    "_wepVsty2": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVsty3": [
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ]
-    ],
-    "_wepVstyP": [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false
-    ]
-  },
-  {
-    "_watchers": [],
-    "_age": 1063,
+    "_age": 1157,
     "_alignment": {
       "title": "NEUTRAL",
       "index": 2,
@@ -2028,10 +300,10 @@
     "_attributes": {
       "STRENGTH": 7,
       "IQ": 18,
-      "PIETY": 11,
-      "VITALITY": 6,
-      "AGILITY": 9,
-      "LUCK": 6
+      "PIETY": 16,
+      "VITALITY": 8,
+      "AGILITY": 10,
+      "LUCK": 7
     },
     "_charLev": 1,
     "_clazz": {
@@ -2057,7 +329,7 @@
     },
     "_critHitM": false,
     "_exp": 0,
-    "_gold": 142,
+    "_gold": 139,
     "_healPts": 0,
     "_hpCalcMd": 0,
     "_hpDamRc": {
@@ -2106,8 +378,8 @@
       0
     ],
     "_maxLevAc": 1,
-    "_name": "AEFD",
-    "_partyOrder": -1,
+    "_name": "GNMAG",
+    "_partyOrder": 3,
     "_possessions": {
       "count": 0,
       "possession": [
@@ -2171,12 +443,12 @@
       0
     ],
     "_race": {
-      "title": "ELF",
-      "index": 2,
-      "name": "ELF",
-      "description": "Elves are intelligent and pious, but not very hardy. They make good spell-casters."
+      "title": "GNOME",
+      "index": 4,
+      "name": "GNOME",
+      "description": "Gnomes are pious and agile, probably from worshipping underground during earthquakes. They make excellent Priests."
     },
-    "_refId": "kysq228j4xco9czt3w",
+    "_refId": "kyt86s11a1abgn4bzim",
     "_spellsKnown": {
       "TILTOWAIT": false,
       "MAHAMAN": false,
@@ -2236,7 +508,7 @@
       "name": "OK"
     },
     "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.534Z",
+    "_timeCreated": "2022-02-25T16:28:10.537Z",
     "_wepVsty2": [
       [
         false,
@@ -2593,7 +865,7 @@
   },
   {
     "_watchers": [],
-    "_age": 1157,
+    "_age": 1063,
     "_alignment": {
       "title": "NEUTRAL",
       "index": 2,
@@ -2604,10 +876,10 @@
     "_attributes": {
       "STRENGTH": 7,
       "IQ": 18,
-      "PIETY": 16,
-      "VITALITY": 8,
-      "AGILITY": 10,
-      "LUCK": 7
+      "PIETY": 11,
+      "VITALITY": 6,
+      "AGILITY": 9,
+      "LUCK": 6
     },
     "_charLev": 1,
     "_clazz": {
@@ -2633,7 +905,7 @@
     },
     "_critHitM": false,
     "_exp": 0,
-    "_gold": 139,
+    "_gold": 142,
     "_healPts": 0,
     "_hpCalcMd": 0,
     "_hpDamRc": {
@@ -2644,7 +916,7 @@
     },
     "_hpLeft": 3,
     "_hpMax": 3,
-    "_inMaze": false,
+    "_inMaze": true,
     "_lostXyl": {
       "location": [
         0,
@@ -2682,8 +954,8 @@
       0
     ],
     "_maxLevAc": 1,
-    "_name": "GNMAG",
-    "_partyOrder": -1,
+    "_name": "AEFD",
+    "_partyOrder": 2,
     "_possessions": {
       "count": 0,
       "possession": [
@@ -2747,12 +1019,12 @@
       0
     ],
     "_race": {
-      "title": "GNOME",
-      "index": 4,
-      "name": "GNOME",
-      "description": "Gnomes are pious and agile, probably from worshipping underground during earthquakes. They make excellent Priests."
+      "title": "ELF",
+      "index": 2,
+      "name": "ELF",
+      "description": "Elves are intelligent and pious, but not very hardy. They make good spell-casters."
     },
-    "_refId": "kyt86s11a1abgn4bzim",
+    "_refId": "kysq228j4xco9czt3w",
     "_spellsKnown": {
       "TILTOWAIT": false,
       "MAHAMAN": false,
@@ -2812,7 +1084,7 @@
       "name": "OK"
     },
     "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.537Z",
+    "_timeCreated": "2022-02-25T16:28:10.534Z",
     "_wepVsty2": [
       [
         false,
@@ -2881,7 +1153,7 @@
   },
   {
     "_watchers": [],
-    "_age": 1055,
+    "_age": 1151,
     "_alignment": {
       "title": "GOOD",
       "index": 1,
@@ -2890,38 +1162,38 @@
     },
     "_armorCl": 10,
     "_attributes": {
-      "STRENGTH": 5,
-      "IQ": 11,
-      "PIETY": 18,
+      "STRENGTH": 18,
+      "IQ": 7,
+      "PIETY": 10,
       "VITALITY": 10,
-      "AGILITY": 10,
-      "LUCK": 15
+      "AGILITY": 5,
+      "LUCK": 6
     },
     "_charLev": 1,
     "_clazz": {
-      "title": "PRIEST",
-      "index": 2,
-      "description": "The holy one. Priests need 11 or more Piety points, and have fairly high hit points. In addition to priestly spells they can Dispell monsters. Priests may not be of Neutral alignment.",
-      "name": "PRIEST",
+      "title": "FIGHTER",
+      "index": 0,
+      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
+      "name": "FIGHTER",
       "nextLevel": {
-        "0": 304132,
-        "1": 1050,
-        "2": 1810,
-        "3": 3120,
-        "4": 5379,
-        "5": 9274,
-        "6": 15989,
-        "7": 27567,
-        "8": 47529,
-        "9": 81946,
-        "10": 141286,
-        "11": 243596,
-        "12": 419993
+        "0": 289709,
+        "1": 1000,
+        "2": 1724,
+        "3": 2972,
+        "4": 5124,
+        "5": 8834,
+        "6": 15231,
+        "7": 26260,
+        "8": 45275,
+        "9": 78060,
+        "10": 134586,
+        "11": 232044,
+        "12": 400075
       }
     },
     "_critHitM": false,
     "_exp": 0,
-    "_gold": 116,
+    "_gold": 113,
     "_healPts": 0,
     "_hpCalcMd": 0,
     "_hpDamRc": {
@@ -2930,8 +1202,8 @@
       "_hpminad": 0,
       "_level": 0
     },
-    "_hpLeft": 7,
-    "_hpMax": 7,
+    "_hpLeft": 9,
+    "_hpMax": 9,
     "_inMaze": false,
     "_lostXyl": {
       "location": [
@@ -2970,7 +1242,7 @@
       0
     ],
     "_maxLevAc": 1,
-    "_name": "HGPRI",
+    "_name": "DGFIG",
     "_partyOrder": -1,
     "_possessions": {
       "count": 0,
@@ -3026,7 +1298,7 @@
       ]
     },
     "_priestSpells": [
-      2,
+      0,
       0,
       0,
       0,
@@ -3035,12 +1307,12 @@
       0
     ],
     "_race": {
-      "title": "HOBBIT",
-      "index": 5,
-      "name": "HOBBIT",
-      "description": "Hobbits are agile and very, very lucky. They make excellent Thieves."
+      "title": "DWARF",
+      "index": 3,
+      "name": "DWARF",
+      "description": "Dwarves are strong and robust, and make excellent warriors."
     },
-    "_refId": "kyt87if0c0oqpp79fcn",
+    "_refId": "kysqou4o2g1zpe5mk8v",
     "_spellsKnown": {
       "TILTOWAIT": false,
       "MAHAMAN": false,
@@ -3088,8 +1360,8 @@
       "CALFO": false,
       "MATU": false,
       "PORFIC": false,
-      "MILWA": true,
-      "BADIOS": true,
+      "MILWA": false,
+      "BADIOS": false,
       "DIOS": false,
       "KALKI": false
     },
@@ -3100,7 +1372,1735 @@
       "name": "OK"
     },
     "_swingCnt": 0,
-    "_timeCreated": "2022-02-25T16:28:10.538Z",
+    "_timeCreated": "2022-02-25T16:28:10.533Z",
+    "_wepVsty2": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVsty3": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVstyP": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "_watchers": [],
+    "_age": 971,
+    "_alignment": {
+      "title": "GOOD",
+      "index": 1,
+      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
+      "name": "GOOD"
+    },
+    "_armorCl": 10,
+    "_attributes": {
+      "STRENGTH": 17,
+      "IQ": 8,
+      "PIETY": 5,
+      "VITALITY": 8,
+      "AGILITY": 8,
+      "LUCK": 9
+    },
+    "_charLev": 1,
+    "_clazz": {
+      "title": "FIGHTER",
+      "index": 0,
+      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
+      "name": "FIGHTER",
+      "nextLevel": {
+        "0": 289709,
+        "1": 1000,
+        "2": 1724,
+        "3": 2972,
+        "4": 5124,
+        "5": 8834,
+        "6": 15231,
+        "7": 26260,
+        "8": 45275,
+        "9": 78060,
+        "10": 134586,
+        "11": 232044,
+        "12": 400075
+      }
+    },
+    "_critHitM": false,
+    "_exp": 0,
+    "_gold": 136,
+    "_healPts": 0,
+    "_hpCalcMd": 0,
+    "_hpDamRc": {
+      "_watchers": [],
+      "_hpfac": 0,
+      "_hpminad": 0,
+      "_level": 0
+    },
+    "_hpLeft": 9,
+    "_hpMax": 9,
+    "_inMaze": false,
+    "_lostXyl": {
+      "location": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "poisonAmt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "awards": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "_luckSkill": [
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "_mageSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_maxLevAc": 1,
+    "_name": "FEF",
+    "_partyOrder": -1,
+    "_possessions": {
+      "count": 0,
+      "possession": [
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        }
+      ]
+    },
+    "_priestSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_race": {
+      "title": "HUMAN",
+      "index": 1,
+      "name": "HUMAN",
+      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
+    },
+    "_refId": "kyudtz91p599khtxli",
+    "_spellsKnown": {
+      "TILTOWAIT": false,
+      "MAHAMAN": false,
+      "MALOR": false,
+      "HAMAN": false,
+      "MASOPIC": false,
+      "ZILWAN": false,
+      "LAKANITO": false,
+      "MADALTO": false,
+      "MAKANITO": false,
+      "MAMORLIS": false,
+      "LAHALITO": false,
+      "DALTO": false,
+      "MORLIS": false,
+      "MOLITO": false,
+      "MAHALITO": false,
+      "SOPIC": false,
+      "DILTO": false,
+      "DUMAPIC": false,
+      "KATINO": false,
+      "MOGREF": false,
+      "HALITO": false,
+      "KADORTO": false,
+      "MALIKTO": false,
+      "LOKTOFEIT": false,
+      "MABADI": false,
+      "MADI": false,
+      "LORTO": false,
+      "BADI": false,
+      "DI": false,
+      "KANDI": false,
+      "LITOKAN": false,
+      "BADIALMA": false,
+      "DIALMA": false,
+      "MAPORFIC": false,
+      "LATUMOFIS": false,
+      "BADIAL": false,
+      "DIAL": false,
+      "BAMATU": false,
+      "LATUMAPIC": false,
+      "DIALKO": false,
+      "LOMILWA": false,
+      "MONTINO": false,
+      "MANIFO": false,
+      "CALFO": false,
+      "MATU": false,
+      "PORFIC": false,
+      "MILWA": false,
+      "BADIOS": false,
+      "DIOS": false,
+      "KALKI": false
+    },
+    "_status": {
+      "title": "OK",
+      "index": 0,
+      "description": "",
+      "name": "OK"
+    },
+    "_swingCnt": 0,
+    "_timeCreated": "2022-02-25T16:28:10.532Z",
+    "_wepVsty2": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVsty3": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVstyP": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "_watchers": [],
+    "_age": 980,
+    "_alignment": {
+      "title": "GOOD",
+      "index": 1,
+      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
+      "name": "GOOD"
+    },
+    "_armorCl": 10,
+    "_attributes": {
+      "STRENGTH": 16,
+      "IQ": 8,
+      "PIETY": 5,
+      "VITALITY": 8,
+      "AGILITY": 8,
+      "LUCK": 9
+    },
+    "_charLev": 1,
+    "_clazz": {
+      "title": "FIGHTER",
+      "index": 0,
+      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
+      "name": "FIGHTER",
+      "nextLevel": {
+        "0": 289709,
+        "1": 1000,
+        "2": 1724,
+        "3": 2972,
+        "4": 5124,
+        "5": 8834,
+        "6": 15231,
+        "7": 26260,
+        "8": 45275,
+        "9": 78060,
+        "10": 134586,
+        "11": 232044,
+        "12": 400075
+      }
+    },
+    "_critHitM": false,
+    "_exp": 0,
+    "_gold": 172,
+    "_healPts": 0,
+    "_hpCalcMd": 0,
+    "_hpDamRc": {
+      "_watchers": [],
+      "_hpfac": 0,
+      "_hpminad": 0,
+      "_level": 0
+    },
+    "_hpLeft": 9,
+    "_hpMax": 9,
+    "_inMaze": false,
+    "_lostXyl": {
+      "location": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "poisonAmt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "awards": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "_luckSkill": [
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "_mageSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_maxLevAc": 1,
+    "_name": "QEDQE",
+    "_partyOrder": 1,
+    "_possessions": {
+      "count": 0,
+      "possession": [
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        }
+      ]
+    },
+    "_priestSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_race": {
+      "title": "HUMAN",
+      "index": 1,
+      "name": "HUMAN",
+      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
+    },
+    "_refId": "kyudub175g4n3kjb3cj",
+    "_spellsKnown": {
+      "TILTOWAIT": false,
+      "MAHAMAN": false,
+      "MALOR": false,
+      "HAMAN": false,
+      "MASOPIC": false,
+      "ZILWAN": false,
+      "LAKANITO": false,
+      "MADALTO": false,
+      "MAKANITO": false,
+      "MAMORLIS": false,
+      "LAHALITO": false,
+      "DALTO": false,
+      "MORLIS": false,
+      "MOLITO": false,
+      "MAHALITO": false,
+      "SOPIC": false,
+      "DILTO": false,
+      "DUMAPIC": false,
+      "KATINO": false,
+      "MOGREF": false,
+      "HALITO": false,
+      "KADORTO": false,
+      "MALIKTO": false,
+      "LOKTOFEIT": false,
+      "MABADI": false,
+      "MADI": false,
+      "LORTO": false,
+      "BADI": false,
+      "DI": false,
+      "KANDI": false,
+      "LITOKAN": false,
+      "BADIALMA": false,
+      "DIALMA": false,
+      "MAPORFIC": false,
+      "LATUMOFIS": false,
+      "BADIAL": false,
+      "DIAL": false,
+      "BAMATU": false,
+      "LATUMAPIC": false,
+      "DIALKO": false,
+      "LOMILWA": false,
+      "MONTINO": false,
+      "MANIFO": false,
+      "CALFO": false,
+      "MATU": false,
+      "PORFIC": false,
+      "MILWA": false,
+      "BADIOS": false,
+      "DIOS": false,
+      "KALKI": false
+    },
+    "_status": {
+      "title": "OK",
+      "index": 0,
+      "description": "",
+      "name": "OK"
+    },
+    "_swingCnt": 0,
+    "_timeCreated": "2022-02-25T16:28:10.531Z",
+    "_wepVsty2": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVsty3": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVstyP": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "_watchers": [],
+    "_age": 1215,
+    "_alignment": {
+      "title": "GOOD",
+      "index": 1,
+      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
+      "name": "GOOD"
+    },
+    "_armorCl": 10,
+    "_attributes": {
+      "STRENGTH": 17,
+      "IQ": 10,
+      "PIETY": 10,
+      "VITALITY": 6,
+      "AGILITY": 9,
+      "LUCK": 6
+    },
+    "_charLev": 1,
+    "_clazz": {
+      "title": "FIGHTER",
+      "index": 0,
+      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
+      "name": "FIGHTER",
+      "nextLevel": {
+        "0": 289709,
+        "1": 1000,
+        "2": 1724,
+        "3": 2972,
+        "4": 5124,
+        "5": 8834,
+        "6": 15231,
+        "7": 26260,
+        "8": 45275,
+        "9": 78060,
+        "10": 134586,
+        "11": 232044,
+        "12": 400075
+      }
+    },
+    "_critHitM": false,
+    "_exp": 0,
+    "_gold": 179,
+    "_healPts": 0,
+    "_hpCalcMd": 0,
+    "_hpDamRc": {
+      "_watchers": [],
+      "_hpfac": 0,
+      "_hpminad": 0,
+      "_level": 0
+    },
+    "_hpLeft": 8,
+    "_hpMax": 8,
+    "_inMaze": false,
+    "_lostXyl": {
+      "location": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "poisonAmt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "awards": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "_luckSkill": [
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "_mageSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_maxLevAc": 1,
+    "_name": "DFVBDFVB",
+    "_partyOrder": 1,
+    "_possessions": {
+      "count": 0,
+      "possession": [
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        }
+      ]
+    },
+    "_priestSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_race": {
+      "title": "ELF",
+      "index": 2,
+      "name": "ELF",
+      "description": "Elves are intelligent and pious, but not very hardy. They make good spell-casters."
+    },
+    "_refId": "kyudul6brn9zy6o5c5d",
+    "_spellsKnown": {
+      "TILTOWAIT": false,
+      "MAHAMAN": false,
+      "MALOR": false,
+      "HAMAN": false,
+      "MASOPIC": false,
+      "ZILWAN": false,
+      "LAKANITO": false,
+      "MADALTO": false,
+      "MAKANITO": false,
+      "MAMORLIS": false,
+      "LAHALITO": false,
+      "DALTO": false,
+      "MORLIS": false,
+      "MOLITO": false,
+      "MAHALITO": false,
+      "SOPIC": false,
+      "DILTO": false,
+      "DUMAPIC": false,
+      "KATINO": false,
+      "MOGREF": false,
+      "HALITO": false,
+      "KADORTO": false,
+      "MALIKTO": false,
+      "LOKTOFEIT": false,
+      "MABADI": false,
+      "MADI": false,
+      "LORTO": false,
+      "BADI": false,
+      "DI": false,
+      "KANDI": false,
+      "LITOKAN": false,
+      "BADIALMA": false,
+      "DIALMA": false,
+      "MAPORFIC": false,
+      "LATUMOFIS": false,
+      "BADIAL": false,
+      "DIAL": false,
+      "BAMATU": false,
+      "LATUMAPIC": false,
+      "DIALKO": false,
+      "LOMILWA": false,
+      "MONTINO": false,
+      "MANIFO": false,
+      "CALFO": false,
+      "MATU": false,
+      "PORFIC": false,
+      "MILWA": false,
+      "BADIOS": false,
+      "DIOS": false,
+      "KALKI": false
+    },
+    "_status": {
+      "title": "OK",
+      "index": 0,
+      "description": "",
+      "name": "OK"
+    },
+    "_swingCnt": 0,
+    "_timeCreated": "2022-02-25T16:28:10.529Z",
+    "_wepVsty2": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVsty3": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVstyP": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "_watchers": [],
+    "_age": 1081,
+    "_alignment": {
+      "title": "GOOD",
+      "index": 1,
+      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
+      "name": "GOOD"
+    },
+    "_armorCl": 10,
+    "_attributes": {
+      "STRENGTH": 18,
+      "IQ": 8,
+      "PIETY": 5,
+      "VITALITY": 8,
+      "AGILITY": 8,
+      "LUCK": 9
+    },
+    "_charLev": 1,
+    "_clazz": {
+      "title": "FIGHTER",
+      "index": 0,
+      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
+      "name": "FIGHTER",
+      "nextLevel": {
+        "0": 289709,
+        "1": 1000,
+        "2": 1724,
+        "3": 2972,
+        "4": 5124,
+        "5": 8834,
+        "6": 15231,
+        "7": 26260,
+        "8": 45275,
+        "9": 78060,
+        "10": 134586,
+        "11": 232044,
+        "12": 400075
+      }
+    },
+    "_critHitM": false,
+    "_exp": 0,
+    "_gold": 1597420,
+    "_healPts": 0,
+    "_hpCalcMd": 0,
+    "_hpDamRc": {
+      "_watchers": [],
+      "_hpfac": 0,
+      "_hpminad": 0,
+      "_level": 0
+    },
+    "_hpLeft": 59,
+    "_hpMax": 9999,
+    "_inMaze": true,
+    "_lostXyl": {
+      "location": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "poisonAmt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "awards": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "_luckSkill": [
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "_mageSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_maxLevAc": 1,
+    "_name": "WF",
+    "_partyOrder": 0,
+    "_possessions": {
+      "count": 0,
+      "possession": [
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        }
+      ]
+    },
+    "_priestSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_race": {
+      "title": "HUMAN",
+      "index": 1,
+      "name": "HUMAN",
+      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
+    },
+    "_refId": "kyuduv364ueoi95qgo2",
+    "_spellsKnown": {
+      "TILTOWAIT": false,
+      "MAHAMAN": false,
+      "MALOR": false,
+      "HAMAN": false,
+      "MASOPIC": false,
+      "ZILWAN": false,
+      "LAKANITO": false,
+      "MADALTO": false,
+      "MAKANITO": false,
+      "MAMORLIS": false,
+      "LAHALITO": false,
+      "DALTO": false,
+      "MORLIS": false,
+      "MOLITO": false,
+      "MAHALITO": false,
+      "SOPIC": false,
+      "DILTO": false,
+      "DUMAPIC": false,
+      "KATINO": false,
+      "MOGREF": false,
+      "HALITO": false,
+      "KADORTO": false,
+      "MALIKTO": false,
+      "LOKTOFEIT": false,
+      "MABADI": false,
+      "MADI": false,
+      "LORTO": false,
+      "BADI": false,
+      "DI": false,
+      "KANDI": false,
+      "LITOKAN": false,
+      "BADIALMA": false,
+      "DIALMA": false,
+      "MAPORFIC": false,
+      "LATUMOFIS": false,
+      "BADIAL": false,
+      "DIAL": false,
+      "BAMATU": false,
+      "LATUMAPIC": false,
+      "DIALKO": false,
+      "LOMILWA": false,
+      "MONTINO": false,
+      "MANIFO": false,
+      "CALFO": false,
+      "MATU": false,
+      "PORFIC": false,
+      "MILWA": false,
+      "BADIOS": false,
+      "DIOS": false,
+      "KALKI": false
+    },
+    "_status": {
+      "title": "OK",
+      "index": 0,
+      "description": "",
+      "name": "OK"
+    },
+    "_swingCnt": 0,
+    "_timeCreated": "2022-02-25T16:28:10.527Z",
+    "_wepVsty2": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVsty3": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVstyP": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "_watchers": [],
+    "_age": 1080,
+    "_alignment": {
+      "title": "GOOD",
+      "index": 1,
+      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
+      "name": "GOOD"
+    },
+    "_armorCl": 10,
+    "_attributes": {
+      "STRENGTH": 18,
+      "IQ": 9,
+      "PIETY": 10,
+      "VITALITY": 10,
+      "AGILITY": 5,
+      "LUCK": 6
+    },
+    "_charLev": 1,
+    "_clazz": {
+      "title": "FIGHTER",
+      "index": 0,
+      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
+      "name": "FIGHTER",
+      "nextLevel": {
+        "0": 289709,
+        "1": 1000,
+        "2": 1724,
+        "3": 2972,
+        "4": 5124,
+        "5": 8834,
+        "6": 15231,
+        "7": 26260,
+        "8": 45275,
+        "9": 78060,
+        "10": 134586,
+        "11": 232044,
+        "12": 400075
+      }
+    },
+    "_critHitM": false,
+    "_exp": 0,
+    "_gold": 171,
+    "_healPts": 0,
+    "_hpCalcMd": 0,
+    "_hpDamRc": {
+      "_watchers": [],
+      "_hpfac": 0,
+      "_hpminad": 0,
+      "_level": 0
+    },
+    "_hpLeft": 9,
+    "_hpMax": 9,
+    "_inMaze": false,
+    "_lostXyl": {
+      "location": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "poisonAmt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "awards": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "_luckSkill": [
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "_mageSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_maxLevAc": 1,
+    "_name": "EFQD",
+    "_partyOrder": 2,
+    "_possessions": {
+      "count": 0,
+      "possession": [
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        }
+      ]
+    },
+    "_priestSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_race": {
+      "title": "DWARF",
+      "index": 3,
+      "name": "DWARF",
+      "description": "Dwarves are strong and robust, and make excellent warriors."
+    },
+    "_refId": "kyudv4ayriai6bhaxai",
+    "_spellsKnown": {
+      "TILTOWAIT": false,
+      "MAHAMAN": false,
+      "MALOR": false,
+      "HAMAN": false,
+      "MASOPIC": false,
+      "ZILWAN": false,
+      "LAKANITO": false,
+      "MADALTO": false,
+      "MAKANITO": false,
+      "MAMORLIS": false,
+      "LAHALITO": false,
+      "DALTO": false,
+      "MORLIS": false,
+      "MOLITO": false,
+      "MAHALITO": false,
+      "SOPIC": false,
+      "DILTO": false,
+      "DUMAPIC": false,
+      "KATINO": false,
+      "MOGREF": false,
+      "HALITO": false,
+      "KADORTO": false,
+      "MALIKTO": false,
+      "LOKTOFEIT": false,
+      "MABADI": false,
+      "MADI": false,
+      "LORTO": false,
+      "BADI": false,
+      "DI": false,
+      "KANDI": false,
+      "LITOKAN": false,
+      "BADIALMA": false,
+      "DIALMA": false,
+      "MAPORFIC": false,
+      "LATUMOFIS": false,
+      "BADIAL": false,
+      "DIAL": false,
+      "BAMATU": false,
+      "LATUMAPIC": false,
+      "DIALKO": false,
+      "LOMILWA": false,
+      "MONTINO": false,
+      "MANIFO": false,
+      "CALFO": false,
+      "MATU": false,
+      "PORFIC": false,
+      "MILWA": false,
+      "BADIOS": false,
+      "DIOS": false,
+      "KALKI": false
+    },
+    "_status": {
+      "title": "OK",
+      "index": 0,
+      "description": "",
+      "name": "OK"
+    },
+    "_swingCnt": 0,
+    "_timeCreated": "2022-02-25T16:28:10.525Z",
+    "_wepVsty2": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVsty3": [
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    ],
+    "_wepVstyP": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  {
+    "_watchers": [],
+    "_age": 952,
+    "_alignment": {
+      "title": "GOOD",
+      "index": 1,
+      "description": "Good characters are really good. They go out of their way to help old ladies cross the street.",
+      "name": "GOOD"
+    },
+    "_armorCl": 10,
+    "_attributes": {
+      "STRENGTH": 17,
+      "IQ": 8,
+      "PIETY": 5,
+      "VITALITY": 8,
+      "AGILITY": 8,
+      "LUCK": 9
+    },
+    "_charLev": 1,
+    "_clazz": {
+      "title": "FIGHTER",
+      "index": 0,
+      "description": "The basic man-at-arms. Fighters need 11 or more Strength points, and have high Hit Points. They can use any armor and weapons, and are reliable in combat. They may be of any alignment.",
+      "name": "FIGHTER",
+      "nextLevel": {
+        "0": 289709,
+        "1": 1000,
+        "2": 1724,
+        "3": 2972,
+        "4": 5124,
+        "5": 8834,
+        "6": 15231,
+        "7": 26260,
+        "8": 45275,
+        "9": 78060,
+        "10": 134586,
+        "11": 232044,
+        "12": 400075
+      }
+    },
+    "_critHitM": false,
+    "_exp": 0,
+    "_gold": 143,
+    "_healPts": 0,
+    "_hpCalcMd": 0,
+    "_hpDamRc": {
+      "_watchers": [],
+      "_hpfac": 0,
+      "_hpminad": 0,
+      "_level": 0
+    },
+    "_hpLeft": 9,
+    "_hpMax": 9,
+    "_inMaze": false,
+    "_lostXyl": {
+      "location": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "poisonAmt": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "awards": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "_luckSkill": [
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "_mageSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_maxLevAc": 1,
+    "_name": "EFEF",
+    "_partyOrder": 1,
+    "_possessions": {
+      "count": 0,
+      "possession": [
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        },
+        {
+          "equipped": false,
+          "cursed": false,
+          "identified": false,
+          "equipmentIndex": -1
+        }
+      ]
+    },
+    "_priestSpells": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "_race": {
+      "title": "HUMAN",
+      "index": 1,
+      "name": "HUMAN",
+      "description": "Humans are jack-of-all-trades characters. They excel at nothing, but have no particular weaknesses, either, except for a decided lack of Piety."
+    },
+    "_refId": "kyudvfgagdac57dq888",
+    "_spellsKnown": {
+      "TILTOWAIT": false,
+      "MAHAMAN": false,
+      "MALOR": false,
+      "HAMAN": false,
+      "MASOPIC": false,
+      "ZILWAN": false,
+      "LAKANITO": false,
+      "MADALTO": false,
+      "MAKANITO": false,
+      "MAMORLIS": false,
+      "LAHALITO": false,
+      "DALTO": false,
+      "MORLIS": false,
+      "MOLITO": false,
+      "MAHALITO": false,
+      "SOPIC": false,
+      "DILTO": false,
+      "DUMAPIC": false,
+      "KATINO": false,
+      "MOGREF": false,
+      "HALITO": false,
+      "KADORTO": false,
+      "MALIKTO": false,
+      "LOKTOFEIT": false,
+      "MABADI": false,
+      "MADI": false,
+      "LORTO": false,
+      "BADI": false,
+      "DI": false,
+      "KANDI": false,
+      "LITOKAN": false,
+      "BADIALMA": false,
+      "DIALMA": false,
+      "MAPORFIC": false,
+      "LATUMOFIS": false,
+      "BADIAL": false,
+      "DIAL": false,
+      "BAMATU": false,
+      "LATUMAPIC": false,
+      "DIALKO": false,
+      "LOMILWA": false,
+      "MONTINO": false,
+      "MANIFO": false,
+      "CALFO": false,
+      "MATU": false,
+      "PORFIC": false,
+      "MILWA": false,
+      "BADIOS": false,
+      "DIOS": false,
+      "KALKI": false
+    },
+    "_status": {
+      "title": "OK",
+      "index": 0,
+      "description": "",
+      "name": "OK"
+    },
+    "_swingCnt": 0,
+    "_timeCreated": "2022-02-25T16:28:10.523Z",
     "_wepVsty2": [
       [
         false,

@@ -22,7 +22,6 @@ beforeAll(() => {
 });
 beforeEach(() => {
   WizardryController.xgoto = WizardryXgoto.XGILGAMS;
-  WizardryController.partyCnt = 0;
   WizardryController.characterRecord = "";
   WizardryController.characters.length = 0;
   WizardryController.rosterInstance._roster = {}
@@ -83,7 +82,12 @@ describe("testing the Tavern Main Menu", () => {
     ui._parent.state = WizardryConstants.GILGAMESH_MAIN;
 
     // when
-    WizardryController.partyCnt = 6;
+    WizardryController.addToParty({ refId: "abcd" });
+    WizardryController.addToParty({ refId: "efgh" });
+    WizardryController.addToParty({ refId: "asdf" });
+    WizardryController.addToParty({ refId: "qwer" });
+    WizardryController.addToParty({ refId: "wsxd" });
+    WizardryController.addToParty({ refId: "azsx" });
     ui.goToAddMember();
 
     // then
@@ -116,7 +120,12 @@ describe("testing the Tavern Main Menu", () => {
     ui._parent.state = WizardryConstants.GILGAMESH_MAIN;
 
     // when
-    WizardryController.partyCnt = 6;
+    WizardryController.addToParty({ refId: "abcd" });
+    WizardryController.addToParty({ refId: "qwes" });
+    WizardryController.addToParty({ refId: "1234" });
+    WizardryController.addToParty({ refId: "2345" });
+    WizardryController.addToParty({ refId: "3456" });
+    WizardryController.addToParty({ refId: "4567" });
     ui.goToRemoveMember();
 
     // then
@@ -151,7 +160,7 @@ describe("testing the Tavern Main Menu", () => {
     ui._parent.state = WizardryConstants.GILGAMESH_MAIN;
 
     // when
-    WizardryController.partyCnt = 0;
+    WizardryController.characters.length = 0;
     ui.goToRemoveMember();
 
     // then

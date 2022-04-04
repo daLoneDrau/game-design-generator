@@ -191,7 +191,7 @@ const WizardryDataManager = (function() {
      * @param {Object} data the project data
      * @param {Function} callback the callback function
      */
-    updateRoster: function(data, callback) {
+    updateBoltacs: function(data, callback) {
       let loadItems = [
         { "type": TYPE_UPDATE_ROSTER, "data": data, "async": true }
       ];

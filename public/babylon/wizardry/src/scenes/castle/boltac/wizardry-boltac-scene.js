@@ -1,11 +1,7 @@
-import { WizardryBoltacBuyUi }      from "./ui/wizardry-boltac-buy-ui.js";
-import { WizardryBoltacIdentifyUi } from "./ui/wizardry-boltac-identify-ui.js";
-import { WizardryBoltacMainUi }     from "./ui/wizardry-boltac-main-ui.js";
-import { WizardryBoltacSellUi }     from "./ui/wizardry-boltac-sell-ui.js";
-import { WizardryBoltacPlayerUi }   from "./ui/wizardry-boltac-player-ui.js";
-import { WizardryBoltacUncurseUi }  from "./ui/wizardry-boltac-uncurse-ui.js";
 import { WizardryUiStateScene }     from "../../wizardry-ui-state-scene.js";
+import { WizardryInterface }        from "../../../components/ui/wizardry-interface.js";
 import { WizardryConstants }        from "../../../config/wizardry-constants.js";
+import { WizardryUiConfig }         from "../../../config/wizardry-ui-config.js";
 
 /**
  * @class Boltac's Trading Post scene.
@@ -17,13 +13,43 @@ import { WizardryConstants }        from "../../../config/wizardry-constants.js"
    */
   constructor(engine) {
     super(engine);
-    this._state = WizardryConstants.BOLTAC_MAIN;
-    this._uiConfigurations[[WizardryConstants.BOLTAC_MAIN]]          = new WizardryBoltacMainUi(this);
-    this._uiConfigurations[[WizardryConstants.BOLTAC_PLAYER_MENU]]   = new WizardryBoltacPlayerUi(this);
-    this._uiConfigurations[[WizardryConstants.BOLTAC_BUY_MENU]]      = new WizardryBoltacBuyUi(this);
-    this._uiConfigurations[[WizardryConstants.BOLTAC_IDENTIFY_MENU]] = new WizardryBoltacIdentifyUi(this);
-    this._uiConfigurations[[WizardryConstants.BOLTAC_SELL_MENU]]     = new WizardryBoltacSellUi(this);
-    this._uiConfigurations[[WizardryConstants.BOLTAC_UNCURSE_MENU]]  = new WizardryBoltacUncurseUi(this);
+    this._state = WizardryConstants.BOLTAC_SELECT_CHARACTER;
+    this._uiConfigurations[[WizardryConstants.BOLTAC_SELECT_CHARACTER]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.BOLTAC_SELECT_CHARACTER]);
+    this._uiConfigurations[[WizardryConstants.BOLTAC_MAIN_MENU]]        = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.BOLTAC_MAIN_MENU]);
+    this._uiConfigurations[[WizardryConstants.BOLTAC_BUY_MENU]]         = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.BOLTAC_BUY_MENU]);
+    this._uiConfigurations[[WizardryConstants.BOLTAC_IDENTIFY_MENU]]    = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.BOLTAC_IDENTIFY_MENU]);
+    this._uiConfigurations[[WizardryConstants.BOLTAC_SELL_MENU]]        = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.BOLTAC_SELL_MENU]);
+    this._uiConfigurations[[WizardryConstants.BOLTAC_UNCURSE_MENU]]     = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.BOLTAC_UNCURSE_MENU]);
+    /**
+     * the current roster page
+     * @type {Number}
+     */
+    this._currentPage = 0;
+    this._lastPage = 0;
+  }
+  /**
+   * Gets the current page of inventory displayed
+   */
+  get inventoryPage() {
+    return this._currentPage;
+  }
+  /**
+   * Sets the inventory page displayed.
+   */
+  set inventoryPage(value) {
+    this._currentPage = value;
+  }
+  /**
+   * Gets the last possible page of inventory to display
+   */
+  get inventoryLastPage() {
+    return this._lastPage;
+  }
+  /**
+   * Sets the last possible inventory page to display.
+   */
+  set inventoryLastPage(value) {
+    this._lastPage = value;
   }
   /**
    * Render the scene.
@@ -41,7 +67,7 @@ import { WizardryConstants }        from "../../../config/wizardry-constants.js"
       this._enterScene = false;
 
       // reset local variables
-      this.state = WizardryConstants.BOLTAC_MAIN;
+      this.state = WizardryConstants.BOLTAC_SELECT_CHARACTER;
 
       // reset screen state
       for (let prop in this._uiConfigurations) {

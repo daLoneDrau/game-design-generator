@@ -244,9 +244,9 @@ class WizardryInitScene extends BABYLON.Scene {
       // loading completed. start the game
       WizardryController.timeDelay = 2000;
       WizardryController.xgoto = WizardryXgoto.XCASTLE;
-      WizardryController.mazeX = 0;
-      WizardryController.mazeY = 0;
-      WizardryController.mazeLev = 0;
+      WizardryController.mazeData.mazeX = 0;
+      WizardryController.mazeData.mazeY = 0;
+      WizardryController.mazeData.mazeLev = 0;
       WizardryController.directIo = 0;
       WizardryController.acMod2 = 0;
     }

@@ -15,7 +15,7 @@ beforeAll(() => {
 });
 beforeEach(() => {
   WizardryController.xgoto = WizardryXgoto.XCASTLE;
-  WizardryController.partyCnt = 0;
+  WizardryController.characters.length = 0;
 });
 describe("testing the WizardryCastleMarketTests class", () => {
   let range = 0.05, runs = 10000;
@@ -33,7 +33,7 @@ describe("testing the WizardryCastleMarketTests class", () => {
     marketUi._messageBlock = {
       text: ""
     };
-    WizardryController.partyCnt = 1;
+    WizardryController.addToParty({ refId: "abcd" });
     marketUi.goToAdventurersInn();
     expect(WizardryController.xgoto).toBe(WizardryXgoto.XADVNTINN);
     expect(marketUi._messageBlock.text).toBe("");
@@ -60,7 +60,7 @@ describe("testing the WizardryCastleMarketTests class", () => {
     expect(marketUi._messageBlock.text).toBe("No need to visit the Inn if there are no adventurers in the party.");
     
     // when
-    WizardryController.partyCnt = 1;
+    WizardryController.addToParty({ refId: "abcd" });
     marketUi.handleKeyEntry("A");
 
     // then
@@ -80,7 +80,7 @@ describe("testing the WizardryCastleMarketTests class", () => {
     marketUi._messageBlock = {
       text: ""
     };
-    WizardryController.partyCnt = 1;
+    WizardryController.addToParty({ refId: "abcd" });
     marketUi.goToBoltacsTradingPost();
     expect(WizardryController.xgoto).toBe(WizardryXgoto.XBOLTAC);
     expect(marketUi._messageBlock.text).toBe("");
@@ -107,7 +107,7 @@ describe("testing the WizardryCastleMarketTests class", () => {
     expect(marketUi._messageBlock.text).toBe("There's no one in the party to buy or sell at the Trading Post.");
     
     // when
-    WizardryController.partyCnt = 1;
+    WizardryController.addToParty({ refId: "abcd" });
     marketUi.handleKeyEntry("b");
 
     // then
@@ -189,7 +189,7 @@ describe("testing the WizardryCastleMarketTests class", () => {
     marketUi._messageBlock = {
       text: ""
     };
-    WizardryController.partyCnt = 1;
+    WizardryController.addToParty({ refId: "abcd" });
     marketUi.goToTempleOfCant();
     expect(WizardryController.xgoto).toBe(WizardryXgoto.XCANT);
     expect(marketUi._messageBlock.text).toBe("");
@@ -216,7 +216,7 @@ describe("testing the WizardryCastleMarketTests class", () => {
     expect(marketUi._messageBlock.text).toBe("Why the Temple? The party has no adventurers to restore.");
     
     // when
-    WizardryController.partyCnt = 1;
+    WizardryController.addToParty({ refId: "abcd" });
     marketUi.handleKeyEntry("c");
 
     // then

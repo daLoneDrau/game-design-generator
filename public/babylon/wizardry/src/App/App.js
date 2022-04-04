@@ -11,6 +11,8 @@ import { WizardryCharacterCreationScene } from "../scenes/training-grounds/make-
 import { WizardryTrainingScene }          from "../scenes/training-grounds/train-character/wizardry-train-character-scene.js";
 import { WizardryTrainingGroundsScene }   from "../scenes/training-grounds/wizardry-training-grounds-scene.js";
 import { WizardryInitScene }              from "../scenes/init/wizardry-init-scene.js";
+import { WizardryRunnerGraphicsScene }    from "../scenes/runner/wizardry-runner-graphics-scene.js";
+import { WizardryMazeRunnerUiScene }      from "../scenes/runner/wizardry-runner-ui-scene.js";
 import { WizardryController }             from "../services/wizardry-controller.js";
 
 /** the BABYLON.Engine instance.*/
@@ -46,7 +48,8 @@ class App {
     _sceneGroups[WizardryXgoto.XMAKECHAR]  = new WizardryCharacterCreationScene(_engine);
     _sceneGroups[WizardryXgoto.XTRAINCHAR] = new WizardryTrainingScene(_engine);
     _sceneGroups[WizardryXgoto.XINSPCT2]   = new WizardryCampMazeScene(_engine);
-    _sceneGroups[WizardryXgoto.XINSPCT3]   = new WizardryCampInspectScene(_engine);    
+    _sceneGroups[WizardryXgoto.XINSPCT3]   = new WizardryCampInspectScene(_engine); 
+    _sceneGroups[WizardryXgoto.XRUNNER]    = [new WizardryRunnerGraphicsScene(_engine), new WizardryMazeRunnerUiScene(_engine)];    
   }
 
   // 2. Render the scene

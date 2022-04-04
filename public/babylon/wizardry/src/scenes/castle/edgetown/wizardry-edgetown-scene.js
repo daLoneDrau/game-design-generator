@@ -1,7 +1,7 @@
-import { WizardryEdgeTownMainUi } from "./ui/wizardry-edge-town-main-ui.js";
-import { WizardryEdgeTownMazeUi } from "./ui/wizardry-edge-town-maze-ui.js";
 import { WizardryUiStateScene }   from "../../wizardry-ui-state-scene.js";
+import { WizardryInterface }      from "../../../components/ui/wizardry-interface.js";
 import { WizardryConstants }      from "../../../config/wizardry-constants.js";
+import { WizardryUiConfig }       from "../../../config/wizardry-ui-config.js";
 
 /**
  * @class Edge of Town scene.
@@ -14,8 +14,8 @@ class WizardryEdgeTownScene extends WizardryUiStateScene {
   constructor(engine) {
     super(engine);
     this._state = WizardryConstants.EDGE_TOWN_MAIN;
-    this._uiConfigurations[[WizardryConstants.EDGE_TOWN_MAIN]] = new WizardryEdgeTownMainUi(this);
-    this._uiConfigurations[[WizardryConstants.EDGE_TOWN_MAZE]] = new WizardryEdgeTownMazeUi(this);
+    this._uiConfigurations[[WizardryConstants.EDGE_TOWN_MAIN]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.EDGE_TOWN_MAIN]);
+    this._uiConfigurations[[WizardryConstants.EDGE_TOWN_MAZE]] = new WizardryInterface(this, WizardryUiConfig[WizardryConstants.EDGE_TOWN_MAZE]);
     this._isEnteringMaze = false;
 
   }

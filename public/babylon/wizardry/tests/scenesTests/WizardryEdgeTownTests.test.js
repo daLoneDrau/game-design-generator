@@ -23,7 +23,6 @@ beforeAll(() => {
 });
 beforeEach(() => {
   WizardryController.xgoto = WizardryXgoto.XEDGTOWN;
-  WizardryController.partyCnt = 0;
   WizardryController.characterRecord = "";
   WizardryController.characters.length = 0;
   WizardryController.rosterInstance._roster = {}
@@ -277,9 +276,9 @@ describe("testing the Edge of Town Scene", () => {
     // then
     expect(ui._parent.state).toBe(WizardryConstants.EDGE_TOWN_MAIN);
     expect(WizardryController.xgoto).toBe(WizardryXgoto.XNEWMAZE);
-    expect(WizardryController.mazeX).toBe(0);
-    expect(WizardryController.mazeY).toBe(0);
-    expect(WizardryController.mazeLev).toBe(-1);
+    expect(WizardryController.mazeData.mazeX).toBe(0);
+    expect(WizardryController.mazeData.mazeY).toBe(0);
+    expect(WizardryController.mazeData.mazeLev).toBe(-1);
     expect(WizardryController.directIo).toBe(0);
   });
 });
